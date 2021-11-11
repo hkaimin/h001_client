@@ -1,0 +1,21 @@
+{
+	"initial": [
+		"js/egret.min_6409d128.js",
+		"js/egret.web.min_d1451e99.js",
+		"js/game.min_16249d0f.js",
+		"js/tween.min_6c5a88f9.js",
+		"js/assetsmanager.min_2ef412b7.js",
+		"js/eui.min_493403ce.js",
+		"js/socket.min_8b4cb752.js",
+		"js/promise.min_83a6a5d.js",
+		"js/jszip.min_aff92f.js",
+		"js/crypto-js.min_862d13a1.js",
+		"js/snappyjs.min_c4b9f9e.js",
+		"js/lzma.min_bc34bfa.js",
+		"js/PathFinding.min_6605350.js"
+	],
+	"game": [
+		"js/default.thm_a0e5ac09.js",
+		"js/main.min_ef866289.js"
+	]
+}

@@ -1,0 +1,570 @@
+/**
+ * 战斗模块
+ */
+module Fight {
+	/**玩家 */
+    export class Player extends egret.DisplayObjectContainer{
+        public roleId;
+        private bodyAni;
+        private bodyAniUp;
+        private bodyAniDown;
+        private bodyAniLeft;
+        private bodyAniRight;
+        private moveTw;
+        private xDis = 3;
+        private yDis = 3;
+        private uTime = 100;
+        public whichSide = 0;
+        private sideDes = "";
+
+        public bulletLen = 4;
+        private life = 1;
+        public speed = 1;
+        public isMainPlayer = false;
+
+        private isMoving = false;
+        public curDirect = -1;
+        public func;
+
+        public curMapIdx;//当前属于第几个格子
+        private bulletX;//放炸弹的坐标
+        private bulletY;
+        private groundObj;
+        private row = -1;
+        private column = -1;
+
+        public keyDir = -1;
+        public keyBoom = -1;
+
+        public aiRobot = false;
+        private endX = -1;
+        private endY = -1;
+        private fixAIX = 0;
+        private fixAIY = 0;
+
+        public isAI = 0;
+        private markLeft = 0;
+        private markRight = 0;
+        private death = false;
+
+		/**玩家对象 */
+		public constructor(para) {
+			super();
+            let pObj = para["pObj"];
+            this.roleId = pObj.uid;
+            if(this.roleId == ConstValue.cacheUserInfo.id){
+                this.isMainPlayer = true;
+            }
+            this.life = pObj.life;
+            this.speed = pObj.speed;
+            this.bulletLen = pObj.power;
+
+            this.whichSide = para["side"];
+            if(this.whichSide == 1){
+                this.sideDes = "p1";
+            }else{
+                this.sideDes = "p2";
+            }
+            this.bodyAniUp = CommonTools.getAnimDraw(RES.getRes(this.sideDes + "_03_json"), RES.getRes(this.sideDes+"_03_png"), "0");
+            this.bodyAniDown = CommonTools.getAnimDraw(RES.getRes(this.sideDes + "_01_json"), RES.getRes(this.sideDes+"_01_png"), "0");
+            this.bodyAniLeft = CommonTools.getAnimDraw(RES.getRes(this.sideDes + "_02_json"), RES.getRes(this.sideDes+"_02_png"), "0");
+            this.bodyAniRight = CommonTools.getAnimDraw(RES.getRes(this.sideDes + "_04_json"), RES.getRes(this.sideDes+"_04_png"), "0");
+            this.bodyAni = this.bodyAniDown;
+            this.addChild(this.bodyAni);
+            this.x = para["x"];
+            this.y = para["y"];
+            this.name = para["name"];
+			this.bodyAni.play(-1);
+
+            this.isAI = para["isAI"];
+
+            if(ConstValue.P_FIGHT_OBJ.APP_MODE == 2){
+                this.xDis = 1.5;
+                this.yDis = 1.5;
+            }
+
+            // var shp: egret.Shape = new egret.Shape();
+            // shp.graphics.beginFill(0xff0000);
+            // shp.graphics.drawRect(-41,0,82,41);
+            // shp.graphics.endFill();
+            // this.addChild(shp);
+
+        }
+
+        public setMoving(flag){
+            this.isMoving = flag;
+            if(!flag){
+                this.curDirect = -1;
+            }
+        }
+
+        public moveDetail(endX,endY){
+            this.endX = endX;
+            this.endY = endY;
+            CommonTools.logAI("--moveDetail--------------this.column:"+this.column+" this.row:"+this.row+" endX:"+endX+" endY:"+endY)
+            if(this.column == endX){
+                if(endY >= this.row){
+                    this.move(2,false);
+                    return;
+                }else{
+                    this.move(0,false);
+                    return;
+                }
+            }
+            if(this.row ==  endY){
+                if(endX >= this.column){
+                    this.move(1,false);
+                    return;
+                }else{
+                    this.move(3,false);
+                    return;
+                }
+            }
+        }
+
+        public findOwnAi(){
+            for(let i in FightingModule.aiSubObj){
+                let obj = FightingModule.aiSubObj[i];
+                if(obj.aiObj.roleId == this.roleId){
+                    return obj;
+                }
+            }
+            return null;
+        }
+
+        /**
+         * direct 0上 1右 2下 3左
+         * isAuto true是方向自己走 false是手动走
+         */
+        public move(direct,isAuto){
+            try {
+                if(!this.isMoving)return;
+                let tXDis = this.xDis+this.speed*3;
+                let tYDis = this.yDis+this.speed*3;
+                if(direct == -1){
+                    if(this.curDirect == -1){
+                        direct = 1;
+                    }else{
+                        direct = this.curDirect;
+                    }
+                }
+                if(this.aiRobot){
+                    // CommonTools.logAI("move------this.column:"+this.column+" this.row:"+this.row+" this.endX:"+this.endX+" this.endY:"+this.endY+" direct:"+direct)
+                    if(this.column == this.endX && this.row == this.endY){
+                        if(direct == 0 || direct == 2){
+                            if(this.fixAIY <= 50){
+                                this.fixAIY += tYDis;
+                            }else{
+                                this.setMoving(false);
+                                this.removeEventListener(egret.Event.ENTER_FRAME,this.func, this);
+                                this.func = null;
+                                this.keyDir = -1;
+
+                                this.fixAIY = 0;
+                                CommonTools.logAI("move------11111111111111111111111111111")
+                                this.findOwnAi().moveNext();
+                                return;
+                            }
+                        }else if(direct == 1 || direct == 3){
+                            if(this.fixAIX <= 50){
+                                this.fixAIX += tXDis;
+                            }else{
+                                this.setMoving(false);
+                                this.removeEventListener(egret.Event.ENTER_FRAME,this.func, this);
+                                this.func = null;
+                                this.keyDir = -1;
+
+                                this.fixAIX = 0;
+                                CommonTools.logAI("move------2222222222222222222222222222222")
+                                this.findOwnAi().moveNext();
+                                return;
+                            }
+                        }
+                    }
+                }
+                if(direct == 3){
+                    if(this.x <= FightingModule.mapLeftLimit)return;
+                    for(let i in FightingModule.mapLayerSubObj){
+                        let obj = FightingModule.mapLayerSubObj[i];
+                        if(obj.getRow() == this.row && obj.getColumn() + 1 == this.column && this.x - 18 <= obj.x + obj.width){
+                            tXDis = 0;
+                            break;
+                        }
+                    }
+                    for(let i in FightingModule.bulletLayerSubObj){
+                        let obj = FightingModule.groundLayerSubObj[FightingModule.bulletLayerSubObj[i].getCurIdx()];
+                        if(obj.getRow() == this.row && obj.getColumn() + 1 == this.column && this.x - 38 <= obj.x + obj.width){
+                            tXDis = 0;
+                            break;
+                        }
+                    }
+                }else if(direct == 0){
+                    if(this.y <= FightingModule.mapUpLimit)return;
+                    for(let i in FightingModule.mapLayerSubObj){
+                        let obj = FightingModule.mapLayerSubObj[i];
+                        if(obj.getColumn() == this.column && obj.getRow() + 1 == this.row && this.y <= obj.y + obj.height){
+                            tYDis = 0;
+                            break;
+                        }
+                    }
+                    for(let i in FightingModule.bulletLayerSubObj){
+                        let obj = FightingModule.groundLayerSubObj[FightingModule.bulletLayerSubObj[i].getCurIdx()];
+                        if(obj.getColumn() == this.column && obj.getRow() + 1 == this.row && this.y - 20 <= obj.y + obj.height){
+                            tYDis = 0;
+                            break;
+                        }
+                    }
+                }else if(direct == 2){
+                    if(this.y >= FightingModule.mapDownLimit)return;
+                    for(let i in FightingModule.mapLayerSubObj){
+                        let obj = FightingModule.mapLayerSubObj[i];
+                        if(obj.getColumn() == this.column && obj.getRow() - 1 == this.row && this.y + 20 >= obj.y){
+                            tYDis = 0;
+                            break;
+                        }
+                    }
+                    for(let i in FightingModule.bulletLayerSubObj){
+                        let obj = FightingModule.groundLayerSubObj[FightingModule.bulletLayerSubObj[i].getCurIdx()];
+                        if(obj.getColumn() == this.column && obj.getRow() - 1 == this.row && this.y + 78 >= obj.y){
+                            tYDis = 0;
+                            break;
+                        }
+                    }
+                }else if(direct == 1){
+                    if(this.x >= FightingModule.mapRightLimit)return;
+                    for(let i in FightingModule.mapLayerSubObj){
+                        let obj = FightingModule.mapLayerSubObj[i];
+                        if(obj.getRow() == this.row && obj.getColumn() - 1 == this.column && this.x + 38 >= obj.x){
+                            tXDis = 0;
+                            break;
+                        }
+                    }
+                    for(let i in FightingModule.bulletLayerSubObj){
+                        let obj = FightingModule.groundLayerSubObj[FightingModule.bulletLayerSubObj[i].getCurIdx()];
+                        if(obj.getRow() == this.row && obj.getColumn() - 1 == this.column && this.x + 38 >= obj.x){
+                            tXDis = 0;
+                            break;
+                        }
+                    }
+                }
+
+                if(direct != this.curDirect){
+                    if(this.bodyAni != null){
+                        this.removeChild(this.bodyAni);
+                        this.bodyAni = null;
+                    }
+                }else{//手动移动，相同方向不加成
+                    if(!isAuto){
+                        return;
+                    }
+                }
+
+                // CommonTools.logAI("move------tXDis:"+tXDis+" tYDis:"+tYDis)
+
+                switch(direct){
+                    case 0:
+                        if(this.bodyAni == null){
+                            this.bodyAni = this.bodyAniUp;
+                            this.bodyAni.play(-1);
+                        }
+                        this.y = this.y - tYDis;
+                        break;
+                    case 1:
+                        if(this.bodyAni == null){
+                            this.bodyAni = this.bodyAniRight;
+                            this.bodyAni.play(-1);
+                        }
+                        this.x = this.x + tXDis;
+                        // CommonTools.log("case 1============x======"+this.x)
+                        break;
+                    case 2:
+                        if(this.bodyAni == null){
+                            this.bodyAni = this.bodyAniDown;
+                            this.bodyAni.play(-1);
+                        }
+                        this.y = this.y + tYDis;
+                        break;
+                    case 3:
+                        if(this.bodyAni == null){
+                            this.bodyAni = this.bodyAniLeft;
+                            this.bodyAni.play(-1);
+                        }
+                        this.x = this.x - tXDis;
+                        break;
+                    default:break;
+                }
+                if(direct != this.curDirect){
+                    this.curDirect = direct;
+                }
+                this.addChild(this.bodyAni);
+                this.markPosition(direct);
+                //发送移动包
+                if(this.isMainPlayer){
+                    let sData = CommonTools.getDataJsonStr("syncPos",1,{x:this.x,y:this.y,direction:this.curDirect,speed:this.speed,idx:parseInt(this.curMapIdx),playerID:0});
+                    ConstValue.P_NET_OBJ.sendData2(sData);
+                }
+            } catch (error) {
+                CommonTools.logError("move=====================error===="+error)
+            }
+        }
+
+        public fire(bulletId){
+            CommonAudioHandle.playEffect("playBomb_mp3",1);
+            if(this.aiRobot){
+                if(this.findOwnAi().iCmd == 2){
+                    this.findOwnAi().iCmd = 0;
+                }
+            }
+
+            this.markPosition(-1);
+            let bData = {"side":1,"x":this.bulletX,"y":this.bulletY,"name":bulletId,"curIdx":this.groundObj.getCurIdx()};
+            let bt = new Bullet(bData);
+            bt.setOwner(this);
+            bt.setRow(this.groundObj.getRow());
+            bt.setColumn(this.groundObj.getColumn());
+            // CommonTools.log("Bullet=========row:"+bt.getRow()+" column:"+bt.getColumn())
+            FightingModule.bulletLayer.addChild(bt);
+            FightingModule.bulletLayerSubObj[bt.name] = bt;
+            bt.setRightLimit(this.bulletLen+1);
+            bt.setLeftLimit(this.bulletLen+1);
+            bt.setDownLimit(this.bulletLen+1);
+            bt.setUpLimit(this.bulletLen+1);
+
+            //设置4个方向到障碍物是否有遮挡
+            for(let i in FightingModule.mapLayerSubObj){
+                let mapObj = FightingModule.mapLayerSubObj[i.toString()];
+                if(mapObj.getType()==1)continue;
+                if(mapObj.getRow() == bt.getRow()){//行相等情况
+                    if(mapObj.getColumn() < bt.getColumn()){//障碍物在左边
+                        let disLeft = bt.getColumn() - mapObj.getColumn();
+                        if(this.bulletLen >= disLeft){
+                            if(bt.getLeftLimit() > disLeft){
+                                bt.setLeftLimit(disLeft);
+                                bt.hitMap["leftHitMap"] = mapObj;
+                            }
+                        }
+                    }
+                    if(mapObj.getColumn() > bt.getColumn()){//障碍物在右边
+                        let disRight = mapObj.getColumn() - bt.getColumn();
+                        if(this.bulletLen >= disRight){
+                            if(bt.getRightLimit() > disRight){
+                                bt.setRightLimit(disRight);
+                                bt.hitMap["rightHitMap"] = mapObj;
+                            }
+                        }
+                    }
+                }
+
+                if(mapObj.getColumn() == bt.getColumn()){//列相等情况
+                    if(mapObj.getRow() < bt.getRow()){//障碍物在上边
+                        let disUp = bt.getRow() - mapObj.getRow();
+                        if(this.bulletLen >= disUp){
+                            if(bt.getUpLimit() > disUp){
+                                bt.setUpLimit(disUp);
+                                bt.hitMap["upHitMap"] = mapObj;
+                            }
+                        }
+                    }
+                    if(mapObj.getRow() > bt.getRow()){//障碍物在下边
+                        let disDown = mapObj.getRow() - bt.getRow();
+                        if(this.bulletLen >= disDown){
+                            if(bt.getDownLimit() > disDown){
+                                bt.setDownLimit(disDown);
+                                bt.hitMap["downHitMap"] = mapObj;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //设置4个方向到边界遮挡
+            let disLimitLeft = bt.getColumn() + 1;//左边界
+            if(this.bulletLen >= disLimitLeft){
+                if(bt.getLeftLimit() > disLimitLeft){
+                    bt.setLeftLimit(disLimitLeft);
+                }
+            }
+
+            let disLimitRight = ConstValue.P_FIGHT_OBJ.getInitColumn() - bt.getColumn();//右边界
+            if(this.bulletLen >= disLimitRight){
+                if(bt.getRightLimit() > disLimitRight){
+                    bt.setRightLimit(disLimitRight);
+                }
+            }
+
+            let disLimitUp = bt.getRow() + 1;//上边界
+            if(this.bulletLen >= disLimitUp){
+                if(bt.getUpLimit() > disLimitUp){
+                    bt.setUpLimit(disLimitUp);
+                }
+            }
+
+            let disLimitDown = ConstValue.P_FIGHT_OBJ.getInitRow() - bt.getRow();//下边界
+            if(this.bulletLen >= disLimitDown){
+                if(bt.getDownLimit() > disLimitDown){
+                    bt.setDownLimit(disLimitDown);
+                }
+            }
+
+            let selfBobo = true;
+            for(let i in FightingModule.bulletLayerSubObj){
+                if(i != bt.name){
+                    let obj = FightingModule.bulletLayerSubObj[i];
+                    if(bt.getRow() == obj.getRow() && bt.getColumn() == obj.getColumn()){//同个位置，那就被引爆
+                        selfBobo = false;
+                        if(obj.getPreBobo() != null){
+                            for(let j in obj.getPreBobo()){
+                                bt.setPreBobo(i);
+                            }
+                        }else{
+                            bt.setPreBobo(obj.name);
+                        }
+                    }else if(bt.getRow() == obj.getRow()){//同行
+                        if(bt.getColumn() > obj.getColumn()){//在右边
+                            if(obj.getRightLimit() >= (bt.getColumn() - obj.getColumn())){
+                                selfBobo = false;
+                                if(obj.getPreBobo() != null){
+                                    for(let j in obj.getPreBobo()){
+                                        bt.setPreBobo(i);
+                                    }
+                                }else{
+                                    bt.setPreBobo(obj.name);
+                                }
+                            }
+                        }else{//在左边
+                            if(obj.getLeftLimit() >= (obj.getColumn() - bt.getColumn())){
+                                selfBobo = false;
+                                if(obj.getPreBobo() != null){
+                                    for(let j in obj.getPreBobo()){
+                                        bt.setPreBobo(i);
+                                    }
+                                }else{
+                                    bt.setPreBobo(obj.name);
+                                }
+                            }
+                        }
+                    }else if(bt.getColumn() == obj.getColumn()){//同列
+                        if(obj.getRow() > bt.getRow()){//在上边
+                            if(obj.getUpLimit() >= (obj.getRow() - bt.getRow())){
+                                if(obj.getPreBobo() != null){
+                                    for(let j in obj.getPreBobo()){
+                                        bt.setPreBobo(i);
+                                    }
+                                }else{
+                                    bt.setPreBobo(obj.name);
+                                }
+                            }
+                        }else{//在下边
+                            if(obj.getDownLimit() >= (bt.getRow() - obj.getRow())){
+                                if(obj.getPreBobo() != null){
+                                    for(let j in obj.getPreBobo()){
+                                        bt.setPreBobo(i);
+                                    }
+                                }else{
+                                    bt.setPreBobo(obj.name);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if(selfBobo)bt.baozha();
+            if(this.aiRobot){
+                CommonTools.logAI("move------3333333333333333333333333333333")
+                this.findOwnAi().moveNext();
+            }
+        }
+
+        //定位
+        public markPosition(direct){
+            let curIdx;
+            let dis = 10000;
+            let bulX = 0;
+            let bulY = 0;
+            let ggObj = null;
+            let fixX = 5;
+            let fixY = 41;
+            // if(direct>=0){
+            //     if(direct == 1){//右
+            //         this.markRight ++;
+            //         fixX += 20;
+            //     }else if(direct == 3){//左
+            //         this.markLeft ++;
+            //         fixX += -25;
+            //     }else if(direct == 0 || direct == 2){//上 下
+            //         if(this.markRight >= this.markLeft){//原右
+            //             fixX += 20;
+            //         }else if(this.markLeft >= this.markRight){//原左
+            //             fixX += -25;
+            //         }
+            //         this.markRight = 0;
+            //         this.markLeft = 0;
+            //     }
+            // }
+
+            for(let i in FightingModule.groundLayerSubObj){
+                let gObj = FightingModule.groundLayerSubObj[i];
+                let pa = new egret.Point(this.x+fixX,this.y+fixY);
+                let tX = gObj.x+41;
+                let tY = gObj.y+41;                
+                let pb = new egret.Point(tX,tY);
+                let tDis = egret.Point.distance(pa,pb);
+                if(tDis <= dis){
+                    curIdx = i;
+                    dis = tDis;
+                    bulX = tX;
+                    bulY = tY;
+                    ggObj = gObj;
+                }
+            }
+
+            //最后得到最近的值
+            this.curMapIdx = curIdx;
+            this.bulletX = bulX;
+            this.bulletY = bulY - 10;
+            this.groundObj = ggObj;
+            this.row = this.groundObj.getRow();
+            this.column = this.groundObj.getColumn();
+            if(this.groundObj.getSubType() > 0){
+                CommonTools.log("吃东西啦》。。。。。。");
+                let playerID = 0;
+                if (this.isAI == 1){
+                    playerID = this.roleId;
+                }
+                if(this.isMainPlayer || this.isAI == 1){
+                    let sData = CommonTools.getDataJsonStr("pickItem",1,{itype:this.groundObj.getSubType(),idx:parseInt(this.curMapIdx),playerID:playerID});
+                    ConstValue.P_NET_OBJ.sendData2(sData);
+                }
+                this.groundObj.clearSub();
+                if(this.aiRobot){
+                    if(this.findOwnAi().iCmd == 3){
+                        this.findOwnAi().iCmd = 0;
+                        CommonTools.logAI("move------444444444444444444444444444444")
+                        this.findOwnAi().moveNext();
+                    }
+                }
+            }
+            CommonTools.logDebug("markPosition=============this.curMapIdx："+this.curMapIdx+" this.row："+this.row+" this.column："+this.column);
+            let danger = FightingModule.groundLayerSubObjDanger[this.groundObj.getColumn()+"_"+this.groundObj.getRow()];
+            if(danger.dangerCount > 0 && !this.death){
+                this.death = true;
+                let playerID = 0
+                if(this.isAI == 1){
+                    playerID = this.roleId;
+                }
+                let sData = CommonTools.getDataJsonStr("syncBoomPlayer",1,{paopaoID:this.groundObj.dangerPaoPaoObj.name,x:this.groundObj.dangerPaoPaoObj.x,y:this.groundObj.dangerPaoPaoObj.y,idx:this.groundObj.dangerPaoPaoObj.curIdx,killrid:this.roleId,killidx:parseInt(this.curMapIdx),playerID:playerID});
+                ConstValue.P_NET_OBJ.sendData2(sData);
+            }
+        }
+
+        public getRow(){
+            return this.row;
+        }
+
+        public getColumn(){
+            return this.column;
+        }
+        
+    }
+}

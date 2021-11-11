@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Label id="match_tip" text="争夺地图使用权" x="477.3" y="42" textColor="0x0c0f19" anchorOffsetX="0" width="326.67" anchorOffsetY="0" height="50" size="44" name="match_tip"/>
+	<e:Label id="my_click_num_lb" text="" x="100.67" y="110" textColor="0x0C0F19" anchorOffsetX="0" width="244" anchorOffsetY="0" height="50" size="44" name="my_click_num_lb"/>
+	<e:Label id="match_tip3" text="目标：" x="20" y="182.67" textColor="0x0C0F19" anchorOffsetX="0" width="244" anchorOffsetY="0" height="50" size="44" name="match_tip"/>
+	<e:Label id="other_click_num_lb" text="" x="1072" y="110" textColor="0x0C0F19" anchorOffsetX="0" width="244" anchorOffsetY="0" height="50" size="44" name="other_click_num_lb"/>
+	<e:Label id="time_countdown" text="3" x="586.63" y="135" textColor="0x0C0F19" anchorOffsetX="0" width="108" anchorOffsetY="0" height="114" size="60" name="time_countdown" verticalAlign="middle" textAlign="center"/>
+	<e:Button id="giveup_btn" label="认输" x="1100" y="325" anchorOffsetX="0" width="126.67" name="giveup_btn"/>
+	<e:Button id="click_btn" label="点击屏幕" x="543.3" y="378.34" anchorOffsetX="0" width="194.67" anchorOffsetY="0" height="112.67" name="click_btn"/>
+	<e:Button id="use_btn" label="+10 100金币" x="1100" y="409.67" name="use_btn"/>
+	<e:CheckBox label="点击50下获得5金币" x="20" y="239.67" anchorOffsetX="0" width="269.67" anchorOffsetY="0" height="51"/>
+	<e:CheckBox label="点击100下获得随机战斗加成" x="20" y="290.67" anchorOffsetX="0" width="269.67" anchorOffsetY="0" height="51"/>
+	<e:CheckBox label="夺得选择权，奖励5金币" x="20" y="341.67" anchorOffsetX="0" width="269.67" anchorOffsetY="0" height="51"/>
+</e:Skin>

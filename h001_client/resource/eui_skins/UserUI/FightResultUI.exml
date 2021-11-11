@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="848.88" height="468.51" x="227.37" y="166.28" anchorOffsetX="0" anchorOffsetY="0" source="fighting_result_png"/>
+	<e:Label id="left_name_lb" text="我是技安" x="265.57" y="357.63" anchorOffsetX="0" width="322.33" anchorOffsetY="0" height="64" textAlign="center" verticalAlign="middle" size="40" fontFamily="Microsoft YaHei" name="left_name_lb" textColor="0xf4ebeb"/>
+	<e:Button label="" x="1087.84" y="19.83" name="btn_close" anchorOffsetX="0" width="134.33" anchorOffsetY="0" height="135.33" visible="false">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_back_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image id="win_title_img" width="634" height="206" x="350" y="7.98" anchorOffsetX="0" anchorOffsetY="0" source="win_png" name="win_title_img"/>
+	<e:Button id="replay_btn" label="" x="649.02" y="567.44" anchorOffsetX="95" width="190.24" anchorOffsetY="36" height="79.28" name="replay_btn">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="replay_01_png" source.down="replay_02_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="share_btn" label="" x="385.87" y="571.44" anchorOffsetX="95" width="190.24" anchorOffsetY="40" height="79.28" name="share_btn">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="share_01_png" source.down="share_02_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="goback_btn" label="" x="907.88" y="571.44" anchorOffsetX="96" width="190.24" anchorOffsetY="40" height="79.28" name="goback_btn">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="backhall_01_png" source.down="backhall_02_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image width="100" height="100" x="376.73" y="233.41" anchorOffsetX="0" anchorOffsetY="0" source="mini_head"/>
+	<e:Button id="replay_fail_btn" label="" x="479.99" y="568.44" anchorOffsetX="94" width="190.24" anchorOffsetY="37" height="79.28" name="replay_fail_btn">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="replay_01_png" source.down="replay_02_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="goback_fail_btn" label="" x="792.45" y="569.44" anchorOffsetX="96" width="190.24" anchorOffsetY="38" height="79.28" name="goback_fail_btn">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="backhall_01_png" source.down="backhall_02_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image width="100" height="100" x="815.57" y="233.07" anchorOffsetX="0" anchorOffsetY="0" source="mini_head"/>
+	<e:Label text="战胜了" x="550.46" y="254.75" anchorOffsetX="0" width="188.67" anchorOffsetY="0" height="57.33" textAlign="center" verticalAlign="middle" textColor="0x3ce881" size="40" fontFamily="Microsoft YaHei"/>
+	<e:Label id="right_name_lb" text="技安他哥他哥" x="703.39" y="351.17" anchorOffsetX="0" width="322.33" anchorOffsetY="0" height="64" textAlign="center" verticalAlign="middle" size="40" fontFamily="Microsoft YaHei" name="right_name_lb" textColor="0xf4ebeb"/>
+	<e:Image id="left_head_img" width="81.67" height="82.34" x="386.39" y="242.4" anchorOffsetX="0" anchorOffsetY="0" name="left_head_img" source="default_head_png"/>
+	<e:Image id="right_head_img" width="81.67" height="82.34" x="825.22" y="241.74" anchorOffsetX="0" anchorOffsetY="0" name="right_head_img" source="default_head_png"/>
+	<e:Image width="86" height="88" x="400.82" y="445.58" anchorOffsetX="0" anchorOffsetY="0" source="mini_coin" scaleX="0.6" scaleY="0.6"/>
+	<e:Label id="gold_lb" text="63800" x="452.94" y="451.82" fontFamily="Microsoft YaHei" name="gold_lb" anchorOffsetX="0" width="113" anchorOffsetY="0" height="46" size="40" scaleX="0.8" scaleY="0.8" textColor="0x0F0202" verticalAlign="middle" textAlign="center"/>
+	<e:Label id="gold_lb0" text="经验值" x="647.23" y="450.3" fontFamily="Microsoft YaHei" name="gold_lb" anchorOffsetX="0" width="147" anchorOffsetY="0" height="46" size="40" scaleX="0.8" scaleY="0.8" textColor="0x0F0202" verticalAlign="middle" textAlign="center"/>
+	<e:Image width="42" height="48" x="543.79" y="456.04" anchorOffsetX="0" anchorOffsetY="0" source="digital_1_json.+" scaleX="0.6" scaleY="0.6"/>
+	<e:Image width="42" height="48" x="764.25" y="454.5" anchorOffsetX="0" anchorOffsetY="0" source="digital_2_json.+" scaleX="0.6" scaleY="0.6"/>
+	<e:Image id="gold_add_img_01" width="40" height="48" x="571.59" y="456.04" anchorOffsetX="0" anchorOffsetY="0" name="gold_add_img_01" scaleX="0.6" scaleY="0.6" source="digital_1_json.1"/>
+	<e:Image id="gold_add_img_02" width="40" height="48" x="593.43" y="456.04" anchorOffsetX="0" anchorOffsetY="0" name="gold_add_img_02" scaleX="0.6" scaleY="0.6" source="digital_1_json.4"/>
+	<e:Image id="gold_add_img_03" width="40" height="48" x="617.79" y="456.04" anchorOffsetX="0" anchorOffsetY="0" name="gold_add_img_03" scaleX="0.6" scaleY="0.6" source="digital_1_json.7"/>
+	<e:Image id="exp_add_img_01" width="40" height="48" x="791.57" y="453.42" anchorOffsetX="0" anchorOffsetY="0" name="exp_add_img_01" source="digital_2_json.1" scaleX="0.6" scaleY="0.6"/>
+	<e:Image id="exp_add_img_02" width="40" height="48" x="812.89" y="453.42" anchorOffsetX="0" anchorOffsetY="0" name="exp_add_img_02" scaleX="0.6" scaleY="0.6" source="digital_2_json.4"/>
+	<e:Image id="exp_add_img_03" width="40" height="48" x="837.25" y="453.42" anchorOffsetX="0" anchorOffsetY="0" name="exp_add_img_03" scaleX="0.6" scaleY="0.6" source="digital_2_json.7"/>
+</e:Skin>

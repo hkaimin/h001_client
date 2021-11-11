@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="fighting_platform" width="1332" height="712" x="1.73" y="54.82" anchorOffsetX="0" anchorOffsetY="0" scale9Grid="25,25,150,150" name="fighting_platform" source="vs_mask_1v1_png"/>
+	<e:Image width="1325" height="405" x="4.56" y="151.5" anchorOffsetX="0" anchorOffsetY="0" source="vs_head_1v1_png"/>
+	<e:Button id="btn_info" label="" x="269" y="294" anchorOffsetX="0" width="96" anchorOffsetY="0" height="102" name="btn_info">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="mini_head"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image id="img_lefthead" width="73.27" height="80.82" x="280.37" y="304.59" anchorOffsetX="0" anchorOffsetY="0" name="img_lefthead" source="default_head_png"/>
+	<e:Button id="btn_info0" label="" x="958.3" y="294" anchorOffsetX="0" width="96" anchorOffsetY="0" height="102" name="btn_info">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="mini_head"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image id="img_righthead" width="73.27" height="80.82" x="969.67" y="304.59" anchorOffsetX="0" anchorOffsetY="0" name="img_righthead" source="default_head_png"/>
+	<e:Label id="left_name" text="名字1" x="255" y="406.64" textAlign="center" anchorOffsetX="0" width="132" anchorOffsetY="0" height="42" name="left_name" size="36" textColor="0xfefcfe" strokeColor="0x000000"/>
+	<e:Label id="left_lv" text="Lv.10" x="252.88" y="441.32" anchorOffsetX="0" width="132" anchorOffsetY="0" height="42" name="left_lv" size="30" strokeColor="0x000000" textColor="0xffb7ac" verticalAlign="middle" textAlign="center"/>
+	<e:Label id="right_lv" text="" x="940.31" y="441.32" anchorOffsetX="0" width="132" anchorOffsetY="0" height="42" name="right_lv" size="30" strokeColor="0x000000" verticalAlign="middle" textAlign="center" textColor="0x7bc3fb"/>
+	<e:Button id="btn_close_wx_vs" label="" x="77.26" y="77.89" name="btn_close_wx_vs" anchorOffsetX="39" width="79.76" anchorOffsetY="38" height="82.91">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_back_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label id="left_online" text="在线" x="176" y="239" name="left_online" size="22" textColor="0x7cef43"/>
+	<e:Label id="right_online" text="等待" x="1101.98" y="239" name="right_online" size="22" textColor="0x7cef43"/>
+	<e:Button id="btn_start" label="开 始" x="665.29" y="632.81" anchorOffsetX="82" width="166" anchorOffsetY="36" height="74" name="btn_start">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_type1_1_png" source.down="btn_type2_2_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label id="right_name" text="" x="940.31" y="406.64" textAlign="center" anchorOffsetX="0" width="132" anchorOffsetY="0" height="42" name="right_name" size="36" textColor="0xfefcfe"/>
+	<e:Image id="img_wx_wenhao" width="462.64" height="382.14" x="434.97" y="174.44" anchorOffsetX="0" anchorOffsetY="0" source="vs_randon_1v1_png" name="img_wx_wenhao" scale9Grid="9,6,447,371"/>
+	<e:Image width="137.33" height="41.33" x="244" y="527.7" anchorOffsetX="0" anchorOffsetY="0" source="vs_kuang_1v1_png"/>
+	<e:Image width="137.33" height="41.33" x="934.98" y="535.83" anchorOffsetX="0" anchorOffsetY="0" source="vs_kuang_1v1_png"/>
+	<e:Label id="left_ready" text="已准备" x="254.4" y="532.37" anchorOffsetX="0" width="110" anchorOffsetY="0" height="32" name="left_ready" size="28" textColor="0x46c7fc" verticalAlign="middle" textAlign="center"/>
+	<e:Label id="right_ready" text="等待" x="948.26" y="540.58" anchorOffsetX="0" width="110" anchorOffsetY="0" height="32" name="right_ready" textColor="0x46c7fc" size="28" textAlign="center" verticalAlign="middle"/>
+</e:Skin>

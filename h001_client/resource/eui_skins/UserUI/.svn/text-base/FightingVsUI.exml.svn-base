@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Button id="exit_match" label="" x="603" y="588" anchorOffsetX="0" width="182" anchorOffsetY="0" height="74" scaleX="1" scaleY="1" name="exit_match" visible="false">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="match_exit_01_png" source.down="match_exit_02_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image id="match_tip" width="240" height="64" x="603" y="593" name="match_tip" source="match_success_png" visible="false"/>
+</e:Skin>

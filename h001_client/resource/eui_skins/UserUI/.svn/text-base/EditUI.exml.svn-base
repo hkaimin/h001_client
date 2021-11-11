@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="1332.97" height="752.12" x="0" y="-2.51" source="topmask_png" alpha="0.5" anchorOffsetY="0" anchorOffsetX="0"/>
+	<e:Image width="522" height="248" x="407.61" y="231.67" anchorOffsetX="0" anchorOffsetY="0" source="fighting_result_png"/>
+	<e:Button id="btn_close_edit" label="" x="930.45" y="237.33" name="btn_close_edit" anchorOffsetX="35" width="68.33" anchorOffsetY="33" height="67.33">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_back_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label id="lb_edit_title" text="注册" x="636.61" y="250.63" textColor="0xefba1c" size="35" name="lb_edit_title"/>
+	<e:Button id="btn_confirm_modify" label="确定" x="671.61" y="453.17" name="btn_confirm_modify" anchorOffsetX="52" width="102" anchorOffsetY="24" height="44">
+	</e:Button>
+	<e:Label id="lb_desc" text="手机号码：" x="465.73" y="377.66" size="30" name="lb_desc" textColor="0xcc961a"/>
+	<e:TextInput id="account_lb_txt" width="225.99" height="27.33" x="608.62" y="377.67" anchorOffsetX="0" anchorOffsetY="0" name="account_lb_txt"/>
+</e:Skin>

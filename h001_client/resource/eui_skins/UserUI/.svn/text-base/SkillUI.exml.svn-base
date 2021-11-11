@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="fighting_parent" width="1077" height="738" x="101.23" y="6" anchorOffsetX="0" anchorOffsetY="0" name="fighting_parent">
+		<e:Image id="fighting_platform" width="732" height="471.57" x="185.44" y="103.73" anchorOffsetX="0" anchorOffsetY="0" name="fighting_platform" source="main_setting_bg_png" scale9Grid="4,64,171,113"/>
+		<e:Scroller id="scroll" width="721.21" height="395.45" x="191.61" y="171.66" anchorOffsetX="0" anchorOffsetY="0" name="scroll">
+			<e:Group id="scroll_group" anchorOffsetX="0" width="719.69" anchorOffsetY="0" height="436.36" name="scroll_group" x="-7.58" y="0">
+			</e:Group>
+		</e:Scroller>
+		<e:Button id="btn_tip" label="" x="216.8" y="138.68" name="btn_tip" anchorOffsetX="20" width="44" anchorOffsetY="24" height="44" scaleX="1" scaleY="1">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="skill_tip_01_png" source.down="skill_tip_02_png"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Label text="技能详情" x="473.22" y="119.56" size="36" textAlign="center" verticalAlign="middle" textColor="0x404e73"/>
+	</e:Group>
+	<e:Button id="btn_close" label="" x="1008.18" y="116.96" name="btn_close" anchorOffsetX="32" width="64.67" anchorOffsetY="38" height="70.66" scaleX="1" scaleY="1">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_close_blue_01_png" source.down="btn_close_blue_02_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+</e:Skin>

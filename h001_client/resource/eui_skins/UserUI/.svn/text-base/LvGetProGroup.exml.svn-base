@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="NoticeGroup" width="180" height="42.67" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="group_1" width="180" height="42.67" x="-1.51" y="0" anchorOffsetY="0" name="group_1">
+		<e:Image id="img_slot" width="180" height="42.67" x="1" y="0" anchorOffsetX="0" anchorOffsetY="0" source="LvGetSlot_png" scaleX="1" scaleY="1" scale9Grid="20,5,1084,35" name="img_slot"/>
+		<e:Image id="img_pro" width="130.31" height="42.67" x="1" y="0" anchorOffsetX="0" anchorOffsetY="0" source="LvGetPro_png" scaleX="1" scaleY="1" scale9Grid="24,5,1080,35" name="img_pro"/>
+	</e:Group>
+</e:Skin>

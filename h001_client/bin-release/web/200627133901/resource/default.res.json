@@ -1,0 +1,1073 @@
+{
+	"groups": [
+		{
+			"keys": "",
+			"name": "preload"
+		},
+		{
+			"keys": "yellow_jianbian_jpg,mail_open2_png,mail_close2_png,red_png,mini_res_json,HallTexture_json,config_json,fighting_vs_png,rank_merge_json,shop_bg_png,shopAndBag_json,mask_layer_png,shop_bg_1_png,shop_bg_2_png,shop_bg_3_png,btn_type1_1_png,btn_type2_2_png,bag_bg_1_png,bag_bg_2_png,normal_btn_1_png,normal_btn_2_png,checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,egret_icon_png,description_json,topmask_png,LoginTexture_json,sBJButton_mp3,yellow_jianbian2_jpg,bg_ppt_1_png,friend_pvp_png,match_pvp_png,noround_pve_png,train_pve_png,loading01_png,loading02_png,boom_mp3,btnPress_mp3,die_mp3,eatProp_mp3,failure_mp3,mainmenu_mp3,playBomb_mp3,success_mp3,new_ui_01_png,new_ui_15_png,new_ui_merge_json,barr_ball_png,direct_png,direct_02_png,barr_background_bg_png,barr_title_bg_png,barr_value_bg_png,barr_nopass_start_png,barr_pass_start_png,question_01_png,question_02_png,item_merge_json,sevent_day_get_json,role_info_bg_png,role_select_bg_png,role_select_down_png,role_select_ground_png,role_select_item_bg_png,role_select_p1_png,role_select_p2_png,role_select_pick_png,role_select_right_bg_png,role_select_pay_01_png,role_select_pay_02_png,btn_diy_map_png,btn_random_map_png,vs_bg_1v1_png,vs_head_1v1_png,vs_mask_1v1_png,vs_randon_1v1_png,vs_kuang_1v1_png,btn_invalid_01_png,btn_invalid_02_png,role_select_p3_png,p1_special_json,p1_special_png,p2_special_json,p2_special_png,p3_special_json,p3_special_png,role_select_bg2_png,role_select_bg3_png",
+			"name": "preloadHall"
+		},
+		{
+			"keys": "map_res_icon_json,fighting_kuang_png,btn_back_png,btn_chao_01_png,btn_chao_02_png,p1_01_json,p1_01_png,p1_02_json,p1_02_png,p1_03_json,p1_03_png,p2_01_json,p2_01_png,p2_02_json,p2_02_png,p2_03_json,p2_03_png,paopao_json,paopao_png,baozha_last_anim_json,baozha_last_anim_png,baozha_zhong_anim_json,baozha_zhong_anim_png,baozha_jie_png,boom_01_png,boom_02_png,controler_bg_png,controler_hit_png,p1_04_json,p1_04_png,p2_04_json,p2_04_png,SpeedNet_json,SpeedNet_png,fighting_result_png,backhall_01_png,backhall_02_png,replay_01_png,replay_02_png,share_01_png,share_02_png,win_png,fail_png,digital_1_json,digital_2_json,rank_png,normal_bg_1_png,match_art_lb_png,name_bg_png,quit_pass_01_png,quit_pass_02_png,map_res2_icon_json,p1_static_02_json,p1_static_02_png,p1_static_03_json,p1_static_03_png,p1_static_04_json,p1_static_04_png,p2_static_02_json,p2_static_02_png,p2_static_03_json,p2_static_03_png,p2_static_04_json,p2_static_04_png,p3_static_02_json,p3_static_02_png,p3_static_03_json,p3_static_03_png,p3_static_04_json,p3_static_04_png,p3_01_json,p3_01_png,p3_02_json,p3_02_png,p3_03_json,p3_03_png,p3_04_json,p3_04_png,p1_static_json,p1_static_png,p2_static_json,p2_static_png,p3_static_json,p3_static_png",
+			"name": "fighting"
+		},
+		{
+			"keys": "diy_bg_png,diy_add_big_item_png,diy_1p_png,diy_2p_png,map_rank_normal_png,map_rank_select_png,map_rank_name_bg_png,normal_bg_2_png,mymap_1_png,mymap_2_png,add_my_map_png,like_kuang_bg_png,fighting_lb_png",
+			"name": "diymap"
+		},
+		{
+			"keys": "login_bg_ppt_png",
+			"name": "pre_preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/CheckBox/checkbox_select_disabled.png?v=201807100101",
+			"type": "image",
+			"name": "checkbox_select_disabled_png"
+		},
+		{
+			"url": "assets/CheckBox/checkbox_select_down.png?v=201807100101",
+			"type": "image",
+			"name": "checkbox_select_down_png"
+		},
+		{
+			"url": "assets/CheckBox/checkbox_select_up.png?v=201807100101",
+			"type": "image",
+			"name": "checkbox_select_up_png"
+		},
+		{
+			"url": "assets/CheckBox/checkbox_unselect.png?v=201807100101",
+			"type": "image",
+			"name": "checkbox_unselect_png"
+		},
+		{
+			"url": "assets/ItemRenderer/selected.png?v=201807100101",
+			"type": "image",
+			"name": "selected_png"
+		},
+		{
+			"url": "assets/Panel/border.png?v=201807100101",
+			"type": "image",
+			"name": "border_png"
+		},
+		{
+			"url": "assets/Panel/header.png?v=201807100101",
+			"type": "image",
+			"name": "header_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_select_disabled.png?v=201807100101",
+			"type": "image",
+			"name": "radiobutton_select_disabled_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_select_down.png?v=201807100101",
+			"type": "image",
+			"name": "radiobutton_select_down_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_select_up.png?v=201807100101",
+			"type": "image",
+			"name": "radiobutton_select_up_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_unselect.png?v=201807100101",
+			"type": "image",
+			"name": "radiobutton_unselect_png"
+		},
+		{
+			"url": "assets/ScrollBar/roundthumb.png?v=201807100101",
+			"type": "image",
+			"name": "roundthumb_png"
+		},
+		{
+			"url": "assets/Slider/thumb.png?v=201807100101",
+			"type": "image",
+			"name": "thumb_png"
+		},
+		{
+			"url": "assets/Slider/track.png?v=201807100101",
+			"type": "image",
+			"name": "track_png"
+		},
+		{
+			"url": "assets/Slider/tracklight.png?v=201807100101",
+			"type": "image",
+			"name": "tracklight_png"
+		},
+		{
+			"url": "assets/ToggleSwitch/handle.png?v=201807100101",
+			"type": "image",
+			"name": "handle_png"
+		},
+		{
+			"url": "assets/ToggleSwitch/off.png?v=201807100101",
+			"type": "image",
+			"name": "off_png"
+		},
+		{
+			"url": "assets/ToggleSwitch/on.png?v=201807100101",
+			"type": "image",
+			"name": "on_png"
+		},
+		{
+			"url": "assets/Button/button_down.png?v=201807100101",
+			"type": "image",
+			"name": "button_down_png"
+		},
+		{
+			"url": "assets/Button/button_up.png?v=201807100101",
+			"type": "image",
+			"name": "button_up_png"
+		},
+		{
+			"url": "assets/ProgressBar/thumb_pb.png?v=201807100101",
+			"type": "image",
+			"name": "thumb_pb_png"
+		},
+		{
+			"url": "assets/ProgressBar/track_pb.png?v=201807100101",
+			"type": "image",
+			"name": "track_pb_png"
+		},
+		{
+			"url": "assets/ScrollBar/track_sb.png?v=201807100101",
+			"type": "image",
+			"name": "track_sb_png"
+		},
+		{
+			"url": "assets/egret_icon.png?v=201807100101",
+			"type": "image",
+			"name": "egret_icon_png"
+		},
+		{
+			"url": "config/description.json?v=201807100101",
+			"type": "json",
+			"name": "description_json"
+		},
+		{
+			"url": "assets/UserSkin/topmask.png?v=201807100101",
+			"type": "image",
+			"name": "topmask_png"
+		},
+		{
+			"url": "assets/UserSkin/LoginTexture.json?v=201807100101",
+			"type": "sheet",
+			"name": "LoginTexture_json",
+			"subkeys": "AuthBg_png,AuthClose_png,Bg_1_png,Bg_ditu_png,Bg_kuang_png,Btn_AuthStatement_png,Btn_Rregister_1_png,Btn_Tourist_1_png,Btn_Verification_png,Btn_Wangjimima_png,Btn_fhdt_png,CheckNormalBG_png,CloseBig_1_png,Confirm_1_png,GameMenuBG2_png,GameMenuBG3_png,GameMenuBG4_png,Img_toubiao_png,LoginArrow0_png,LoginArrow1_png,LoginButton0_png,Logo_mfyl_png,Prompt_png,ReMemberIcon_png,Username_png,YellowBG_png,btnQRCode_png,inputtxt_png,password_png"
+		},
+		{
+			"url": "sound/sBJButton.mp3?v=201807100101",
+			"type": "sound",
+			"name": "sBJButton_mp3"
+		},
+		{
+			"url": "assets/UserSkin/yellow_jianbian.jpg?v=201807100101",
+			"type": "image",
+			"name": "yellow_jianbian_jpg"
+		},
+		{
+			"url": "assets/UserSkin/yellow_jianbian.jpg?v=201807100101",
+			"type": "image",
+			"name": "yellow_jianbian2_jpg"
+		},
+		{
+			"url": "assets/UserSkin/mail_open2.png?v=201807100101",
+			"type": "image",
+			"name": "mail_open2_png"
+		},
+		{
+			"url": "assets/UserSkin/mail_close2.png?v=201807100101",
+			"type": "image",
+			"name": "mail_close2_png"
+		},
+		{
+			"url": "assets/UserSkin/red.png?v=201807100101",
+			"type": "image",
+			"name": "red_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/bg_ppt_1.png?v=201807100101",
+			"type": "image",
+			"name": "bg_ppt_1_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/friend_pvp.png?v=201807100101",
+			"type": "image",
+			"name": "friend_pvp_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/match_pvp.png?v=201807100101",
+			"type": "image",
+			"name": "match_pvp_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/noround_pve.png?v=201807100101",
+			"type": "image",
+			"name": "noround_pve_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/train_pve.png?v=201807100101",
+			"type": "image",
+			"name": "train_pve_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/map_res_icon.json?v=201807100101",
+			"type": "sheet",
+			"name": "map_res_icon_json",
+			"subkeys": "res_10_png,res_11_png,res_12_png,res_13_png,res_14_png,res_15_png,res_16_png,res_17_png,res_18_png,res_19_png,res_1_png,res_20_png,res_21_png,res_22_png,res_23_png,res_24_png,res_25_png,res_26_png,res_27_png,res_28_png,res_29_png,res_2_png,res_30_png,res_3_png,res_4_png,res_5_png,res_6_png,res_7_png,res_8_png,res_9_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/fighting_kuang.png?v=201807100101",
+			"type": "image",
+			"name": "fighting_kuang_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/loading01.png?v=201807100101",
+			"type": "image",
+			"name": "loading01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/loading02.png?v=201807100101",
+			"type": "image",
+			"name": "loading02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/mini_res.json?v=201807100101",
+			"type": "sheet",
+			"name": "mini_res_json",
+			"subkeys": "mini_boom,mini_coin,mini_head,mini_heart,mini_info,mini_jinyantiao,mini_jinyantiaobg,mini_own,mini_proper,mini_speed,mini_weili,mini_zuanshi"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/btn_back.png?v=201807100101",
+			"type": "image",
+			"name": "btn_back_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/btn_chao_01.png?v=201807100101",
+			"type": "image",
+			"name": "btn_chao_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/btn_chao_02.png?v=201807100101",
+			"type": "image",
+			"name": "btn_chao_02_png"
+		},
+		{
+			"url": "assets/UserSkin/HallTexture.json?v=201807100101",
+			"type": "sheet",
+			"name": "HallTexture_json",
+			"subkeys": "ArcadeGames_01_png,ArcadeGames_02_png,Btn_Left_1_png,Btn_LianXian_1_png,Btn_LianXian_2_png,Btn_Notice.png_png,Btn_ShopBG_png,Btn_paihang_1_png,Btn_renmen_1_png,Btn_renmen_2_png,Btn_shengyin_1_png,Btn_shengyin_2_png,Btn_xinxi_1_png,Btn_xuanxiang_1_png,Btn_xuanxiang_2_png,Fishs_01_png,Fishs_02_png,Img_Genghuan_png,LobbyExit_01_png,PublicHelp_1_png,Spirit_Gold_1_png,btn_copy_png,btn_modify_png,control_laba_png,control_labaditu_png,head_10_png,head_1_png,head_2_png,head_3_png,head_4_png,head_5_png,head_6_png,head_7_png,head_8_png,head_9_png,txk_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_01.json?v=202006270101",
+			"type": "json",
+			"name": "p1_01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_01.png?v=202006270101",
+			"type": "image",
+			"name": "p1_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_02.json?v=202006270101",
+			"type": "json",
+			"name": "p1_02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_02.png?v=202006270101",
+			"type": "image",
+			"name": "p1_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_03.json?v=202006270101",
+			"type": "json",
+			"name": "p1_03_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_03.png?v=202006270101",
+			"type": "image",
+			"name": "p1_03_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_01.json?v=201807100101",
+			"type": "json",
+			"name": "p2_01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_01.png?v=201807100101",
+			"type": "image",
+			"name": "p2_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_02.json?v=201807100101",
+			"type": "json",
+			"name": "p2_02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_02.png?v=201807100101",
+			"type": "image",
+			"name": "p2_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_03.json?v=201807100101",
+			"type": "json",
+			"name": "p2_03_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_03.png?v=201807100101",
+			"type": "image",
+			"name": "p2_03_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/paopao.json?v=201807100101",
+			"type": "json",
+			"name": "paopao_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/paopao.png?v=201807100101",
+			"type": "image",
+			"name": "paopao_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/baozha_last_anim.json?v=201807100101",
+			"type": "json",
+			"name": "baozha_last_anim_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/baozha_last_anim.png?v=201807100101",
+			"type": "image",
+			"name": "baozha_last_anim_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/baozha_zhong_anim.json?v=201807100101",
+			"type": "json",
+			"name": "baozha_zhong_anim_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/baozha_zhong_anim.png?v=201807100101",
+			"type": "image",
+			"name": "baozha_zhong_anim_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/baozha_jie.png?v=201807100101",
+			"type": "image",
+			"name": "baozha_jie_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/boom_01.png?v=201807100101",
+			"type": "image",
+			"name": "boom_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/boom_02.png?v=201807100101",
+			"type": "image",
+			"name": "boom_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/controler_bg.png?v=201807100101",
+			"type": "image",
+			"name": "controler_bg_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/controler_hit.png?v=201807100101",
+			"type": "image",
+			"name": "controler_hit_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_04.json?v=202006270101",
+			"type": "json",
+			"name": "p1_04_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_04.png?v=202006270101",
+			"type": "image",
+			"name": "p1_04_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_04.json?v=201807100101",
+			"type": "json",
+			"name": "p2_04_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_04.png?v=201807100101",
+			"type": "image",
+			"name": "p2_04_png"
+		},
+		{
+			"url": "assets/UserSkin/config.json?v=201807100101",
+			"type": "bin",
+			"name": "config_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/fighting_vs.png?v=201807100101",
+			"type": "image",
+			"name": "fighting_vs_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/SpeedNet.json?v=201807100101",
+			"type": "json",
+			"name": "SpeedNet_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/SpeedNet.png?v=201807100101",
+			"type": "image",
+			"name": "SpeedNet_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/fighting_result.png?v=201807100101",
+			"type": "image",
+			"name": "fighting_result_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/backhall_01.png?v=201807100101",
+			"type": "image",
+			"name": "backhall_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/backhall_02.png?v=201807100101",
+			"type": "image",
+			"name": "backhall_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/replay_01.png?v=201807100101",
+			"type": "image",
+			"name": "replay_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/replay_02.png?v=201807100101",
+			"type": "image",
+			"name": "replay_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/share_01.png?v=201807100101",
+			"type": "image",
+			"name": "share_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/share_02.png?v=201807100101",
+			"type": "image",
+			"name": "share_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/win.png?v=201807100101",
+			"type": "image",
+			"name": "win_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/fail.png?v=201807100101",
+			"type": "image",
+			"name": "fail_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/digital/digital_1.json?v=201807100101",
+			"type": "sheet",
+			"name": "digital_1_json",
+			"subkeys": "+,0,1,2,3,4,5,6,7,8,9"
+		},
+		{
+			"url": "assets/UserSkin/ppt/digital/digital_2.json?v=201807100101",
+			"type": "sheet",
+			"name": "digital_2_json",
+			"subkeys": "+,0,1,2,3,4,5,6,7,8,9"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/rank.png?v=201807100101",
+			"type": "image",
+			"name": "rank_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/normal_bg_1.png?v=201807100101",
+			"type": "image",
+			"name": "normal_bg_1_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/diy_bg.png?v=201807100101",
+			"type": "image",
+			"name": "diy_bg_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/rank_merge.json?v=201807100101",
+			"type": "sheet",
+			"name": "rank_merge_json",
+			"subkeys": "diy_add_item_png,diy_btn_xia_01_png,diy_btn_xia_02_png,diy_item_bg_png,diy_page_not_png,diy_page_yes_png,diy_select_kuan_png,diy_xiala_bg_png,rank_data_mine_png,rank_data_normal_png,rank_select_01_png,rank_select_02_png,rank_title_l_png,rank_title_lb_png,rank_title_r_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/diy_add_big_item.png?v=201807100101",
+			"type": "image",
+			"name": "diy_add_big_item_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/diy_1p.png?v=201807100101",
+			"type": "image",
+			"name": "diy_1p_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/diy_2p.png?v=201807100101",
+			"type": "image",
+			"name": "diy_2p_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/shop_bg.png?v=201807100101",
+			"type": "image",
+			"name": "shop_bg_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/shopAndBag.json?v=201807100101",
+			"type": "sheet",
+			"name": "shopAndBag_json",
+			"subkeys": "bag_item_not_png,bag_item_yes_png,btn_yellow_1_png,btn_yellow_2_png,shop_banner_png,shop_item_not_png,shop_item_yes_png,shop_page_not_png,shop_page_yes_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/mask_layer.png?v=201807100101",
+			"type": "image",
+			"name": "mask_layer_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/shop_bg_1.png?v=201807100101",
+			"type": "image",
+			"name": "shop_bg_1_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/shop_bg_2.png?v=201807100101",
+			"type": "image",
+			"name": "shop_bg_2_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/shop_bg_3.png?v=201807100101",
+			"type": "image",
+			"name": "shop_bg_3_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/btn_type1_1.png?v=201807100101",
+			"type": "image",
+			"name": "btn_type1_1_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/btn_type2_2.png?v=201807100101",
+			"type": "image",
+			"name": "btn_type2_2_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/bag_bg_1.png?v=201807100101",
+			"type": "image",
+			"name": "bag_bg_1_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/bag_bg_2.png?v=201807100101",
+			"type": "image",
+			"name": "bag_bg_2_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/match_art_lb.png?v=201807100101",
+			"type": "image",
+			"name": "match_art_lb_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/map_rank_normal.png?v=201807100101",
+			"type": "image",
+			"name": "map_rank_normal_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/map_rank_select.png?v=201807100101",
+			"type": "image",
+			"name": "map_rank_select_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/map_rank_name_bg.png?v=201807100101",
+			"type": "image",
+			"name": "map_rank_name_bg_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/normal_bg_2.png?v=201807100101",
+			"type": "image",
+			"name": "normal_bg_2_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/mymap_1.png?v=201807100101",
+			"type": "image",
+			"name": "mymap_1_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/mymap_2.png?v=201807100101",
+			"type": "image",
+			"name": "mymap_2_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/normal_btn_1.png?v=201807100101",
+			"type": "image",
+			"name": "normal_btn_1_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/normal_btn_2.png?v=201807100101",
+			"type": "image",
+			"name": "normal_btn_2_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/add_my_map.png?v=201807100101",
+			"type": "image",
+			"name": "add_my_map_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/like_kuang_bg.png?v=201807100101",
+			"type": "image",
+			"name": "like_kuang_bg_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/fighting_lb.png?v=201807100101",
+			"type": "image",
+			"name": "fighting_lb_png"
+		},
+		{
+			"url": "sound/boom.mp3?v=201807100101",
+			"type": "sound",
+			"name": "boom_mp3"
+		},
+		{
+			"url": "sound/btnPress.mp3?v=201807100101",
+			"type": "sound",
+			"name": "btnPress_mp3"
+		},
+		{
+			"url": "sound/die.mp3?v=201807100101",
+			"type": "sound",
+			"name": "die_mp3"
+		},
+		{
+			"url": "sound/eatProp.mp3?v=201807100101",
+			"type": "sound",
+			"name": "eatProp_mp3"
+		},
+		{
+			"url": "sound/failure.mp3?v=201807100101",
+			"type": "sound",
+			"name": "failure_mp3"
+		},
+		{
+			"url": "sound/mainmenu.mp3?v=201807100101",
+			"type": "sound",
+			"name": "mainmenu_mp3"
+		},
+		{
+			"url": "sound/playBomb.mp3?v=201807100101",
+			"type": "sound",
+			"name": "playBomb_mp3"
+		},
+		{
+			"url": "sound/success.mp3?v=201807100101",
+			"type": "sound",
+			"name": "success_mp3"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/new_ui_01.png?v=202006200101",
+			"type": "image",
+			"name": "new_ui_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/new_ui_15.png?v=201807100101",
+			"type": "image",
+			"name": "new_ui_15_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/new_ui_merge.json?v=201807100101",
+			"type": "sheet",
+			"name": "new_ui_merge_json",
+			"subkeys": "new_ui_02_png,new_ui_03_png,new_ui_04_01_png,new_ui_04_02_png,new_ui_05_png,new_ui_06_01_png,new_ui_06_02_png,new_ui_07_png,new_ui_08_png,new_ui_09_01_png,new_ui_09_02_png,new_ui_10_01_png,new_ui_10_02_png,new_ui_11_png,new_ui_12_png,new_ui_13_png,new_ui_14_png,new_ui_16_png,new_ui_17_png,new_ui_18_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/login_bg_ppt.png?v=201807100101",
+			"type": "image",
+			"name": "login_bg_ppt_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/barr_ball.png?v=201807100101",
+			"type": "image",
+			"name": "barr_ball_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/direct.png?v=201807100101",
+			"type": "image",
+			"name": "direct_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/direct_02.png?v=201807100101",
+			"type": "image",
+			"name": "direct_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/barr_background_bg.png?v=201807100101",
+			"type": "image",
+			"name": "barr_background_bg_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/barr_title_bg.png?v=201807100101",
+			"type": "image",
+			"name": "barr_title_bg_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/barr_value_bg.png?v=201807100101",
+			"type": "image",
+			"name": "barr_value_bg_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/barr_nopass_start.png?v=201807100101",
+			"type": "image",
+			"name": "barr_nopass_start_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/barr_pass_start.png?v=201807100101",
+			"type": "image",
+			"name": "barr_pass_start_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/question_01.png?v=201807100101",
+			"type": "image",
+			"name": "question_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/question_02.png?v=201807100101",
+			"type": "image",
+			"name": "question_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/item_merge.json?v=201807100101",
+			"type": "sheet",
+			"name": "item_merge_json",
+			"subkeys": "bu_01_png,bu_02_png,bu_03_png,gift_01_png,hp_01_png,hp_02_png,hp_03_png,po_01_png,po_02_png,po_03_png,sp_01_png,sp_02_png,sp_03_png,start_01_png,start_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/name_bg.png?v=201807100101",
+			"type": "image",
+			"name": "name_bg_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/quit_pass_01.png?v=201807100101",
+			"type": "image",
+			"name": "quit_pass_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/quit_pass_02.png?v=201807100101",
+			"type": "image",
+			"name": "quit_pass_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/sevent_day_get.json?v=201807100101",
+			"type": "sheet",
+			"name": "sevent_day_get_json",
+			"subkeys": "sevent_bg_png,sevent_five_get_png,sevent_five_got_png,sevent_four_get_png,sevent_four_got_png,sevent_get_png,sevent_got_png,sevent_item_get_png,sevent_item_got_png,sevent_one_get_png,sevent_one_got_png,sevent_sevent_get_png,sevent_sevent_got_png,sevent_six_get_png,sevent_six_got_png,sevent_three_get_png,sevent_three_got_png,sevent_title_png,sevent_two_get_png,sevent_two_got_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/role_info_bg.png?v=201807100101",
+			"type": "image",
+			"name": "role_info_bg_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_static.json?v=202006270101",
+			"type": "json",
+			"name": "p1_static_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_static.png?v=202006270101",
+			"type": "image",
+			"name": "p1_static_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/role_select_bg.png?v=201807100101",
+			"type": "image",
+			"name": "role_select_bg_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/role_select_down.png?v=201807100101",
+			"type": "image",
+			"name": "role_select_down_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/role_select_ground.png?v=201807100101",
+			"type": "image",
+			"name": "role_select_ground_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/role_select_item_bg.png?v=201807100101",
+			"type": "image",
+			"name": "role_select_item_bg_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/role_select_p1.png?v=201807100101",
+			"type": "image",
+			"name": "role_select_p1_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/role_select_p2.png?v=201807100101",
+			"type": "image",
+			"name": "role_select_p2_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/role_select_pick.png?v=201807100101",
+			"type": "image",
+			"name": "role_select_pick_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/role_select_right_bg.png?v=201807100101",
+			"type": "image",
+			"name": "role_select_right_bg_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/role_select_pay_01.png?v=201807100101",
+			"type": "image",
+			"name": "role_select_pay_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/role_select_pay_02.png?v=201807100101",
+			"type": "image",
+			"name": "role_select_pay_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/btn_diy_map.png?v=201807100101",
+			"type": "image",
+			"name": "btn_diy_map_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/btn_random_map.png?v=201807100101",
+			"type": "image",
+			"name": "btn_random_map_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/vs_bg_1v1.png?v=201807100101",
+			"type": "image",
+			"name": "vs_bg_1v1_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/vs_head_1v1.png?v=201807100101",
+			"type": "image",
+			"name": "vs_head_1v1_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/vs_mask_1v1.png?v=201807100101",
+			"type": "image",
+			"name": "vs_mask_1v1_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/vs_randon_1v1.png?v=201807100101",
+			"type": "image",
+			"name": "vs_randon_1v1_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/vs_kuang_1v1.png?v=201807100101",
+			"type": "image",
+			"name": "vs_kuang_1v1_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/icon/map_res2_icon.json?v=201807100101",
+			"type": "sheet",
+			"name": "map_res2_icon_json",
+			"subkeys": "res_31_png,res_32_png,res_33_png,res_34_png,res_35_png,res_36_png,res_37_png,res_38_png,res_39_png,res_40_png,res_41_png,res_42_png,res_43_png,res_44_png,res_45_png,res_46_png,res_47_png,res_48_png,res_49_png,res_50_png,res_51_png,res_52_png,res_53_png,res_54_png,res_55_png,res_56_png,res_57_png,res_58_png,res_59_png,res_60_png,res_61_png,res_62_png,res_63_png,res_64_png,res_65_png,res_66_png,res_67_png,res_68_png,res_69_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/btn_invalid_01.png?v=201807100101",
+			"type": "image",
+			"name": "btn_invalid_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/btn/btn_invalid_02.png?v=201807100101",
+			"type": "image",
+			"name": "btn_invalid_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_static.json?v=201807100101",
+			"type": "json",
+			"name": "p2_static_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_static.png?v=201807100101",
+			"type": "image",
+			"name": "p2_static_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_static_02.json?v=202006270101",
+			"type": "json",
+			"name": "p1_static_02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_static_02.png?v=202006270101",
+			"type": "image",
+			"name": "p1_static_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_static_03.json?v=202006270101",
+			"type": "json",
+			"name": "p1_static_03_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_static_03.png?v=202006270101",
+			"type": "image",
+			"name": "p1_static_03_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_static_04.json?v=202006270101",
+			"type": "json",
+			"name": "p1_static_04_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p1_static_04.png?v=202006270101",
+			"type": "image",
+			"name": "p1_static_04_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_static_02.json?v=201807100101",
+			"type": "json",
+			"name": "p2_static_02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_static_02.png?v=201807100101",
+			"type": "image",
+			"name": "p2_static_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_static_03.json?v=201807100101",
+			"type": "json",
+			"name": "p2_static_03_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_static_03.png?v=201807100101",
+			"type": "image",
+			"name": "p2_static_03_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_static_04.json?v=201807100101",
+			"type": "json",
+			"name": "p2_static_04_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p2_static_04.png?v=201807100101",
+			"type": "image",
+			"name": "p2_static_04_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_static.json?v=201807100101",
+			"type": "json",
+			"name": "p3_static_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_static.png?v=201807100101",
+			"type": "image",
+			"name": "p3_static_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_static_02.json?v=201807100101",
+			"type": "json",
+			"name": "p3_static_02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_static_02.png?v=201807100101",
+			"type": "image",
+			"name": "p3_static_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_static_03.json?v=201807100101",
+			"type": "json",
+			"name": "p3_static_03_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_static_03.png?v=201807100101",
+			"type": "image",
+			"name": "p3_static_03_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_static_04.json?v=201807100101",
+			"type": "json",
+			"name": "p3_static_04_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_static_04.png?v=201807100101",
+			"type": "image",
+			"name": "p3_static_04_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_01.json?v=201807100101",
+			"type": "json",
+			"name": "p3_01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_01.png?v=201807100101",
+			"type": "image",
+			"name": "p3_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_02.json?v=201807100101",
+			"type": "json",
+			"name": "p3_02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_02.png?v=201807100101",
+			"type": "image",
+			"name": "p3_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_03.json?v=201807100101",
+			"type": "json",
+			"name": "p3_03_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_03.png?v=201807100101",
+			"type": "image",
+			"name": "p3_03_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_04.json?v=201807100101",
+			"type": "json",
+			"name": "p3_04_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/p3_04.png?v=201807100101",
+			"type": "image",
+			"name": "p3_04_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/role_select_p3.png?v=201807100101",
+			"type": "image",
+			"name": "role_select_p3_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/p1_special.json?v=201807100101",
+			"type": "json",
+			"name": "p1_special_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/p1_special.png?v=201807100101",
+			"type": "image",
+			"name": "p1_special_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/p2_special.json?v=201807100101",
+			"type": "json",
+			"name": "p2_special_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/p2_special.png?v=201807100101",
+			"type": "image",
+			"name": "p2_special_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/p3_special.json?v=202006210101",
+			"type": "json",
+			"name": "p3_special_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/p3_special.png?v=202006210101",
+			"type": "image",
+			"name": "p3_special_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/role_select_bg2.png?v=201807100101",
+			"type": "image",
+			"name": "role_select_bg2_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/role/select/role_select_bg3.png?v=201807100101",
+			"type": "image",
+			"name": "role_select_bg3_png"
+		}
+	]
+}

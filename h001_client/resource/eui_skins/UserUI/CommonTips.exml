@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="CommonTips" width="415" height="93" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="438" height="75" x="-11.5" y="9" anchorOffsetX="0" anchorOffsetY="0" source="vs_kuang_1v1_png" scale9Grid="15,5,102,36"/>
+	<e:Label id="lb_tips_txt" text="提示提示提示提示" x="26" y="14" anchorOffsetX="0" width="357" anchorOffsetY="0" height="60" textAlign="center" verticalAlign="middle" name="lb_tips_txt" textColor="0x2acbed"/>
+</e:Skin>

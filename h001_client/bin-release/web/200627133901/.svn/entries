@@ -1,0 +1,70 @@
+10
+
+dir
+0
+svn://hkm@111.230.206.39:3691/ddt/game/Client/NewPaoPaoH5/pro/bin-release/web/200627133901
+svn://hkm@111.230.206.39:3691
+add
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4fd5b0a6-c2de-4120-8704-41d2cc045aa4
+
+resource
+dir
+
+
+
+add
+
+resource.zip
+file
+
+
+
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+index.html
+file
+
+
+
+add
+
+js
+dir
+
+
+
+add
+
+manifest.json
+file
+
+
+
+add
+

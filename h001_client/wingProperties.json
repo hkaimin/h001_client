@@ -1,0 +1,19 @@
+{
+    "resourcePlugin": {
+        "configs": [
+            {
+                "configPath": "resource/default.res.json",
+                "relativePath": "resource/"
+            },
+            {
+                "configPath": "resource/assets/UserSkin/res.json",
+                "relativePath": "resource/"
+            },
+            {
+                "configPath": "resource/assets/UserSkin/.svn/text-base/res.json.svn-base",
+                "relativePath": "resource/"
+            }
+        ]
+    },
+    "theme": "resource/default.thm.json"
+}

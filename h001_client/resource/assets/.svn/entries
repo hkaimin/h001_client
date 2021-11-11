@@ -1,0 +1,92 @@
+10
+
+dir
+1532
+svn://hkm@111.230.206.39:3691/ddt/game/Client/NewPaoPaoH5/pro/resource/assets
+svn://hkm@111.230.206.39:3691
+
+
+
+2021-04-05T15:23:42.105772Z
+1481
+hkm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4fd5b0a6-c2de-4120-8704-41d2cc045aa4
+
+Panel
+dir
+
+egret_icon.png
+file
+
+
+
+
+2019-09-15T01:19:53.000000Z
+d7c7550013fbcae72390f7ce17c78e19
+2018-11-23T15:57:24.580585Z
+68
+hkm
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6777
+
+Slider
+dir
+
+ScrollBar
+dir
+
+ToggleSwitch
+dir
+
+UserSkin
+dir
+
+ItemRenderer
+dir
+
+CheckBox
+dir
+
+ProgressBar
+dir
+
+RadioButton
+dir
+
+Button
+dir
+

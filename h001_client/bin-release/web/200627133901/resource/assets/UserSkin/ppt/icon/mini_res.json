@@ -1,0 +1,13 @@
+{"file":"mini_res.png","frames":{
+"mini_boom":{"x":173,"y":105,"w":45,"h":49,"offX":3,"offY":1,"sourceW":50,"sourceH":50},
+"mini_coin":{"x":1,"y":85,"w":58,"h":59,"offX":0,"offY":0,"sourceW":58,"sourceH":60},
+"mini_heart":{"x":449,"y":103,"w":50,"h":47,"offX":0,"offY":2,"sourceW":50,"sourceH":50},
+"mini_speed":{"x":121,"y":85,"w":50,"h":50,"offX":0,"offY":0,"sourceW":50,"sourceH":50},
+"mini_weili":{"x":399,"y":103,"w":48,"h":50,"offX":1,"offY":0,"sourceW":50,"sourceH":50},
+"mini_zuanshi":{"x":61,"y":85,"w":58,"h":57,"offX":0,"offY":2,"sourceW":58,"sourceH":60},
+"mini_head":{"x":219,"y":1,"w":96,"h":102,"offX":0,"offY":0,"sourceW":96,"sourceH":102},
+"mini_info":{"x":1,"y":1,"w":216,"h":82,"offX":0,"offY":0,"sourceW":216,"sourceH":82},
+"mini_jinyantiao":{"x":317,"y":76,"w":167,"h":25,"offX":2,"offY":2,"sourceW":171,"sourceH":29},
+"mini_jinyantiaobg":{"x":317,"y":45,"w":171,"h":29,"offX":0,"offY":0,"sourceW":171,"sourceH":29},
+"mini_own":{"x":317,"y":1,"w":160,"h":42,"offX":0,"offY":0,"sourceW":160,"sourceH":42},
+"mini_proper":{"x":317,"y":103,"w":80,"h":30,"offX":0,"offY":0,"sourceW":80,"sourceH":30}}}

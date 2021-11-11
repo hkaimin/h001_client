@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="NoticeGroup" width="180" height="342" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="group_1" width="180" height="342" x="-1.51" y="0" anchorOffsetY="0" name="group_1">
+		<e:Image width="89" height="136" x="46.12" y="201.67" anchorOffsetX="0" anchorOffsetY="0" source="LvGetPoint_png" scaleX="1" scaleY="1"/>
+		<e:Label id="lb_lv" text="Lv.30" x="64.15" y="282.11" size="22" textColor="0x4D71D8" anchorOffsetX="0" width="54.15" anchorOffsetY="0" height="27.58" scaleX="1" scaleY="1" name="lb_lv" textAlign="center" verticalAlign="middle"/>
+		<e:Image width="151" height="68" x="14" y="127.24" anchorOffsetX="0" anchorOffsetY="0" source="LvGetBottom_png" scaleX="1" scaleY="1"/>
+		<e:Image id="img_role" width="122" height="160" x="27" y="19.74" anchorOffsetX="0" anchorOffsetY="0" source="diy_2p_png" name="img_role" visible="false"/>
+		<e:Image id="img_item" width="74" height="74" x="50.99" y="92" anchorOffsetX="0" anchorOffsetY="0" source="hp_03_png" name="img_item"/>
+		<e:Image id="img_select" width="32" height="33" x="132" y="120" anchorOffsetX="0" anchorOffsetY="0" source="sevent_got_png" name="img_select"/>
+		<e:Label id="rw_num" text="初级金币包x 30" x="27" y="164" size="16" textColor="0x27c11f" anchorOffsetX="0" width="125" textAlign="center" italic="true" bold="true" name="rw_num" anchorOffsetY="0" height="19" verticalAlign="middle"/>
+	</e:Group>
+</e:Skin>
