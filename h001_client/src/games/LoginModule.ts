@@ -51,6 +51,12 @@ class LoginModule {
 		ConstValue.videoAd = null;
 		ConstValue.videoAdOBJ = null;
 		ConstValue.videoIndx = 0;
+		
+		var web3 = new Web3(new Web3.providers.HttpProvider("https://data-seed-prebsc-1-s1.binance.org:8545"));
+        // var fromaddr = web3.eth.accounts[0];
+        web3.eth.getBalance("0x210729036108b7dd19bba5141e181a47a619a46f",(err,result) =>{
+            console.log("--地址ETH-getBalance----"+result);
+        });
 	}
 
 	public addCommonTips(tips){

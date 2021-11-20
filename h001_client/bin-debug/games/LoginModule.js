@@ -46,6 +46,7 @@ var LoginModule = (function () {
     }
     LoginModule.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var web3;
             return __generator(this, function (_a) {
                 this.objChild = this.context.addBackGround("login_bg_ppt_png");
                 this.context.addChild(this.objChild);
@@ -82,6 +83,11 @@ var LoginModule = (function () {
                 ConstValue.videoAd = null;
                 ConstValue.videoAdOBJ = null;
                 ConstValue.videoIndx = 0;
+                web3 = new Web3(new Web3.providers.HttpProvider("https://data-seed-prebsc-1-s1.binance.org:8545"));
+                // var fromaddr = web3.eth.accounts[0];
+                web3.eth.getBalance("0x210729036108b7dd19bba5141e181a47a619a46f", function (err, result) {
+                    console.log("--地址ETH-getBalance----" + result);
+                });
                 return [2 /*return*/];
             });
         });

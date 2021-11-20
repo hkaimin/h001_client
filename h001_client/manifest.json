@@ -7,6 +7,7 @@
 		"libs/modules/assetsmanager/assetsmanager.js",
 		"libs/modules/eui/eui.js",
 		"libs/modules/socket/socket.js",
+		"libs/modules/egretia-sdk/egretia-sdk.js",
 		"libs/modules/promise/promise.js",
 		"libs/jszip/jszip.js",
 		"libs/crypto-js/crypto-js.js",
