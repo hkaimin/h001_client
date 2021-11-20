@@ -1,0 +1,54 @@
+{
+	"engineVersion": "5.3.7",
+	"compilerVersion": "5.3.7",
+	"template": {},
+	"target": {
+		"current": "web"
+	},
+	"modules": [
+		{
+			"name": "egret"
+		},
+		{
+			"name": "game"
+		},
+		{
+			"name": "tween"
+		},
+		{
+			"name": "assetsmanager"
+		},
+		{
+			"name": "eui"
+		},
+		{
+			"name": "socket"
+		},
+		{
+			"name": "egretia-sdk"
+		},
+		{
+			"name": "promise"
+		},
+		{
+			"name": "jszip",
+			"path": "libs/jszip"
+		},
+		{
+			"name": "crypto-js",
+			"path": "libs/crypto-js"
+		},
+		{
+			"name": "snappyjs",
+			"path": "libs/snappyjs"
+		},
+		{
+			"name": "lzma",
+			"path": "libs/lzma"
+		},
+		{
+			"name": "PathFinding",
+			"path": "libs/PathFinding"
+		}
+	]
+}
