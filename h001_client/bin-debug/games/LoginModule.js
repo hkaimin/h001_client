@@ -46,7 +46,6 @@ var LoginModule = (function () {
     }
     LoginModule.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var web3;
             return __generator(this, function (_a) {
                 this.objChild = this.context.addBackGround("login_bg_ppt_png");
                 this.context.addChild(this.objChild);
@@ -83,11 +82,7 @@ var LoginModule = (function () {
                 ConstValue.videoAd = null;
                 ConstValue.videoAdOBJ = null;
                 ConstValue.videoIndx = 0;
-                web3 = new Web3(new Web3.providers.HttpProvider("https://data-seed-prebsc-1-s1.binance.org:8545"));
-                // var fromaddr = web3.eth.accounts[0];
-                web3.eth.getBalance("0x210729036108b7dd19bba5141e181a47a619a46f", function (err, result) {
-                    console.log("--地址ETH-getBalance----" + result);
-                });
+                this.web3 = new Web3(new Web3.providers.HttpProvider("https://data-seed-prebsc-1-s1.binance.org:8545"));
                 return [2 /*return*/];
             });
         });
@@ -97,7 +92,7 @@ var LoginModule = (function () {
     };
     LoginModule.prototype.onClick = function (e) {
         return __awaiter(this, void 0, void 0, function () {
-            var name;
+            var name, fromaddr;
             return __generator(this, function (_a) {
                 if (this.context.loadingView != null && !ConstValue.P_IS_DEBUG) {
                     CommonTools.log("还在加载中......return ");
@@ -122,7 +117,20 @@ var LoginModule = (function () {
                         this.showNotice("resource/eui_skins/UserUI/RegisteUI.exml", name);
                         break;
                     case "btn_login":
-                        this.btnClickLogin();
+                        if (ConstValue.p_USE_WALLET == 1) {
+                            try {
+                                fromaddr = window["web3"].eth.accounts[0];
+                                console.log("------fromaddr ---" + window["web3"].eth.accounts);
+                                this.btnClickWalletLogin(fromaddr);
+                            }
+                            catch (error) {
+                                CommonTools.addCommonTips(this.panel, ConstValue.P_NO_USER_ADDRESS);
+                                return [2 /*return*/];
+                            }
+                        }
+                        else {
+                            this.btnClickLogin();
+                        }
                         break;
                     case "btn_login_wx":
                         ConstValue.sysTips = [];
@@ -211,6 +219,15 @@ var LoginModule = (function () {
                 }
             });
         });
+    };
+    LoginModule.prototype.btnClickWalletLogin = function (fromaddr) {
+        var sData = CommonTools.getDataJsonStr("loginWX", 1, { openID: fromaddr, sHead: "", sName: "", iGender: 0 });
+        if (ConstValue.P_NET_OBJ == null) {
+            ConstValue.P_NET_OBJ = new WebSocketUtil(sData); //建立连接
+        }
+        else {
+            ConstValue.P_NET_OBJ.sendData(sData);
+        }
     };
     LoginModule.prototype.clear = function () {
         this.context.removeChild(this.objChild);

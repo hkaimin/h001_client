@@ -36,6 +36,8 @@ var ConstValue = (function () {
     ConstValue.P_MODIFY_PWD_FAIL = "新密码2次输入有误";
     ConstValue.P_ENTER_ROOM_FAIL = "进入房间失败";
     ConstValue.P_WAIT_NEXT = "请等待下轮开始";
+    //dapp
+    ConstValue.P_NO_USER_ADDRESS = "请登录钱包！";
     //config公共配置
     ConstValue.P_IS_DEBUG = false; //false正式模式 true演示模式，不联网的
     ConstValue.P_IS_INNER = false; //false线上模式 true内网模式 有些提示只在内网提示
@@ -45,6 +47,7 @@ var ConstValue = (function () {
     ConstValue.p_is_PRINT_AI_PATH = false; //是否打印ai path
     ConstValue.p_is_PRINT_MAP = false;
     ConstValue.p_LOGIN_MODEL = 1; //普通的账号密码登陆 2微信登陆
+    ConstValue.p_USE_WALLET = 1; //是否使用钱包登陆
     //common obj公共对象
     ConstValue.P_NET_OBJ = null; //网络对象
     ConstValue.P_LOGIN_OBJ = null; //登录模块对象

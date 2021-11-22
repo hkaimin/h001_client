@@ -8,6 +8,7 @@ class LoginModule {
 	private topMask;
 	private objChild;
 	private bClick:boolean;
+	private web3;
 
 	public constructor(ct:Main) {
 		this.context = ct;
@@ -52,11 +53,11 @@ class LoginModule {
 		ConstValue.videoAdOBJ = null;
 		ConstValue.videoIndx = 0;
 		
-		var web3 = new Web3(new Web3.providers.HttpProvider("https://data-seed-prebsc-1-s1.binance.org:8545"));
+		this.web3 = new Web3(new Web3.providers.HttpProvider("https://data-seed-prebsc-1-s1.binance.org:8545"));
         // var fromaddr = web3.eth.accounts[0];
-        web3.eth.getBalance("0x210729036108b7dd19bba5141e181a47a619a46f",(err,result) =>{
-            console.log("--地址ETH-getBalance----"+result);
-        });
+        // web3.eth.getBalance("0xa9e75f8838c7173412f229a7cd13a6b6e0fe6e39",(err,result) =>{
+        //     console.log("--地址ETH-getBalance----"+result);
+        // });
 	}
 
 	public addCommonTips(tips){
@@ -91,8 +92,19 @@ class LoginModule {
 				this.showNotice("resource/eui_skins/UserUI/RegisteUI.exml",name);
 				break;
 
-			case "btn_login":			
-				this.btnClickLogin();
+			case "btn_login":
+				if(ConstValue.p_USE_WALLET == 1){
+					try {
+						let fromaddr = window["web3"].eth.accounts[0];
+						console.log("------fromaddr ---"+window["web3"].eth.accounts)
+						this.btnClickWalletLogin(fromaddr);
+					} catch (error) {
+						CommonTools.addCommonTips(this.panel,ConstValue.P_NO_USER_ADDRESS);
+						return;
+					}
+				}else{
+					this.btnClickLogin();
+				}
 				break;
 
 			case "btn_login_wx":
@@ -168,6 +180,15 @@ class LoginModule {
 			ConstValue.P_NET_OBJ.sendData(sData);
 		}
 		// await platform.updateInfo("xx");
+	}
+
+	private btnClickWalletLogin(fromaddr){
+		let sData = CommonTools.getDataJsonStr("loginWX",1,{openID:fromaddr,sHead:"",sName:"",iGender:0});
+		if(ConstValue.P_NET_OBJ==null){//还未建立连接
+			ConstValue.P_NET_OBJ = new WebSocketUtil(sData);//建立连接
+		}else{
+			ConstValue.P_NET_OBJ.sendData(sData);
+		}
 	}
 
 	private clear(){
