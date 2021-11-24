@@ -8,7 +8,6 @@ class LoginModule {
 	private topMask;
 	private objChild;
 	private bClick:boolean;
-	private web3;
 
 	public constructor(ct:Main) {
 		this.context = ct;
@@ -52,12 +51,6 @@ class LoginModule {
 		ConstValue.videoAd = null;
 		ConstValue.videoAdOBJ = null;
 		ConstValue.videoIndx = 0;
-		
-		this.web3 = new Web3(new Web3.providers.HttpProvider("https://data-seed-prebsc-1-s1.binance.org:8545"));
-        // var fromaddr = web3.eth.accounts[0];
-        // web3.eth.getBalance("0xa9e75f8838c7173412f229a7cd13a6b6e0fe6e39",(err,result) =>{
-        //     console.log("--地址ETH-getBalance----"+result);
-        // });
 	}
 
 	public addCommonTips(tips){
@@ -95,9 +88,8 @@ class LoginModule {
 			case "btn_login":
 				if(ConstValue.p_USE_WALLET == 1){
 					try {
-						let fromaddr = window["web3"].eth.accounts[0];
-						console.log("------fromaddr ---"+window["web3"].eth.accounts)
-						this.btnClickWalletLogin(fromaddr);
+						ContractSol.sender = window["web3"].eth.accounts[0];
+						this.btnClickWalletLogin(ContractSol.sender);
 					} catch (error) {
 						CommonTools.addCommonTips(this.panel,ConstValue.P_NO_USER_ADDRESS);
 						return;

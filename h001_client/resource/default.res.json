@@ -17,7 +17,7 @@
 			"name": "diymap"
 		},
 		{
-			"keys": "login_bg_ppt_png,weixin_login_png",
+			"keys": "login_bg_ppt_png,weixin_login_png,nft_tokensOfOwner_json",
 			"name": "pre_preload"
 		}
 	],
@@ -1625,6 +1625,11 @@
 			"url": "assets/UserSkin/ppt/role/ai/pai4_04.png",
 			"type": "image",
 			"name": "pai4_04_png"
+		},
+		{
+			"url": "abi/nft_tokensOfOwner.json",
+			"type": "json",
+			"name": "nft_tokensOfOwner_json"
 		}
 	]
 }

@@ -82,7 +82,6 @@ var LoginModule = (function () {
                 ConstValue.videoAd = null;
                 ConstValue.videoAdOBJ = null;
                 ConstValue.videoIndx = 0;
-                this.web3 = new Web3(new Web3.providers.HttpProvider("https://data-seed-prebsc-1-s1.binance.org:8545"));
                 return [2 /*return*/];
             });
         });
@@ -92,7 +91,7 @@ var LoginModule = (function () {
     };
     LoginModule.prototype.onClick = function (e) {
         return __awaiter(this, void 0, void 0, function () {
-            var name, fromaddr;
+            var name;
             return __generator(this, function (_a) {
                 if (this.context.loadingView != null && !ConstValue.P_IS_DEBUG) {
                     CommonTools.log("还在加载中......return ");
@@ -119,9 +118,8 @@ var LoginModule = (function () {
                     case "btn_login":
                         if (ConstValue.p_USE_WALLET == 1) {
                             try {
-                                fromaddr = window["web3"].eth.accounts[0];
-                                console.log("------fromaddr ---" + window["web3"].eth.accounts);
-                                this.btnClickWalletLogin(fromaddr);
+                                ContractSol.sender = window["web3"].eth.accounts[0];
+                                this.btnClickWalletLogin(ContractSol.sender);
                             }
                             catch (error) {
                                 CommonTools.addCommonTips(this.panel, ConstValue.P_NO_USER_ADDRESS);

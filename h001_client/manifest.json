@@ -26,6 +26,7 @@
 		"bin-debug/common/CommonTools.js",
 		"bin-debug/common/ConfigInterface.js",
 		"bin-debug/common/ConstValue.js",
+		"bin-debug/common/ContractSol.js",
 		"bin-debug/common/EBitUtil.js",
 		"bin-debug/common/GlobalInterface.js",
 		"bin-debug/common/PathUtils.js",

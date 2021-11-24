@@ -243,6 +243,15 @@ class HallModule {
 
 		this.initAD();
 		this.panel.getChildByName("btn_gonggao").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+
+		if(ConstValue.p_USE_WALLET){
+			// var fromaddr = ConstValue.hweb3.eth.accounts[0];
+			ContractSol.hweb3.eth.getBalance(ContractSol.sender,(err,result) =>{
+				console.log("--地址ETH-getBalance----"+result);
+			});
+			ContractSol.initSOL();
+			ContractSol.nft_tokensOfOwner(ContractSol.sender);
+		}
 	}
 
 	private initAD(){
