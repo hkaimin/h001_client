@@ -92,6 +92,7 @@ class LoginModule {
 						this.btnClickWalletLogin(ContractSol.sender);
 					} catch (error) {
 						CommonTools.addCommonTips(this.panel,ConstValue.P_NO_USER_ADDRESS);
+						console.log("--btn_login error----"+error)
 						return;
 					}
 				}else{

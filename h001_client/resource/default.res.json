@@ -17,7 +17,7 @@
 			"name": "diymap"
 		},
 		{
-			"keys": "login_bg_ppt_png,weixin_login_png,nft_tokensOfOwner_json",
+			"keys": "login_bg_ppt_png,weixin_login_png,nft_tokensOfOwner_json,maincoin_transfer_json,maincoin_balanceOf_json,maincoin_transferFrom_json",
 			"name": "pre_preload"
 		}
 	],
@@ -1630,6 +1630,21 @@
 			"url": "abi/nft_tokensOfOwner.json",
 			"type": "json",
 			"name": "nft_tokensOfOwner_json"
+		},
+		{
+			"url": "abi/maincoin_transfer.json",
+			"type": "json",
+			"name": "maincoin_transfer_json"
+		},
+		{
+			"url": "abi/maincoin_balanceOf.json",
+			"type": "json",
+			"name": "maincoin_balanceOf_json"
+		},
+		{
+			"url": "abi/maincoin_transferFrom.json",
+			"type": "json",
+			"name": "maincoin_transferFrom_json"
 		}
 	]
 }

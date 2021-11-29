@@ -123,6 +123,7 @@ var LoginModule = (function () {
                             }
                             catch (error) {
                                 CommonTools.addCommonTips(this.panel, ConstValue.P_NO_USER_ADDRESS);
+                                console.log("--btn_login error----" + error);
                                 return [2 /*return*/];
                             }
                         }

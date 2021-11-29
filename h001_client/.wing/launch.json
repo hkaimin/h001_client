@@ -10,7 +10,7 @@
             "webRoot": "${workspaceRoot}",
             "runtimeExecutable": "${execPath}",
             "preLaunchTask": "build",
-            "port": 3003
+            "port": 9999
         },
         {
             "name": "使用本机 Chrome 调试",
@@ -21,7 +21,7 @@
             "webRoot": "${workspaceRoot}",
             "preLaunchTask": "build",
             "userDataDir": "${tmpdir}",
-            "port": 3003
+            "port": 9999
         },
         {
             "name": "附加到 Chrome 进程",

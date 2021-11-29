@@ -33,7 +33,7 @@ class ConstValue {
 	static P_WAIT_NEXT:string = "请等待下轮开始";
 
 	//dapp
-	static P_NO_USER_ADDRESS:string = "请登录钱包！";
+	static P_NO_USER_ADDRESS:string = "Please login wallet！";
 
 	//config公共配置
 	static P_IS_DEBUG:boolean = false;//false正式模式 true演示模式，不联网的
@@ -44,7 +44,7 @@ class ConstValue {
 	static p_is_PRINT_AI_PATH:boolean = false;//是否打印ai path
 	static p_is_PRINT_MAP:boolean = false;
 	static p_LOGIN_MODEL = 1;//普通的账号密码登陆 2微信登陆
-	static p_USE_WALLET = 0;//是否使用钱包登陆
+	static p_USE_WALLET = 1;//是否使用钱包登陆
 
 	//common obj公共对象
 	static P_NET_OBJ:WebSocketUtil = null;//网络对象

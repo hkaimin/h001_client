@@ -225,12 +225,17 @@ var HallModule = (function () {
         }, this);
         this.initAD();
         this.panel.getChildByName("btn_gonggao").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-        // var fromaddr = ConstValue.hweb3.eth.accounts[0];
-        ContractSol.hweb3.eth.getBalance(ContractSol.sender, function (err, result) {
-            console.log("--地址ETH-getBalance----" + result);
-        });
-        ContractSol.initSOL();
-        ContractSol.nft_tokensOfOwner(ContractSol.sender);
+        if (ConstValue.p_USE_WALLET) {
+            ContractSol.initSOL();
+            // var fromaddr = ConstValue.hweb3.eth.accounts[0];
+            ContractSol.hweb3.eth.getBalance(ContractSol.sender, function (err, result) {
+                console.log("--地址ETH-getBalance----" + result);
+            });
+            // ContractSol.nft_tokensOfOwner(ContractSol.sender);
+            // ContractSol.maincoin_transfer(ContractSol.createAddress, 1);
+            // ContractSol.maincoin_balanceOf(ContractSol.sender);
+            ContractSol.maincoin_transferFrom(ContractSol.createAddress, ContractSol.sender, 2);
+        }
     };
     HallModule.prototype.initAD = function () {
         if (ConstValue.videoAd == null) {
@@ -277,15 +282,14 @@ var HallModule = (function () {
         }
     };
     HallModule.prototype.showGuide = function () {
-        var arr = ["2", "4", "6", "8", "9", "10", "7"];
-        for (var i = 0; i < arr.length; i++) {
-            if (arr[i] == "7" && ConstValue.cacheUserInfo.lv < 5)
-                continue;
-            if (egret.localStorage.getItem(GuideModule.guide_tip_new[arr[i]].saveKey) != "1") {
-                this.guideModule = new GuideModule(null, parseInt(arr[i]), this.panel, null);
-                break;
-            }
-        }
+        // let arr = ["2","4","6","8","9","10","7"];
+        // for(let i=0;i<arr.length;i++){
+        // 	if(arr[i]=="7" && ConstValue.cacheUserInfo.lv <5)continue;
+        // 	if(egret.localStorage.getItem(GuideModule.guide_tip_new[arr[i]].saveKey) != "1"){
+        // 		this.guideModule = new GuideModule(null,parseInt(arr[i]),this.panel,null);
+        // 		break;
+        // 	}
+        // }
     };
     HallModule.prototype.removeGuide = function () {
         if (this.guideModule != null) {
