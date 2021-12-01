@@ -17,7 +17,7 @@
 			"name": "diymap"
 		},
 		{
-			"keys": "login_bg_ppt_png,weixin_login_png,nft_tokensOfOwner_json,maincoin_transfer_json,maincoin_balanceOf_json,maincoin_transferFrom_json",
+			"keys": "weixin_login_png,nft_tokensOfOwner_json,maincoin_transfer_json,maincoin_balanceOf_json,maincoin_transferFrom_json,maincoin_increaseApproval_json,login_bg_jpg",
 			"name": "pre_preload"
 		}
 	],
@@ -633,11 +633,6 @@
 			"type": "sheet",
 			"name": "new_ui_merge_json",
 			"subkeys": "new_ui_02_png,new_ui_03_png,new_ui_04_01_png,new_ui_04_02_png,new_ui_05_png,new_ui_06_01_png,new_ui_06_02_png,new_ui_07_png,new_ui_08_png,new_ui_09_01_png,new_ui_09_02_png,new_ui_10_01_png,new_ui_10_02_png,new_ui_11_png,new_ui_12_png,new_ui_13_png,new_ui_14_png,new_ui_16_png,new_ui_17_png,new_ui_18_png,new_ui_19_01_png,new_ui_19_02_png,new_ui_20_01_png,new_ui_20_02_png,new_ui_21_png,new_ui_get_reward_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/bg/login_bg_ppt.png",
-			"type": "image",
-			"name": "login_bg_ppt_png"
 		},
 		{
 			"url": "assets/UserSkin/ppt/icon/barr_ball.png",
@@ -1645,6 +1640,16 @@
 			"url": "abi/maincoin_transferFrom.json",
 			"type": "json",
 			"name": "maincoin_transferFrom_json"
+		},
+		{
+			"url": "abi/maincoin_increaseApproval.json",
+			"type": "json",
+			"name": "maincoin_increaseApproval_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/bg/login_bg.jpg",
+			"type": "image",
+			"name": "login_bg_jpg"
 		}
 	]
 }

@@ -225,7 +225,7 @@ var HallModule = (function () {
         }, this);
         this.initAD();
         this.panel.getChildByName("btn_gonggao").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-        if (ConstValue.p_USE_WALLET) {
+        if (ConstValue.p_USE_WALLET == 1) {
             ContractSol.initSOL();
             // var fromaddr = ConstValue.hweb3.eth.accounts[0];
             ContractSol.hweb3.eth.getBalance(ContractSol.sender, function (err, result) {
@@ -234,7 +234,8 @@ var HallModule = (function () {
             // ContractSol.nft_tokensOfOwner(ContractSol.sender);
             // ContractSol.maincoin_transfer(ContractSol.createAddress, 1);
             // ContractSol.maincoin_balanceOf(ContractSol.sender);
-            ContractSol.maincoin_transferFrom(ContractSol.createAddress, ContractSol.sender, 2);
+            // ContractSol.maincoin_transferFrom(ContractSol.createAddress, ContractSol.sender , 2);
+            // ContractSol.maincoin_increaseApproval(ContractSol.sender , 2);
         }
     };
     HallModule.prototype.initAD = function () {
@@ -282,14 +283,17 @@ var HallModule = (function () {
         }
     };
     HallModule.prototype.showGuide = function () {
-        // let arr = ["2","4","6","8","9","10","7"];
-        // for(let i=0;i<arr.length;i++){
-        // 	if(arr[i]=="7" && ConstValue.cacheUserInfo.lv <5)continue;
-        // 	if(egret.localStorage.getItem(GuideModule.guide_tip_new[arr[i]].saveKey) != "1"){
-        // 		this.guideModule = new GuideModule(null,parseInt(arr[i]),this.panel,null);
-        // 		break;
-        // 	}
-        // }
+        if (ConstValue.p_USE_WALLET == 1)
+            return;
+        var arr = ["2", "4", "6", "8", "9", "10", "7"];
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] == "7" && ConstValue.cacheUserInfo.lv < 5)
+                continue;
+            if (egret.localStorage.getItem(GuideModule.guide_tip_new[arr[i]].saveKey) != "1") {
+                this.guideModule = new GuideModule(null, parseInt(arr[i]), this.panel, null);
+                break;
+            }
+        }
     };
     HallModule.prototype.removeGuide = function () {
         if (this.guideModule != null) {
@@ -2064,6 +2068,8 @@ var HallModule = (function () {
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
+                            if (ConstValue.p_USE_WALLET == 1)
+                                return [2 /*return*/];
                             CommonTools.addTipsPanel(this.context, jsonObj.d.name, jsonObj.d.content);
                         }
                         return [3 /*break*/, 31];
@@ -2244,6 +2250,8 @@ var HallModule = (function () {
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
+                            if (ConstValue.p_USE_WALLET == 1)
+                                return [2 /*return*/];
                             if (!HallModule.isSafeArea)
                                 return [2 /*return*/];
                             this.seventData = jsonObj.d;

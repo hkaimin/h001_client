@@ -16,7 +16,7 @@ class LoginModule {
 
 	
 	private async init(){
-		this.objChild = this.context.addBackGround("login_bg_ppt_png");
+		this.objChild = this.context.addBackGround("login_bg_jpg");
 		this.context.addChild(this.objChild);
 
 		this.panel = new eui.Panel();
@@ -25,7 +25,7 @@ class LoginModule {
         this.panel.horizontalCenter = 0;
         this.panel.verticalCenter = 0;
         this.context.addChild(this.panel);		
-		if(ConstValue.p_LOGIN_MODEL == 2){
+		if(ConstValue.p_LOGIN_MODEL == 2 || ConstValue.p_USE_WALLET == 1){
 			this.panel.getChildByName("account_lb_txt").visible = false;
 			this.panel.getChildByName("password_lb_txt").visible = false;
 			this.panel.getChildByName("account_lb_title").visible = false;
@@ -86,26 +86,26 @@ class LoginModule {
 				break;
 
 			case "btn_login":
+				this.btnClickLogin();
+				break;
+
+			case "btn_login_wx":
 				if(ConstValue.p_USE_WALLET == 1){
 					try {
 						ContractSol.sender = window["web3"].eth.accounts[0];
 						this.btnClickWalletLogin(ContractSol.sender);
 					} catch (error) {
 						CommonTools.addCommonTips(this.panel,ConstValue.P_NO_USER_ADDRESS);
-						console.log("--btn_login error----"+error)
+						CommonTools.logError("--btn_login error----"+error)
 						return;
 					}
 				}else{
-					this.btnClickLogin();
+					ConstValue.sysTips = [];
+					ConstValue.oneTipsCnt = 0;
+					ConstValue.oneTipsCur = 0;
+					ConstValue.oneTips = {};
+					this.btnClickWxLogin();
 				}
-				break;
-
-			case "btn_login_wx":
-				ConstValue.sysTips = [];
-				ConstValue.oneTipsCnt = 0;
-				ConstValue.oneTipsCur = 0;
-				ConstValue.oneTips = {};
-				this.btnClickWxLogin();
 				break;
 
 			case "btn_nologinman":

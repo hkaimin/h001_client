@@ -8,7 +8,7 @@ var ContractSol = (function () {
     function ContractSol() {
     }
     ContractSol.initSOL = function () {
-        console.log("-web3----" + (typeof web3 !== undefined));
+        // console.log("-web3----"+(typeof web3 !== undefined))
         if (typeof web3 !== undefined) {
             ContractSol.hweb3 = new Web3(web3.currentProvider);
         }
@@ -28,10 +28,14 @@ var ContractSol = (function () {
         ContractSol.res_maincoin_transferFrom = RES.getRes("maincoin_transferFrom_json");
         ContractSol.method_maincoin_transferFrom = ContractSol.res_maincoin_transferFrom;
         ContractSol.abiDef_maincoin_transferFrom = ContractSol.method_maincoin_transferFrom;
+        ContractSol.res_maincoin_increaseApproval = RES.getRes("maincoin_increaseApproval_json");
+        ContractSol.method_maincoin_increaseApproval = ContractSol.res_maincoin_increaseApproval;
+        ContractSol.abiDef_maincoin_increaseApproval = ContractSol.method_maincoin_increaseApproval;
         ContractSol.metaNFT_maincoin = ContractSol.hweb3.eth.contract([
             ContractSol.abiDef_maincoin_transfer,
             ContractSol.abiDef_maincoin_balanceOf,
-            ContractSol.abiDef_maincoin_transferFrom
+            ContractSol.abiDef_maincoin_transferFrom,
+            ContractSol.abiDef_maincoin_increaseApproval
         ]).at(ContractSol.BEP20_Main_Address);
     };
     /**
@@ -61,11 +65,11 @@ var ContractSol = (function () {
         // }); 
         ContractSol.metaNFT_maincoin.transfer(_to, _value, { from: ContractSol.sender, gas: 100000, gasPrice: ContractSol.hweb3.eth.gasPrice }, function (error, txnHash) {
             if (error) {
-                console.log('--maincoin-transfer error--' + error);
+                CommonTools.logError('--maincoin-transfer error--' + error);
                 throw error;
             }
             else {
-                console.log('--maincoin-transfer txnHash--' + txnHash);
+                CommonTools.logWallet('--maincoin-transfer txnHash--' + txnHash);
             }
         });
     };
@@ -75,25 +79,39 @@ var ContractSol = (function () {
     ContractSol.maincoin_balanceOf = function (address) {
         ContractSol.metaNFT_maincoin.balanceOf(address, { from: ContractSol.sender }, function (error, token_result) {
             if (error) {
-                console.log('--maincoin-balanceOf error--' + error);
+                CommonTools.logError('--maincoin-balanceOf error--' + error);
                 throw error;
             }
             else {
-                console.log('--maincoin_balanceOf-token_result--' + token_result);
+                CommonTools.logWallet('--maincoin_balanceOf-token_result--' + token_result);
             }
         });
     };
     /**
-     * 主币transfer
+     * 主币transferFrom
      */
     ContractSol.maincoin_transferFrom = function (_from, _to, _value) {
         ContractSol.metaNFT_maincoin.transferFrom(_from, _to, _value, { from: ContractSol.sender, gas: 100000, gasPrice: ContractSol.hweb3.eth.gasPrice }, function (error, txnHash) {
             if (error) {
-                console.log('--maincoin_transferFrom error--' + error);
+                CommonTools.logError('--maincoin_transferFrom error--' + error);
                 throw error;
             }
             else {
-                console.log('--maincoin_transferFrom txnHash--' + txnHash);
+                CommonTools.logWallet('--maincoin_transferFrom txnHash--' + txnHash);
+            }
+        });
+    };
+    /**
+     * 主币increaseApproval
+     */
+    ContractSol.maincoin_increaseApproval = function (_spender, _value) {
+        ContractSol.metaNFT_maincoin.increaseApproval(_spender, _value, { from: ContractSol.sender, gas: 100000, gasPrice: ContractSol.hweb3.eth.gasPrice }, function (error, txnHash) {
+            if (error) {
+                CommonTools.logError('--maincoin_increaseApproval error--' + error);
+                throw error;
+            }
+            else {
+                CommonTools.logWallet('--maincoin_increaseApproval txnHash--' + txnHash);
             }
         });
     };

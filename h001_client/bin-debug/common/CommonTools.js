@@ -264,6 +264,11 @@ var CommonTools = (function () {
             console.log(logStr);
         }
     };
+    CommonTools.logWallet = function (logStr) {
+        if (ConstValue.p_is_PRINT_WALLET) {
+            console.log(logStr);
+        }
+    };
     CommonTools.resourceMgr = new ResourceUtils();
     CommonTools.curTipsLen = 0;
     return CommonTools;

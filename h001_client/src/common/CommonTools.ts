@@ -279,4 +279,10 @@ class CommonTools {
 		}
 	}
 
+	static logWallet(logStr:string){
+		if(ConstValue.p_is_PRINT_WALLET){
+			console.log(logStr);
+		}
+	}
+
 }

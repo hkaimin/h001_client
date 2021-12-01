@@ -46,6 +46,7 @@ var ConstValue = (function () {
     ConstValue.p_is_PRINT_AI = false; //是否打印ai
     ConstValue.p_is_PRINT_AI_PATH = false; //是否打印ai path
     ConstValue.p_is_PRINT_MAP = false;
+    ConstValue.p_is_PRINT_WALLET = true;
     ConstValue.p_LOGIN_MODEL = 1; //普通的账号密码登陆 2微信登陆
     ConstValue.p_USE_WALLET = 1; //是否使用钱包登陆
     //common obj公共对象

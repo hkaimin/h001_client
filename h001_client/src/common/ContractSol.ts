@@ -33,8 +33,12 @@ class ContractSol {
 	static method_maincoin_transferFrom:Web3.MethodAbi;
 	static abiDef_maincoin_transferFrom:Web3.AbiDefinition;
 
+	static res_maincoin_increaseApproval;
+	static method_maincoin_increaseApproval:Web3.MethodAbi;
+	static abiDef_maincoin_increaseApproval:Web3.AbiDefinition;
+
 	static initSOL(){
-		console.log("-web3----"+(typeof web3 !== undefined))
+		// console.log("-web3----"+(typeof web3 !== undefined))
 		if(typeof web3 !== undefined){
 			ContractSol.hweb3 = new Web3(web3.currentProvider);
 		}else{
@@ -58,10 +62,15 @@ class ContractSol {
 		ContractSol.method_maincoin_transferFrom = ContractSol.res_maincoin_transferFrom;
 		ContractSol.abiDef_maincoin_transferFrom = ContractSol.method_maincoin_transferFrom;
 
+		ContractSol.res_maincoin_increaseApproval = RES.getRes("maincoin_increaseApproval_json");
+		ContractSol.method_maincoin_increaseApproval = ContractSol.res_maincoin_increaseApproval;
+		ContractSol.abiDef_maincoin_increaseApproval = ContractSol.method_maincoin_increaseApproval;
+
 		ContractSol.metaNFT_maincoin = ContractSol.hweb3.eth.contract([
 			ContractSol.abiDef_maincoin_transfer,
 			ContractSol.abiDef_maincoin_balanceOf,
-			ContractSol.abiDef_maincoin_transferFrom
+			ContractSol.abiDef_maincoin_transferFrom,
+			ContractSol.abiDef_maincoin_increaseApproval
 			]).at(ContractSol.BEP20_Main_Address);
 	}
 
@@ -95,10 +104,10 @@ class ContractSol {
 
 		ContractSol.metaNFT_maincoin.transfer(_to, _value, {from: ContractSol.sender,gas:100000,gasPrice:ContractSol.hweb3.eth.gasPrice}, function(error, txnHash) {
 			if(error){
-				console.log('--maincoin-transfer error--'+error);
+				CommonTools.logError('--maincoin-transfer error--'+error)
 				throw error;
 			}else{
-				console.log('--maincoin-transfer txnHash--'+txnHash);
+				CommonTools.logWallet('--maincoin-transfer txnHash--'+txnHash);
 			}
 		});
 
@@ -110,28 +119,40 @@ class ContractSol {
 	static maincoin_balanceOf(address){
 		ContractSol.metaNFT_maincoin.balanceOf(address,{from:ContractSol.sender},(error,token_result) => {
 			if(error){
-				console.log('--maincoin-balanceOf error--'+error);
+				CommonTools.logError('--maincoin-balanceOf error--'+error)
 				throw error;
 			}else{
-				console.log('--maincoin_balanceOf-token_result--'+token_result);
+				CommonTools.logWallet('--maincoin_balanceOf-token_result--'+token_result)
 			}
 		});
 	}
 
 	/**
-	 * 主币transfer
+	 * 主币transferFrom
 	 */
 	static maincoin_transferFrom(_from,_to,_value){
-
 		ContractSol.metaNFT_maincoin.transferFrom(_from, _to, _value, {from: ContractSol.sender,gas:100000,gasPrice:ContractSol.hweb3.eth.gasPrice}, function(error, txnHash) {
 			if(error){
-				console.log('--maincoin_transferFrom error--'+error);
+				CommonTools.logError('--maincoin_transferFrom error--'+error)
 				throw error;
 			}else{
-				console.log('--maincoin_transferFrom txnHash--'+txnHash);
+				CommonTools.logWallet('--maincoin_transferFrom txnHash--'+txnHash)
 			}
 		});
+	}
 
+	/**
+	 * 主币increaseApproval
+	 */
+	static maincoin_increaseApproval(_spender,_value){
+		ContractSol.metaNFT_maincoin.increaseApproval(_spender, _value, {from: ContractSol.sender ,gas:100000,gasPrice:ContractSol.hweb3.eth.gasPrice}, function(error, txnHash) {
+			if(error){
+				CommonTools.logError('--maincoin_increaseApproval error--'+error)
+				throw error;
+			}else{
+				CommonTools.logWallet('--maincoin_increaseApproval txnHash--'+txnHash)
+			}
+		});
 	}
 
 }
