@@ -49,6 +49,9 @@ class HallModule {
 	private btnWxPvpAnimLb;
 	private btnPveAnim;
 	private btnPveAnimLb;
+
+	private horseCurrent = 1;
+
 	private isCanShowSeventDay = true;//默认情况可以打开7天签到
 	private skillData;
 
@@ -61,6 +64,16 @@ class HallModule {
 	private tipsPanel;
 	private guideModule;
 	private buyClass = 0;
+	private rankHead01;
+	private rankHead02;
+	private rankHead03;
+	private rankHead04;
+	private rankHead05;
+	private rankHead01_mask;
+	private rankHead02_mask;
+	private rankHead03_mask;
+	private rankHead04_mask;
+	private rankHead05_mask;
 
 	public constructor(ct:Main) {
 		this.context = ct;
@@ -85,11 +98,49 @@ class HallModule {
         });
 	}
 
+	private drawHorse(){
+		if(this.btnPveAnim != null){
+			this.btnPveAnim.removeEventListener(egret.Event.COMPLETE);
+			this.panel.removeChild(this.btnPveAnim);
+			this.btnPveAnim = null;
+		}
+		if(this.horseCurrent == 1){
+			this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("horse_select_ui_03_01_json"), RES.getRes("horse_select_ui_03_01_png"), "0");
+		}else if(this.horseCurrent == 2){
+			this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("horse_select_ui_03_02_json"), RES.getRes("horse_select_ui_03_02_png"), "0");
+		}else if(this.horseCurrent == 3){
+			this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("horse_select_ui_03_03_json"), RES.getRes("horse_select_ui_03_03_png"), "0");
+		}else if(this.horseCurrent == 4){
+			this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("horse_select_ui_03_04_json"), RES.getRes("horse_select_ui_03_04_png"), "0");
+		}
+		this.btnPveAnim.play(1);
+		this.btnPveAnim.name = "btn_noend_pve_anim";
+		this.panel.addChild(this.btnPveAnim);
+		if(ConstValue.deviveNormalScale < 2){
+			this.btnPveAnim.x = 230;
+			this.btnPveAnim.y = 70;
+			this.btnPveAnim.scaleX = 2;
+			this.btnPveAnim.scaleY = 2;
+		}else{
+			this.btnPveAnim.x = 440;
+			this.btnPveAnim.y = 240;
+		}
+		this.btnPveAnim.addEventListener(egret.Event.COMPLETE,function(){
+			CommonTools.logWallet("---COMPLETE------"+this.horseCurrent)
+			this.horseCurrent ++;
+			if(this.horseCurrent > 4){
+				this.horseCurrent = 1;
+			}
+			this.drawHorse();
+		},this);
+		CommonTools.fixFix(this.context,this.btnPveAnim,4,40,100);//40,20
+	}
+
 	private init(){
 		// this.initConfig();
 		CommonAudioHandle.play("mainmenu_mp3",0);
 		if(egret.localStorage.getItem("noVolume") == "1")CommonAudioHandle.setVolume(0);
-		this.maskNew = new eui.Image("new_ui_01_png");
+		this.maskNew = new eui.Image("new_ui_01_jpg");
 		this.maskNew.width = this.context.getStageWidth();
 		let scaleDevice = 1334.0/this.context.getStageWidth();
         this.maskNew.height = 750.0/scaleDevice;
@@ -103,87 +154,102 @@ class HallModule {
         this.context.addChild(this.panel);
 		this.tipsPanel = this.panel;
 
-		this.btnMatchAnim = CommonTools.getAnimDraw(RES.getRes("pvp_anim_btn_json"), RES.getRes("pvp_anim_btn_png"), "0");
-		this.btnMatchAnim.play(-1);
-		this.btnMatchAnim.name = "btn_match_pvp_anim";
-		this.panel.addChild(this.btnMatchAnim);
-		this.btnMatchAnim.x = 852.5;
-		this.btnMatchAnim.y = 279;
+		// this.btnMatchAnim = CommonTools.getAnimDraw(RES.getRes("pvp_anim_btn_json"), RES.getRes("pvp_anim_btn_png"), "0");
+		// this.btnMatchAnim.play(-1);
+		// this.btnMatchAnim.name = "btn_match_pvp_anim";
+		// this.panel.addChild(this.btnMatchAnim);
+		// this.btnMatchAnim.x = 852.5;
+		// this.btnMatchAnim.y = 279;
 
-		this.btnMatchAnimLb = new eui.Label();
-		this.btnMatchAnimLb.name = "btn_match_pvp";
-		this.panel.addChild(this.btnMatchAnimLb);
-		this.btnMatchAnimLb.x = 852.5;
-		this.btnMatchAnimLb.y = 279;
-		this.btnMatchAnimLb.width = 239;
-		this.btnMatchAnimLb.height = 326;
-		this.btnMatchAnimLb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		// this.btnMatchAnimLb = new eui.Label();
+		// this.btnMatchAnimLb.name = "btn_match_pvp";
+		// this.panel.addChild(this.btnMatchAnimLb);
+		// this.btnMatchAnimLb.x = 852.5;
+		// this.btnMatchAnimLb.y = 279;
+		// this.btnMatchAnimLb.width = 239;
+		// this.btnMatchAnimLb.height = 326;
+		// this.btnMatchAnimLb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 
-		this.btnWxPvpAnim = CommonTools.getAnimDraw(RES.getRes("wx_pvp_btn_json"), RES.getRes("wx_pvp_btn_png"), "0");
-		this.btnWxPvpAnim.play(-1);
-		this.btnWxPvpAnim.name = "btn_friend_pvp_anim";
-		this.panel.addChild(this.btnWxPvpAnim);
-		this.btnWxPvpAnim.x = 167.09;
-		this.btnWxPvpAnim.y = 293;
+		// this.btnWxPvpAnim = CommonTools.getAnimDraw(RES.getRes("wx_pvp_btn_json"), RES.getRes("wx_pvp_btn_png"), "0");
+		// this.btnWxPvpAnim.play(-1);
+		// this.btnWxPvpAnim.name = "btn_friend_pvp_anim";
+		// this.panel.addChild(this.btnWxPvpAnim);
+		// this.btnWxPvpAnim.x = 167.09;
+		// this.btnWxPvpAnim.y = 293;
 
-		this.btnWxPvpAnimLb = new eui.Label();
-		this.btnWxPvpAnimLb.name = "btn_friend_pvp";
-		this.panel.addChild(this.btnWxPvpAnimLb);
-		this.btnWxPvpAnimLb.x = 167.09;
-		this.btnWxPvpAnimLb.y = 293;
-		this.btnWxPvpAnimLb.width = 216;
-		this.btnWxPvpAnimLb.height = 164;
-		this.btnWxPvpAnimLb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		// this.btnWxPvpAnimLb = new eui.Label();
+		// this.btnWxPvpAnimLb.name = "btn_friend_pvp";
+		// this.panel.addChild(this.btnWxPvpAnimLb);
+		// this.btnWxPvpAnimLb.x = 167.09;
+		// this.btnWxPvpAnimLb.y = 293;
+		// this.btnWxPvpAnimLb.width = 216;
+		// this.btnWxPvpAnimLb.height = 164;
+		// this.btnWxPvpAnimLb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 
-		this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("pve_btn_anim_json"), RES.getRes("pve_btn_anim_png"), "0");
-		this.btnPveAnim.play(-1);
-		this.btnPveAnim.name = "btn_noend_pve_anim";
-		this.panel.addChild(this.btnPveAnim);
-		this.btnPveAnim.x = 478.83;
-		this.btnPveAnim.y = 143.67;
+		this.drawHorse();
 
-		this.btnPveAnimLb = new eui.Label();
-		this.btnPveAnimLb.name = "btn_noend_pve";
-		this.panel.addChild(this.btnPveAnimLb);
-		this.btnPveAnimLb.x = 478.83;
-		this.btnPveAnimLb.y = 143.67;
-		this.btnPveAnimLb.width = 375;
-		this.btnPveAnimLb.height = 469;
-		this.btnPveAnimLb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		// this.btnPveAnimLb = new eui.Label();
+		// this.btnPveAnimLb.name = "btn_noend_pve";
+		// this.panel.addChild(this.btnPveAnimLb);
+		// this.btnPveAnimLb.x = 478.83;
+		// this.btnPveAnimLb.y = 143.67;
+		// this.btnPveAnimLb.width = 375;
+		// this.btnPveAnimLb.height = 469;
+		// this.btnPveAnimLb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 
 		this.panel.getChildByName("btn_map_diy").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.panel.getChildByName("img_info").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.panel.getChildByName("btn_training_pve").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.panel.getChildByName("btn_2v2").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 
+		this.rankHead01 = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_01") as eui.Image;
+		this.rankHead02 = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_02") as eui.Image;
+		this.rankHead03 = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_03") as eui.Image;
+		this.rankHead04 = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_04") as eui.Image;
+		this.rankHead05 = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_05") as eui.Image;
+		
+		this.rankHead01_mask = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_01_mask") as eui.Image;
+		this.rankHead02_mask = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_02_mask") as eui.Image;
+		this.rankHead03_mask = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_03_mask") as eui.Image;
+		this.rankHead04_mask = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_04_mask") as eui.Image;
+		this.rankHead05_mask = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_05_mask") as eui.Image;
+
+		this.rankHead01.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.rankHead02.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.rankHead03.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.rankHead04.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.rankHead05.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+
 		CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_map_diy"),this);
 		CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_training_pve"),this);
 		CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_2v2"),this);
 
-		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_shop"),1,0,10);
+		// CommonTools.fixFix(this.context,this.panel.getChildByName("btn_shop"),1,0,10);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_map_diy"),2,30,20);
-		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_match_pvp"),2,-20,20);
-		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_match_pvp_anim"),2,-20,20);
+		// CommonTools.fixFix(this.context,this.panel.getChildByName("btn_match_pvp"),2,-20,20);
+		// CommonTools.fixFix(this.context,this.panel.getChildByName("btn_match_pvp_anim"),2,-20,20);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_training_pve"),2,30,20);
-		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_noend_pve"),2,40,20);
-		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_noend_pve_anim"),2,40,20);
-		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_friend_pvp"),2,30,20);
-		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_friend_pvp_anim"),2,30,20);
+		// CommonTools.fixFix(this.context,this.panel.getChildByName("btn_noend_pve"),2,40,20);
+		// CommonTools.fixFix(this.context,this.panel.getChildByName("btn_friend_pvp"),2,30,20);
+		// CommonTools.fixFix(this.context,this.panel.getChildByName("btn_friend_pvp_anim"),2,30,20);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_2v2"),2,30,20);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("info_grp"),1,44,10);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("img_head_bg"),1,34,10);
-		CommonTools.fixFix(this.context,this.panel.getChildByName("img_info"),1,44,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("up_item_group"),1,34,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("img_info"),1,0,0);//44,10
 		CommonTools.fixFix(this.context,this.panel.getChildByName("img_exp_bg"),1,27,10);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("img_exp_value"),1,27,10);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("img_coin_bg"),1,-10,10);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("img_zuan_bg"),1,-40,10);
-		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_noticetip"),1,-40,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_noticetip"),1,0,10);//-40,10
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_shop3"),1,0,10);//-40,10
 		CommonTools.fixFix(this.context,this.panel.getChildByName("hall_id_lb"),1,34,10);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("coin_num_lb"),1,-10,10);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("zuan_num_lb"),1,-50,10);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("img_lv_lb"),1,30,10);
-		CommonTools.fixFix(this.context,this.panel.getChildByName("rank_grounp_main"),1,44,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("rank_grounp_main"),1,0,0);//4,10
 		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_gonggao"),1,44,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("up_item_group"),2,0,-20);
 
 		let imgHead = this.panel.getChildByName("img_info") as eui.Image;
 		if(ConstValue.cacheUserInfo.headPic != "")imgHead.source = ConstValue.cacheUserInfo.headPic;
@@ -222,7 +288,7 @@ class HallModule {
         // platform.openDataContext.postMessage({
         //     command:'loadRes'
         // });
-		this.initPushBtn();
+		if(ConstValue.p_USE_WALLET == 0)this.initPushBtn();
 		if(!HallModule.isInitLogin){
 			if(HallModule.curGuide > 0 && HallModule.curGuide != 3){
 				// new GuideModule(this.context,HallModule.curGuide,this.panel,this.panelNotice);								
@@ -231,8 +297,8 @@ class HallModule {
 				// ConstValue.P_NET_OBJ.sendData(sData);
 			}
 		}
-		CommonTools.shake(this.panel.getChildByName("btn_map_shop"));
-		CommonTools.shake(this.panel.getChildByName("btn_redtv"));
+		// CommonTools.shake(this.panel.getChildByName("btn_map_shop"));
+		// CommonTools.shake(this.panel.getChildByName("btn_redtv"));
 		HallModule.isInitLogin = false;
 		
 		FightingModule.Delay(500, function(){
@@ -263,45 +329,6 @@ class HallModule {
 	private initAD(){
 		if(ConstValue.videoAd == null){
 			ConstValue.videoAd = 1;
-			/*
-			ConstValue.videoAdOBJ = wx.createRewardedVideoAd({
-				adUnitId: 'adunit-6be6d13533826900'
-			})
-			ConstValue.videoAdOBJ.onError(err => {
-				console.log(err)
-			})
-			ConstValue.videoAdOBJ.onLoad(() => {
-				console.log('激励视频 广告加载成功')
-			})
-			ConstValue.videoAdOBJ.onClose(res => {
-				// 用户点击了【关闭广告】按钮
-				// 小于 2.1.0 的基础库版本，res 是一个 undefined
-				if (res && res.isEnded || res === undefined) {
-					// 正常播放结束，可以下发游戏奖励
-					console.log('激励视频 广告播放完毕')
-					var sDataxxx = "";
-					if(ConstValue.videoIndx == 1){
-						sDataxxx = CommonTools.getDataJsonStr("getLvRewardVidio", 1, {});
-					}else if(ConstValue.videoIndx == 2){
-						sDataxxx = CommonTools.getDataJsonStr("getSeventDayReward", 1, {});
-					}else if(ConstValue.videoIndx == 3){
-						//sDataxxx = CommonTools.getDataJsonStr("Buy",1,{iNo:this.shopItemNo,iType:this.shopPageType,num:1});
-						sDataxxx = CommonTools.getDataJsonStr("playVidioFinish",1,{});
-					}else if(ConstValue.videoIndx == 4){
-						//sDataxxx = CommonTools.getDataJsonStr("buyClass",1,{iClass:this.buyClass});
-						sDataxxx = CommonTools.getDataJsonStr("playVidioFinish",2,{});
-					}else if(ConstValue.videoIndx == 5){
-						sDataxxx = CommonTools.getDataJsonStr("getHongBao",1,{});
-					}
-					ConstValue.P_NET_OBJ.sendData(sDataxxx);
-				}
-				else {
-					// 播放中途退出，不下发游戏奖励
-					console.log('激励视频 广告播放中途退出')
-				}
-				ConstValue.videoIndx = 0;
-			})
-			*/
 		}
 	}
 
@@ -654,6 +681,70 @@ class HallModule {
         CommonTools.addCommonTips(this.tipsPanel,tips);
     }
 
+	private changePage(clickName){
+		if(clickName == "rank_head_01"){
+			this.rankHead01_mask.visible = true;
+			this.rankHead02_mask.visible = false;
+			this.rankHead03_mask.visible = false;
+			this.rankHead04_mask.visible = false;
+			this.rankHead05_mask.visible = false;
+
+			this.rankHead01.source = "icon_homestead_s_png";
+			this.rankHead02.source = "icon_stables_n_png";
+			this.rankHead03.source = "icon_training_n_png";
+			this.rankHead04.source = "icon_task_n_png";
+			this.rankHead05.source = "icon_marketpalec_n_png";
+		}else if(clickName == "rank_head_02"){
+			this.rankHead01_mask.visible = false;
+			this.rankHead02_mask.visible = true;
+			this.rankHead03_mask.visible = false;
+			this.rankHead04_mask.visible = false;
+			this.rankHead05_mask.visible = false;
+
+			this.rankHead01.source = "icon_homestead_n_png";
+			this.rankHead02.source = "icon_stables_s_png";
+			this.rankHead03.source = "icon_training_n_png";
+			this.rankHead04.source = "icon_task_n_png";
+			this.rankHead05.source = "icon_marketpalec_n_png";
+		}else if(clickName == "rank_head_03"){
+			this.rankHead01_mask.visible = false;
+			this.rankHead02_mask.visible = false;
+			this.rankHead03_mask.visible = true;
+			this.rankHead04_mask.visible = false;
+			this.rankHead05_mask.visible = false;
+
+			this.rankHead01.source = "icon_homestead_n_png";
+			this.rankHead02.source = "icon_stables_n_png";
+			this.rankHead03.source = "icon_training_s_png";
+			this.rankHead04.source = "icon_task_n_png";
+			this.rankHead05.source = "icon_marketpalec_n_png";
+		}else if(clickName == "rank_head_04"){
+			this.rankHead01_mask.visible = false;
+			this.rankHead02_mask.visible = false;
+			this.rankHead03_mask.visible = false;
+			this.rankHead04_mask.visible = true;
+			this.rankHead05_mask.visible = false;
+
+			this.rankHead01.source = "icon_homestead_n_png";
+			this.rankHead02.source = "icon_stables_n_png";
+			this.rankHead03.source = "icon_training_n_png";
+			this.rankHead04.source = "icon_task_s_png";
+			this.rankHead05.source = "icon_marketpalec_n_png";
+		}else if(clickName == "rank_head_05"){
+			this.rankHead01_mask.visible = false;
+			this.rankHead02_mask.visible = false;
+			this.rankHead03_mask.visible = false;
+			this.rankHead04_mask.visible = false;
+			this.rankHead05_mask.visible = true;
+
+			this.rankHead01.source = "icon_homestead_n_png";
+			this.rankHead02.source = "icon_stables_n_png";
+			this.rankHead03.source = "icon_training_n_png";
+			this.rankHead04.source = "icon_task_n_png";
+			this.rankHead05.source = "icon_marketpalec_s_png";
+		}
+	}
+
 	private async onClick(e: egret.TouchEvent){
 		if(this.context.loadingView!=null && !ConstValue.P_IS_DEBUG){
 			CommonTools.log("还在加载中......return ");
@@ -673,6 +764,11 @@ class HallModule {
 			return;
 		}else if(name.indexOf("shop_item_click")>=0){
 			this.clickShopItem(name);
+			return;
+		}
+
+		if(name.indexOf("rank_head_")>=0){
+			this.changePage(name);
 			return;
 		}
 
@@ -2169,15 +2265,15 @@ class HallModule {
 			if(jsonObj.m != "" || jsonObj.s != 1){
 
 			}else{
-				let rank_grounp_main = this.panel.getChildByName("rank_grounp_main") as eui.Group;
-				let rank_head_01 = rank_grounp_main.getChildByName("rank_head_01") as eui.Image;
-				let rank_head_02 = rank_grounp_main.getChildByName("rank_head_02") as eui.Image;
-				let rank_head_03 = rank_grounp_main.getChildByName("rank_head_03") as eui.Image;
-				if(jsonObj.d.lrank.length >=3){
-					if(jsonObj.d.lrank[0][2]!="")rank_head_01.source = jsonObj.d.lrank[0][2];
-					if(jsonObj.d.lrank[1][2]!="")rank_head_02.source = jsonObj.d.lrank[1][2];
-					if(jsonObj.d.lrank[2][2]!="")rank_head_03.source = jsonObj.d.lrank[2][2];
-				}
+				// let rank_grounp_main = this.panel.getChildByName("rank_grounp_main") as eui.Group;
+				// let rank_head_01 = rank_grounp_main.getChildByName("rank_head_01") as eui.Image;
+				// let rank_head_02 = rank_grounp_main.getChildByName("rank_head_02") as eui.Image;
+				// let rank_head_03 = rank_grounp_main.getChildByName("rank_head_03") as eui.Image;
+				// if(jsonObj.d.lrank.length >=3){
+				// 	if(jsonObj.d.lrank[0][2]!="")rank_head_01.source = jsonObj.d.lrank[0][2];
+				// 	if(jsonObj.d.lrank[1][2]!="")rank_head_02.source = jsonObj.d.lrank[1][2];
+				// 	if(jsonObj.d.lrank[2][2]!="")rank_head_03.source = jsonObj.d.lrank[2][2];
+				// }
 			}
 		}else if (jsonObj.f == "getHelp" || jsonObj.f == "getGonggao"){
 			if(jsonObj.m != "" || jsonObj.s != 1){

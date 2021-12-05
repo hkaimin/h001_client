@@ -64,7 +64,7 @@ var LoginModule = (function () {
                     this.panel.getChildByName("btn_login").visible = false;
                     this.panel.getChildByName("btn_login_wx").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
                     CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_login_wx"), this);
-                    CommonTools.fixFix(this.context, this.panel.getChildByName("btn_login_wx"), 2, -15, 20);
+                    CommonTools.fixFix(this.context, this.panel.getChildByName("btn_login_wx"), 2, -15, -20);
                 }
                 else {
                     this.panel.getChildByName("btn_login").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);

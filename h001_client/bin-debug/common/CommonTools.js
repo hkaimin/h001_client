@@ -72,17 +72,17 @@ var CommonTools = (function () {
         ConstValue.deviveScale = scale;
         var deviceScale = context.getClientWidth() * 1.0 / context.getClientHeight();
         ConstValue.deviveNormalScale = deviceScale;
-        // CommonTools.log("--fixFix deviceScale-------"+deviceScale);
-        // CommonTools.log("--fixFix stageHeight-------"+stageHeight);
-        // CommonTools.log("--fixFix getClientHeight-------"+context.getClientHeight());
-        // CommonTools.log("--fixFix getClientWidth-------"+context.getClientWidth());
+        CommonTools.logWallet("--fixFix deviceScale-------" + deviceScale);
+        CommonTools.logWallet("--fixFix stageHeight-------" + stageHeight);
+        CommonTools.logWallet("--fixFix getClientHeight-------" + context.getClientHeight());
+        CommonTools.logWallet("--fixFix getClientWidth-------" + context.getClientWidth());
         if (deviceScale < 2) {
             return;
         }
-        // CommonTools.log("--fixFix name-------"+target.name);
-        // CommonTools.log("--fixFix before fix scaleX-------"+target.scaleX);
-        // CommonTools.log("--fixFix before fix X-------"+target.x);
-        // CommonTools.log("--fixFix before fix Y-------"+target.y);
+        CommonTools.logWallet("--fixFix name-------" + target.name);
+        CommonTools.logWallet("--fixFix before fix scaleX-------" + target.scaleX);
+        CommonTools.logWallet("--fixFix before fix X-------" + target.x);
+        CommonTools.logWallet("--fixFix before fix Y-------" + target.y);
         var up = 0;
         var down = 0;
         if (fixType == 1) {
@@ -106,9 +106,9 @@ var CommonTools = (function () {
             target.y = stageHeight - down * scale + stageHeight * halfLeft + offY;
             target.x = target.x + offX;
         }
-        // CommonTools.log("--fixFix after fix scaleX-------"+target.scaleX);
-        // CommonTools.log("--fixFix after fix X-------"+target.x);
-        // CommonTools.log("--fixFix after fix Y-------"+target.y);
+        CommonTools.logWallet("--fixFix after fix scaleX-------" + target.scaleX);
+        CommonTools.logWallet("--fixFix after fix X-------" + target.x);
+        CommonTools.logWallet("--fixFix after fix Y-------" + target.y);
     };
     /**
      * 公共提示组件
@@ -265,7 +265,7 @@ var CommonTools = (function () {
         }
     };
     CommonTools.logWallet = function (logStr) {
-        if (ConstValue.p_is_PRINT_WALLET) {
+        if (ConstValue.p_is_PRINT_WALLET_DEBUG) {
             console.log(logStr);
         }
     };

@@ -49,6 +49,7 @@ var ConstValue = (function () {
     ConstValue.p_is_PRINT_WALLET = true;
     ConstValue.p_LOGIN_MODEL = 1; //普通的账号密码登陆 2微信登陆
     ConstValue.p_USE_WALLET = 1; //是否使用钱包登陆
+    ConstValue.p_is_PRINT_WALLET_DEBUG = true; //是否打印debug
     //common obj公共对象
     ConstValue.P_NET_OBJ = null; //网络对象
     ConstValue.P_LOGIN_OBJ = null; //登录模块对象
