@@ -50,7 +50,7 @@ class HallModule {
 	private btnPveAnim;
 	private btnPveAnimLb;
 
-	private horseCurrent = 1;
+	private horseCurrent = 0;
 
 	private isCanShowSeventDay = true;//默认情况可以打开7天签到
 	private skillData;
@@ -106,36 +106,28 @@ class HallModule {
 			this.panel.removeChild(this.btnPveAnim);
 			this.btnPveAnim = null;
 		}
-		if(this.horseCurrent == 1){
-			this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("horse_select_ui_03_01_json"), RES.getRes("horse_select_ui_03_01_png"), "0");
-		}else if(this.horseCurrent == 2){
-			this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("horse_select_ui_03_02_json"), RES.getRes("horse_select_ui_03_02_png"), "0");
-		}else if(this.horseCurrent == 3){
-			this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("horse_select_ui_03_03_json"), RES.getRes("horse_select_ui_03_03_png"), "0");
-		}else if(this.horseCurrent == 4){
-			this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("horse_select_ui_03_04_json"), RES.getRes("horse_select_ui_03_04_png"), "0");
-		}
+		this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("wait_01_"+this.horseCurrent+"_json"), RES.getRes("wait_01_"+this.horseCurrent+"_png"), "0");
 		this.btnPveAnim.play(1);
 		this.btnPveAnim.name = "btn_noend_pve_anim";
 		this.panel.addChild(this.btnPveAnim);
 		if(ConstValue.deviveNormalScale < 2){
-			this.btnPveAnim.x = 230;
-			this.btnPveAnim.y = 70;
-			this.btnPveAnim.scaleX = 2;
-			this.btnPveAnim.scaleY = 2;
+			CommonTools.logWallet("---COMPLETE---deviveNormalScale--<2-")
+			this.btnPveAnim.x = 440;
+			this.btnPveAnim.y = 240;
 		}else{
+			CommonTools.logWallet("---COMPLETE---deviveNormalScale-->2-")
 			this.btnPveAnim.x = 440;
 			this.btnPveAnim.y = 240;
 		}
 		this.btnPveAnim.addEventListener(egret.Event.COMPLETE,function(){
 			CommonTools.logWallet("---COMPLETE------"+this.horseCurrent)
 			this.horseCurrent ++;
-			if(this.horseCurrent > 4){
-				this.horseCurrent = 1;
+			if(this.horseCurrent > 9){
+				this.horseCurrent = 0;
 			}
 			this.drawHorse();
 		},this);
-		CommonTools.fixFix(this.context,this.btnPveAnim,4,40,100);//40,20
+		// CommonTools.fixFix(this.context,this.btnPveAnim,4,40,100);//40,20
 	}
 
 	private init(){
