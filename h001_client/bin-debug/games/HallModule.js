@@ -63,6 +63,7 @@ var HallModule = (function () {
         this.horseCurrent = 1;
         this.isCanShowSeventDay = true; //默认情况可以打开7天签到
         this.buyClass = 0;
+        this.curPage = 1;
         this.isdisplay = false;
         this.context = ct;
         HallModule.isNoEnd = false;
@@ -281,17 +282,27 @@ var HallModule = (function () {
         this.initAD();
         this.panel.getChildByName("btn_gonggao").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         if (ConstValue.p_USE_WALLET == 1) {
-            ContractSol.initSOL();
+            // ContractSol.initSOL();
             // var fromaddr = ConstValue.hweb3.eth.accounts[0];
-            ContractSol.hweb3.eth.getBalance(ContractSol.sender, function (err, result) {
-                console.log("--地址ETH-getBalance----" + result);
-            });
+            // ContractSol.hweb3.eth.getBalance(ContractSol.sender,(err,result) =>{
+            // 	console.log("--地址ETH-getBalance----"+result);
+            // });
             // ContractSol.nft_tokensOfOwner(ContractSol.sender);
             // ContractSol.maincoin_transfer(ContractSol.createAddress, 1);
-            // ContractSol.maincoin_balanceOf(ContractSol.sender);
             // ContractSol.maincoin_transferFrom(ContractSol.createAddress, ContractSol.sender , 2);
             // ContractSol.maincoin_increaseApproval(ContractSol.sender , 2);
+            platform.initSOL();
+            ContractSol.initSOL();
+            ContractSol.maincoin_balanceOf(ContractSol.sender);
+            ContractSol.subcoin_balanceOf(ContractSol.sender);
+            this.changePage("rank_head_01");
         }
+    };
+    HallModule.prototype.updateMaincoin = function (coin) {
+        this.panel.getChildByName("up_item_group").getChildByName("main_coin_num_lb").text = coin;
+    };
+    HallModule.prototype.updateSubcoin = function (coin) {
+        this.panel.getChildByName("up_item_group").getChildByName("sub_coin_num_lb").text = coin;
     };
     HallModule.prototype.initAD = function () {
         if (ConstValue.videoAd == null) {
@@ -647,6 +658,9 @@ var HallModule = (function () {
     };
     HallModule.prototype.changePage = function (clickName) {
         if (clickName == "rank_head_01") {
+            if (this.curPage != 1)
+                this.maskNew.source = "new_ui_01_jpg";
+            this.curPage = 1;
             this.rankHead01_mask.visible = true;
             this.rankHead02_mask.visible = false;
             this.rankHead03_mask.visible = false;
@@ -659,6 +673,8 @@ var HallModule = (function () {
             this.rankHead05.source = "icon_marketpalec_n_png";
         }
         else if (clickName == "rank_head_02") {
+            this.curPage = 2;
+            this.maskNew.source = "horse_home_page2_jpg";
             this.rankHead01_mask.visible = false;
             this.rankHead02_mask.visible = true;
             this.rankHead03_mask.visible = false;
@@ -671,6 +687,7 @@ var HallModule = (function () {
             this.rankHead05.source = "icon_marketpalec_n_png";
         }
         else if (clickName == "rank_head_03") {
+            this.curPage = 3;
             this.rankHead01_mask.visible = false;
             this.rankHead02_mask.visible = false;
             this.rankHead03_mask.visible = true;
@@ -683,6 +700,7 @@ var HallModule = (function () {
             this.rankHead05.source = "icon_marketpalec_n_png";
         }
         else if (clickName == "rank_head_04") {
+            this.curPage = 4;
             this.rankHead01_mask.visible = false;
             this.rankHead02_mask.visible = false;
             this.rankHead03_mask.visible = false;
@@ -695,6 +713,7 @@ var HallModule = (function () {
             this.rankHead05.source = "icon_marketpalec_n_png";
         }
         else if (clickName == "rank_head_05") {
+            this.curPage = 5;
             this.rankHead01_mask.visible = false;
             this.rankHead02_mask.visible = false;
             this.rankHead03_mask.visible = false;
@@ -705,6 +724,7 @@ var HallModule = (function () {
             this.rankHead03.source = "icon_training_n_png";
             this.rankHead04.source = "icon_task_n_png";
             this.rankHead05.source = "icon_marketpalec_s_png";
+            this.showEditUI("scroll_notify");
         }
     };
     HallModule.prototype.onClick = function (e) {

@@ -37,7 +37,7 @@ var ConstValue = (function () {
     ConstValue.P_ENTER_ROOM_FAIL = "进入房间失败";
     ConstValue.P_WAIT_NEXT = "请等待下轮开始";
     //dapp
-    ConstValue.P_NO_USER_ADDRESS = "Please login wallet！";
+    ConstValue.P_NO_USER_ADDRESS = "Please install MetaMask！";
     //config公共配置
     ConstValue.P_IS_DEBUG = false; //false正式模式 true演示模式，不联网的
     ConstValue.P_IS_INNER = false; //false线上模式 true内网模式 有些提示只在内网提示

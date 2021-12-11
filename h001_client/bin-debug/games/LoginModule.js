@@ -120,15 +120,7 @@ var LoginModule = (function () {
                         break;
                     case "btn_login_wx":
                         if (ConstValue.p_USE_WALLET == 1) {
-                            try {
-                                ContractSol.sender = window["web3"].eth.accounts[0];
-                                this.btnClickWalletLogin(ContractSol.sender);
-                            }
-                            catch (error) {
-                                CommonTools.addCommonTips(this.panel, ConstValue.P_NO_USER_ADDRESS);
-                                CommonTools.logError("--btn_login error----" + error);
-                                return [2 /*return*/];
-                            }
+                            this.btnClickWalletLogin();
                         }
                         else {
                             ConstValue.sysTips = [];
@@ -219,14 +211,35 @@ var LoginModule = (function () {
             });
         });
     };
-    LoginModule.prototype.btnClickWalletLogin = function (fromaddr) {
-        var sData = CommonTools.getDataJsonStr("loginWX", 1, { openID: fromaddr, sHead: "", sName: "", iGender: 0 });
-        if (ConstValue.P_NET_OBJ == null) {
-            ConstValue.P_NET_OBJ = new WebSocketUtil(sData); //建立连接
-        }
-        else {
-            ConstValue.P_NET_OBJ.sendData(sData);
-        }
+    LoginModule.prototype.btnClickWalletLogin = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var installWallet, account, sData;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, platform.connectWallet()];
+                    case 1:
+                        installWallet = _a.sent();
+                        if (!installWallet) {
+                            CommonTools.addCommonTips(this.panel, ConstValue.P_NO_USER_ADDRESS);
+                            return [2 /*return*/];
+                        }
+                        return [4 /*yield*/, platform.login()];
+                    case 2:
+                        account = _a.sent();
+                        if (account.indexOf("0x") >= 0) {
+                            ContractSol.sender = account;
+                            sData = CommonTools.getDataJsonStr("loginWX", 1, { openID: account, sHead: "", sName: "", iGender: 0 });
+                            if (ConstValue.P_NET_OBJ == null) {
+                                ConstValue.P_NET_OBJ = new WebSocketUtil(sData); //建立连接
+                            }
+                            else {
+                                ConstValue.P_NET_OBJ.sendData(sData);
+                            }
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     LoginModule.prototype.clear = function () {
         this.context.removeChild(this.objChild);

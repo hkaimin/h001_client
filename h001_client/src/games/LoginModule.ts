@@ -91,14 +91,7 @@ class LoginModule {
 
 			case "btn_login_wx":
 				if(ConstValue.p_USE_WALLET == 1){
-					try {
-						ContractSol.sender = window["web3"].eth.accounts[0];
-						this.btnClickWalletLogin(ContractSol.sender);
-					} catch (error) {
-						CommonTools.addCommonTips(this.panel,ConstValue.P_NO_USER_ADDRESS);
-						CommonTools.logError("--btn_login error----"+error)
-						return;
-					}
+					this.btnClickWalletLogin();
 				}else{
 					ConstValue.sysTips = [];
 					ConstValue.oneTipsCnt = 0;
@@ -175,12 +168,21 @@ class LoginModule {
 		// await platform.updateInfo("xx");
 	}
 
-	private btnClickWalletLogin(fromaddr){
-		let sData = CommonTools.getDataJsonStr("loginWX",1,{openID:fromaddr,sHead:"",sName:"",iGender:0});
-		if(ConstValue.P_NET_OBJ==null){//还未建立连接
-			ConstValue.P_NET_OBJ = new WebSocketUtil(sData);//建立连接
-		}else{
-			ConstValue.P_NET_OBJ.sendData(sData);
+	private async btnClickWalletLogin(){
+		let installWallet = await platform.connectWallet();
+		if(!installWallet){
+			CommonTools.addCommonTips(this.panel,ConstValue.P_NO_USER_ADDRESS);
+			return;
+		}
+		let account = await platform.login();
+		if(account.indexOf("0x")>=0){
+			ContractSol.sender = account;
+			let sData = CommonTools.getDataJsonStr("loginWX",1,{openID:account,sHead:"",sName:"",iGender:0});
+			if(ConstValue.P_NET_OBJ==null){//还未建立连接
+				ConstValue.P_NET_OBJ = new WebSocketUtil(sData);//建立连接
+			}else{
+				ConstValue.P_NET_OBJ.sendData(sData);
+			}
 		}
 	}
 

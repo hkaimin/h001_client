@@ -48,11 +48,32 @@ var DebugPlatform = (function () {
     };
     DebugPlatform.prototype.login = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var accounts, account;
             return __generator(this, function (_a) {
-                CommonTools.log("-----DebugPlatform--------login");
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, window.ethereum.request({ method: 'eth_requestAccounts' })];
+                    case 1:
+                        accounts = _a.sent();
+                        account = accounts[0];
+                        return [2 /*return*/, account];
+                }
             });
         });
+    };
+    DebugPlatform.prototype.connectWallet = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var installed;
+            return __generator(this, function (_a) {
+                installed = false;
+                if (typeof window.ethereum !== 'undefined') {
+                    installed = true;
+                }
+                return [2 /*return*/, installed];
+            });
+        });
+    };
+    DebugPlatform.prototype.initSOL = function () {
+        ContractSol.hweb3 = new Web3(window.ethereum);
     };
     DebugPlatform.prototype.updateInfo = function (data) {
     };

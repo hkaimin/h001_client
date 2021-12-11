@@ -10,6 +10,10 @@ declare interface Platform {
 
     login(): Promise<any>;
 
+    connectWallet(): Promise<any>;
+
+    initSOL();
+
     updateInfo(data);
 
     shareAppMessage(roomkey): Promise<any>;
@@ -25,8 +29,24 @@ class DebugPlatform implements Platform {
     async getUserInfo() {
         return { nickName: "username" }
     }
+
+
     async login() {
-        CommonTools.log("-----DebugPlatform--------login");
+        let accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        let account = accounts[0];
+        return account;
+    }
+
+    async connectWallet() {
+        let installed = false;
+        if (typeof window.ethereum !== 'undefined') {
+            installed = true;
+        }
+        return installed;
+    }
+
+    initSOL(){
+        ContractSol.hweb3 = new Web3(window.ethereum);
     }
 
     updateInfo(data){
@@ -60,8 +80,8 @@ if (!window.platform) {
 declare let platform: Platform;
 
 declare interface Window {
-
-    platform: Platform
+    platform: Platform,
+    ethereum
 }
 
 

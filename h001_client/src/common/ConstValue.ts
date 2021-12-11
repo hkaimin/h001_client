@@ -33,7 +33,7 @@ class ConstValue {
 	static P_WAIT_NEXT:string = "请等待下轮开始";
 
 	//dapp
-	static P_NO_USER_ADDRESS:string = "Please login wallet！";
+	static P_NO_USER_ADDRESS:string = "Please install MetaMask！";
 
 	//config公共配置
 	static P_IS_DEBUG:boolean = false;//false正式模式 true演示模式，不联网的
