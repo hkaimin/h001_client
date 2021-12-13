@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="NoticeGroup" width="363" height="635" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="362" height="582" x="0" y="103.68" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png"/>
+	<e:Image width="76" height="80" x="16" y="16" source="icon_level_s_png"/>
+	<e:Image width="188" height="31" x="108.33" y="25" source="bar_name_png"/>
+	<e:Image width="88" height="90" x="270.32" y="12.37" source="info_tx_frame_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="82" height="82" x="273.95" y="16" source="tx1_1_png"/>
+	<e:Image width="35" height="36" x="93.04" y="62.36" source="icon_stars_png"/>
+	<e:Image width="35" height="36" x="128.04" y="62" source="icon_stars_png"/>
+	<e:Image width="35" height="36" x="163.04" y="62.36" source="icon_stars_png"/>
+	<e:Image width="35" height="36" x="198.04" y="62.36" source="icon_stars_png"/>
+	<e:Image width="35" height="36" x="233.04" y="62.36" source="icon_stars_png"/>
+	<e:Label text="Ferrari" x="116" y="24" anchorOffsetX="0" width="146" textAlign="left" verticalAlign="middle"/>
+	<e:Image width="37" height="46" x="25" y="132" source="icon_female_png"/>
+	<e:Image width="18" height="18" x="143.55" y="296" source="icon_heart_png"/>
+	<e:Image width="18" height="18" x="164.66" y="296" source="icon_heart_png"/>
+	<e:Image width="18" height="18" x="185.04" y="296" source="icon_heart_png"/>
+	<e:Image width="65" height="25" x="26.68" y="203.01" source="icon_age_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Label text="10 days" x="128.5" y="203.01" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Image width="65" height="25" x="29.5" y="245" anchorOffsetX="0" anchorOffsetY="0" source="icon_energy_png"/>
+	<e:Label text="80/100" x="243.33" y="245" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Image width="91" height="25" x="29.49" y="289.5" anchorOffsetX="0" anchorOffsetY="0" source="icon_breeding-time_png"/>
+	<e:Label text="4/6" x="243.99" y="291.5" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="20" textAlign="center" verticalAlign="middle" textColor="0xaf4f4f"/>
+	<e:Image width="150.66" height="10" x="106.55" y="252.98" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
+	<e:Image width="110" height="9" x="106.55" y="252.98" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png"/>
+	<e:Image width="65" height="25" x="32.16" y="335.4" anchorOffsetX="0" anchorOffsetY="0" source="icon_strength_png"/>
+	<e:Label text="80/100" x="245.99" y="335.4" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Image width="150.66" height="10" x="109.21" y="343.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
+	<e:Image width="110" height="9" x="109.21" y="343.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png"/>
+	<e:Image width="65" height="25" x="32.61" y="381.38" anchorOffsetX="0" anchorOffsetY="0" source="icon_speed_png"/>
+	<e:Label text="80/100" x="246.44" y="381.38" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Image width="150.66" height="10" x="109.66" y="389.36" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
+	<e:Image width="110" height="9" x="109.66" y="389.36" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png"/>
+	<e:Image width="65" height="25" x="33.49" y="430.05" anchorOffsetX="0" anchorOffsetY="0" source="icon_Decterous_png"/>
+	<e:Label text="80/100" x="247.32" y="430.05" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Image width="150.66" height="10" x="110.54" y="438.03" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
+	<e:Image width="110" height="9" x="110.54" y="438.03" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png"/>
+	<e:Image width="65" height="25" x="32.61" y="476.05" anchorOffsetX="0" anchorOffsetY="0" source="icon_burst_png"/>
+	<e:Label text="80/100" x="246.44" y="476.05" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Image width="150.66" height="10" x="109.66" y="484.03" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
+	<e:Image width="110" height="9" x="109.66" y="484.03" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png"/>
+	<e:Image width="18" height="18" x="204.54" y="296" source="icon_heart_png"/>
+	<e:Image width="18" height="18" x="225.5" y="296.5" source="icon_heart_1_png"/>
+	<e:Image width="18" height="18" x="245.99" y="296.5" source="icon_heart_1_png"/>
+	<e:Image width="348" height="123" x="5.99" y="512" source="bar_info_di2_png" visible="false"/>
+	<e:Image width="44" height="41" x="24" y="528" source="icon_Stamina_png"/>
+	<e:Image width="44" height="41" x="112.66" y="528" source="icon_start_png"/>
+	<e:Image width="44" height="41" x="203.04" y="528" source="icon_wisdom_png"/>
+	<e:Image width="44" height="41" x="292.32" y="528" source="icon_constitution_png"/>
+	<e:Image width="346" height="2" x="2" y="581" source="bar_Splitline_1_png"/>
+	<e:Label text="80" x="15.02" y="594.84" anchorOffsetX="0" width="59.03" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Label text="80" x="193.62" y="594.84" anchorOffsetX="0" width="59.03" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Label text="80" x="102.52" y="594.84" anchorOffsetX="0" width="59.03" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" textColor="0x18a4db"/>
+	<e:Label text="80" x="280.87" y="593.32" anchorOffsetX="0" width="59.03" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" textColor="0x18A4DB"/>
+</e:Skin>

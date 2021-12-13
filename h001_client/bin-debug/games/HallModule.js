@@ -60,6 +60,8 @@ var HallModule = (function () {
         this.fixGuide5 = false;
         this.curButton = null;
         this.moveLvGet = true;
+        this.btnPveAnimX = 440;
+        this.btnPveAnimY = 240;
         this.horseCurrent = 0;
         this.isCanShowSeventDay = true; //默认情况可以打开7天签到
         this.buyClass = 0;
@@ -86,6 +88,30 @@ var HallModule = (function () {
             //ELog.info("conf:",t);
         });
     };
+    HallModule.prototype.setHorseXY = function () {
+        if (ConstValue.deviveNormalScale < 2) {
+            CommonTools.logWallet("---COMPLETE---deviveNormalScale--<2-");
+            if (this.curPage == 2) {
+                this.btnPveAnim.x = this.btnPveAnimX - 180;
+                this.btnPveAnim.y = this.btnPveAnimY;
+            }
+            else {
+                this.btnPveAnim.x = this.btnPveAnimX;
+                this.btnPveAnim.y = this.btnPveAnimY;
+            }
+        }
+        else {
+            CommonTools.logWallet("---COMPLETE---deviveNormalScale-->2-");
+            if (this.curPage == 2) {
+                this.btnPveAnim.x = this.btnPveAnimX - 220;
+                this.btnPveAnim.y = this.btnPveAnimY + 40;
+            }
+            else {
+                this.btnPveAnim.x = this.btnPveAnimX;
+                this.btnPveAnim.y = this.btnPveAnimY;
+            }
+        }
+    };
     HallModule.prototype.drawHorse = function () {
         if (this.btnPveAnim != null) {
             this.btnPveAnim.removeEventListener(egret.Event.COMPLETE);
@@ -96,16 +122,7 @@ var HallModule = (function () {
         this.btnPveAnim.play(1);
         this.btnPveAnim.name = "btn_noend_pve_anim";
         this.panel.addChild(this.btnPveAnim);
-        if (ConstValue.deviveNormalScale < 2) {
-            CommonTools.logWallet("---COMPLETE---deviveNormalScale--<2-");
-            this.btnPveAnim.x = 440;
-            this.btnPveAnim.y = 240;
-        }
-        else {
-            CommonTools.logWallet("---COMPLETE---deviveNormalScale-->2-");
-            this.btnPveAnim.x = 440;
-            this.btnPveAnim.y = 240;
-        }
+        this.setHorseXY();
         this.btnPveAnim.addEventListener(egret.Event.COMPLETE, function () {
             CommonTools.logWallet("---COMPLETE------" + this.horseCurrent);
             this.horseCurrent++;
@@ -133,43 +150,7 @@ var HallModule = (function () {
         this.panel.verticalCenter = 0;
         this.context.addChild(this.panel);
         this.tipsPanel = this.panel;
-        // this.btnMatchAnim = CommonTools.getAnimDraw(RES.getRes("pvp_anim_btn_json"), RES.getRes("pvp_anim_btn_png"), "0");
-        // this.btnMatchAnim.play(-1);
-        // this.btnMatchAnim.name = "btn_match_pvp_anim";
-        // this.panel.addChild(this.btnMatchAnim);
-        // this.btnMatchAnim.x = 852.5;
-        // this.btnMatchAnim.y = 279;
-        // this.btnMatchAnimLb = new eui.Label();
-        // this.btnMatchAnimLb.name = "btn_match_pvp";
-        // this.panel.addChild(this.btnMatchAnimLb);
-        // this.btnMatchAnimLb.x = 852.5;
-        // this.btnMatchAnimLb.y = 279;
-        // this.btnMatchAnimLb.width = 239;
-        // this.btnMatchAnimLb.height = 326;
-        // this.btnMatchAnimLb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-        // this.btnWxPvpAnim = CommonTools.getAnimDraw(RES.getRes("wx_pvp_btn_json"), RES.getRes("wx_pvp_btn_png"), "0");
-        // this.btnWxPvpAnim.play(-1);
-        // this.btnWxPvpAnim.name = "btn_friend_pvp_anim";
-        // this.panel.addChild(this.btnWxPvpAnim);
-        // this.btnWxPvpAnim.x = 167.09;
-        // this.btnWxPvpAnim.y = 293;
-        // this.btnWxPvpAnimLb = new eui.Label();
-        // this.btnWxPvpAnimLb.name = "btn_friend_pvp";
-        // this.panel.addChild(this.btnWxPvpAnimLb);
-        // this.btnWxPvpAnimLb.x = 167.09;
-        // this.btnWxPvpAnimLb.y = 293;
-        // this.btnWxPvpAnimLb.width = 216;
-        // this.btnWxPvpAnimLb.height = 164;
-        // this.btnWxPvpAnimLb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.drawHorse();
-        // this.btnPveAnimLb = new eui.Label();
-        // this.btnPveAnimLb.name = "btn_noend_pve";
-        // this.panel.addChild(this.btnPveAnimLb);
-        // this.btnPveAnimLb.x = 478.83;
-        // this.btnPveAnimLb.y = 143.67;
-        // this.btnPveAnimLb.width = 375;
-        // this.btnPveAnimLb.height = 469;
-        // this.btnPveAnimLb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.panel.getChildByName("btn_map_diy").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.panel.getChildByName("img_info").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.panel.getChildByName("btn_training_pve").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
@@ -189,9 +170,8 @@ var HallModule = (function () {
         this.rankHead03.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.rankHead04.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.rankHead05.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-        CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_map_diy"), this);
-        CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_training_pve"), this);
-        CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_2v2"), this);
+        this.btnBackImg = this.panel.getChildByName("rank_grounp_main").getChildByName("btn_back_img");
+        this.btnBackImg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         // CommonTools.fixFix(this.context,this.panel.getChildByName("btn_shop"),1,0,10);
         CommonTools.fixFix(this.context, this.panel.getChildByName("btn_map_diy"), 2, 30, 20);
         // CommonTools.fixFix(this.context,this.panel.getChildByName("btn_match_pvp"),2,-20,20);
@@ -259,8 +239,6 @@ var HallModule = (function () {
                 // ConstValue.P_NET_OBJ.sendData(sData);
             }
         }
-        // CommonTools.shake(this.panel.getChildByName("btn_map_shop"));
-        // CommonTools.shake(this.panel.getChildByName("btn_redtv"));
         HallModule.isInitLogin = false;
         FightingModule.Delay(500, function () {
             this.showGuide();
@@ -660,6 +638,10 @@ var HallModule = (function () {
             this.rankHead03.source = "icon_training_n_png";
             this.rankHead04.source = "icon_task_n_png";
             this.rankHead05.source = "icon_marketpalec_n_png";
+            this.btnBackImg.visible = false;
+            this.rankHead01.visible = true;
+            this.rankHead05.visible = true;
+            this.panel.getChildByName("horse_name_group").visible = true;
         }
         else if (clickName == "rank_head_02") {
             this.curPage = 2;
@@ -669,37 +651,59 @@ var HallModule = (function () {
             this.rankHead03_mask.visible = false;
             this.rankHead04_mask.visible = false;
             this.rankHead05_mask.visible = false;
-            this.rankHead01.source = "icon_homestead_n_png";
-            this.rankHead02.source = "icon_stables_s_png";
-            this.rankHead03.source = "icon_training_n_png";
-            this.rankHead04.source = "icon_task_n_png";
-            this.rankHead05.source = "icon_marketpalec_n_png";
+            this.rankHead01.visible = false;
+            this.rankHead05.visible = false;
+            this.rankHead02.source = "icon_horse_s_png";
+            this.rankHead03.source = "icon_merge_n_png";
+            this.rankHead04.source = "icon_breeding_n_png";
+            this.btnBackImg.visible = true;
+            this.panel.getChildByName("horse_name_group").visible = false;
         }
         else if (clickName == "rank_head_03") {
-            this.curPage = 3;
-            this.rankHead01_mask.visible = false;
-            this.rankHead02_mask.visible = false;
-            this.rankHead03_mask.visible = true;
-            this.rankHead04_mask.visible = false;
-            this.rankHead05_mask.visible = false;
-            this.rankHead01.source = "icon_homestead_n_png";
-            this.rankHead02.source = "icon_stables_n_png";
-            this.rankHead03.source = "icon_training_s_png";
-            this.rankHead04.source = "icon_task_n_png";
-            this.rankHead05.source = "icon_marketpalec_n_png";
+            if (this.curPage == 2) {
+                this.rankHead02_mask.visible = false;
+                this.rankHead03_mask.visible = true;
+                this.rankHead04_mask.visible = false;
+                this.rankHead02.source = "icon_horse_n_png";
+                this.rankHead03.source = "icon_merge_s_png";
+                this.rankHead04.source = "icon_breeding_n_png";
+            }
+            else {
+                this.curPage = 3;
+                this.rankHead01_mask.visible = false;
+                this.rankHead02_mask.visible = false;
+                this.rankHead03_mask.visible = true;
+                this.rankHead04_mask.visible = false;
+                this.rankHead05_mask.visible = false;
+                this.rankHead01.source = "icon_homestead_n_png";
+                this.rankHead02.source = "icon_stables_n_png";
+                this.rankHead03.source = "icon_training_s_png";
+                this.rankHead04.source = "icon_task_n_png";
+                this.rankHead05.source = "icon_marketpalec_n_png";
+            }
         }
         else if (clickName == "rank_head_04") {
-            this.curPage = 4;
-            this.rankHead01_mask.visible = false;
-            this.rankHead02_mask.visible = false;
-            this.rankHead03_mask.visible = false;
-            this.rankHead04_mask.visible = true;
-            this.rankHead05_mask.visible = false;
-            this.rankHead01.source = "icon_homestead_n_png";
-            this.rankHead02.source = "icon_stables_n_png";
-            this.rankHead03.source = "icon_training_n_png";
-            this.rankHead04.source = "icon_task_s_png";
-            this.rankHead05.source = "icon_marketpalec_n_png";
+            if (this.curPage == 2) {
+                this.rankHead02_mask.visible = false;
+                this.rankHead03_mask.visible = false;
+                this.rankHead04_mask.visible = true;
+                this.rankHead02.source = "icon_horse_n_png";
+                this.rankHead03.source = "icon_merge_n_png";
+                this.rankHead04.source = "icon_breeding_s_png";
+            }
+            else {
+                this.curPage = 4;
+                this.rankHead01_mask.visible = false;
+                this.rankHead02_mask.visible = false;
+                this.rankHead03_mask.visible = false;
+                this.rankHead04_mask.visible = true;
+                this.rankHead05_mask.visible = false;
+                this.rankHead01.source = "icon_homestead_n_png";
+                this.rankHead02.source = "icon_stables_n_png";
+                this.rankHead03.source = "icon_training_n_png";
+                this.rankHead04.source = "icon_task_s_png";
+                this.rankHead05.source = "icon_marketpalec_n_png";
+            }
         }
         else if (clickName == "rank_head_05") {
             this.curPage = 5;
@@ -715,6 +719,7 @@ var HallModule = (function () {
             this.rankHead05.source = "icon_marketpalec_s_png";
             this.showEditUI("scroll_notify");
         }
+        this.setHorseXY();
     };
     HallModule.prototype.onClick = function (e) {
         return __awaiter(this, void 0, void 0, function () {
@@ -726,6 +731,8 @@ var HallModule = (function () {
                             CommonTools.log("还在加载中......return ");
                             return [2 /*return*/];
                         }
+                        if (ConstValue.P_LOGIN_OBJ == null)
+                            CommonAudioHandle.playEffect("playBomb_mp3", 1);
                         name = e.target.name;
                         if (name != "btn_close" && name != "btn_close_edit") {
                             this.removeGuide();
@@ -748,66 +755,70 @@ var HallModule = (function () {
                         }
                         _a = name;
                         switch (_a) {
-                            case "noend_tip": return [3 /*break*/, 1];
-                            case "btn_tip": return [3 /*break*/, 2];
-                            case "friend_rank_lb": return [3 /*break*/, 3];
-                            case "btn_2v2": return [3 /*break*/, 4];
-                            case "btn_close": return [3 /*break*/, 5];
-                            case "btn_close_wx_vs": return [3 /*break*/, 6];
-                            case "btn_start": return [3 /*break*/, 7];
-                            case "btn_shop": return [3 /*break*/, 8];
-                            case "btn_training_pve": return [3 /*break*/, 9];
-                            case "btn_ranking": return [3 /*break*/, 10];
-                            case "btn_gonggao": return [3 /*break*/, 11];
-                            case "all_rank_lb": return [3 /*break*/, 12];
-                            case "barrier_rank_lb": return [3 /*break*/, 12];
-                            case "match_rank_lb": return [3 /*break*/, 13];
-                            case "lv_rank_lb": return [3 /*break*/, 14];
-                            case "btn_noticetip": return [3 /*break*/, 15];
-                            case "btn_match_pvp": return [3 /*break*/, 16];
-                            case "img_info": return [3 /*break*/, 18];
-                            case "btn_friend_pvp": return [3 /*break*/, 19];
-                            case "btn_noend_pve": return [3 /*break*/, 20];
-                            case "btn_map_diy": return [3 /*break*/, 21];
-                            case "btn_map_shop": return [3 /*break*/, 23];
-                            case "btn_redtv": return [3 /*break*/, 24];
-                            case "btn_map_bag": return [3 /*break*/, 25];
-                            case "btn_select_role": return [3 /*break*/, 26];
-                            case "btn_close_edit": return [3 /*break*/, 27];
-                            case "btn_uplv_task": return [3 /*break*/, 28];
-                            case "btn_skill": return [3 /*break*/, 29];
-                            case "btn_maprank": return [3 /*break*/, 30];
-                            case "btn_setting": return [3 /*break*/, 31];
-                            case "scroll_notify": return [3 /*break*/, 32];
-                            case "btn_one_lb": return [3 /*break*/, 33];
-                            case "btn_two_lb": return [3 /*break*/, 33];
-                            case "btn_three_lb": return [3 /*break*/, 33];
-                            case "btn_four_lb": return [3 /*break*/, 33];
-                            case "btn_buy": return [3 /*break*/, 34];
-                            case "btn_confirm_modify": return [3 /*break*/, 35];
+                            case "btn_back_img": return [3 /*break*/, 1];
+                            case "noend_tip": return [3 /*break*/, 2];
+                            case "btn_tip": return [3 /*break*/, 3];
+                            case "friend_rank_lb": return [3 /*break*/, 4];
+                            case "btn_2v2": return [3 /*break*/, 5];
+                            case "btn_close": return [3 /*break*/, 6];
+                            case "btn_close_wx_vs": return [3 /*break*/, 7];
+                            case "btn_start": return [3 /*break*/, 8];
+                            case "btn_shop": return [3 /*break*/, 9];
+                            case "btn_training_pve": return [3 /*break*/, 10];
+                            case "btn_ranking": return [3 /*break*/, 11];
+                            case "btn_gonggao": return [3 /*break*/, 12];
+                            case "all_rank_lb": return [3 /*break*/, 13];
+                            case "barrier_rank_lb": return [3 /*break*/, 13];
+                            case "match_rank_lb": return [3 /*break*/, 14];
+                            case "lv_rank_lb": return [3 /*break*/, 15];
+                            case "btn_noticetip": return [3 /*break*/, 16];
+                            case "btn_match_pvp": return [3 /*break*/, 17];
+                            case "img_info": return [3 /*break*/, 19];
+                            case "btn_friend_pvp": return [3 /*break*/, 20];
+                            case "btn_noend_pve": return [3 /*break*/, 21];
+                            case "btn_map_diy": return [3 /*break*/, 22];
+                            case "btn_map_shop": return [3 /*break*/, 24];
+                            case "btn_redtv": return [3 /*break*/, 25];
+                            case "btn_map_bag": return [3 /*break*/, 26];
+                            case "btn_select_role": return [3 /*break*/, 27];
+                            case "btn_close_edit": return [3 /*break*/, 28];
+                            case "btn_uplv_task": return [3 /*break*/, 29];
+                            case "btn_skill": return [3 /*break*/, 30];
+                            case "btn_maprank": return [3 /*break*/, 31];
+                            case "btn_setting": return [3 /*break*/, 32];
+                            case "scroll_notify": return [3 /*break*/, 33];
+                            case "btn_one_lb": return [3 /*break*/, 34];
+                            case "btn_two_lb": return [3 /*break*/, 34];
+                            case "btn_three_lb": return [3 /*break*/, 34];
+                            case "btn_four_lb": return [3 /*break*/, 34];
+                            case "btn_buy": return [3 /*break*/, 35];
+                            case "btn_confirm_modify": return [3 /*break*/, 36];
                         }
-                        return [3 /*break*/, 36];
+                        return [3 /*break*/, 37];
                     case 1:
+                        this.changePage("rank_head_01");
+                        return [3 /*break*/, 38];
+                    case 2:
                         sDataNoendHelp = CommonTools.getDataJsonStr("getHelp", 1, { helpID: "1" });
                         ConstValue.P_NET_OBJ.sendData(sDataNoendHelp);
-                        return [3 /*break*/, 37];
-                    case 2:
+                        return [3 /*break*/, 38];
+                    case 3:
                         sDataSkillHelp = CommonTools.getDataJsonStr("getHelp", 1, { helpID: "2" });
                         ConstValue.P_NET_OBJ.sendData(sDataSkillHelp);
-                        return [3 /*break*/, 37];
-                    case 3:
-                        CommonTools.addCommonTips(this.tipsPanel, "暂未开放");
-                        return [3 /*break*/, 37];
+                        return [3 /*break*/, 38];
                     case 4:
-                        CommonTools.addCommonTips(this.tipsPanel, "敬请期待");
-                        return [3 /*break*/, 37];
+                        CommonTools.addCommonTips(this.tipsPanel, "暂未开放");
+                        return [3 /*break*/, 38];
                     case 5:
-                        this.closeNotice();
-                        return [3 /*break*/, 37];
+                        CommonTools.addCommonTips(this.tipsPanel, "敬请期待");
+                        return [3 /*break*/, 38];
                     case 6:
-                        this.closeWxVsUI();
-                        return [3 /*break*/, 37];
+                        this.closeNotice();
+                        return [3 /*break*/, 38];
                     case 7:
+                        this.closeWxVsUI();
+                        return [3 /*break*/, 38];
+                    case 8:
                         if (this.isMainRoomer) {
                             sDataReady = CommonTools.getDataJsonStr("startGame1V1", 1, { fightRoomKey: Main.roomkey });
                             ConstValue.P_NET_OBJ.sendData(sDataReady);
@@ -816,11 +827,11 @@ var HallModule = (function () {
                             sDataReady = CommonTools.getDataJsonStr("setReady1V1", 1, { fightRoomKey: Main.roomkey });
                             ConstValue.P_NET_OBJ.sendData(sDataReady);
                         }
-                        return [3 /*break*/, 37];
-                    case 8:
-                        CommonTools.addCommonTips(this.tipsPanel, ConstValue.P_SEND_WAITING);
-                        return [3 /*break*/, 37];
+                        return [3 /*break*/, 38];
                     case 9:
+                        CommonTools.addCommonTips(this.tipsPanel, ConstValue.P_SEND_WAITING);
+                        return [3 /*break*/, 38];
+                    case 10:
                         if (HallModule.curGuide == 2) {
                             HallModule.curGuide = 0;
                             sData_1 = CommonTools.getDataJsonStr("getNextGuild", 1, {});
@@ -829,52 +840,52 @@ var HallModule = (function () {
                         HallModule.isTrainBrr = true;
                         sData_gobarr = CommonTools.getDataJsonStr("C2GEnterTrain", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_gobarr);
-                        return [3 /*break*/, 37];
-                    case 10:
+                        return [3 /*break*/, 38];
+                    case 11:
                         sData = CommonTools.getDataJsonStr("openRnakUI", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData);
-                        return [3 /*break*/, 37];
-                    case 11:
+                        return [3 /*break*/, 38];
+                    case 12:
                         sDataGG = CommonTools.getDataJsonStr("getGonggao", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sDataGG);
-                        return [3 /*break*/, 37];
-                    case 12:
+                        return [3 /*break*/, 38];
+                    case 13:
                         sData_rank_3 = CommonTools.getDataJsonStr("getTotalGuankaRank", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_rank_3);
-                        return [3 /*break*/, 37];
-                    case 13:
+                        return [3 /*break*/, 38];
+                    case 14:
                         sData_rank_1 = CommonTools.getDataJsonStr("getTotalPvpRank", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_rank_1);
-                        return [3 /*break*/, 37];
-                    case 14:
+                        return [3 /*break*/, 38];
+                    case 15:
                         sData_rank_2 = CommonTools.getDataJsonStr("getTotalLvRank", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_rank_2);
-                        return [3 /*break*/, 37];
-                    case 15:
-                        this.showNotice("resource/eui_skins/UserUI/NoticeUI.exml", name);
-                        return [3 /*break*/, 37];
+                        return [3 /*break*/, 38];
                     case 16:
+                        this.showNotice("resource/eui_skins/UserUI/NoticeUI.exml", name);
+                        return [3 /*break*/, 38];
+                    case 17:
                         if (HallModule.curGuide == 6) {
                             HallModule.curGuide = 0;
                             sData_2 = CommonTools.getDataJsonStr("getNextGuild", 1, {});
                             ConstValue.P_NET_OBJ.sendData(sData_2);
                         }
                         return [4 /*yield*/, this.context.loadResource("fighting", 3)];
-                    case 17:
-                        _b.sent();
-                        return [3 /*break*/, 37];
                     case 18:
+                        _b.sent();
+                        return [3 /*break*/, 38];
+                    case 19:
                         sData_role_detail = CommonTools.getDataJsonStr("getRoleDetail", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_role_detail);
-                        return [3 /*break*/, 37];
-                    case 19:
-                        this.showNotice("resource/eui_skins/UserUI/SelectShareVsMapUI.exml", name);
-                        return [3 /*break*/, 37];
+                        return [3 /*break*/, 38];
                     case 20:
+                        this.showNotice("resource/eui_skins/UserUI/SelectShareVsMapUI.exml", name);
+                        return [3 /*break*/, 38];
+                    case 21:
                         sData_noend = CommonTools.getDataJsonStr("C2GOpenWujinUI", 1, { diffLevel: 1 });
                         ConstValue.P_NET_OBJ.sendData(sData_noend);
-                        return [3 /*break*/, 37];
-                    case 21:
+                        return [3 /*break*/, 38];
+                    case 22:
                         if (HallModule.curGuide == 7) {
                             HallModule.curGuide = 0;
                             sData_3 = CommonTools.getDataJsonStr("getNextGuild", 1, {});
@@ -882,48 +893,48 @@ var HallModule = (function () {
                         }
                         if (ConstValue.cacheUserInfo.btnCtrlData["5"].openLv > ConstValue.cacheUserInfo.lv) {
                             CommonTools.addCommonTips(this.tipsPanel, "等级" + ConstValue.cacheUserInfo.btnCtrlData["5"].openLv + "级后开放");
-                            return [3 /*break*/, 37];
+                            return [3 /*break*/, 38];
                         }
                         return [4 /*yield*/, this.context.loadResource("diymap", 4)];
-                    case 22:
-                        _b.sent();
-                        return [3 /*break*/, 37];
                     case 23:
+                        _b.sent();
+                        return [3 /*break*/, 38];
+                    case 24:
                         sData_shop = CommonTools.getDataJsonStr("openShopUI", 1, { iType: 0 });
                         ConstValue.P_NET_OBJ.sendData(sData_shop);
-                        return [3 /*break*/, 37];
-                    case 24:
-                        this.showAD(5);
-                        return [3 /*break*/, 37];
+                        return [3 /*break*/, 38];
                     case 25:
+                        this.showAD(5);
+                        return [3 /*break*/, 38];
+                    case 26:
                         sData_bag = CommonTools.getDataJsonStr("openBagUI", 1, { iType: 0 });
                         ConstValue.P_NET_OBJ.sendData(sData_bag);
-                        return [3 /*break*/, 37];
-                    case 26:
+                        return [3 /*break*/, 38];
+                    case 27:
                         sData_RoleList = CommonTools.getDataJsonStr("showAllClassList", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_RoleList);
                         // this.showNotice("resource/eui_skins/UserUI/RoleInfoUI.exml","btn_img_info");
-                        return [3 /*break*/, 37];
-                    case 27:
-                        this.closeSub();
-                        return [3 /*break*/, 37];
+                        return [3 /*break*/, 38];
                     case 28:
+                        this.closeSub();
+                        return [3 /*break*/, 38];
+                    case 29:
                         sData_Reward = CommonTools.getDataJsonStr("showUpgradeReward", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_Reward);
-                        return [3 /*break*/, 37];
-                    case 29:
+                        return [3 /*break*/, 38];
+                    case 30:
                         sData_skill = CommonTools.getDataJsonStr("C2G_Open_MainUI", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_skill);
-                        return [3 /*break*/, 37];
-                    case 30:
+                        return [3 /*break*/, 38];
+                    case 31:
                         if (ConstValue.P_MAP_OBJ == null) {
                             ConstValue.P_MAP_OBJ = new MapDIYModule(this.context, null, 0);
                         }
-                        return [3 /*break*/, 37];
-                    case 31:
-                        this.showNotice("resource/eui_skins/UserUI/MainSetting.exml", "btn_setting");
-                        return [3 /*break*/, 37];
+                        return [3 /*break*/, 38];
                     case 32:
+                        this.showNotice("resource/eui_skins/UserUI/MainSetting.exml", "btn_setting");
+                        return [3 /*break*/, 38];
+                    case 33:
                         // let arr = ["2","4","6","8","9","10","7"];
                         // for(let i=0;i<arr.length;i++){
                         // 	egret.localStorage.setItem(GuideModule.guide_tip_new[arr[i]].saveKey,"0");
@@ -931,11 +942,11 @@ var HallModule = (function () {
                         FightingModule.curBarrNo = 29;
                         // this.showGuide();
                         this.showEditUI(name);
-                        return [3 /*break*/, 37];
-                    case 33:
-                        this.clickShopPage(name);
-                        return [3 /*break*/, 37];
+                        return [3 /*break*/, 38];
                     case 34:
+                        this.clickShopPage(name);
+                        return [3 /*break*/, 38];
+                    case 35:
                         if (this.shopUIType == 1) {
                             if (this.shopPayType != 3) {
                                 sDataBuy = CommonTools.getDataJsonStr("Buy", 1, { iNo: this.shopItemNo, iType: this.shopPageType, num: 1 });
@@ -951,8 +962,8 @@ var HallModule = (function () {
                             sDataUse = CommonTools.getDataJsonStr("useItem", 1, { iNo: this.shopItemNo, iType: this.shopPageType, iItemID: this.shopItemItemID });
                             ConstValue.P_NET_OBJ.sendData(sDataUse);
                         }
-                        return [3 /*break*/, 37];
-                    case 35:
+                        return [3 /*break*/, 38];
+                    case 36:
                         account_lb_txt = this.panelSub.getChildByName("account_lb_txt");
                         if (account_lb_txt.text == "") {
                             CommonTools.addCommonTips(this.tipsPanel, ConstValue.P_MODIFY_NULL_FAIL);
@@ -976,11 +987,11 @@ var HallModule = (function () {
                             }
                             ConstValue.P_NET_OBJ.sendData(sData_4);
                         }
-                        return [3 /*break*/, 37];
-                    case 36:
+                        return [3 /*break*/, 38];
+                    case 37:
                         CommonTools.log("11111111 default");
-                        return [3 /*break*/, 37];
-                    case 37: return [2 /*return*/];
+                        return [3 /*break*/, 38];
+                    case 38: return [2 /*return*/];
                 }
             });
         });

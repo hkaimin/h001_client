@@ -49,6 +49,8 @@ class HallModule {
 	private btnWxPvpAnimLb;
 	private btnPveAnim;
 	private btnPveAnimLb;
+	private btnPveAnimX = 440;
+	private btnPveAnimY = 240;
 
 	private horseCurrent = 0;
 
@@ -77,6 +79,8 @@ class HallModule {
 	private rankHead04_mask;
 	private rankHead05_mask;
 
+	private btnBackImg;
+
 	public constructor(ct:Main) {
 		this.context = ct;
 		HallModule.isNoEnd = false;
@@ -100,6 +104,28 @@ class HallModule {
         });
 	}
 
+	private setHorseXY(){
+		if(ConstValue.deviveNormalScale < 2){
+			CommonTools.logWallet("---COMPLETE---deviveNormalScale--<2-")
+			if(this.curPage == 2){
+				this.btnPveAnim.x = this.btnPveAnimX - 180;
+				this.btnPveAnim.y = this.btnPveAnimY;
+			}else{
+				this.btnPveAnim.x = this.btnPveAnimX;
+				this.btnPveAnim.y = this.btnPveAnimY;
+			}
+		}else{
+			CommonTools.logWallet("---COMPLETE---deviveNormalScale-->2-")
+			if(this.curPage == 2){
+				this.btnPveAnim.x = this.btnPveAnimX - 220;
+				this.btnPveAnim.y = this.btnPveAnimY + 40;
+			}else{
+				this.btnPveAnim.x = this.btnPveAnimX;
+				this.btnPveAnim.y = this.btnPveAnimY;
+			}
+		}
+	}
+
 	private drawHorse(){
 		if(this.btnPveAnim != null){
 			this.btnPveAnim.removeEventListener(egret.Event.COMPLETE);
@@ -110,15 +136,7 @@ class HallModule {
 		this.btnPveAnim.play(1);
 		this.btnPveAnim.name = "btn_noend_pve_anim";
 		this.panel.addChild(this.btnPveAnim);
-		if(ConstValue.deviveNormalScale < 2){
-			CommonTools.logWallet("---COMPLETE---deviveNormalScale--<2-")
-			this.btnPveAnim.x = 440;
-			this.btnPveAnim.y = 240;
-		}else{
-			CommonTools.logWallet("---COMPLETE---deviveNormalScale-->2-")
-			this.btnPveAnim.x = 440;
-			this.btnPveAnim.y = 240;
-		}
+		this.setHorseXY();
 		this.btnPveAnim.addEventListener(egret.Event.COMPLETE,function(){
 			CommonTools.logWallet("---COMPLETE------"+this.horseCurrent)
 			this.horseCurrent ++;
@@ -148,48 +166,7 @@ class HallModule {
         this.context.addChild(this.panel);
 		this.tipsPanel = this.panel;
 
-		// this.btnMatchAnim = CommonTools.getAnimDraw(RES.getRes("pvp_anim_btn_json"), RES.getRes("pvp_anim_btn_png"), "0");
-		// this.btnMatchAnim.play(-1);
-		// this.btnMatchAnim.name = "btn_match_pvp_anim";
-		// this.panel.addChild(this.btnMatchAnim);
-		// this.btnMatchAnim.x = 852.5;
-		// this.btnMatchAnim.y = 279;
-
-		// this.btnMatchAnimLb = new eui.Label();
-		// this.btnMatchAnimLb.name = "btn_match_pvp";
-		// this.panel.addChild(this.btnMatchAnimLb);
-		// this.btnMatchAnimLb.x = 852.5;
-		// this.btnMatchAnimLb.y = 279;
-		// this.btnMatchAnimLb.width = 239;
-		// this.btnMatchAnimLb.height = 326;
-		// this.btnMatchAnimLb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-
-		// this.btnWxPvpAnim = CommonTools.getAnimDraw(RES.getRes("wx_pvp_btn_json"), RES.getRes("wx_pvp_btn_png"), "0");
-		// this.btnWxPvpAnim.play(-1);
-		// this.btnWxPvpAnim.name = "btn_friend_pvp_anim";
-		// this.panel.addChild(this.btnWxPvpAnim);
-		// this.btnWxPvpAnim.x = 167.09;
-		// this.btnWxPvpAnim.y = 293;
-
-		// this.btnWxPvpAnimLb = new eui.Label();
-		// this.btnWxPvpAnimLb.name = "btn_friend_pvp";
-		// this.panel.addChild(this.btnWxPvpAnimLb);
-		// this.btnWxPvpAnimLb.x = 167.09;
-		// this.btnWxPvpAnimLb.y = 293;
-		// this.btnWxPvpAnimLb.width = 216;
-		// this.btnWxPvpAnimLb.height = 164;
-		// this.btnWxPvpAnimLb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-
 		this.drawHorse();
-
-		// this.btnPveAnimLb = new eui.Label();
-		// this.btnPveAnimLb.name = "btn_noend_pve";
-		// this.panel.addChild(this.btnPveAnimLb);
-		// this.btnPveAnimLb.x = 478.83;
-		// this.btnPveAnimLb.y = 143.67;
-		// this.btnPveAnimLb.width = 375;
-		// this.btnPveAnimLb.height = 469;
-		// this.btnPveAnimLb.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 
 		this.panel.getChildByName("btn_map_diy").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.panel.getChildByName("img_info").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
@@ -214,9 +191,8 @@ class HallModule {
 		this.rankHead04.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.rankHead05.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 
-		CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_map_diy"),this);
-		CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_training_pve"),this);
-		CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_2v2"),this);
+		this.btnBackImg = this.panel.getChildByName("rank_grounp_main").getChildByName("btn_back_img");
+		this.btnBackImg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 
 		// CommonTools.fixFix(this.context,this.panel.getChildByName("btn_shop"),1,0,10);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_map_diy"),2,30,20);
@@ -291,8 +267,6 @@ class HallModule {
 				// ConstValue.P_NET_OBJ.sendData(sData);
 			}
 		}
-		// CommonTools.shake(this.panel.getChildByName("btn_map_shop"));
-		// CommonTools.shake(this.panel.getChildByName("btn_redtv"));
 		HallModule.isInitLogin = false;
 		
 		FightingModule.Delay(500, function(){
@@ -696,12 +670,17 @@ class HallModule {
 			this.rankHead03_mask.visible = false;
 			this.rankHead04_mask.visible = false;
 			this.rankHead05_mask.visible = false;
-
+			
 			this.rankHead01.source = "icon_homestead_s_png";
 			this.rankHead02.source = "icon_stables_n_png";
 			this.rankHead03.source = "icon_training_n_png";
 			this.rankHead04.source = "icon_task_n_png";
 			this.rankHead05.source = "icon_marketpalec_n_png";
+
+			this.btnBackImg.visible = false;
+			this.rankHead01.visible = true;
+			this.rankHead05.visible = true;
+			this.panel.getChildByName("horse_name_group").visible = true;
 		}else if(clickName == "rank_head_02"){
 			this.curPage = 2;
 			this.maskNew.source = "horse_home_page2_jpg";
@@ -711,37 +690,61 @@ class HallModule {
 			this.rankHead04_mask.visible = false;
 			this.rankHead05_mask.visible = false;
 
-			this.rankHead01.source = "icon_homestead_n_png";
-			this.rankHead02.source = "icon_stables_s_png";
-			this.rankHead03.source = "icon_training_n_png";
-			this.rankHead04.source = "icon_task_n_png";
-			this.rankHead05.source = "icon_marketpalec_n_png";
+			this.rankHead01.visible = false;
+			this.rankHead05.visible = false;
+
+			this.rankHead02.source = "icon_horse_s_png";
+			this.rankHead03.source = "icon_merge_n_png";
+			this.rankHead04.source = "icon_breeding_n_png";
+
+			this.btnBackImg.visible = true;
+			this.panel.getChildByName("horse_name_group").visible = false;
 		}else if(clickName == "rank_head_03"){
-			this.curPage = 3;
-			this.rankHead01_mask.visible = false;
-			this.rankHead02_mask.visible = false;
-			this.rankHead03_mask.visible = true;
-			this.rankHead04_mask.visible = false;
-			this.rankHead05_mask.visible = false;
+			if(this.curPage == 2){
+				this.rankHead02_mask.visible = false;
+				this.rankHead03_mask.visible = true;
+				this.rankHead04_mask.visible = false;
 
-			this.rankHead01.source = "icon_homestead_n_png";
-			this.rankHead02.source = "icon_stables_n_png";
-			this.rankHead03.source = "icon_training_s_png";
-			this.rankHead04.source = "icon_task_n_png";
-			this.rankHead05.source = "icon_marketpalec_n_png";
+				this.rankHead02.source = "icon_horse_n_png";
+				this.rankHead03.source = "icon_merge_s_png";
+				this.rankHead04.source = "icon_breeding_n_png";
+			}else{
+				this.curPage = 3;
+				this.rankHead01_mask.visible = false;
+				this.rankHead02_mask.visible = false;
+				this.rankHead03_mask.visible = true;
+				this.rankHead04_mask.visible = false;
+				this.rankHead05_mask.visible = false;
+
+				this.rankHead01.source = "icon_homestead_n_png";
+				this.rankHead02.source = "icon_stables_n_png";
+				this.rankHead03.source = "icon_training_s_png";
+				this.rankHead04.source = "icon_task_n_png";
+				this.rankHead05.source = "icon_marketpalec_n_png";
+			}
 		}else if(clickName == "rank_head_04"){
-			this.curPage = 4;
-			this.rankHead01_mask.visible = false;
-			this.rankHead02_mask.visible = false;
-			this.rankHead03_mask.visible = false;
-			this.rankHead04_mask.visible = true;
-			this.rankHead05_mask.visible = false;
+			if(this.curPage == 2){
+				this.rankHead02_mask.visible = false;
+				this.rankHead03_mask.visible = false;
+				this.rankHead04_mask.visible = true;
 
-			this.rankHead01.source = "icon_homestead_n_png";
-			this.rankHead02.source = "icon_stables_n_png";
-			this.rankHead03.source = "icon_training_n_png";
-			this.rankHead04.source = "icon_task_s_png";
-			this.rankHead05.source = "icon_marketpalec_n_png";
+				this.rankHead02.source = "icon_horse_n_png";
+				this.rankHead03.source = "icon_merge_n_png";
+				this.rankHead04.source = "icon_breeding_s_png";
+			}else{
+				this.curPage = 4;
+				this.rankHead01_mask.visible = false;
+				this.rankHead02_mask.visible = false;
+				this.rankHead03_mask.visible = false;
+				this.rankHead04_mask.visible = true;
+				this.rankHead05_mask.visible = false;
+
+				this.rankHead01.source = "icon_homestead_n_png";
+				this.rankHead02.source = "icon_stables_n_png";
+				this.rankHead03.source = "icon_training_n_png";
+				this.rankHead04.source = "icon_task_s_png";
+				this.rankHead05.source = "icon_marketpalec_n_png";
+			}
 		}else if(clickName == "rank_head_05"){
 			this.curPage = 5;
 			this.rankHead01_mask.visible = false;
@@ -758,6 +761,7 @@ class HallModule {
 
 			this.showEditUI("scroll_notify");
 		}
+		this.setHorseXY();
 	}
 
 	private async onClick(e: egret.TouchEvent){
@@ -765,6 +769,7 @@ class HallModule {
 			CommonTools.log("还在加载中......return ");
 			return;
 		}
+		if(ConstValue.P_LOGIN_OBJ==null)CommonAudioHandle.playEffect("playBomb_mp3",1);
 		let name = e.target.name;
 		if(name != "btn_close" && name != "btn_close_edit"){
 			this.removeGuide();
@@ -788,6 +793,10 @@ class HallModule {
 		}
 
 		switch(name){
+			case "btn_back_img":
+				this.changePage("rank_head_01");
+				break;
+
 			case "noend_tip":
 				let sDataNoendHelp = CommonTools.getDataJsonStr("getHelp",1,{helpID:"1"});
 				ConstValue.P_NET_OBJ.sendData(sDataNoendHelp);
