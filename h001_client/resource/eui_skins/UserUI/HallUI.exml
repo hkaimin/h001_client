@@ -139,7 +139,7 @@
 			</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Label id="main_coin_num_lb" text="1234567" x="591.52" y="26.85" name="main_coin_num_lb" anchorOffsetX="0" width="130" textAlign="center" anchorOffsetY="0" height="27.33" size="26" textColor="0xF9F2F2" verticalAlign="middle"/>
+		<e:Label id="main_coin_num_lb" text="0" x="591.52" y="26.85" name="main_coin_num_lb" anchorOffsetX="0" width="130" textAlign="center" anchorOffsetY="0" height="27.33" size="26" textColor="0xF9F2F2" verticalAlign="middle"/>
 		<e:Button id="img_coin1_add" label="" x="715.15" y="23.08" anchorOffsetX="0" width="35" anchorOffsetY="0" height="31" name="img_coin1_add">
 			<e:skinName>
 			<e:Skin states="up,down,disabled">
@@ -157,7 +157,7 @@
 			</e:Skin>
 			</e:skinName>
 		</e:Button>
-		<e:Label id="sub_coin_num_lb" text="1234567" x="850.03" y="27.12" name="sub_coin_num_lb" anchorOffsetX="0" width="130" textAlign="center" anchorOffsetY="0" height="26" size="26" textColor="0xF9F2F2" verticalAlign="middle"/>
+		<e:Label id="sub_coin_num_lb" text="0" x="850.03" y="27.12" name="sub_coin_num_lb" anchorOffsetX="0" width="130" textAlign="center" anchorOffsetY="0" height="26" size="26" textColor="0xF9F2F2" verticalAlign="middle"/>
 		<e:Button id="img_coin2_add" label="" x="972.19" y="24.41" anchorOffsetX="0" width="35" anchorOffsetY="0" height="31" name="img_coin2_add">
 			<e:skinName>
 			<e:Skin states="up,down,disabled">
@@ -170,6 +170,6 @@
 	</e:Group>
 	<e:Group id="horse_name_group" width="395" height="200" x="885.53" y="537.84" name="horse_name_group" anchorOffsetX="0">
 		<e:Image width="322" height="93" x="36.49" y="53.36" anchorOffsetX="0" anchorOffsetY="0" source="bar_name_di_png"/>
-		<e:Label id="horse_name_lb" text="Ferrari" x="53" y="63.86" anchorOffsetX="0" width="286" anchorOffsetY="0" height="71" size="36" name="hall_id_lb" strokeColor="0xC63B3B" textAlign="center" verticalAlign="middle"/>
+		<e:Label id="horse_name_lb" text="Ferrari" x="22" y="63.86" anchorOffsetX="0" width="364" anchorOffsetY="0" height="71" size="32" name="horse_name_lb" strokeColor="0xC63B3B" textAlign="center" verticalAlign="middle"/>
 	</e:Group>
 </e:Skin>

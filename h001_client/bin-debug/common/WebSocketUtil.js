@@ -183,6 +183,7 @@ var WebSocketUtil = (function (_super) {
                     }
                     break;
                 case "gmFunc":
+                case "contract":
                 case "openRnakUI":
                 case "getTotalPvpRank":
                 case "getTotalLvRank":

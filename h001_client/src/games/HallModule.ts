@@ -106,7 +106,7 @@ class HallModule {
 
 	private setHorseXY(){
 		if(ConstValue.deviveNormalScale < 2){
-			CommonTools.logWallet("---COMPLETE---deviveNormalScale--<2-")
+			// CommonTools.logWallet("---COMPLETE---deviveNormalScale--<2-")
 			if(this.curPage == 2){
 				this.btnPveAnim.x = this.btnPveAnimX - 180;
 				this.btnPveAnim.y = this.btnPveAnimY;
@@ -115,7 +115,7 @@ class HallModule {
 				this.btnPveAnim.y = this.btnPveAnimY;
 			}
 		}else{
-			CommonTools.logWallet("---COMPLETE---deviveNormalScale-->2-")
+			// CommonTools.logWallet("---COMPLETE---deviveNormalScale-->2-")
 			if(this.curPage == 2){
 				this.btnPveAnim.x = this.btnPveAnimX - 220;
 				this.btnPveAnim.y = this.btnPveAnimY + 40;
@@ -138,7 +138,7 @@ class HallModule {
 		this.panel.addChild(this.btnPveAnim);
 		this.setHorseXY();
 		this.btnPveAnim.addEventListener(egret.Event.COMPLETE,function(){
-			CommonTools.logWallet("---COMPLETE------"+this.horseCurrent)
+			// CommonTools.logWallet("---COMPLETE------"+this.horseCurrent)
 			this.horseCurrent ++;
 			if(this.horseCurrent > 9){
 				this.horseCurrent = 0;
@@ -171,6 +171,8 @@ class HallModule {
 		this.panel.getChildByName("btn_map_diy").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.panel.getChildByName("img_info").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.panel.getChildByName("btn_training_pve").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.panel.getChildByName("btn_2v2").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.panel.getChildByName("up_item_group").getChildByName("img_coin1_add").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.panel.getChildByName("btn_2v2").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 
 		this.rankHead01 = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_01") as eui.Image;
@@ -233,12 +235,6 @@ class HallModule {
 		let lbExp = this.panel.getChildByName("img_exp_value") as eui.Image;
 		lbExp.width = ConstValue.cacheUserInfo.curexp * 1.0 / ConstValue.cacheUserInfo.maxExp * lbExp.width;
 
-		let lbCoin = this.panel.getChildByName("coin_num_lb") as eui.Label;
-		lbCoin.text = ConstValue.cacheUserInfo.coin;
-
-		let lbZuan = this.panel.getChildByName("zuan_num_lb") as eui.Label;
-		lbZuan.text = ConstValue.cacheUserInfo.diamond;
-
 		if(ConstValue.cacheUserInfo != null && ConstValue.cacheUserInfo.gm == 1){//gm
 			// CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_gm"),this);
 			this.panel.getChildByName("scroll_notify").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
@@ -295,15 +291,30 @@ class HallModule {
 			ContractSol.maincoin_balanceOf(ContractSol.sender);
 			ContractSol.subcoin_balanceOf(ContractSol.sender);
 			this.changePage("rank_head_01");
+			this.updateUI();
+		}
+	}
+
+	private updateUI(){
+		if(this.curPage == 1){
+			let horse_lv_img = this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img") as eui.Image;
+			horse_lv_img.source = ConstValue.horseLv[ConstValue.cacheUserInfo.lv.toString()].lv_icon;
+			this.panel.getChildByName("horse_name_group").getChildByName("horse_name_lb").text = ConstValue.cacheUserInfo.name;
+			this.panel.getChildByName("up_item_group").getChildByName("main_coin_num_lb").text = ConstValue.cacheUserInfo.coin;
+			this.panel.getChildByName("up_item_group").getChildByName("sub_coin_num_lb").text = ConstValue.cacheUserInfo.diamond;
 		}
 	}
 
 	public updateMaincoin(coin){
 		this.panel.getChildByName("up_item_group").getChildByName("main_coin_num_lb").text = coin;
+		let sData = CommonTools.getDataJsonStr("saveCoinInfo",1,{mainCoin:coin,subCoin:0});
+		ConstValue.P_NET_OBJ.sendData(sData);
 	}
 
 	public updateSubcoin(coin){
 		this.panel.getChildByName("up_item_group").getChildByName("sub_coin_num_lb").text = coin;
+		let sData = CommonTools.getDataJsonStr("saveCoinInfo",1,{mainCoin:0,subCoin:coin});
+		ConstValue.P_NET_OBJ.sendData(sData);
 	}
 
 	private initAD(){
@@ -764,6 +775,12 @@ class HallModule {
 		this.setHorseXY();
 	}
 
+	private testAddMain(){
+		CommonTools.addCommonTips(this.tipsPanel,"getting maincoin... ");
+		let sData = CommonTools.getDataJsonStr("AddMainCoin",1,{iAdd:5});
+		ConstValue.P_NET_OBJ.sendData(sData);
+	}
+
 	private async onClick(e: egret.TouchEvent){
 		if(this.context.loadingView!=null && !ConstValue.P_IS_DEBUG){
 			CommonTools.log("还在加载中......return ");
@@ -793,6 +810,10 @@ class HallModule {
 		}
 
 		switch(name){
+			case "img_coin1_add":
+				this.testAddMain();
+				break;
+
 			case "btn_back_img":
 				this.changePage("rank_head_01");
 				break;
@@ -2284,6 +2305,12 @@ class HallModule {
 				CommonTools.addCommonTips(this.tipsPanel,"执行失败");
 			}else{
 				CommonTools.addCommonTips(this.tipsPanel,"执行成功");
+			}
+		}else if (jsonObj.f == "contract"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				ContractSol.maincoin_increaseApproval(jsonObj.d.to,jsonObj.d.num);
 			}
 		}else if (jsonObj.f == "getPvpRankThree"){
 			if(jsonObj.m != "" || jsonObj.s != 1){

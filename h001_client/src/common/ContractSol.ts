@@ -1,6 +1,5 @@
 //钱包注入变量
 declare const web3:Web3;
-
 /**
  * 合约操作类
  */
@@ -132,7 +131,7 @@ class ContractSol {
 		// 	console.log("-hweb3.eth.sendTransac---address--"+address)
 		// }); 
 
-		ContractSol.metaNFT_maincoin.transfer(_to, _value, {from: ContractSol.sender,gas:100000,gasPrice:ContractSol.hweb3.eth.gasPrice}, function(error, txnHash) {
+		ContractSol.metaNFT_maincoin.transfer(_to, _value, {from: ContractSol.sender}, function(error, txnHash) {
 			if(error){
 				CommonTools.logError('--maincoin-transfer error--'+error)
 				throw error;
@@ -175,8 +174,8 @@ class ContractSol {
 	/**
 	 * 主币increaseApproval
 	 */
-	static maincoin_increaseApproval(_spender,_value){
-		ContractSol.metaNFT_maincoin.increaseApproval(_spender, _value, {from: ContractSol.sender ,gas:100000,gasPrice:ContractSol.hweb3.eth.gasPrice}, function(error, txnHash) {
+	static async maincoin_increaseApproval(_spender,_value){
+		ContractSol.metaNFT_maincoin.increaseApproval(_spender, _value, {from: ContractSol.sender}, function(error, txnHash) {//,gas:100000,gasPrice:ContractSol.hweb3.eth.gasPrice
 			if(error){
 				CommonTools.logError('--maincoin_increaseApproval error--'+error)
 				throw error;

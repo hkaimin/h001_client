@@ -156,6 +156,7 @@ class WebSocketUtil extends egret.DisplayObjectContainer {
                     break;
 
                 case "gmFunc":
+                case "contract":
                 case "openRnakUI":
                 case "getTotalPvpRank":
                 case "getTotalLvRank":

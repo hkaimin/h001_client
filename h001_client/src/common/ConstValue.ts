@@ -37,7 +37,7 @@ class ConstValue {
 
 	//config公共配置
 	static P_IS_DEBUG:boolean = false;//false正式模式 true演示模式，不联网的
-	static P_IS_INNER:boolean = false;//false线上模式 true内网模式 有些提示只在内网提示
+	static P_IS_INNER:boolean = true;//false线上模式 true内网模式 有些提示只在内网提示
 	static p_is_PRINT_ERROR:boolean = true;//是否打印error
 	static p_is_PRINT_DEBUG:boolean = false;//是否打印debug
 	static p_is_PRINT_AI:boolean = false;//是否打印ai
@@ -103,4 +103,12 @@ class ConstValue {
 	static videoAd = null;
 	static videoAdOBJ = null;
 	static videoIndx = 0;//1是等级奖励广告 2签到 3商城 4角色 5红包
+
+	static horseLv = {
+		"1":{"lv_icon":"icon_level_d_png"},
+		"2":{"lv_icon":"icon_level_c_png"},
+		"3":{"lv_icon":"icon_level_b_png"},
+		"4":{"lv_icon":"icon_level_a_png"},
+		"5":{"lv_icon":"icon_level_s_png"},
+	}
 }
