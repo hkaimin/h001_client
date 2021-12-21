@@ -131,7 +131,7 @@ var ContractSol = (function () {
             }
             else {
                 CommonTools.logWallet('--maincoin_balanceOf-token_result--' + token_result);
-                ConstValue.P_HALL_OBJ.updateMaincoin(token_result);
+                ConstValue.P_HALL_OBJ.updateMaincoin(token_result, true);
             }
         });
     };
@@ -193,7 +193,7 @@ var ContractSol = (function () {
             }
             else {
                 CommonTools.logWallet('--subcoin_balanceOf-token_result--' + token_result);
-                ConstValue.P_HALL_OBJ.updateSubcoin(token_result);
+                ConstValue.P_HALL_OBJ.updateSubcoin(token_result, true);
             }
         });
     };

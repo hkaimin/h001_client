@@ -210,6 +210,8 @@ var WebSocketUtil = (function (_super) {
                 case "getHelp":
                 case "getGonggao":
                 case "getPvpRankThree":
+                case "AddMainCoin":
+                case "AddSubCoin":
                     if (obj_1.f == "SeventDayReward")
                         if (!HallModule.isSafeArea)
                             return;

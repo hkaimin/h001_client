@@ -80,6 +80,8 @@ class HallModule {
 	private rankHead05_mask;
 
 	private btnBackImg;
+	private subLayer;
+	private horseSelectPanel;
 
 	public constructor(ct:Main) {
 		this.context = ct;
@@ -173,7 +175,7 @@ class HallModule {
 		this.panel.getChildByName("btn_training_pve").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.panel.getChildByName("btn_2v2").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.panel.getChildByName("up_item_group").getChildByName("img_coin1_add").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-		this.panel.getChildByName("btn_2v2").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.panel.getChildByName("up_item_group").getChildByName("img_coin2_add").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 
 		this.rankHead01 = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_01") as eui.Image;
 		this.rankHead02 = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_02") as eui.Image;
@@ -302,19 +304,25 @@ class HallModule {
 			this.panel.getChildByName("horse_name_group").getChildByName("horse_name_lb").text = ConstValue.cacheUserInfo.name;
 			this.panel.getChildByName("up_item_group").getChildByName("main_coin_num_lb").text = ConstValue.cacheUserInfo.coin;
 			this.panel.getChildByName("up_item_group").getChildByName("sub_coin_num_lb").text = ConstValue.cacheUserInfo.diamond;
+		}else if(this.curPage == 2){
+			
 		}
 	}
 
-	public updateMaincoin(coin){
+	public updateMaincoin(coin,save){
 		this.panel.getChildByName("up_item_group").getChildByName("main_coin_num_lb").text = coin;
-		let sData = CommonTools.getDataJsonStr("saveCoinInfo",1,{mainCoin:coin,subCoin:0});
-		ConstValue.P_NET_OBJ.sendData(sData);
+		if(save){
+			let sData = CommonTools.getDataJsonStr("saveCoinInfo",1,{mainCoin:coin,subCoin:0});
+			ConstValue.P_NET_OBJ.sendData(sData);
+		}
 	}
 
-	public updateSubcoin(coin){
+	public updateSubcoin(coin,save){
 		this.panel.getChildByName("up_item_group").getChildByName("sub_coin_num_lb").text = coin;
-		let sData = CommonTools.getDataJsonStr("saveCoinInfo",1,{mainCoin:0,subCoin:coin});
-		ConstValue.P_NET_OBJ.sendData(sData);
+		if(save){
+			let sData = CommonTools.getDataJsonStr("saveCoinInfo",1,{mainCoin:0,subCoin:coin});
+			ConstValue.P_NET_OBJ.sendData(sData);
+		}
 	}
 
 	private initAD(){
@@ -710,6 +718,9 @@ class HallModule {
 
 			this.btnBackImg.visible = true;
 			this.panel.getChildByName("horse_name_group").visible = false;
+
+
+
 		}else if(clickName == "rank_head_03"){
 			if(this.curPage == 2){
 				this.rankHead02_mask.visible = false;
@@ -781,6 +792,12 @@ class HallModule {
 		ConstValue.P_NET_OBJ.sendData(sData);
 	}
 
+	private testAddSub(){
+		CommonTools.addCommonTips(this.tipsPanel,"getting subcoin... ");
+		let sData = CommonTools.getDataJsonStr("AddSubCoin",1,{iAdd:5});
+		ConstValue.P_NET_OBJ.sendData(sData);
+	}
+
 	private async onClick(e: egret.TouchEvent){
 		if(this.context.loadingView!=null && !ConstValue.P_IS_DEBUG){
 			CommonTools.log("还在加载中......return ");
@@ -812,6 +829,10 @@ class HallModule {
 		switch(name){
 			case "img_coin1_add":
 				this.testAddMain();
+				break;
+
+			case "img_coin2_add":
+				this.testAddSub();
 				break;
 
 			case "btn_back_img":
@@ -2311,6 +2332,24 @@ class HallModule {
 				
 			}else{
 				ContractSol.maincoin_increaseApproval(jsonObj.d.to,jsonObj.d.num);
+			}
+		}else if (jsonObj.f == "AddMainCoin"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				this.updateMaincoin(jsonObj.d.mainCoin,false);
+				FightingModule.Delay(60000, function(){
+					ContractSol.maincoin_balanceOf(ContractSol.sender);
+				}, this);
+			}
+		}else if (jsonObj.f == "AddSubCoin"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				this.updateSubcoin(jsonObj.d.subCoin,false);
+				FightingModule.Delay(60000, function(){
+					ContractSol.subcoin_balanceOf(ContractSol.sender);
+				}, this);
 			}
 		}else if (jsonObj.f == "getPvpRankThree"){
 			if(jsonObj.m != "" || jsonObj.s != 1){

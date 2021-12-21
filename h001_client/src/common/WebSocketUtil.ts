@@ -183,6 +183,8 @@ class WebSocketUtil extends egret.DisplayObjectContainer {
                 case "getHelp":
                 case "getGonggao":
                 case "getPvpRankThree":
+                case "AddMainCoin":
+                case "AddSubCoin":
                     if(obj.f == "SeventDayReward")if(!HallModule.isSafeArea)return;
                     if(ConstValue.P_HALL_OBJ != null){
                         ConstValue.P_HALL_OBJ.handlePacket(obj);
