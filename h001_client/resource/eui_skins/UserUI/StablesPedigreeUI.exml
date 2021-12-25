@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="NoticeGroup" width="363" height="635" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="NoticeGroup" width="433" height="635" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="362" height="582" x="1" y="107.68" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png"/>
 	<e:Image width="362" height="582" x="0" y="103.68" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png" visible="false"/>
 	<e:Image width="76" height="80" x="16" y="16" source="icon_level_s_png"/>
 	<e:Image width="188" height="31" x="108.33" y="25" source="bar_name_png"/>
@@ -11,29 +12,22 @@
 	<e:Image width="35" height="36" x="198.04" y="62.36" source="icon_stars_png"/>
 	<e:Image width="35" height="36" x="233.04" y="62.36" source="icon_stars_png"/>
 	<e:Label text="Ferrari" x="116" y="24" anchorOffsetX="0" width="146" textAlign="left" verticalAlign="middle"/>
-	<e:Image width="150.66" height="10" x="105.54" y="222.18" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="105.54" y="222.18" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_2_png"/>
-	<e:Image width="60" height="48" x="19.21" y="198.18" anchorOffsetX="0" anchorOffsetY="0" source="icon_Grassland_png"/>
-	<e:Image width="42" height="32" x="283.95" y="208.68" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_a_png"/>
-	<e:Image width="150.66" height="10" x="110.33" y="309" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="104.33" y="309" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_2_png"/>
-	<e:Image width="60" height="48" x="18" y="291" anchorOffsetX="0" anchorOffsetY="0" source="icon_sand_png"/>
-	<e:Image width="42" height="32" x="282.74" y="295.5" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_a_png"/>
-	<e:Image width="150.66" height="10" x="109.54" y="401" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="103.54" y="401" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_2_png"/>
-	<e:Image width="60" height="48" x="17.21" y="377" anchorOffsetX="0" anchorOffsetY="0" source="icon_Mud_png"/>
-	<e:Image width="42" height="32" x="281.95" y="387.5" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_a_png"/>
-	<e:Image width="362" height="63" x="-6.46" y="107.68" source="bar_info_di_3_png"/>
 	<e:Image width="362" height="63" x="1" y="431" source="bar_info_di_3_png"/>
-	<e:Image width="362" height="63" x="-7.46" y="107.68" source="Site-suitability_png"/>
-	<e:Image width="362" height="63" x="-1.46" y="431" source="skills_png"/>
-	<e:Image width="22" height="22" x="304.95" y="128.18" source="sign_2_png"/>
-	<e:Image width="62" height="62" x="23" y="499" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
-	<e:Image width="62" height="62" x="142.54" y="499" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
-	<e:Image width="62" height="62" x="266.32" y="499" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
-	<e:Image width="62" height="62" x="-220.32" y="561" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
-	<e:Image width="62" height="62" x="-100.78" y="561" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
-	<e:Image width="62" height="62" x="19.21" y="561" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
-	<e:Image width="62" height="62" x="144.41" y="561" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
-	<e:Image width="62" height="62" x="387.73" y="561" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
+	<e:Image width="362" height="63" x="-1.46" y="431" source="Gene-factor_png"/>
+	<e:Image width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png" visible="false"/>
+	<e:Image width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" source="icon_stats_s_png"/>
+	<e:Image width="59" height="94" x="360" y="312" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png" visible="false"/>
+	<e:Image width="59" height="94" x="360" y="312" anchorOffsetX="0" anchorOffsetY="0" source="icon_skill_n_png"/>
+	<e:Image width="59" height="94" x="360" y="412" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png"/>
+	<e:Image width="59" height="94" x="360" y="412" anchorOffsetX="0" anchorOffsetY="0" source="icon_pedigree_n_png"/>
+	<e:Image width="81" height="108" x="17.75" y="502.5" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png"/>
+	<e:Image width="53" height="53" x="32.04" y="514.5" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="12" height="12" x="28.75" y="590.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="12" height="12" x="40.5" y="590.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="12" height="12" x="52.25" y="590.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="12" height="12" x="64.5" y="590.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="12" height="12" x="76.29" y="590.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Label text="Ferrari xxxx" x="25" y="572.5" anchorOffsetX="0" width="67" textAlign="center" textColor="0x070202" size="10" anchorOffsetY="0" height="19" verticalAlign="middle"/>
+	<e:Image width="30" height="40" x="17.75" y="502.5" source="icon_level_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="14" height="19" x="25.75" y="508.5" source="icon_level_s_png" anchorOffsetX="0" anchorOffsetY="0"/>
 </e:Skin>

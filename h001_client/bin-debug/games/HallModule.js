@@ -66,6 +66,9 @@ var HallModule = (function () {
         this.isCanShowSeventDay = true; //默认情况可以打开7天签到
         this.buyClass = 0;
         this.curPage = 1;
+        this.subCurPage = 1;
+        this.subSubCurPage = 1;
+        this.horsePanelUp = true;
         this.isdisplay = false;
         this.context = ct;
         HallModule.isNoEnd = false;
@@ -199,7 +202,7 @@ var HallModule = (function () {
         CommonTools.fixFix(this.context, this.panel.getChildByName("img_lv_lb"), 1, 30, 10);
         CommonTools.fixFix(this.context, this.panel.getChildByName("rank_grounp_main"), 1, 0, 0); //4,10
         CommonTools.fixFix(this.context, this.panel.getChildByName("btn_gonggao"), 1, 44, 10);
-        CommonTools.fixFix(this.context, this.panel.getChildByName("up_item_group"), 2, 0, -20);
+        CommonTools.fixFix(this.context, this.panel.getChildByName("up_item_group"), 2, 0, -75); //-20
         var imgHead = this.panel.getChildByName("img_info");
         if (ConstValue.cacheUserInfo.headPic != "")
             imgHead.source = ConstValue.cacheUserInfo.headPic;
@@ -264,6 +267,153 @@ var HallModule = (function () {
             this.updateUI();
         }
     };
+    HallModule.prototype.clearHorseSelect = function () {
+        if (this.curPage == 1) {
+        }
+        else if (this.curPage == 2) {
+            var downY = 570;
+            if (ConstValue.deviveNormalScale >= 2) {
+                downY -= 80;
+            }
+            egret.Tween.get(this.horseSelectPanel).to({ y: downY }, 1000);
+            this.maskBg2.visible = false;
+            this.horsePanelUp = true;
+            this.resetHorse();
+        }
+    };
+    HallModule.prototype.resetHorse = function () {
+        var scrollShop = this.horseSelectPanel.getChildByName("horse_panel_group").getChildByName("res_scroller");
+        scrollShop.viewport.scrollV = 0;
+        var groupShop = scrollShop.getChildByName("res_group");
+        var count = 20;
+        for (var iCnt = 0; iCnt < count; iCnt++) {
+            var tempPanel = groupShop.getChildByName("p_" + iCnt);
+            var tempGroup = tempPanel.getChildByName("group_1");
+            tempGroup.scaleX = 1;
+            tempGroup.scaleY = 1;
+            tempGroup.getChildByName("select_2_img").visible = false;
+        }
+        var showCnt = 0;
+        if (count >= 5)
+            showCnt = 2;
+        var groupItem = groupShop.getChildByName("p_" + showCnt);
+        var groupHorse = groupItem.getChildByName("group_1");
+        groupHorse.scaleX = 1.2;
+        groupHorse.scaleY = 1.2;
+        groupHorse.getChildByName("select_2_img").visible = true;
+    };
+    HallModule.prototype.createHorseItem = function () {
+        if (this.horseSelectPanel != null) {
+            this.context.removeChild(this.maskBg2);
+            this.context.removeChild(this.horseSelectPanel);
+            this.maskBg2 = null;
+            this.horseSelectPanel = null;
+            this.horsePanelUp = true;
+        }
+        var upY = 305;
+        var downY = 570;
+        var leftX = 215;
+        if (ConstValue.deviveNormalScale >= 2) {
+            upY -= 30;
+            downY -= 80;
+        }
+        this.maskBg2 = new eui.Image("mask_layer_png");
+        this.maskBg2.width = this.context.getStageWidth();
+        this.maskBg2.height = this.context.getStageHeight();
+        this.maskBg2.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.clearHorseSelect();
+        }, this);
+        this.maskBg2.visible = false;
+        this.context.addChild(this.maskBg2);
+        this.horseSelectPanel = new eui.Panel();
+        this.horseSelectPanel.skinName = "resource/eui_skins/UserUI/StablesPageUI.exml";
+        this.horseSelectPanel.title = "Title";
+        // this.horseSelectPanel.horizontalCenter = 0;
+        // this.horseSelectPanel.verticalCenter = 0;
+        this.horseSelectPanel.x = leftX;
+        this.horseSelectPanel.y = downY;
+        this.context.addChild(this.horseSelectPanel);
+        // CommonTools.fixFix(this.context,this.horseSelectPanel,1,0,0);
+        this.tipsPanel = this.horseSelectPanel;
+        CommonTools.fixFix(this.context, this.horseSelectPanel, 2, 0, 0);
+        var scrollShop = this.horseSelectPanel.getChildByName("horse_panel_group").getChildByName("res_scroller");
+        scrollShop.viewport.scrollV = 0;
+        var groupShop = scrollShop.getChildByName("res_group");
+        groupShop.removeChildren();
+        this.horseSelectPanel.getChildByName("horse_panel_group").getChildByName("horse_up_point_click").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            if (this.horsePanelUp) {
+                this.horsePanelUp = false;
+                egret.Tween.get(this.horseSelectPanel).to({ y: upY }, 1000);
+                this.maskBg2.visible = true;
+            }
+            else {
+                this.horsePanelUp = true;
+                egret.Tween.get(this.horseSelectPanel).to({ y: downY }, 1000);
+                this.maskBg2.visible = false;
+            }
+            this.resetHorse();
+        }, this);
+        var count = 20;
+        var _loop_1 = function (i) {
+            var panelT = new eui.Panel();
+            panelT.skinName = "resource/eui_skins/UserUI/horseItemGroup.exml";
+            panelT.name = "p_" + i;
+            var xOff = 0;
+            var yOff = 0;
+            panelT.x = 11 + 120 * (i % 5);
+            panelT.y = 15 + 120 * (Math.floor(i / 5));
+            groupShop.addChild(panelT);
+            panelT.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+                for (var iCnt = 0; iCnt < count; iCnt++) {
+                    var tempPanel = groupShop.getChildByName("p_" + iCnt);
+                    var tempGroup = tempPanel.getChildByName("group_1");
+                    tempGroup.scaleX = 1;
+                    tempGroup.scaleY = 1;
+                    tempGroup.getChildByName("select_2_img").visible = false;
+                }
+                var groupHorse = panelT.getChildByName("group_1");
+                groupHorse.scaleX = 1.2;
+                groupHorse.scaleY = 1.2;
+                groupHorse.getChildByName("select_2_img").visible = true;
+            }, this_1);
+        };
+        var this_1 = this;
+        for (var i = 0; i < count; i++) {
+            _loop_1(i);
+        }
+        var showCnt = 0;
+        if (count >= 5)
+            showCnt = 2;
+        var groupItem = groupShop.getChildByName("p_" + showCnt);
+        var groupHorse = groupItem.getChildByName("group_1");
+        groupHorse.scaleX = 1.2;
+        groupHorse.scaleY = 1.2;
+        groupHorse.getChildByName("select_2_img").visible = true;
+        var leftX2 = 900;
+        var downY2 = 100;
+        if (ConstValue.deviveNormalScale >= 2) {
+            leftX2 -= 0;
+            downY2 -= 80;
+        }
+        if (this.curPage == 2 && this.subCurPage == 1) {
+            this.horseSelectRightPanel = new eui.Panel();
+            this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesStatUI.exml";
+            this.horseSelectRightPanel.title = "Title";
+            this.horseSelectRightPanel.x = leftX2;
+            this.horseSelectRightPanel.y = downY2;
+            this.context.addChild(this.horseSelectRightPanel);
+            CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, 0);
+        }
+    };
+    HallModule.prototype.horseSelectUI = function () {
+        if (this.curPage == 1) {
+        }
+        else if (this.curPage == 2) {
+            this.createHorseItem();
+        }
+    };
     HallModule.prototype.updateUI = function () {
         if (this.curPage == 1) {
             var horse_lv_img = this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img");
@@ -271,6 +421,9 @@ var HallModule = (function () {
             this.panel.getChildByName("horse_name_group").getChildByName("horse_name_lb").text = ConstValue.cacheUserInfo.name;
             this.panel.getChildByName("up_item_group").getChildByName("main_coin_num_lb").text = ConstValue.cacheUserInfo.coin;
             this.panel.getChildByName("up_item_group").getChildByName("sub_coin_num_lb").text = ConstValue.cacheUserInfo.diamond;
+        }
+        else if (this.curPage == 2) {
+            this.horseSelectUI();
         }
     };
     HallModule.prototype.updateMaincoin = function (coin, save) {
@@ -674,6 +827,7 @@ var HallModule = (function () {
             this.rankHead04.source = "icon_breeding_n_png";
             this.btnBackImg.visible = true;
             this.panel.getChildByName("horse_name_group").visible = false;
+            this.updateUI();
         }
         else if (clickName == "rank_head_03") {
             if (this.curPage == 2) {
@@ -1322,8 +1476,8 @@ var HallModule = (function () {
     };
     HallModule.prototype.handleSkill = function (group, parG) {
         var cnt = 0;
-        var _loop_1 = function (i) {
-            var obj = this_1.skillData[i];
+        var _loop_2 = function (i) {
+            var obj = this_2.skillData[i];
             var panelT = new eui.Panel();
             panelT.skinName = "resource/eui_skins/UserUI/SkillGroup.exml";
             panelT.name = "p_" + i;
@@ -1357,7 +1511,7 @@ var HallModule = (function () {
                     skill_pay.source = "mini_tv_png";
                 }
                 skill_cost.text = obj.cost;
-                CommonButtonHandle.beginTouch(skill_learn, this_1);
+                CommonButtonHandle.beginTouch(skill_learn, this_2);
                 if (obj.curLv > 0) {
                     skill_learn.text = "升级";
                     skill_learn.strokeColor = 0xE76C47;
@@ -1365,7 +1519,7 @@ var HallModule = (function () {
                 skill_learn.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
                     var sData_skill = CommonTools.getDataJsonStr("C2G_Upgrade", 1, { SkillID: parseInt(i) });
                     ConstValue.P_NET_OBJ.sendData(sData_skill);
-                }, this_1);
+                }, this_2);
             }
             else {
                 skill_pay.visible = false;
@@ -1375,9 +1529,9 @@ var HallModule = (function () {
             }
             cnt++;
         };
-        var this_1 = this;
+        var this_2 = this;
         for (var i in this.skillData) {
-            _loop_1(i);
+            _loop_2(i);
         }
     };
     HallModule.prototype.handleRank = function (group, parG, type) {
@@ -1621,8 +1775,8 @@ var HallModule = (function () {
         lbZuan.text = ConstValue.cacheUserInfo.diamond;
     };
     HallModule.prototype.handleRoleClass = function (group, parG) {
-        var _loop_2 = function (i) {
-            var classObj = this_2.roleClassData[i];
+        var _loop_3 = function (i) {
+            var classObj = this_3.roleClassData[i];
             var ii = parseInt(i);
             var panelT = new eui.Panel();
             panelT.skinName = "resource/eui_skins/UserUI/RoleSelectUIGroup.exml";
@@ -1648,11 +1802,11 @@ var HallModule = (function () {
                 img_selected.visible = true;
                 this.roleSelectIdx = i;
                 this.updateRoleClass(i);
-            }, this_2);
+            }, this_3);
         };
-        var this_2 = this;
+        var this_3 = this;
         for (var i in this.roleClassData) {
-            _loop_2(i);
+            _loop_3(i);
         }
         this.updateRoleClass("0");
         var btn_fight = this.panelNotice.getChildByName("btn_fight");
@@ -1720,8 +1874,8 @@ var HallModule = (function () {
         var group = this.panelNotice.getChildByName("fighting_parent")
             .getChildByName("scroll").getChildByName("scroll_group");
         var i = 0;
-        var _loop_3 = function (key) {
-            var obj = this_3.selectMapData[key];
+        var _loop_4 = function (key) {
+            var obj = this_4.selectMapData[key];
             var panelT = new eui.Panel();
             panelT.skinName = "resource/eui_skins/UserUI/MapViewGroup.exml";
             panelT.name = "p_" + i;
@@ -1744,13 +1898,13 @@ var HallModule = (function () {
                 this.selectKey = key;
                 var sData_friend_pvp = CommonTools.getDataJsonStr("open1V1RoomByMap", 1, { mapID: parseInt(this.selectKey) });
                 ConstValue.P_NET_OBJ.sendData(sData_friend_pvp);
-            }, this_3);
+            }, this_4);
             new MapMiniDIYModule(panelT, obj.bgconf, obj.layerconf, 2);
             i++;
         };
-        var this_3 = this;
+        var this_4 = this;
         for (var key in this.selectMapData) {
-            _loop_3(key);
+            _loop_4(key);
         }
     };
     HallModule.prototype.handleSelectMap = function () {
@@ -1785,8 +1939,8 @@ var HallModule = (function () {
         starBg.width = starKuang.width * pro;
         var guankaLayer = parG.getChildByName("guanka_layer");
         guankaLayer.text = "第" + this.barrLayer + "层";
-        var _loop_4 = function (idx) {
-            var obj = this_4.barrData.barrierList[idx];
+        var _loop_5 = function (idx) {
+            var obj = this_5.barrData.barrierList[idx];
             var panelT = new eui.Panel();
             panelT.skinName = "resource/eui_skins/UserUI/noEndBarrStartGroup.exml";
             panelT.name = "p_" + i;
@@ -1834,12 +1988,12 @@ var HallModule = (function () {
                 }
                 var sData_gobarr = CommonTools.getDataJsonStr("getBarrierInfo", 1, { barrierNo: obj.barrierNo });
                 ConstValue.P_NET_OBJ.sendData(sData_gobarr);
-            }, this_4);
+            }, this_5);
             i++;
         };
-        var this_4 = this;
+        var this_5 = this;
         for (var idx in this.barrData.barrierList) {
-            _loop_4(idx);
+            _loop_5(idx);
         }
         if (this.fixGuide5) {
             this.fixGuide5 = false;

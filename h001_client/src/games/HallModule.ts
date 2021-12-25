@@ -68,6 +68,9 @@ class HallModule {
 	private buyClass = 0;
 
 	private curPage = 1;
+	private subCurPage = 1;
+	private subSubCurPage = 1;
+
 	private rankHead01;
 	private rankHead02;
 	private rankHead03;
@@ -80,8 +83,9 @@ class HallModule {
 	private rankHead05_mask;
 
 	private btnBackImg;
-	private subLayer;
 	private horseSelectPanel;
+	private horseSelectRightPanel;
+	private horsePanelUp = true;
 
 	public constructor(ct:Main) {
 		this.context = ct;
@@ -223,7 +227,7 @@ class HallModule {
 		CommonTools.fixFix(this.context,this.panel.getChildByName("img_lv_lb"),1,30,10);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("rank_grounp_main"),1,0,0);//4,10
 		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_gonggao"),1,44,10);
-		CommonTools.fixFix(this.context,this.panel.getChildByName("up_item_group"),2,0,-20);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("up_item_group"),2,0,-75);//-20
 
 		let imgHead = this.panel.getChildByName("img_info") as eui.Image;
 		if(ConstValue.cacheUserInfo.headPic != "")imgHead.source = ConstValue.cacheUserInfo.headPic;
@@ -297,6 +301,155 @@ class HallModule {
 		}
 	}
 
+	private clearHorseSelect(){
+		if(this.curPage == 1){
+			
+		}else if(this.curPage == 2){
+			let downY = 570;
+			if(ConstValue.deviveNormalScale >= 2){
+				downY -= 80;
+			}
+			egret.Tween.get(this.horseSelectPanel).to({y:downY}, 1000);
+			this.maskBg2.visible = false;
+			this.horsePanelUp = true;
+			this.resetHorse();
+		}
+	}
+
+	private resetHorse(){
+		let scrollShop = this.horseSelectPanel.getChildByName("horse_panel_group").getChildByName("res_scroller") as eui.Scroller;
+		scrollShop.viewport.scrollV = 0;
+		let groupShop = scrollShop.getChildByName("res_group") as eui.Group;
+		let count = 20;
+		for(let iCnt=0;iCnt<count;iCnt++){
+			let tempPanel = groupShop.getChildByName("p_"+iCnt) as eui.Panel;
+			let tempGroup = tempPanel.getChildByName("group_1") as eui.Group;
+			tempGroup.scaleX = 1;
+			tempGroup.scaleY = 1;
+			tempGroup.getChildByName("select_2_img").visible = false;
+		}
+		let showCnt = 0;
+		if(count >= 5)showCnt = 2;
+		let groupItem = groupShop.getChildByName("p_"+showCnt) as eui.Panel;
+		let groupHorse = groupItem.getChildByName("group_1") as eui.Group;
+		groupHorse.scaleX = 1.2;
+		groupHorse.scaleY = 1.2;
+		groupHorse.getChildByName("select_2_img").visible = true;
+	}
+
+	private createHorseItem(){
+		if(this.horseSelectPanel != null){
+			this.context.removeChild(this.maskBg2);
+			this.context.removeChild(this.horseSelectPanel);
+			this.maskBg2 = null;
+			this.horseSelectPanel = null;
+			this.horsePanelUp = true;
+		}
+		let upY = 305;
+		let downY = 570;
+		let leftX = 215;
+		if(ConstValue.deviveNormalScale >= 2){
+			upY -= 30;
+			downY -= 80;
+		}
+		this.maskBg2 = new eui.Image("mask_layer_png");
+		this.maskBg2.width = this.context.getStageWidth();
+		this.maskBg2.height = this.context.getStageHeight();
+		this.maskBg2.addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			CommonAudioHandle.playEffect("playBomb_mp3",1);
+			this.clearHorseSelect();
+		}, this);
+		this.maskBg2.visible = false;
+		this.context.addChild(this.maskBg2);
+
+		this.horseSelectPanel = new eui.Panel();
+		this.horseSelectPanel.skinName = "resource/eui_skins/UserUI/StablesPageUI.exml";
+		this.horseSelectPanel.title = "Title";
+		// this.horseSelectPanel.horizontalCenter = 0;
+		// this.horseSelectPanel.verticalCenter = 0;
+		this.horseSelectPanel.x = leftX;
+		this.horseSelectPanel.y = downY;
+		this.context.addChild(this.horseSelectPanel);
+		// CommonTools.fixFix(this.context,this.horseSelectPanel,1,0,0);
+		this.tipsPanel = this.horseSelectPanel;
+		CommonTools.fixFix(this.context,this.horseSelectPanel,2,0,0);
+
+		let scrollShop = this.horseSelectPanel.getChildByName("horse_panel_group").getChildByName("res_scroller") as eui.Scroller;
+		scrollShop.viewport.scrollV = 0;
+		let groupShop = scrollShop.getChildByName("res_group") as eui.Group;
+		groupShop.removeChildren();
+
+		this.horseSelectPanel.getChildByName("horse_panel_group").getChildByName("horse_up_point_click").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			CommonAudioHandle.playEffect("playBomb_mp3",1);
+			if(this.horsePanelUp){
+				this.horsePanelUp = false;
+				egret.Tween.get(this.horseSelectPanel).to({y:upY}, 1000);
+				this.maskBg2.visible = true;
+			}else{
+				this.horsePanelUp = true;
+				egret.Tween.get(this.horseSelectPanel).to({y:downY}, 1000);
+				this.maskBg2.visible = false;
+			}
+			this.resetHorse();
+		}, this);
+		let count = 20;
+		for(let i=0;i<count;i++){
+			let panelT = new eui.Panel();
+			panelT.skinName = "resource/eui_skins/UserUI/horseItemGroup.exml";
+			panelT.name = "p_"+i;
+			let xOff = 0;
+			let yOff = 0;
+			panelT.x = 11+ 120*(i%5);
+			panelT.y = 15+ 120*(Math.floor(i/5));
+			groupShop.addChild(panelT);
+			panelT.addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+				for(let iCnt=0;iCnt<count;iCnt++){
+					let tempPanel = groupShop.getChildByName("p_"+iCnt) as eui.Panel;
+					let tempGroup = tempPanel.getChildByName("group_1") as eui.Group;
+					tempGroup.scaleX = 1;
+					tempGroup.scaleY = 1;
+					tempGroup.getChildByName("select_2_img").visible = false;
+				}
+				let groupHorse = panelT.getChildByName("group_1") as eui.Group;
+				groupHorse.scaleX = 1.2;
+				groupHorse.scaleY = 1.2;
+				groupHorse.getChildByName("select_2_img").visible = true;
+			}, this);
+		}
+
+		let showCnt = 0;
+		if(count >= 5)showCnt = 2;
+		let groupItem = groupShop.getChildByName("p_"+showCnt) as eui.Panel;
+		let groupHorse = groupItem.getChildByName("group_1") as eui.Group;
+		groupHorse.scaleX = 1.2;
+		groupHorse.scaleY = 1.2;
+		groupHorse.getChildByName("select_2_img").visible = true;
+
+		let leftX2 = 900;
+		let downY2 = 100;
+		if(ConstValue.deviveNormalScale >= 2){
+			leftX2 -= 0;
+			downY2 -= 80;
+		}
+		if(this.curPage == 2 && this.subCurPage == 1){
+			this.horseSelectRightPanel = new eui.Panel();
+			this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesStatUI.exml";
+			this.horseSelectRightPanel.title = "Title";
+			this.horseSelectRightPanel.x = leftX2;
+			this.horseSelectRightPanel.y = downY2;
+			this.context.addChild(this.horseSelectRightPanel);
+			CommonTools.fixFix(this.context,this.horseSelectRightPanel,2,0,0);
+		}
+	}
+
+	private horseSelectUI(){
+		if(this.curPage == 1){
+			
+		}else if(this.curPage == 2){
+			this.createHorseItem();
+		}
+	}
+
 	private updateUI(){
 		if(this.curPage == 1){
 			let horse_lv_img = this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img") as eui.Image;
@@ -305,7 +458,7 @@ class HallModule {
 			this.panel.getChildByName("up_item_group").getChildByName("main_coin_num_lb").text = ConstValue.cacheUserInfo.coin;
 			this.panel.getChildByName("up_item_group").getChildByName("sub_coin_num_lb").text = ConstValue.cacheUserInfo.diamond;
 		}else if(this.curPage == 2){
-			
+			this.horseSelectUI();
 		}
 	}
 
@@ -719,8 +872,7 @@ class HallModule {
 			this.btnBackImg.visible = true;
 			this.panel.getChildByName("horse_name_group").visible = false;
 
-
-
+			this.updateUI();
 		}else if(clickName == "rank_head_03"){
 			if(this.curPage == 2){
 				this.rankHead02_mask.visible = false;

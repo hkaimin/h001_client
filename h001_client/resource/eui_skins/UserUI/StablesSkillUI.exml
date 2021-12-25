@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="NoticeGroup" width="363" height="635" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="NoticeGroup" width="433" height="635" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="362" height="582" x="1" y="107.68" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png"/>
 	<e:Image width="362" height="582" x="0" y="103.68" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png" visible="false"/>
 	<e:Image width="76" height="80" x="16" y="16" source="icon_level_s_png"/>
 	<e:Image width="188" height="31" x="108.33" y="25" source="bar_name_png"/>
@@ -23,7 +24,7 @@
 	<e:Image width="110" height="9" x="103.54" y="401" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_2_png"/>
 	<e:Image width="60" height="48" x="17.21" y="377" anchorOffsetX="0" anchorOffsetY="0" source="icon_Mud_png"/>
 	<e:Image width="42" height="32" x="281.95" y="387.5" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_a_png"/>
-	<e:Image width="362" height="63" x="-6.46" y="107.68" source="bar_info_di_3_png"/>
+	<e:Image width="362" height="63" x="0.54" y="107.68" source="bar_info_di_3_png"/>
 	<e:Image width="362" height="63" x="1" y="431" source="bar_info_di_3_png"/>
 	<e:Image width="362" height="63" x="-7.46" y="107.68" source="Site-suitability_png"/>
 	<e:Image width="362" height="63" x="-1.46" y="431" source="skills_png"/>
@@ -33,7 +34,12 @@
 	<e:Image width="62" height="62" x="266.32" y="499" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
 	<e:Image width="62" height="62" x="-220.32" y="561" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
 	<e:Image width="62" height="62" x="-100.78" y="561" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
-	<e:Image width="62" height="62" x="19.21" y="561" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
-	<e:Image width="62" height="62" x="144.41" y="561" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
-	<e:Image width="62" height="62" x="387.73" y="561" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
+	<e:Image width="62" height="62" x="22.21" y="566" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
+	<e:Image width="62" height="62" x="144.41" y="566" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
+	<e:Image width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png" visible="false"/>
+	<e:Image width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" source="icon_stats_s_png"/>
+	<e:Image width="59" height="94" x="360" y="312" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png"/>
+	<e:Image width="59" height="94" x="360" y="312" anchorOffsetX="0" anchorOffsetY="0" source="icon_skill_n_png"/>
+	<e:Image width="59" height="94" x="360" y="412" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png" visible="false"/>
+	<e:Image width="59" height="94" x="360" y="412" anchorOffsetX="0" anchorOffsetY="0" source="icon_pedigree_n_png"/>
 </e:Skin>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image id="main_cloud" width="1332" height="709.33" x="0.67" y="39" anchorOffsetX="0" anchorOffsetY="0" source="hall_cloud_png" name="main_cloud" visible="false"/>
-	<e:Group id="sub_layer_group" width="90" height="41" x="0" y="0" anchorOffsetX="0" anchorOffsetY="0" name="sub_layer_group"/>
 	<e:Group id="rank_grounp_main" width="86.36" height="24.24" x="20" y="164" anchorOffsetX="0" anchorOffsetY="0" name="rank_grounp_main">
 		<e:Image width="201" height="746" x="-19.73" y="-160.36" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" source="leftbar_di_png"/>
 		<e:Image width="84" height="78" x="21.770000000000003" y="77.64" anchorOffsetX="0" anchorOffsetY="0" source="mini_head" scaleX="1" scaleY="1" visible="false"/>
