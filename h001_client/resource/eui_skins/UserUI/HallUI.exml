@@ -19,6 +19,7 @@
 		<e:Image id="rank_head_05_mask" width="201" height="94" x="-18" y="398.99" anchorOffsetX="0" anchorOffsetY="0" name="rank_head_05_mask" scaleX="1" scaleY="1" source="leftbar_s_png" visible="false"/>
 		<e:Image id="btn_back_img" width="102" height="67" x="-17.79" y="445.41" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" source="btn_back_png" name="btn_back_img" visible="false"/>
 		<e:Image width="35" height="38" x="8.27" y="242.82" anchorOffsetX="0" anchorOffsetY="0" source="new_ui_18_png" scaleX="1" scaleY="1" visible="false"/>
+		<e:Image id="img_info0" width="201.67" height="106" x="-20.57" y="-162.42" anchorOffsetX="0" anchorOffsetY="0" name="img_info" source="pic_logo_png" scaleX="1" scaleY="1"/>
 	</e:Group>
 	<e:Image id="img_coin_bg" width="159" height="38" x="813.7" y="35" anchorOffsetX="0" anchorOffsetY="0" name="img_coin_bg" source="bar_coin_png" visible="false"/>
 	<e:Image id="img_zuan_bg" width="159" height="38" x="1058.27" y="35" anchorOffsetX="0" anchorOffsetY="0" name="img_zuan_bg" source="bar_coin_png" visible="false"/>
@@ -50,7 +51,7 @@
 			</e:skinName>
 		</e:Button>
 	</e:Group>
-	<e:Image id="img_info" width="201.67" height="106" x="1.63" y="2.93" anchorOffsetX="0" anchorOffsetY="0" name="img_info" source="pic_logo_png"/>
+	<e:Image id="img_info" width="201.67" height="106" x="1.63" y="2.93" anchorOffsetX="0" anchorOffsetY="0" name="img_info" source="pic_logo_png" visible="false"/>
 	<e:Image id="img_exp_bg" width="226" height="45" x="258.18" y="28.7" anchorOffsetX="0" anchorOffsetY="0" name="img_exp_bg" source="bar_level_1_di_png" visible="false"/>
 	<e:Image id="img_exp_value" width="170" height="35.67" x="256.02" y="33.3" anchorOffsetX="0" anchorOffsetY="0" name="img_exp_value" source="bar_level_1_png" scale9Grid="4,6,7,27" visible="false"/>
 	<e:Label id="hall_id_lb" text="Ferrari" x="1051.99" y="607.99" anchorOffsetX="0" width="207" anchorOffsetY="0" height="49" size="26" name="hall_id_lb" strokeColor="0xc63b3b" textAlign="center" verticalAlign="middle" visible="false"/>

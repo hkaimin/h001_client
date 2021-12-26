@@ -15,11 +15,11 @@
 	<e:Image width="362" height="63" x="1" y="431" source="bar_info_di_3_png"/>
 	<e:Image width="362" height="63" x="-1.46" y="431" source="Gene-factor_png"/>
 	<e:Image width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png" visible="false"/>
-	<e:Image id="horse_stat_lb" width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" source="icon_stats_s_png" name="horse_stat_lb"/>
+	<e:Image id="horse_stat_lb" width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" name="horse_stat_lb" source="icon_stats_n_png"/>
 	<e:Image width="59" height="94" x="360" y="312" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png" visible="false"/>
 	<e:Image id="horse_skill_lb" width="59" height="94" x="360" y="312" anchorOffsetX="0" anchorOffsetY="0" source="icon_skill_n_png" name="horse_skill_lb"/>
 	<e:Image width="59" height="94" x="360" y="412" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png"/>
-	<e:Image id="horse_pedigree_lb" width="59" height="94" x="360" y="412" anchorOffsetX="0" anchorOffsetY="0" source="icon_pedigree_n_png" name="horse_pedigree_lb"/>
+	<e:Image id="horse_pedigree_lb" width="59" height="94" x="360" y="412" anchorOffsetX="0" anchorOffsetY="0" name="horse_pedigree_lb" source="icon_pedigree_s_png"/>
 	<e:Image width="81" height="108" x="17.75" y="502.5" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png"/>
 	<e:Image width="53" height="53" x="32.04" y="514.5" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0"/>
 	<e:Image width="12" height="12" x="28.75" y="590.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>

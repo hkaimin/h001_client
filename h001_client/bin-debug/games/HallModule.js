@@ -67,7 +67,6 @@ var HallModule = (function () {
         this.buyClass = 0;
         this.curPage = 1;
         this.subCurPage = 1;
-        this.subSubCurPage = 1;
         this.horsePanelUp = true;
         this.isdisplay = false;
         this.context = ct;
@@ -126,6 +125,8 @@ var HallModule = (function () {
         this.btnPveAnim.name = "btn_noend_pve_anim";
         this.panel.addChild(this.btnPveAnim);
         this.setHorseXY();
+        if (this.curPage == 2 && this.subCurPage > 1)
+            this.btnPveAnim.visible = false;
         this.btnPveAnim.addEventListener(egret.Event.COMPLETE, function () {
             // CommonTools.logWallet("---COMPLETE------"+this.horseCurrent)
             this.horseCurrent++;
@@ -330,12 +331,18 @@ var HallModule = (function () {
             this.context.addChild(this.horseSelectRightPanel);
             CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, 0);
             this.horseSelectRightPanel.getChildByName("horse_stat_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+                if (ConstValue.P_LOGIN_OBJ == null)
+                    CommonAudioHandle.playEffect("playBomb_mp3", 1);
                 this.changeHorseRight(1);
             }, this);
             this.horseSelectRightPanel.getChildByName("horse_skill_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+                if (ConstValue.P_LOGIN_OBJ == null)
+                    CommonAudioHandle.playEffect("playBomb_mp3", 1);
                 this.changeHorseRight(2);
             }, this);
             this.horseSelectRightPanel.getChildByName("horse_pedigree_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+                if (ConstValue.P_LOGIN_OBJ == null)
+                    CommonAudioHandle.playEffect("playBomb_mp3", 1);
                 this.changeHorseRight(3);
             }, this);
         }
@@ -431,11 +438,136 @@ var HallModule = (function () {
         groupHorse.getChildByName("select_2_img").visible = true;
         this.changeHorseRight(1);
     };
-    HallModule.prototype.horseSelectUI = function () {
-        if (this.curPage == 1) {
+    HallModule.prototype.initMergeClick = function () {
+        this.horseSelectRightPanel.getChildByName("left_horse_stat_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            if (ConstValue.P_LOGIN_OBJ == null)
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.horseSelectRightPanel.getChildByName("left_horse_stat_lb").source = "icon_stats_s_png";
+            this.horseSelectRightPanel.getChildByName("left_horse_skill_lb").source = "icon_skill_n_png";
+            this.horseSelectRightPanel.getChildByName("left_horse_pedigree_lb").source = "icon_pedigree_n_png";
+            this.horseSelectRightPanel.getChildByName("left_group_stat").visible = true;
+            this.horseSelectRightPanel.getChildByName("left_skill_group").visible = false;
+            this.horseSelectRightPanel.getChildByName("left_pedigree_group").visible = false;
+        }, this);
+        this.horseSelectRightPanel.getChildByName("left_horse_skill_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            if (ConstValue.P_LOGIN_OBJ == null)
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.horseSelectRightPanel.getChildByName("left_horse_stat_lb").source = "icon_stats_n_png";
+            this.horseSelectRightPanel.getChildByName("left_horse_skill_lb").source = "icon_skill_s_png";
+            this.horseSelectRightPanel.getChildByName("left_horse_pedigree_lb").source = "icon_pedigree_n_png";
+            this.horseSelectRightPanel.getChildByName("left_group_stat").visible = false;
+            this.horseSelectRightPanel.getChildByName("left_skill_group").visible = true;
+            this.horseSelectRightPanel.getChildByName("left_pedigree_group").visible = false;
+        }, this);
+        this.horseSelectRightPanel.getChildByName("left_horse_pedigree_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            if (ConstValue.P_LOGIN_OBJ == null)
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.horseSelectRightPanel.getChildByName("left_horse_stat_lb").source = "icon_stats_n_png";
+            this.horseSelectRightPanel.getChildByName("left_horse_skill_lb").source = "icon_skill_n_png";
+            this.horseSelectRightPanel.getChildByName("left_horse_pedigree_lb").source = "icon_pedigree_s_png";
+            this.horseSelectRightPanel.getChildByName("left_group_stat").visible = false;
+            this.horseSelectRightPanel.getChildByName("left_skill_group").visible = false;
+            this.horseSelectRightPanel.getChildByName("left_pedigree_group").visible = true;
+        }, this);
+        this.horseSelectRightPanel.getChildByName("right_horse_stat_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            if (ConstValue.P_LOGIN_OBJ == null)
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.horseSelectRightPanel.getChildByName("right_horse_stat_lb").source = "icon_stats_s_png";
+            this.horseSelectRightPanel.getChildByName("right_horse_skill_lb").source = "icon_skill_n_png";
+            this.horseSelectRightPanel.getChildByName("right_horse_pedigree_lb").source = "icon_pedigree_n_png";
+            this.horseSelectRightPanel.getChildByName("right_group_stat").visible = true;
+            this.horseSelectRightPanel.getChildByName("right_skill_group").visible = false;
+            this.horseSelectRightPanel.getChildByName("right_pedigree_group").visible = false;
+        }, this);
+        this.horseSelectRightPanel.getChildByName("right_horse_skill_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            if (ConstValue.P_LOGIN_OBJ == null)
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.horseSelectRightPanel.getChildByName("right_horse_stat_lb").source = "icon_stats_n_png";
+            this.horseSelectRightPanel.getChildByName("right_horse_skill_lb").source = "icon_skill_s_png";
+            this.horseSelectRightPanel.getChildByName("right_horse_pedigree_lb").source = "icon_pedigree_n_png";
+            this.horseSelectRightPanel.getChildByName("right_group_stat").visible = false;
+            this.horseSelectRightPanel.getChildByName("right_skill_group").visible = true;
+            this.horseSelectRightPanel.getChildByName("right_pedigree_group").visible = false;
+        }, this);
+        this.horseSelectRightPanel.getChildByName("right_horse_pedigree_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            if (ConstValue.P_LOGIN_OBJ == null)
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.horseSelectRightPanel.getChildByName("right_horse_stat_lb").source = "icon_stats_n_png";
+            this.horseSelectRightPanel.getChildByName("right_horse_skill_lb").source = "icon_skill_n_png";
+            this.horseSelectRightPanel.getChildByName("right_horse_pedigree_lb").source = "icon_pedigree_s_png";
+            this.horseSelectRightPanel.getChildByName("right_group_stat").visible = false;
+            this.horseSelectRightPanel.getChildByName("right_skill_group").visible = false;
+            this.horseSelectRightPanel.getChildByName("right_pedigree_group").visible = true;
+        }, this);
+    };
+    HallModule.prototype.createHorseMerge = function () {
+        if (this.horseSelectRightPanel != null) {
+            this.context.removeChild(this.horseSelectRightPanel);
+            this.horseSelectRightPanel = null;
         }
-        else if (this.curPage == 2) {
+        var leftX2 = 210;
+        var downY2 = 0;
+        if (ConstValue.deviveNormalScale >= 2) {
+            leftX2 -= 0;
+            downY2 -= 0;
+        }
+        this.horseSelectRightPanel = new eui.Panel();
+        this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/Merge_Right.exml";
+        this.horseSelectRightPanel.title = "Title";
+        this.horseSelectRightPanel.x = leftX2;
+        this.horseSelectRightPanel.y = downY2;
+        this.context.addChild(this.horseSelectRightPanel);
+        CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, -40);
+        this.initMergeClick();
+        this.panel.getChildByName("up_item_group").visible = false;
+        this.horseSelectRightPanel.getChildByName("left_pre_horse_img").visible = false;
+        this.horseSelectRightPanel.getChildByName("left_next_horse_img").visible = false;
+        this.horseSelectRightPanel.getChildByName("left_stallion_lb").visible = false;
+        this.horseSelectRightPanel.getChildByName("left_stallion_bg_img").visible = false;
+        this.horseSelectRightPanel.getChildByName("right_mare_lb").text = "horses 1/3";
+        this.horseSelectRightPanel.getChildByName("stallion_flag_img").visible = false;
+        this.horseSelectRightPanel.getChildByName("mare_flag_img").visible = false;
+    };
+    HallModule.prototype.createHorseBreeding = function () {
+        if (this.horseSelectRightPanel != null) {
+            this.context.removeChild(this.horseSelectRightPanel);
+            this.horseSelectRightPanel = null;
+        }
+        var leftX2 = 210;
+        var downY2 = 0;
+        if (ConstValue.deviveNormalScale >= 2) {
+            leftX2 -= 0;
+            downY2 -= 0;
+        }
+        this.horseSelectRightPanel = new eui.Panel();
+        this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/Merge_Right.exml";
+        this.horseSelectRightPanel.title = "Title";
+        this.horseSelectRightPanel.x = leftX2;
+        this.horseSelectRightPanel.y = downY2;
+        this.context.addChild(this.horseSelectRightPanel);
+        CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, -40);
+        this.initMergeClick();
+        this.panel.getChildByName("up_item_group").visible = false;
+        this.horseSelectRightPanel.getChildByName("merge_title_img").source = "BREEDING_png";
+        this.horseSelectRightPanel.getChildByName("merge_btn_lb").text = "Breeding";
+        this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").text = "Advanced\nBreeding";
+    };
+    HallModule.prototype.horseSelectUI = function () {
+        if (this.subCurPage == 1) {
+            this.maskNew.source = "horse_home_page2_jpg";
             this.createHorseItem();
+            this.btnPveAnim.visible = true;
+            this.panel.getChildByName("up_item_group").visible = true;
+        }
+        else if (this.subCurPage == 2) {
+            this.maskNew.source = "horse_merge_page2_jpg";
+            this.clearPage2HorseHome();
+            this.createHorseMerge();
+        }
+        else if (this.subCurPage == 3) {
+            this.maskNew.source = "horse_merge_page2_jpg";
+            this.clearPage2HorseHome();
+            this.createHorseBreeding();
         }
     };
     HallModule.prototype.updateUI = function () {
@@ -816,7 +948,7 @@ var HallModule = (function () {
     HallModule.prototype.addCommonTips = function (tips) {
         CommonTools.addCommonTips(this.tipsPanel, tips);
     };
-    HallModule.prototype.clearBack = function () {
+    HallModule.prototype.clearPage2HorseHome = function () {
         if (this.horseSelectPanel != null) {
             this.context.removeChild(this.horseSelectPanel);
             this.horseSelectPanel = null;
@@ -829,12 +961,15 @@ var HallModule = (function () {
             this.context.removeChild(this.maskBg2);
             this.maskBg2 = null;
         }
+        this.btnPveAnim.visible = false;
+        this.panel.getChildByName("up_item_group").visible = false;
     };
     HallModule.prototype.changePage = function (clickName) {
         if (clickName == "rank_head_01") {
             if (this.curPage != 1)
                 this.maskNew.source = "new_ui_01_jpg";
             this.curPage = 1;
+            this.subCurPage = 1;
             this.rankHead01_mask.visible = true;
             this.rankHead02_mask.visible = false;
             this.rankHead03_mask.visible = false;
@@ -845,15 +980,18 @@ var HallModule = (function () {
             this.rankHead03.source = "icon_training_n_png";
             this.rankHead04.source = "icon_task_n_png";
             this.rankHead05.source = "icon_marketpalec_n_png";
+            this.panel.getChildByName("horse_name_group").visible = true;
             this.btnBackImg.visible = false;
             this.rankHead01.visible = true;
             this.rankHead05.visible = true;
-            this.panel.getChildByName("horse_name_group").visible = true;
-            this.clearBack();
+            this.clearPage2HorseHome();
+            this.btnPveAnim.visible = true;
+            this.panel.getChildByName("up_item_group").visible = true;
         }
         else if (clickName == "rank_head_02") {
+            this.panel.getChildByName("horse_name_group").visible = false;
             this.curPage = 2;
-            this.maskNew.source = "horse_home_page2_jpg";
+            this.subCurPage = 1;
             this.rankHead01_mask.visible = false;
             this.rankHead02_mask.visible = true;
             this.rankHead03_mask.visible = false;
@@ -865,17 +1003,18 @@ var HallModule = (function () {
             this.rankHead03.source = "icon_merge_n_png";
             this.rankHead04.source = "icon_breeding_n_png";
             this.btnBackImg.visible = true;
-            this.panel.getChildByName("horse_name_group").visible = false;
             this.updateUI();
         }
         else if (clickName == "rank_head_03") {
             if (this.curPage == 2) {
+                this.subCurPage = 2;
                 this.rankHead02_mask.visible = false;
                 this.rankHead03_mask.visible = true;
                 this.rankHead04_mask.visible = false;
                 this.rankHead02.source = "icon_horse_n_png";
                 this.rankHead03.source = "icon_merge_s_png";
                 this.rankHead04.source = "icon_breeding_n_png";
+                this.updateUI();
             }
             else {
                 this.curPage = 3;
@@ -893,12 +1032,14 @@ var HallModule = (function () {
         }
         else if (clickName == "rank_head_04") {
             if (this.curPage == 2) {
+                this.subCurPage = 3;
                 this.rankHead02_mask.visible = false;
                 this.rankHead03_mask.visible = false;
                 this.rankHead04_mask.visible = true;
                 this.rankHead02.source = "icon_horse_n_png";
                 this.rankHead03.source = "icon_merge_n_png";
                 this.rankHead04.source = "icon_breeding_s_png";
+                this.updateUI();
             }
             else {
                 this.curPage = 4;

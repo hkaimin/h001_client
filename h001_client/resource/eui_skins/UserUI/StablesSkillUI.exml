@@ -35,9 +35,9 @@
 	<e:Image width="62" height="62" x="22.21" y="566" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
 	<e:Image width="62" height="62" x="144.41" y="566" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
 	<e:Image width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png" visible="false"/>
-	<e:Image id="horse_stat_lb" width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" source="icon_stats_s_png" name="horse_stat_lb"/>
+	<e:Image id="horse_stat_lb" width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" name="horse_stat_lb" source="icon_stats_n_png"/>
 	<e:Image width="59" height="94" x="360" y="312" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png"/>
-	<e:Image id="horse_skill_lb" width="59" height="94" x="360" y="312" anchorOffsetX="0" anchorOffsetY="0" source="icon_skill_n_png" name="horse_skill_lb"/>
+	<e:Image id="horse_skill_lb" width="59" height="94" x="360" y="312" anchorOffsetX="0" anchorOffsetY="0" name="horse_skill_lb" source="icon_skill_s_png"/>
 	<e:Image width="59" height="94" x="360" y="412" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png" visible="false"/>
 	<e:Image id="horse_pedigree_lb" width="59" height="94" x="360" y="412" anchorOffsetX="0" anchorOffsetY="0" source="icon_pedigree_n_png" name="horse_pedigree_lb"/>
 </e:Skin>
