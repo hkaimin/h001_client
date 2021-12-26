@@ -302,6 +302,44 @@ var HallModule = (function () {
         groupHorse.scaleY = 1.2;
         groupHorse.getChildByName("select_2_img").visible = true;
     };
+    HallModule.prototype.changeHorseRight = function (index) {
+        if (this.horseSelectRightPanel != null) {
+            this.context.removeChild(this.horseSelectRightPanel);
+            this.horseSelectRightPanel = null;
+        }
+        var leftX2 = 900;
+        var downY2 = 100;
+        if (ConstValue.deviveNormalScale >= 2) {
+            leftX2 -= 0;
+            downY2 -= 80;
+        }
+        if (this.curPage == 2 && this.subCurPage == 1) {
+            this.horseSelectRightPanel = new eui.Panel();
+            if (index == 1) {
+                this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesStatUI.exml";
+            }
+            else if (index == 2) {
+                this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesSkillUI.exml";
+            }
+            else {
+                this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesPedigreeUI.exml";
+            }
+            this.horseSelectRightPanel.title = "Title";
+            this.horseSelectRightPanel.x = leftX2;
+            this.horseSelectRightPanel.y = downY2;
+            this.context.addChild(this.horseSelectRightPanel);
+            CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, 0);
+            this.horseSelectRightPanel.getChildByName("horse_stat_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+                this.changeHorseRight(1);
+            }, this);
+            this.horseSelectRightPanel.getChildByName("horse_skill_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+                this.changeHorseRight(2);
+            }, this);
+            this.horseSelectRightPanel.getChildByName("horse_pedigree_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+                this.changeHorseRight(3);
+            }, this);
+        }
+    };
     HallModule.prototype.createHorseItem = function () {
         if (this.horseSelectPanel != null) {
             this.context.removeChild(this.maskBg2);
@@ -391,21 +429,7 @@ var HallModule = (function () {
         groupHorse.scaleX = 1.2;
         groupHorse.scaleY = 1.2;
         groupHorse.getChildByName("select_2_img").visible = true;
-        var leftX2 = 900;
-        var downY2 = 100;
-        if (ConstValue.deviveNormalScale >= 2) {
-            leftX2 -= 0;
-            downY2 -= 80;
-        }
-        if (this.curPage == 2 && this.subCurPage == 1) {
-            this.horseSelectRightPanel = new eui.Panel();
-            this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesStatUI.exml";
-            this.horseSelectRightPanel.title = "Title";
-            this.horseSelectRightPanel.x = leftX2;
-            this.horseSelectRightPanel.y = downY2;
-            this.context.addChild(this.horseSelectRightPanel);
-            CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, 0);
-        }
+        this.changeHorseRight(1);
     };
     HallModule.prototype.horseSelectUI = function () {
         if (this.curPage == 1) {
@@ -792,6 +816,20 @@ var HallModule = (function () {
     HallModule.prototype.addCommonTips = function (tips) {
         CommonTools.addCommonTips(this.tipsPanel, tips);
     };
+    HallModule.prototype.clearBack = function () {
+        if (this.horseSelectPanel != null) {
+            this.context.removeChild(this.horseSelectPanel);
+            this.horseSelectPanel = null;
+        }
+        if (this.horseSelectRightPanel != null) {
+            this.context.removeChild(this.horseSelectRightPanel);
+            this.horseSelectRightPanel = null;
+        }
+        if (this.maskBg2 != null) {
+            this.context.removeChild(this.maskBg2);
+            this.maskBg2 = null;
+        }
+    };
     HallModule.prototype.changePage = function (clickName) {
         if (clickName == "rank_head_01") {
             if (this.curPage != 1)
@@ -811,6 +849,7 @@ var HallModule = (function () {
             this.rankHead01.visible = true;
             this.rankHead05.visible = true;
             this.panel.getChildByName("horse_name_group").visible = true;
+            this.clearBack();
         }
         else if (clickName == "rank_head_02") {
             this.curPage = 2;
