@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="NoticeGroup" width="400" height="755" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="merge_fail_icon" width="313" height="287" x="43.5" y="214" source="icon_merge2_png" name="merge_fail_icon"/>
+	<e:Image id="merge_fail_title_img" width="304" height="56" x="52.5" y="125" anchorOffsetX="0" anchorOffsetY="0" source="icon_failure_png" name="merge_fail_title_img" alpha="1"/>
+	<e:Image width="147" height="58" x="126.5" y="579" anchorOffsetX="0" anchorOffsetY="0" source="btn_info1_png"/>
+	<e:Image id="merge_fail_confirm" width="123" height="28" x="137.5" y="592" source="icon_confirm_png" name="merge_fail_confirm"/>
+</e:Skin>

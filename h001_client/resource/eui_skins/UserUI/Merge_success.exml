@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="NoticeGroup" width="400" height="755" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="merge_fail_icon0" width="395" height="364" x="3.5" y="164" name="merge_fail_icon" anchorOffsetX="0" source="pic_light_png" anchorOffsetY="0"/>
+	<e:Image id="merge_fail_icon" width="379" height="287" x="13.5" y="214" name="merge_fail_icon" source="get_horse_png" anchorOffsetX="0"/>
+	<e:Image id="merge_fail_title_img" width="304" height="56" x="52.5" y="85" anchorOffsetX="0" anchorOffsetY="0" name="merge_fail_title_img" alpha="1" source="pic_successful_png"/>
+	<e:Image id="merge_lv_img" width="61" height="67" x="172.5" y="199" anchorOffsetX="0" anchorOffsetY="0" name="merge_lv_img" alpha="1" source="icon_level_s_png"/>
+	<e:Image id="merge_success_title_img" width="181" height="55" x="108.5" y="144" anchorOffsetX="0" anchorOffsetY="0" name="merge_success_title_img" alpha="1" source="pic_merge_png"/>
+	<e:Image width="147" height="58" x="126.5" y="627" anchorOffsetX="0" anchorOffsetY="0" source="btn_info1_png"/>
+	<e:Image id="merge_fail_confirm" width="123" height="28" x="137.5" y="640" source="icon_confirm_png" name="merge_fail_confirm"/>
+	<e:Image id="merge_fail_confirm0" width="229.67" height="40" x="89.66" y="559.34" name="merge_fail_confirm" source="bar_name_di2_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="38" height="40" x="97.17" y="504.5" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="38" height="40" x="141.67" y="504.5" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="38" height="40" x="183.17" y="504.5" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="38" height="40" x="226.17" y="504.5" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="38" height="40" x="268.17" y="503.7" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Label text="Echo Rambo" x="82.5" y="556.68" anchorOffsetX="0" width="240.67" anchorOffsetY="0" height="43.33" textAlign="center" verticalAlign="middle"/>
+</e:Skin>

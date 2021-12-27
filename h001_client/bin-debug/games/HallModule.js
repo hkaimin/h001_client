@@ -411,6 +411,7 @@ var HallModule = (function () {
             panelT.y = 15 + 120 * (Math.floor(i / 5));
             groupShop.addChild(panelT);
             panelT.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
                 for (var iCnt = 0; iCnt < count; iCnt++) {
                     var tempPanel = groupShop.getChildByName("p_" + iCnt);
                     var tempGroup = tempPanel.getChildByName("group_1");
@@ -527,6 +528,70 @@ var HallModule = (function () {
         this.horseSelectRightPanel.getChildByName("right_mare_lb").text = "horses 1/3";
         this.horseSelectRightPanel.getChildByName("stallion_flag_img").visible = false;
         this.horseSelectRightPanel.getChildByName("mare_flag_img").visible = false;
+        this.horseSelectRightPanel.getChildByName("merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            if (ConstValue.P_LOGIN_OBJ == null)
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.createMergeFail(1);
+        }, this);
+        this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            if (ConstValue.P_LOGIN_OBJ == null)
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.createMergeSuccess(1);
+        }, this);
+    };
+    HallModule.prototype.closeMergeFail = function () {
+        if (this.maskBg2 != null) {
+            this.context.removeChild(this.maskBg2);
+            this.maskBg2 = null;
+        }
+        if (this.horseMergeResult != null) {
+            this.context.removeChild(this.horseMergeResult);
+            this.horseMergeResult = null;
+        }
+    };
+    HallModule.prototype.createMergeFail = function (index) {
+        CommonAudioHandle.playEffect("failure_mp3", 1);
+        this.maskBg2 = new eui.Image("black_mask_png");
+        this.maskBg2.alpha = 0.9;
+        this.maskBg2.width = this.context.getStageWidth();
+        this.maskBg2.height = this.context.getStageHeight();
+        this.context.addChild(this.maskBg2);
+        this.horseMergeResult = new eui.Panel();
+        this.horseMergeResult.skinName = "resource/eui_skins/UserUI/Merge_fail.exml";
+        this.horseMergeResult.title = "Title";
+        this.horseMergeResult.horizontalCenter = 0;
+        this.context.addChild(this.horseMergeResult);
+        CommonTools.fixFix(this.context, this.horseMergeResult, 2, 0, -40);
+        this.horseMergeResult.getChildByName("merge_fail_confirm").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            if (ConstValue.P_LOGIN_OBJ == null)
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.closeMergeFail();
+        }, this);
+        if (index == 2) {
+            this.horseMergeResult.getChildByName("merge_fail_icon").source = "icon_heart2_png";
+        }
+    };
+    HallModule.prototype.createMergeSuccess = function (index) {
+        CommonAudioHandle.playEffect("success_mp3", 1);
+        this.maskBg2 = new eui.Image("black_mask_png");
+        this.maskBg2.alpha = 0.9;
+        this.maskBg2.width = this.context.getStageWidth();
+        this.maskBg2.height = this.context.getStageHeight();
+        this.context.addChild(this.maskBg2);
+        this.horseMergeResult = new eui.Panel();
+        this.horseMergeResult.skinName = "resource/eui_skins/UserUI/Merge_success.exml";
+        this.horseMergeResult.title = "Title";
+        this.horseMergeResult.horizontalCenter = 0;
+        this.context.addChild(this.horseMergeResult);
+        CommonTools.fixFix(this.context, this.horseMergeResult, 2, 0, -40);
+        this.horseMergeResult.getChildByName("merge_fail_confirm").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            if (ConstValue.P_LOGIN_OBJ == null)
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.closeMergeFail();
+        }, this);
+        if (index == 2) {
+            this.horseMergeResult.getChildByName("merge_success_title_img").source = "pic_breed_png";
+        }
     };
     HallModule.prototype.createHorseBreeding = function () {
         if (this.horseSelectRightPanel != null) {
@@ -551,6 +616,16 @@ var HallModule = (function () {
         this.horseSelectRightPanel.getChildByName("merge_title_img").source = "BREEDING_png";
         this.horseSelectRightPanel.getChildByName("merge_btn_lb").text = "Breeding";
         this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").text = "Advanced\nBreeding";
+        this.horseSelectRightPanel.getChildByName("merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            if (ConstValue.P_LOGIN_OBJ == null)
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.createMergeFail(2);
+        }, this);
+        this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            if (ConstValue.P_LOGIN_OBJ == null)
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.createMergeSuccess(2);
+        }, this);
     };
     HallModule.prototype.horseSelectUI = function () {
         if (this.subCurPage == 1) {
