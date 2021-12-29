@@ -60,8 +60,8 @@ var HallModule = (function () {
         this.fixGuide5 = false;
         this.curButton = null;
         this.moveLvGet = true;
-        this.btnPveAnimX = 440;
-        this.btnPveAnimY = 240;
+        this.btnPveAnimX = 440; //150
+        this.btnPveAnimY = 240; //-80
         this.horseCurrent = 0;
         this.isCanShowSeventDay = true; //默认情况可以打开7天签到
         this.buyClass = 0;
@@ -128,7 +128,7 @@ var HallModule = (function () {
         if (this.curPage == 2 && this.subCurPage > 1)
             this.btnPveAnim.visible = false;
         this.btnPveAnim.addEventListener(egret.Event.COMPLETE, function () {
-            // CommonTools.logWallet("---COMPLETE------"+this.horseCurrent)
+            CommonTools.logWallet("---COMPLETE------" + this.horseCurrent);
             this.horseCurrent++;
             if (this.horseCurrent > 9) {
                 this.horseCurrent = 0;
@@ -189,7 +189,6 @@ var HallModule = (function () {
         CommonTools.fixFix(this.context, this.panel.getChildByName("btn_2v2"), 2, 30, 20);
         CommonTools.fixFix(this.context, this.panel.getChildByName("info_grp"), 1, 44, 10);
         CommonTools.fixFix(this.context, this.panel.getChildByName("img_head_bg"), 1, 34, 10);
-        CommonTools.fixFix(this.context, this.panel.getChildByName("up_item_group"), 1, 34, 10);
         CommonTools.fixFix(this.context, this.panel.getChildByName("img_info"), 1, 0, 0); //44,10
         CommonTools.fixFix(this.context, this.panel.getChildByName("img_exp_bg"), 1, 27, 10);
         CommonTools.fixFix(this.context, this.panel.getChildByName("img_exp_value"), 1, 27, 10);
@@ -203,7 +202,7 @@ var HallModule = (function () {
         CommonTools.fixFix(this.context, this.panel.getChildByName("img_lv_lb"), 1, 30, 10);
         CommonTools.fixFix(this.context, this.panel.getChildByName("rank_grounp_main"), 1, 0, 0); //4,10
         CommonTools.fixFix(this.context, this.panel.getChildByName("btn_gonggao"), 1, 44, 10);
-        CommonTools.fixFix(this.context, this.panel.getChildByName("up_item_group"), 2, 0, -75); //-20
+        CommonTools.fixFix(this.context, this.panel.getChildByName("up_item_group"), 1, 0, 10);
         var imgHead = this.panel.getChildByName("img_info");
         if (ConstValue.cacheUserInfo.headPic != "")
             imgHead.source = ConstValue.cacheUserInfo.headPic;
@@ -271,7 +270,7 @@ var HallModule = (function () {
     HallModule.prototype.clearHorseSelect = function () {
         if (this.curPage == 1) {
         }
-        else if (this.curPage == 2) {
+        else if (this.curPage == 2 || this.curPage == 3) {
             var downY = 570;
             if (ConstValue.deviveNormalScale >= 2) {
                 downY -= 80;
@@ -380,7 +379,6 @@ var HallModule = (function () {
         this.horseSelectPanel.y = downY;
         this.context.addChild(this.horseSelectPanel);
         // CommonTools.fixFix(this.context,this.horseSelectPanel,1,0,0);
-        this.tipsPanel = this.horseSelectPanel;
         CommonTools.fixFix(this.context, this.horseSelectPanel, 2, 0, 0);
         var scrollShop = this.horseSelectPanel.getChildByName("horse_panel_group").getChildByName("res_scroller");
         scrollShop.viewport.scrollV = 0;
@@ -520,7 +518,6 @@ var HallModule = (function () {
         this.context.addChild(this.horseSelectRightPanel);
         CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, -40);
         this.initMergeClick();
-        this.panel.getChildByName("up_item_group").visible = false;
         this.horseSelectRightPanel.getChildByName("left_pre_horse_img").visible = false;
         this.horseSelectRightPanel.getChildByName("left_next_horse_img").visible = false;
         this.horseSelectRightPanel.getChildByName("left_stallion_lb").visible = false;
@@ -612,7 +609,6 @@ var HallModule = (function () {
         this.context.addChild(this.horseSelectRightPanel);
         CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, -40);
         this.initMergeClick();
-        this.panel.getChildByName("up_item_group").visible = false;
         this.horseSelectRightPanel.getChildByName("merge_title_img").source = "BREEDING_png";
         this.horseSelectRightPanel.getChildByName("merge_btn_lb").text = "Breeding";
         this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").text = "Advanced\nBreeding";
@@ -632,7 +628,8 @@ var HallModule = (function () {
             this.maskNew.source = "horse_home_page2_jpg";
             this.createHorseItem();
             this.btnPveAnim.visible = true;
-            this.panel.getChildByName("up_item_group").visible = true;
+            this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = true;
+            this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = true;
         }
         else if (this.subCurPage == 2) {
             this.maskNew.source = "horse_merge_page2_jpg";
@@ -655,6 +652,9 @@ var HallModule = (function () {
         }
         else if (this.curPage == 2) {
             this.horseSelectUI();
+        }
+        else if (this.curPage == 3) {
+            this.createHorseItem();
         }
     };
     HallModule.prototype.updateMaincoin = function (coin, save) {
@@ -1037,7 +1037,8 @@ var HallModule = (function () {
             this.maskBg2 = null;
         }
         this.btnPveAnim.visible = false;
-        this.panel.getChildByName("up_item_group").visible = false;
+        this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = false;
+        this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = false;
     };
     HallModule.prototype.changePage = function (clickName) {
         if (clickName == "rank_head_01") {
@@ -1061,7 +1062,8 @@ var HallModule = (function () {
             this.rankHead05.visible = true;
             this.clearPage2HorseHome();
             this.btnPveAnim.visible = true;
-            this.panel.getChildByName("up_item_group").visible = true;
+            this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = true;
+            this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = true;
         }
         else if (clickName == "rank_head_02") {
             this.panel.getChildByName("horse_name_group").visible = false;
@@ -1089,7 +1091,6 @@ var HallModule = (function () {
                 this.rankHead02.source = "icon_horse_n_png";
                 this.rankHead03.source = "icon_merge_s_png";
                 this.rankHead04.source = "icon_breeding_n_png";
-                this.updateUI();
             }
             else {
                 this.curPage = 3;
@@ -1104,6 +1105,7 @@ var HallModule = (function () {
                 this.rankHead04.source = "icon_task_n_png";
                 this.rankHead05.source = "icon_marketpalec_n_png";
             }
+            this.updateUI();
         }
         else if (clickName == "rank_head_04") {
             if (this.curPage == 2) {
