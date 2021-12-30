@@ -642,6 +642,61 @@ var HallModule = (function () {
             this.createHorseBreeding();
         }
     };
+    HallModule.prototype.updateTraining = function () {
+        if (this.horseSelectRightPanel == null) {
+            var leftX = 900;
+            var downY = 100;
+            var leftX2 = 420;
+            var downY2 = 180;
+            var leftX3 = 0;
+            var downY3 = 0;
+            if (ConstValue.deviveNormalScale >= 2) {
+                leftX -= 0;
+                downY -= 0;
+                leftX2 -= 80;
+                downY2 -= 200;
+                leftX3 -= 0;
+                downY3 -= 0;
+            }
+            this.horseSelectRightPanel = new eui.Panel();
+            this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/Training_right.exml";
+            this.horseSelectRightPanel.title = "Title";
+            this.horseSelectRightPanel.x = leftX;
+            this.horseSelectRightPanel.y = downY;
+            this.context.addChild(this.horseSelectRightPanel);
+            CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, -40);
+            this.horseSelectMiddlePanel = new eui.Panel();
+            this.horseSelectMiddlePanel.skinName = "resource/eui_skins/UserUI/Training_middle.exml";
+            this.horseSelectMiddlePanel.title = "Title2";
+            this.horseSelectMiddlePanel.x = leftX2;
+            this.horseSelectMiddlePanel.y = downY2;
+            this.horseSelectMiddlePanel.scaleX = 0.7;
+            this.horseSelectMiddlePanel.scaleY = 0.7;
+            this.context.addChild(this.horseSelectMiddlePanel);
+            CommonTools.fixFix(this.context, this.horseSelectMiddlePanel, 2, 0, -40);
+            this.horseSelectLeftPanel = new eui.Panel();
+            this.horseSelectLeftPanel.skinName = "resource/eui_skins/UserUI/Training_left.exml";
+            this.horseSelectLeftPanel.title = "Title3";
+            this.horseSelectLeftPanel.x = leftX3;
+            this.horseSelectLeftPanel.y = downY3;
+            this.context.addChild(this.horseSelectLeftPanel);
+            CommonTools.fixFix(this.context, this.horseSelectLeftPanel, 2, 0, -40);
+        }
+    };
+    HallModule.prototype.clearTraining = function () {
+        if (this.horseSelectRightPanel != null) {
+            this.context.removeChild(this.horseSelectRightPanel);
+            this.horseSelectRightPanel = null;
+        }
+        if (this.horseSelectMiddlePanel != null) {
+            this.context.removeChild(this.horseSelectMiddlePanel);
+            this.horseSelectMiddlePanel = null;
+        }
+        if (this.horseSelectLeftPanel != null) {
+            this.context.removeChild(this.horseSelectLeftPanel);
+            this.horseSelectLeftPanel = null;
+        }
+    };
     HallModule.prototype.updateUI = function () {
         if (this.curPage == 1) {
             var horse_lv_img = this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img");
@@ -654,7 +709,11 @@ var HallModule = (function () {
             this.horseSelectUI();
         }
         else if (this.curPage == 3) {
+            this.panel.getChildByName("horse_name_group").visible = false;
+            this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = false;
+            this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = false;
             this.createHorseItem();
+            this.updateTraining();
         }
     };
     HallModule.prototype.updateMaincoin = function (coin, save) {
@@ -1061,9 +1120,11 @@ var HallModule = (function () {
             this.rankHead01.visible = true;
             this.rankHead05.visible = true;
             this.clearPage2HorseHome();
+            this.clearTraining();
             this.btnPveAnim.visible = true;
             this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = true;
             this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = true;
+            this.panel.getChildByName("rank_grounp_main").visible = true;
         }
         else if (clickName == "rank_head_02") {
             this.panel.getChildByName("horse_name_group").visible = false;
@@ -1104,6 +1165,7 @@ var HallModule = (function () {
                 this.rankHead03.source = "icon_training_s_png";
                 this.rankHead04.source = "icon_task_n_png";
                 this.rankHead05.source = "icon_marketpalec_n_png";
+                this.panel.getChildByName("rank_grounp_main").visible = false;
             }
             this.updateUI();
         }

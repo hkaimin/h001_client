@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="NoticeGroup" width="433" height="635" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image width="362" height="582" x="0" y="103.68" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png" visible="false"/>
+	<e:Image width="424" height="629" x="5" y="6.4" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png"/>
 	<e:Image width="67" height="61" x="38" y="407.68" anchorOffsetX="0" anchorOffsetY="0" source="select3_s_png"/>
 	<e:Image width="60" height="48" x="41.6" y="413.18" anchorOffsetX="0" anchorOffsetY="0" source="icon_Grassland_png"/>
 	<e:Image width="67" height="61" x="332" y="407.68" anchorOffsetX="0" anchorOffsetY="0" source="select3_s_png" visible="false"/>
