@@ -60,8 +60,10 @@ var HallModule = (function () {
         this.fixGuide5 = false;
         this.curButton = null;
         this.moveLvGet = true;
-        this.btnPveAnimX = 440; //150
-        this.btnPveAnimY = 240; //-80
+        this.btnPveAnimInitX = 440;
+        this.btnPveAnimInitY = 240;
+        this.btnPveAnimX = 440;
+        this.btnPveAnimY = 240;
         this.horseCurrent = 0;
         this.isCanShowSeventDay = true; //默认情况可以打开7天签到
         this.buyClass = 0;
@@ -117,6 +119,10 @@ var HallModule = (function () {
     HallModule.prototype.drawHorse = function () {
         if (this.btnPveAnim != null) {
             this.btnPveAnim.removeEventListener(egret.Event.COMPLETE);
+            if (this.horseFunc != null) {
+                this.btnPveAnim.removeEventListener(egret.Event.ENTER_FRAME, this.horseFunc, this);
+                this.horseFunc = null;
+            }
             this.panel.removeChild(this.btnPveAnim);
             this.btnPveAnim = null;
         }
@@ -136,6 +142,32 @@ var HallModule = (function () {
             this.drawHorse();
         }, this);
         // CommonTools.fixFix(this.context,this.btnPveAnim,4,40,100);//40,20
+    };
+    HallModule.prototype.drawTraining = function (index) {
+        if (this.btnPveAnim != null) {
+            if (this.horseFunc != null) {
+                this.btnPveAnim.removeEventListener(egret.Event.ENTER_FRAME, this.horseFunc, this);
+                this.horseFunc = null;
+            }
+            this.btnPveAnim.removeEventListener(egret.Event.COMPLETE);
+            this.panel.removeChild(this.btnPveAnim);
+            this.btnPveAnim = null;
+        }
+        if (index == 4) {
+            this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("run_canter02_json"), RES.getRes("run_canter02_png"), "0");
+        }
+        this.btnPveAnim.play(-1);
+        this.btnPveAnim.name = "btn_noend_pve_anim";
+        this.panel.addChild(this.btnPveAnim);
+        this.setHorseXY();
+        this.horseFunc = function (e) {
+            this.btnPveAnimX += 8;
+            this.setHorseXY();
+            if (this.btnPveAnimX >= (this.context.getStageWidth() - 500)) {
+                this.stopTraining();
+            }
+        };
+        this.btnPveAnim.addEventListener(egret.Event.ENTER_FRAME, this.horseFunc, this);
     };
     HallModule.prototype.init = function () {
         // this.initConfig();
@@ -330,18 +362,15 @@ var HallModule = (function () {
             this.context.addChild(this.horseSelectRightPanel);
             CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, 0);
             this.horseSelectRightPanel.getChildByName("horse_stat_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-                if (ConstValue.P_LOGIN_OBJ == null)
-                    CommonAudioHandle.playEffect("playBomb_mp3", 1);
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
                 this.changeHorseRight(1);
             }, this);
             this.horseSelectRightPanel.getChildByName("horse_skill_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-                if (ConstValue.P_LOGIN_OBJ == null)
-                    CommonAudioHandle.playEffect("playBomb_mp3", 1);
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
                 this.changeHorseRight(2);
             }, this);
             this.horseSelectRightPanel.getChildByName("horse_pedigree_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-                if (ConstValue.P_LOGIN_OBJ == null)
-                    CommonAudioHandle.playEffect("playBomb_mp3", 1);
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
                 this.changeHorseRight(3);
             }, this);
         }
@@ -439,8 +468,7 @@ var HallModule = (function () {
     };
     HallModule.prototype.initMergeClick = function () {
         this.horseSelectRightPanel.getChildByName("left_horse_stat_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            if (ConstValue.P_LOGIN_OBJ == null)
-                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.horseSelectRightPanel.getChildByName("left_horse_stat_lb").source = "icon_stats_s_png";
             this.horseSelectRightPanel.getChildByName("left_horse_skill_lb").source = "icon_skill_n_png";
             this.horseSelectRightPanel.getChildByName("left_horse_pedigree_lb").source = "icon_pedigree_n_png";
@@ -449,8 +477,7 @@ var HallModule = (function () {
             this.horseSelectRightPanel.getChildByName("left_pedigree_group").visible = false;
         }, this);
         this.horseSelectRightPanel.getChildByName("left_horse_skill_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            if (ConstValue.P_LOGIN_OBJ == null)
-                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.horseSelectRightPanel.getChildByName("left_horse_stat_lb").source = "icon_stats_n_png";
             this.horseSelectRightPanel.getChildByName("left_horse_skill_lb").source = "icon_skill_s_png";
             this.horseSelectRightPanel.getChildByName("left_horse_pedigree_lb").source = "icon_pedigree_n_png";
@@ -459,8 +486,7 @@ var HallModule = (function () {
             this.horseSelectRightPanel.getChildByName("left_pedigree_group").visible = false;
         }, this);
         this.horseSelectRightPanel.getChildByName("left_horse_pedigree_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            if (ConstValue.P_LOGIN_OBJ == null)
-                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.horseSelectRightPanel.getChildByName("left_horse_stat_lb").source = "icon_stats_n_png";
             this.horseSelectRightPanel.getChildByName("left_horse_skill_lb").source = "icon_skill_n_png";
             this.horseSelectRightPanel.getChildByName("left_horse_pedigree_lb").source = "icon_pedigree_s_png";
@@ -469,8 +495,7 @@ var HallModule = (function () {
             this.horseSelectRightPanel.getChildByName("left_pedigree_group").visible = true;
         }, this);
         this.horseSelectRightPanel.getChildByName("right_horse_stat_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            if (ConstValue.P_LOGIN_OBJ == null)
-                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.horseSelectRightPanel.getChildByName("right_horse_stat_lb").source = "icon_stats_s_png";
             this.horseSelectRightPanel.getChildByName("right_horse_skill_lb").source = "icon_skill_n_png";
             this.horseSelectRightPanel.getChildByName("right_horse_pedigree_lb").source = "icon_pedigree_n_png";
@@ -479,8 +504,7 @@ var HallModule = (function () {
             this.horseSelectRightPanel.getChildByName("right_pedigree_group").visible = false;
         }, this);
         this.horseSelectRightPanel.getChildByName("right_horse_skill_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            if (ConstValue.P_LOGIN_OBJ == null)
-                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.horseSelectRightPanel.getChildByName("right_horse_stat_lb").source = "icon_stats_n_png";
             this.horseSelectRightPanel.getChildByName("right_horse_skill_lb").source = "icon_skill_s_png";
             this.horseSelectRightPanel.getChildByName("right_horse_pedigree_lb").source = "icon_pedigree_n_png";
@@ -489,8 +513,7 @@ var HallModule = (function () {
             this.horseSelectRightPanel.getChildByName("right_pedigree_group").visible = false;
         }, this);
         this.horseSelectRightPanel.getChildByName("right_horse_pedigree_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            if (ConstValue.P_LOGIN_OBJ == null)
-                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.horseSelectRightPanel.getChildByName("right_horse_stat_lb").source = "icon_stats_n_png";
             this.horseSelectRightPanel.getChildByName("right_horse_skill_lb").source = "icon_skill_n_png";
             this.horseSelectRightPanel.getChildByName("right_horse_pedigree_lb").source = "icon_pedigree_s_png";
@@ -526,13 +549,11 @@ var HallModule = (function () {
         this.horseSelectRightPanel.getChildByName("stallion_flag_img").visible = false;
         this.horseSelectRightPanel.getChildByName("mare_flag_img").visible = false;
         this.horseSelectRightPanel.getChildByName("merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            if (ConstValue.P_LOGIN_OBJ == null)
-                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.createMergeFail(1);
         }, this);
         this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            if (ConstValue.P_LOGIN_OBJ == null)
-                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.createMergeSuccess(1);
         }, this);
     };
@@ -560,8 +581,7 @@ var HallModule = (function () {
         this.context.addChild(this.horseMergeResult);
         CommonTools.fixFix(this.context, this.horseMergeResult, 2, 0, -40);
         this.horseMergeResult.getChildByName("merge_fail_confirm").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            if (ConstValue.P_LOGIN_OBJ == null)
-                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.closeMergeFail();
         }, this);
         if (index == 2) {
@@ -582,8 +602,7 @@ var HallModule = (function () {
         this.context.addChild(this.horseMergeResult);
         CommonTools.fixFix(this.context, this.horseMergeResult, 2, 0, -40);
         this.horseMergeResult.getChildByName("merge_fail_confirm").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            if (ConstValue.P_LOGIN_OBJ == null)
-                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.closeMergeFail();
         }, this);
         if (index == 2) {
@@ -613,13 +632,11 @@ var HallModule = (function () {
         this.horseSelectRightPanel.getChildByName("merge_btn_lb").text = "Breeding";
         this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").text = "Advanced\nBreeding";
         this.horseSelectRightPanel.getChildByName("merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            if (ConstValue.P_LOGIN_OBJ == null)
-                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.createMergeFail(2);
         }, this);
         this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            if (ConstValue.P_LOGIN_OBJ == null)
-                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.createMergeSuccess(2);
         }, this);
     };
@@ -641,6 +658,73 @@ var HallModule = (function () {
             this.clearPage2HorseHome();
             this.createHorseBreeding();
         }
+    };
+    HallModule.prototype.showTrainingSelect = function (index) {
+        this.horseSelectLeftPanel.getChildByName("training_img_01").source = "btn_TNGP_png";
+        this.horseSelectLeftPanel.getChildByName("training_img_01").alpha = 0.5;
+        this.horseSelectLeftPanel.getChildByName("training_img_02").source = "btn_TNGFR_png";
+        this.horseSelectLeftPanel.getChildByName("training_img_02").alpha = 0.7;
+        this.horseSelectLeftPanel.getChildByName("training_img_03").source = "btn_TNGOBS_png";
+        this.horseSelectLeftPanel.getChildByName("training_img_03").alpha = 0.7;
+        this.horseSelectLeftPanel.getChildByName("training_img_04").source = "btn_TNGtrot_png";
+        this.horseSelectLeftPanel.getChildByName("training_img_04").alpha = 0.7;
+        this.horseSelectLeftPanel.getChildByName("training_img_05").source = "btn_TNGC_png";
+        this.horseSelectLeftPanel.getChildByName("training_img_05").alpha = 0.5;
+        var resName = "";
+        if (index == 1) {
+            resName = "btn_TNGP_S_png";
+        }
+        else if (index == 2) {
+            resName = "btn_TNGFR_S_png";
+        }
+        else if (index == 3) {
+            resName = "btn_TNGOBS_S_png";
+        }
+        else if (index == 4) {
+            resName = "btn_TNGtrot_S_png";
+        }
+        else if (index == 5) {
+            resName = "btn_TNGC_S_png";
+        }
+        this.horseSelectLeftPanel.getChildByName("training_img_0" + index).source = resName;
+        this.horseSelectLeftPanel.getChildByName("training_img_0" + index).alpha = 1;
+    };
+    HallModule.prototype.startTraining = function (index) {
+        this.horseSelectLeftPanel.visible = false;
+        this.horseSelectMiddlePanel.visible = false;
+        this.horseSelectRightPanel.visible = false;
+        this.horseSelectPanel.visible = false;
+        this.btnPveAnimX = -500;
+        this.setHorseXY();
+        this.drawTraining(index);
+    };
+    HallModule.prototype.createTrainingSuccess = function () {
+        CommonAudioHandle.playEffect("success_mp3", 1);
+        this.maskBg2 = new eui.Image("black_mask_png");
+        this.maskBg2.alpha = 0.9;
+        this.maskBg2.width = this.context.getStageWidth();
+        this.maskBg2.height = this.context.getStageHeight();
+        this.context.addChild(this.maskBg2);
+        this.horseMergeResult = new eui.Panel();
+        this.horseMergeResult.skinName = "resource/eui_skins/UserUI/Training_success.exml";
+        this.horseMergeResult.title = "Title";
+        this.horseMergeResult.horizontalCenter = 0;
+        this.context.addChild(this.horseMergeResult);
+        CommonTools.fixFix(this.context, this.horseMergeResult, 2, 0, -40);
+        this.horseMergeResult.getChildByName("merge_fail_confirm").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.closeMergeFail();
+        }, this);
+    };
+    HallModule.prototype.stopTraining = function () {
+        this.horseSelectLeftPanel.visible = true;
+        this.horseSelectMiddlePanel.visible = true;
+        this.horseSelectRightPanel.visible = true;
+        this.horseSelectPanel.visible = true;
+        this.btnPveAnimX = this.btnPveAnimInitX;
+        this.btnPveAnim.x = this.btnPveAnimX;
+        this.drawHorse();
+        this.createTrainingSuccess();
     };
     HallModule.prototype.updateTraining = function () {
         if (this.horseSelectRightPanel == null) {
@@ -681,6 +765,24 @@ var HallModule = (function () {
             this.horseSelectLeftPanel.y = downY3;
             this.context.addChild(this.horseSelectLeftPanel);
             CommonTools.fixFix(this.context, this.horseSelectLeftPanel, 2, 0, -40);
+            this.horseSelectLeftPanel.getChildByName("btn_back_img").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+                this.changePage("rank_head_01");
+            }, this);
+            this.horseSelectRightPanel.getChildByName("train_btn_img").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+                this.startTraining(4);
+            }, this);
+            var _loop_2 = function (tIndex) {
+                this_2.horseSelectLeftPanel.getChildByName("training_img_0" + tIndex).addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+                    CommonAudioHandle.playEffect("playBomb_mp3", 1);
+                    this.showTrainingSelect(tIndex);
+                }, this_2);
+            };
+            var this_2 = this;
+            for (var tIndex = 1; tIndex <= 5; tIndex++) {
+                _loop_2(tIndex);
+            }
         }
     };
     HallModule.prototype.clearTraining = function () {
@@ -1230,8 +1332,7 @@ var HallModule = (function () {
                             CommonTools.log("还在加载中......return ");
                             return [2 /*return*/];
                         }
-                        if (ConstValue.P_LOGIN_OBJ == null)
-                            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+                        CommonAudioHandle.playEffect("playBomb_mp3", 1);
                         name = e.target.name;
                         if (name != "btn_close" && name != "btn_close_edit") {
                             this.removeGuide();
@@ -1795,8 +1896,8 @@ var HallModule = (function () {
     };
     HallModule.prototype.handleSkill = function (group, parG) {
         var cnt = 0;
-        var _loop_2 = function (i) {
-            var obj = this_2.skillData[i];
+        var _loop_3 = function (i) {
+            var obj = this_3.skillData[i];
             var panelT = new eui.Panel();
             panelT.skinName = "resource/eui_skins/UserUI/SkillGroup.exml";
             panelT.name = "p_" + i;
@@ -1830,7 +1931,7 @@ var HallModule = (function () {
                     skill_pay.source = "mini_tv_png";
                 }
                 skill_cost.text = obj.cost;
-                CommonButtonHandle.beginTouch(skill_learn, this_2);
+                CommonButtonHandle.beginTouch(skill_learn, this_3);
                 if (obj.curLv > 0) {
                     skill_learn.text = "升级";
                     skill_learn.strokeColor = 0xE76C47;
@@ -1838,7 +1939,7 @@ var HallModule = (function () {
                 skill_learn.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
                     var sData_skill = CommonTools.getDataJsonStr("C2G_Upgrade", 1, { SkillID: parseInt(i) });
                     ConstValue.P_NET_OBJ.sendData(sData_skill);
-                }, this_2);
+                }, this_3);
             }
             else {
                 skill_pay.visible = false;
@@ -1848,9 +1949,9 @@ var HallModule = (function () {
             }
             cnt++;
         };
-        var this_2 = this;
+        var this_3 = this;
         for (var i in this.skillData) {
-            _loop_2(i);
+            _loop_3(i);
         }
     };
     HallModule.prototype.handleRank = function (group, parG, type) {
@@ -2094,8 +2195,8 @@ var HallModule = (function () {
         lbZuan.text = ConstValue.cacheUserInfo.diamond;
     };
     HallModule.prototype.handleRoleClass = function (group, parG) {
-        var _loop_3 = function (i) {
-            var classObj = this_3.roleClassData[i];
+        var _loop_4 = function (i) {
+            var classObj = this_4.roleClassData[i];
             var ii = parseInt(i);
             var panelT = new eui.Panel();
             panelT.skinName = "resource/eui_skins/UserUI/RoleSelectUIGroup.exml";
@@ -2121,11 +2222,11 @@ var HallModule = (function () {
                 img_selected.visible = true;
                 this.roleSelectIdx = i;
                 this.updateRoleClass(i);
-            }, this_3);
+            }, this_4);
         };
-        var this_3 = this;
+        var this_4 = this;
         for (var i in this.roleClassData) {
-            _loop_3(i);
+            _loop_4(i);
         }
         this.updateRoleClass("0");
         var btn_fight = this.panelNotice.getChildByName("btn_fight");
@@ -2193,8 +2294,8 @@ var HallModule = (function () {
         var group = this.panelNotice.getChildByName("fighting_parent")
             .getChildByName("scroll").getChildByName("scroll_group");
         var i = 0;
-        var _loop_4 = function (key) {
-            var obj = this_4.selectMapData[key];
+        var _loop_5 = function (key) {
+            var obj = this_5.selectMapData[key];
             var panelT = new eui.Panel();
             panelT.skinName = "resource/eui_skins/UserUI/MapViewGroup.exml";
             panelT.name = "p_" + i;
@@ -2217,13 +2318,13 @@ var HallModule = (function () {
                 this.selectKey = key;
                 var sData_friend_pvp = CommonTools.getDataJsonStr("open1V1RoomByMap", 1, { mapID: parseInt(this.selectKey) });
                 ConstValue.P_NET_OBJ.sendData(sData_friend_pvp);
-            }, this_4);
+            }, this_5);
             new MapMiniDIYModule(panelT, obj.bgconf, obj.layerconf, 2);
             i++;
         };
-        var this_4 = this;
+        var this_5 = this;
         for (var key in this.selectMapData) {
-            _loop_4(key);
+            _loop_5(key);
         }
     };
     HallModule.prototype.handleSelectMap = function () {
@@ -2258,8 +2359,8 @@ var HallModule = (function () {
         starBg.width = starKuang.width * pro;
         var guankaLayer = parG.getChildByName("guanka_layer");
         guankaLayer.text = "第" + this.barrLayer + "层";
-        var _loop_5 = function (idx) {
-            var obj = this_5.barrData.barrierList[idx];
+        var _loop_6 = function (idx) {
+            var obj = this_6.barrData.barrierList[idx];
             var panelT = new eui.Panel();
             panelT.skinName = "resource/eui_skins/UserUI/noEndBarrStartGroup.exml";
             panelT.name = "p_" + i;
@@ -2307,12 +2408,12 @@ var HallModule = (function () {
                 }
                 var sData_gobarr = CommonTools.getDataJsonStr("getBarrierInfo", 1, { barrierNo: obj.barrierNo });
                 ConstValue.P_NET_OBJ.sendData(sData_gobarr);
-            }, this_5);
+            }, this_6);
             i++;
         };
-        var this_5 = this;
+        var this_6 = this;
         for (var idx in this.barrData.barrierList) {
-            _loop_5(idx);
+            _loop_6(idx);
         }
         if (this.fixGuide5) {
             this.fixGuide5 = false;

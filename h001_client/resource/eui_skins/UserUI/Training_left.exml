@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="NoticeGroup" width="330" height="738" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image width="67" height="61" x="332" y="407.68" anchorOffsetX="0" anchorOffsetY="0" source="select3_s_png" visible="false"/>
-	<e:Image width="67" height="61" x="184" y="407.68" anchorOffsetX="0" anchorOffsetY="0" source="select3_s_png" visible="false"/>
 	<e:Image width="144" height="630" x="-5" y="0" source="leftbar_2_di_png"/>
-	<e:Image width="291" height="141" x="43.5" y="260.1" anchorOffsetX="0" anchorOffsetY="0" source="btn_TNGOBS_S_png"/>
-	<e:Image width="291" height="141" x="19" y="133.2" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.9" scaleY="0.9" source="btn_TNGFR_png" alpha="0.7"/>
-	<e:Image width="291" height="141" x="33.5" y="401.1" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.9" scaleY="0.9" alpha="0.7" source="btn_TNGtrot_png"/>
-	<e:Image width="291" height="141" x="-5" y="30.5" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.8" scaleY="0.8" alpha="0.5" source="btn_TNGP_png"/>
-	<e:Image width="291" height="141" x="0" y="517.2" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.8" scaleY="0.8" alpha="0.5" source="btn_TNGC_png"/>
-	<e:Image width="102" height="67" x="0" y="646.2" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.8" scaleY="0.8" alpha="1" source="btn_back_png"/> verticalAlign="middle" scaleX="0.6" scaleY="0.6" rotation="52.94"/>
+	<e:Image id="training_img_03" width="291" height="141" x="43.5" y="260.1" anchorOffsetX="0" anchorOffsetY="0" source="btn_TNGOBS_S_png" name="training_img_03"/>
+	<e:Image id="training_img_02" width="291" height="141" x="19" y="133.2" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.9" scaleY="0.9" source="btn_TNGFR_png" alpha="1" name="training_img_02"/>
+	<e:Image id="training_img_04" width="291" height="141" x="33.5" y="401.1" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.9" scaleY="0.9" alpha="0.7" source="btn_TNGtrot_png" name="training_img_04"/>
+	<e:Image id="training_img_01" width="291" height="141" x="-5" y="30.5" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.8" scaleY="0.8" alpha="0.5" source="btn_TNGP_png" name="training_img_01"/>
+	<e:Image id="training_img_05" width="291" height="141" x="0" y="517.2" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.8" scaleY="0.8" alpha="0.5" source="btn_TNGC_png" name="training_img_05"/>
+	<e:Image id="btn_back_img" width="102" height="67" x="0" y="646.2" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.8" scaleY="0.8" alpha="1" source="btn_back_png" name="btn_back_img"/> verticalAlign="middle" scaleX="0.6" scaleY="0.6" rotation="52.94"/>
 </e:Skin>

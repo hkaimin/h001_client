@@ -5,7 +5,7 @@
 			"name": "preload"
 		},
 		{
-			"keys": "red_png,mini_res_json,fighting_vs_png,rank_merge_json,shop_bg_png,shopAndBag_json,mask_layer_png,shop_bg_1_png,shop_bg_2_png,shop_bg_3_png,btn_type1_1_png,btn_type2_2_png,bag_bg_1_png,bag_bg_2_png,normal_btn_1_png,normal_btn_2_png,checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,egret_icon_png,description_json,topmask_png,sBJButton_mp3,bg_ppt_1_png,friend_pvp_png,match_pvp_png,noround_pve_png,loading01_png,loading02_png,boom_mp3,btnPress_mp3,die_mp3,eatProp_mp3,failure_mp3,mainmenu_mp3,playBomb_mp3,success_mp3,new_ui_merge_json,barr_ball_png,direct_png,direct_02_png,barr_background_bg_png,barr_title_bg_png,barr_value_bg_png,barr_nopass_start_png,barr_pass_start_png,question_01_png,question_02_png,item_merge_json,sevent_day_get_json,role_info_bg_png,role_select_bg_png,role_select_down_png,role_select_ground_png,role_select_item_bg_png,role_select_p1_png,role_select_p2_png,role_select_pick_png,role_select_right_bg_png,role_select_pay_01_png,role_select_pay_02_png,btn_diy_map_png,btn_random_map_png,vs_bg_1v1_png,vs_head_1v1_png,vs_mask_1v1_png,vs_randon_1v1_png,vs_kuang_1v1_png,btn_invalid_01_png,btn_invalid_02_png,role_select_p3_png,p1_special_json,p1_special_png,p2_special_json,p2_special_png,p3_special_json,p3_special_png,role_select_bg2_png,role_select_bg3_png,res_json,guide_01_png,guide_02_png,guide_03_png,guide_04_png,guide_mask_png,guide_point_png,LvRewardGet_json,main_setting_bg_png,settting_close_music_png,settting_open_music_png,view_history_bg_png,view_history_title_png,blue_star_png,barr_lock_png,left_page_png,right_page_png,btn_close_blue_01_png,btn_close_blue_02_png,role_select_p4_png,p4_special_json,p4_special_png,notify_bg_png,mini_tv_png,hall_cloud_png,guild_map_01_png,guild_map_02_png,guild_map_03_png,guild_map_04_png,guild_map_05_png,guild_map_06_png,pvp_anim_btn_json,pvp_anim_btn_png,wx_pvp_btn_json,wx_pvp_btn_png,skill_json,default_head_png,guide_showtip_png,guide_point_down_png,item_merge_2_json,role_select_bg4_png,main_setting_logout_png,red_tv_png,gonggao_01_png,gonggao_02_png,new_ui_01_jpg,leftbar_di_png,horse_page1_home_json,horse_home_page2_jpg,wait_01_0_json,wait_01_0_png,wait_01_1_json,wait_01_1_png,wait_01_2_json,wait_01_2_png,wait_01_3_json,wait_01_3_png,wait_01_4_json,wait_01_4_png,wait_01_5_json,wait_01_5_png,wait_01_6_json,wait_01_6_png,wait_01_7_json,wait_01_7_png,wait_01_8_json,wait_01_8_png,wait_01_9_json,wait_01_9_png,horse_page2_home_json,horse_merge_page2_jpg,horse_page2_merge_json,right_horse_png,left_horse_png,get_horse_png,horse_page2_result_json,black_mask_png,horse_page3_training_json",
+			"keys": "red_png,mini_res_json,fighting_vs_png,rank_merge_json,shop_bg_png,shopAndBag_json,mask_layer_png,shop_bg_1_png,shop_bg_2_png,shop_bg_3_png,btn_type1_1_png,btn_type2_2_png,bag_bg_1_png,bag_bg_2_png,normal_btn_1_png,normal_btn_2_png,checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,egret_icon_png,description_json,topmask_png,sBJButton_mp3,bg_ppt_1_png,friend_pvp_png,match_pvp_png,noround_pve_png,loading01_png,loading02_png,boom_mp3,btnPress_mp3,die_mp3,eatProp_mp3,failure_mp3,mainmenu_mp3,playBomb_mp3,success_mp3,new_ui_merge_json,barr_ball_png,direct_png,direct_02_png,barr_background_bg_png,barr_title_bg_png,barr_value_bg_png,barr_nopass_start_png,barr_pass_start_png,question_01_png,question_02_png,item_merge_json,sevent_day_get_json,role_info_bg_png,role_select_bg_png,role_select_down_png,role_select_ground_png,role_select_item_bg_png,role_select_p1_png,role_select_p2_png,role_select_pick_png,role_select_right_bg_png,role_select_pay_01_png,role_select_pay_02_png,btn_diy_map_png,btn_random_map_png,vs_bg_1v1_png,vs_head_1v1_png,vs_mask_1v1_png,vs_randon_1v1_png,vs_kuang_1v1_png,btn_invalid_01_png,btn_invalid_02_png,role_select_p3_png,p1_special_json,p1_special_png,p2_special_json,p2_special_png,p3_special_json,p3_special_png,role_select_bg2_png,role_select_bg3_png,res_json,guide_01_png,guide_02_png,guide_03_png,guide_04_png,guide_mask_png,guide_point_png,LvRewardGet_json,main_setting_bg_png,settting_close_music_png,settting_open_music_png,view_history_bg_png,view_history_title_png,blue_star_png,barr_lock_png,left_page_png,right_page_png,btn_close_blue_01_png,btn_close_blue_02_png,role_select_p4_png,p4_special_json,p4_special_png,notify_bg_png,mini_tv_png,hall_cloud_png,guild_map_01_png,guild_map_02_png,guild_map_03_png,guild_map_04_png,guild_map_05_png,guild_map_06_png,pvp_anim_btn_json,pvp_anim_btn_png,wx_pvp_btn_json,wx_pvp_btn_png,skill_json,default_head_png,guide_showtip_png,guide_point_down_png,item_merge_2_json,role_select_bg4_png,main_setting_logout_png,red_tv_png,gonggao_01_png,gonggao_02_png,new_ui_01_jpg,leftbar_di_png,horse_page1_home_json,horse_home_page2_jpg,wait_01_0_json,wait_01_0_png,wait_01_1_json,wait_01_1_png,wait_01_2_json,wait_01_2_png,wait_01_3_json,wait_01_3_png,wait_01_4_json,wait_01_4_png,wait_01_5_json,wait_01_5_png,wait_01_6_json,wait_01_6_png,wait_01_7_json,wait_01_7_png,wait_01_8_json,wait_01_8_png,wait_01_9_json,wait_01_9_png,horse_page2_home_json,horse_merge_page2_jpg,horse_page2_merge_json,right_horse_png,left_horse_png,get_horse_png,horse_page2_result_json,black_mask_png,horse_page3_training_json,walk02_json,walk02_png,stand_horse_png,run_canter02_json,run_canter02_png",
 			"name": "preloadHall"
 		},
 		{
@@ -1795,6 +1795,31 @@
 			"type": "sheet",
 			"name": "horse_page3_training_json",
 			"subkeys": "Effect_png,Site_png,Total_png,Train_png,bar_exp_3_di_png,bar_exp_3_mask_png,bar_exp_3_png,bar_exp_3_red_png,bar_exp_4_di_png,bar_exp_4_png,bar_info_+_png,bar_info_di_13_png,bar_info_di_14_png,bar_info_di_15_png,bar_info_di_16_png,btn_+_2_d_png,btn_+_2_png,btn_-_2_d_png,btn_-_2_png,btn_TNGC_S_png,btn_TNGC_png,btn_TNGFR_S_png,btn_TNGFR_png,btn_TNGOBS_S_png,btn_TNGOBS_png,btn_TNGP_S_png,btn_TNGP_png,btn_TNGtrot_S_png,btn_TNGtrot_png,btn_info3_png,btn_point3_png,leftbar_2_di_png,num_10_2_png,num_10_3_png,num_9_2_png,num_9_3_png,pic_complete_png,pic_training_png,select3_s_png,single_green_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/walk02.json",
+			"type": "json",
+			"name": "walk02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/walk02.png",
+			"type": "image",
+			"name": "walk02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/stand_horse.png",
+			"type": "image",
+			"name": "stand_horse_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/run_canter02.json",
+			"type": "json",
+			"name": "run_canter02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/run_canter02.png",
+			"type": "image",
+			"name": "run_canter02_png"
 		}
 	]
 }

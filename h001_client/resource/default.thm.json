@@ -81,6 +81,7 @@
 		"resource/eui_skins/UserUI/Training_left.exml",
 		"resource/eui_skins/UserUI/Training_middle.exml",
 		"resource/eui_skins/UserUI/Training_right.exml",
+		"resource/eui_skins/UserUI/Training_success.exml",
 		"resource/eui_skins/UserUI/ViewHistoryPass.exml",
 		"resource/eui_skins/UserUI/WxVsWaitUI.exml",
 		"resource/eui_skins/VScrollBarSkin.exml",
