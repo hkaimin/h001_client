@@ -166,7 +166,10 @@ var HallModule = (function () {
             if (this.btnPveAnimX >= (this.context.getStageWidth() - 500)) {
                 this.stopTraining();
             }
+            if (this.btnPveAnimX > 0 && this.btnPveAnimX % 50 == 0)
+                CommonAudioHandle.playEffect("horse_step_on_grass_3_wav", 1);
         };
+        CommonAudioHandle.playEffect("horse_sfx_after_eat_wav", 1);
         this.btnPveAnim.addEventListener(egret.Event.ENTER_FRAME, this.horseFunc, this);
     };
     HallModule.prototype.init = function () {
@@ -799,6 +802,20 @@ var HallModule = (function () {
             this.horseSelectLeftPanel = null;
         }
     };
+    HallModule.prototype.hideForAll = function () {
+        this.panel.getChildByName("rank_grounp_main").visible = false;
+        this.panel.getChildByName("up_item_group").visible = false;
+        this.panel.getChildByName("horse_name_group").visible = false;
+        this.btnPveAnim.visible = false;
+    };
+    HallModule.prototype.updatePlayToEarn = function () {
+        this.horseSelectMiddlePanel = new eui.Panel();
+        this.horseSelectMiddlePanel.skinName = "resource/eui_skins/UserUI/PlayToEarn_select.exml";
+        this.horseSelectMiddlePanel.title = "Title";
+        this.horseSelectMiddlePanel.horizontalCenter = 0;
+        this.horseSelectMiddlePanel.verticalCenter = 0;
+        this.context.addChild(this.horseSelectMiddlePanel);
+    };
     HallModule.prototype.updateUI = function () {
         if (this.curPage == 1) {
             var horse_lv_img = this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img");
@@ -816,6 +833,10 @@ var HallModule = (function () {
             this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = false;
             this.createHorseItem();
             this.updateTraining();
+        }
+        else if (this.curPage == 4) {
+            this.hideForAll();
+            this.updatePlayToEarn();
         }
     };
     HallModule.prototype.updateMaincoin = function (coin, save) {
@@ -1280,7 +1301,6 @@ var HallModule = (function () {
                 this.rankHead02.source = "icon_horse_n_png";
                 this.rankHead03.source = "icon_merge_n_png";
                 this.rankHead04.source = "icon_breeding_s_png";
-                this.updateUI();
             }
             else {
                 this.curPage = 4;
@@ -1294,7 +1314,9 @@ var HallModule = (function () {
                 this.rankHead03.source = "icon_training_n_png";
                 this.rankHead04.source = "icon_task_s_png";
                 this.rankHead05.source = "icon_marketpalec_n_png";
+                this.maskNew.source = "horse_playToEarn_page4_jpg";
             }
+            this.updateUI();
         }
         else if (clickName == "rank_head_05") {
             this.curPage = 5;
