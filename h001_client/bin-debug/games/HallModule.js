@@ -815,6 +815,7 @@ var HallModule = (function () {
         this.horseSelectMiddlePanel.horizontalCenter = 0;
         this.horseSelectMiddlePanel.verticalCenter = 0;
         this.context.addChild(this.horseSelectMiddlePanel);
+        CommonTools.fixFix(this.context, this.horseSelectMiddlePanel, 2, 0, -40);
     };
     HallModule.prototype.updateUI = function () {
         if (this.curPage == 1) {

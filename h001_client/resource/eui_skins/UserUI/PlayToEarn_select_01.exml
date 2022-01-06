@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="416" height="612" x="465.5" y="31" anchorOffsetX="0" anchorOffsetY="0" source="select4_s_png" visible="false"/>
+	<e:Image width="416" height="612" x="903" y="31" anchorOffsetX="0" anchorOffsetY="0" source="select4_s_png" visible="false"/>
+	<e:Image width="292" height="50" x="9" y="12" anchorOffsetX="0" anchorOffsetY="0" source="title_di_png"/>
+	<e:Image width="232" height="22" x="21" y="28" anchorOffsetX="0" anchorOffsetY="0" source="Ranch-Exhibition_png"/>
+	<e:Group id="horse_panel_group" width="209" height="44.91" x="64.19" y="19.55" anchorOffsetX="0" anchorOffsetY="0" name="horse_panel_group">
+		<e:Image width="394" height="582" x="17.67" y="62.67" scaleX="1" scaleY="1" source="bar_info_di_18_png"/>
+		<e:Image width="346" height="2" x="41" y="134" source="bar_Splitline_1_png" anchorOffsetX="0" anchorOffsetY="0"/>
+		<e:Image width="394" height="29" x="16" y="91" anchorOffsetX="0" anchorOffsetY="0" source="My-Stables_png"/>
+		<e:Image width="122" height="15" x="34" y="149" anchorOffsetX="0" anchorOffsetY="0" source="Selected：_png"/>
+		<e:Image width="122" height="15" x="261" y="163" anchorOffsetX="0" anchorOffsetY="0" source="select-all：_png"/>
+		<e:Image width="23" height="23" x="344" y="158" anchorOffsetX="0" anchorOffsetY="0" source="select6_di_png"/>
+		<e:Image width="23" height="23" x="344" y="158" anchorOffsetX="0" anchorOffsetY="0" source="select6_s_png"/>
+		<e:Image width="122" height="15" x="34" y="171" anchorOffsetX="0" anchorOffsetY="0" source="Selected-Score：_png"/>
+		<e:Label text="15/20" x="180" y="146" size="18"/>
+		<e:Label text="123456" x="181" y="169" size="18"/>
+		<e:Image width="180" height="58" x="121.62" y="567.23" source="btn_info1_png" anchorOffsetX="0"/>
+		<e:Image width="170" height="21" x="127.02" y="583.35" anchorOffsetX="0" anchorOffsetY="0" source="Join-Exhibition_png"/>
+		<e:Scroller id="res_scroller0" width="394" height="351" x="17" y="195" anchorOffsetY="0" anchorOffsetX="0" name="res_scroller" scaleX="1" scaleY="1">
+			<e:Group id="res_group0" anchorOffsetX="0" width="394" anchorOffsetY="0" height="351" name="res_group" x="-1.52" y="-253.03">
+				<e:Group id="group_1" width="91" height="91" x="77.93" y="66.98" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+					<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+					<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+					<e:Image id="img_head_bg0" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+					<e:Image id="horse_lv_img0" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+					<e:Image id="select_2_img0" width="102.5" height="132.75" x="-7.75" y="-11" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+					<e:Image id="start_6" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+					<e:Image id="start_0" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+					<e:Image id="start_1" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+					<e:Image id="start_2" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+					<e:Image id="start_3" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+					<e:Image id="start_4" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+					<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+					<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+					<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+				</e:Group>
+				<e:Group id="group_0" width="91" height="91" x="199" y="66.98" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+					<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+					<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+					<e:Image id="img_head_bg1" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+					<e:Image id="horse_lv_img1" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+					<e:Image id="select_2_img1" width="102.5" height="132.75" x="-7.75" y="-11" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+					<e:Image id="start_5" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+					<e:Image id="start_7" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+					<e:Image id="start_8" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+					<e:Image id="start_9" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+					<e:Image id="start_10" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+					<e:Image id="start_11" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+					<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+					<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+					<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+				</e:Group>
+				<e:Group id="group_2" width="91" height="91" x="319.31" y="66.98" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+					<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+					<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+					<e:Image id="img_head_bg2" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+					<e:Image id="horse_lv_img2" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+					<e:Image id="select_2_img2" width="102.5" height="132.75" x="-7.75" y="-10.83" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+					<e:Image id="start_12" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+					<e:Image id="start_13" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+					<e:Image id="start_14" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+					<e:Image id="start_15" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+					<e:Image id="start_16" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+					<e:Image id="start_17" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+					<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+					<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+					<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+				</e:Group>
+				<e:Group id="group_3" width="91" height="91" x="78.93" y="218.5" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+					<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+					<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+					<e:Image id="img_head_bg3" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+					<e:Image id="horse_lv_img3" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+					<e:Image id="select_2_img3" width="102.5" height="132.75" x="-7.75" y="-11" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+					<e:Image id="start_18" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+					<e:Image id="start_19" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+					<e:Image id="start_20" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+					<e:Image id="start_21" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+					<e:Image id="start_22" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+					<e:Image id="start_23" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+					<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+					<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+					<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+				</e:Group>
+				<e:Group id="group_4" width="91" height="91" x="200" y="218.5" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+					<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+					<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+					<e:Image id="img_head_bg4" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+					<e:Image id="horse_lv_img4" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+					<e:Image id="select_2_img4" width="102.5" height="132.75" x="-7.75" y="-11" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+					<e:Image id="start_24" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+					<e:Image id="start_25" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+					<e:Image id="start_26" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+					<e:Image id="start_27" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+					<e:Image id="start_28" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+					<e:Image id="start_29" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+					<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+					<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+					<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+				</e:Group>
+				<e:Group id="group_5" width="91" height="91" x="320.31" y="218.5" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+					<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+					<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+					<e:Image id="img_head_bg5" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+					<e:Image id="horse_lv_img5" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+					<e:Image id="select_2_img5" width="102.5" height="132.75" x="-7.75" y="-10.83" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+					<e:Image id="start_30" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+					<e:Image id="start_31" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+					<e:Image id="start_32" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+					<e:Image id="start_33" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+					<e:Image id="start_34" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+					<e:Image id="start_35" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+					<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+					<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+					<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+				</e:Group>
+				<e:Group id="group_6" width="91" height="91" x="79.93" y="369.5" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+					<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+					<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+					<e:Image id="img_head_bg6" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+					<e:Image id="horse_lv_img6" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+					<e:Image id="select_2_img6" width="102.5" height="132.75" x="-7.75" y="-11" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+					<e:Image id="start_36" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+					<e:Image id="start_37" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+					<e:Image id="start_38" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+					<e:Image id="start_39" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+					<e:Image id="start_40" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+					<e:Image id="start_41" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+					<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+					<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+					<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+				</e:Group>
+				<e:Group id="group_7" width="91" height="91" x="201" y="369.5" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+					<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+					<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+					<e:Image id="img_head_bg7" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+					<e:Image id="horse_lv_img7" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+					<e:Image id="select_2_img7" width="102.5" height="132.75" x="-7.75" y="-11" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+					<e:Image id="start_42" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+					<e:Image id="start_43" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+					<e:Image id="start_44" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+					<e:Image id="start_45" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+					<e:Image id="start_46" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+					<e:Image id="start_47" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+					<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+					<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+					<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+				</e:Group>
+				<e:Group id="group_8" width="91" height="91" x="321.31" y="369.5" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+					<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+					<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+					<e:Image id="img_head_bg8" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+					<e:Image id="horse_lv_img8" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+					<e:Image id="select_2_img8" width="102.5" height="132.75" x="-7.75" y="-10.83" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+					<e:Image id="start_48" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+					<e:Image id="start_49" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+					<e:Image id="start_50" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+					<e:Image id="start_51" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+					<e:Image id="start_52" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+					<e:Image id="start_53" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+					<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+					<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+					<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+				</e:Group>
+			</e:Group>
+		</e:Scroller>
+	</e:Group>
+	<e:Group id="horse_panel_group0" width="209" height="44.91" x="471.02" y="19.55" anchorOffsetX="0" anchorOffsetY="0" name="horse_panel_group">
+		<e:Image width="394" height="582" x="17.67" y="62.67" scaleX="1" scaleY="1" source="bar_info_di_18_png"/>
+		<e:Image width="346" height="2" x="41" y="134" source="bar_Splitline_1_png" anchorOffsetX="0" anchorOffsetY="0"/>
+		<e:Image width="394" height="29" x="24" y="91" anchorOffsetX="0" anchorOffsetY="0" source="Exhibition_png"/>
+		<e:Image width="122" height="15" x="34" y="149" anchorOffsetX="0" anchorOffsetY="0" source="Selected：_png"/>
+		<e:Image width="122" height="15" x="261" y="163" anchorOffsetX="0" anchorOffsetY="0" source="select-all：_png"/>
+		<e:Image width="23" height="23" x="344" y="158" anchorOffsetX="0" anchorOffsetY="0" source="select6_di_png"/>
+		<e:Image width="23" height="23" x="344" y="158" anchorOffsetX="0" anchorOffsetY="0" source="select6_s_png"/>
+		<e:Image width="122" height="15" x="34" y="171" anchorOffsetX="0" anchorOffsetY="0" source="Selected-Score：_png"/>
+		<e:Label text="15/20" x="180" y="146" size="18"/>
+		<e:Label text="123456" x="181" y="169" size="18"/>
+		<e:Image width="180" height="58" x="121.62" y="567.23" source="btn_info1_png" anchorOffsetX="0"/>
+		<e:Image width="170" height="21" x="127.02" y="583.35" anchorOffsetX="0" anchorOffsetY="0" source="Go-Rest_png"/>
+		<e:Scroller id="res_scroller1" width="394" height="351" x="17" y="195" anchorOffsetY="0" anchorOffsetX="0" name="res_scroller" scaleX="1" scaleY="1">
+		<e:Group id="res_group1" anchorOffsetX="0" width="394" anchorOffsetY="0" height="351" name="res_group" x="-1.52" y="-253.03">
+			<e:Group id="group_9" width="91" height="91" x="77.93" y="66.98" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+			<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+			<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+			<e:Image id="img_head_bg9" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+			<e:Image id="horse_lv_img9" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+			<e:Image id="select_2_img9" width="102.5" height="132.75" x="-7.75" y="-11" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+			<e:Image id="start_54" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+			<e:Image id="start_55" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+			<e:Image id="start_56" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+			<e:Image id="start_57" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+			<e:Image id="start_58" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+			<e:Image id="start_59" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+			<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+			<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+			<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+			</e:Group>
+			<e:Group id="group_10" width="91" height="91" x="199" y="66.98" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+			<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+			<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+			<e:Image id="img_head_bg10" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+			<e:Image id="horse_lv_img10" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+			<e:Image id="select_2_img10" width="102.5" height="132.75" x="-7.75" y="-11" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+			<e:Image id="start_60" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+			<e:Image id="start_61" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+			<e:Image id="start_62" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+			<e:Image id="start_63" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+			<e:Image id="start_64" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+			<e:Image id="start_65" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+			<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+			<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+			<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+			</e:Group>
+			<e:Group id="group_11" width="91" height="91" x="319.31" y="66.98" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+			<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+			<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+			<e:Image id="img_head_bg11" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+			<e:Image id="horse_lv_img11" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+			<e:Image id="select_2_img11" width="102.5" height="132.75" x="-7.75" y="-10.83" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+			<e:Image id="start_66" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+			<e:Image id="start_67" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+			<e:Image id="start_68" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+			<e:Image id="start_69" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+			<e:Image id="start_70" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+			<e:Image id="start_71" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+			<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+			<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+			<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+			</e:Group>
+			<e:Group id="group_12" width="91" height="91" x="78.93" y="218.5" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+			<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+			<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+			<e:Image id="img_head_bg12" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+			<e:Image id="horse_lv_img12" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+			<e:Image id="select_2_img12" width="102.5" height="132.75" x="-7.75" y="-11" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+			<e:Image id="start_72" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+			<e:Image id="start_73" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+			<e:Image id="start_74" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+			<e:Image id="start_75" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+			<e:Image id="start_76" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+			<e:Image id="start_77" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+			<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+			<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+			<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+			</e:Group>
+			<e:Group id="group_13" width="91" height="91" x="200" y="218.5" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+			<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+			<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+			<e:Image id="img_head_bg13" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+			<e:Image id="horse_lv_img13" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+			<e:Image id="select_2_img13" width="102.5" height="132.75" x="-7.75" y="-11" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+			<e:Image id="start_78" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+			<e:Image id="start_79" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+			<e:Image id="start_80" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+			<e:Image id="start_81" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+			<e:Image id="start_82" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+			<e:Image id="start_83" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+			<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+			<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+			<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+			</e:Group>
+			<e:Group id="group_14" width="91" height="91" x="320.31" y="218.5" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+			<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+			<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+			<e:Image id="img_head_bg14" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+			<e:Image id="horse_lv_img14" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+			<e:Image id="select_2_img14" width="102.5" height="132.75" x="-7.75" y="-10.83" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+			<e:Image id="start_84" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+			<e:Image id="start_85" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+			<e:Image id="start_86" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+			<e:Image id="start_87" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+			<e:Image id="start_88" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+			<e:Image id="start_89" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+			<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+			<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+			<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+			</e:Group>
+			<e:Group id="group_15" width="91" height="91" x="79.93" y="369.5" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+			<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+			<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+			<e:Image id="img_head_bg15" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+			<e:Image id="horse_lv_img15" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+			<e:Image id="select_2_img15" width="102.5" height="132.75" x="-7.75" y="-11" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+			<e:Image id="start_90" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+			<e:Image id="start_91" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+			<e:Image id="start_92" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+			<e:Image id="start_93" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+			<e:Image id="start_94" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+			<e:Image id="start_95" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+			<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+			<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+			<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+			</e:Group>
+			<e:Group id="group_16" width="91" height="91" x="201" y="369.5" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+			<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+			<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+			<e:Image id="img_head_bg16" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+			<e:Image id="horse_lv_img16" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+			<e:Image id="select_2_img16" width="102.5" height="132.75" x="-7.75" y="-11" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+			<e:Image id="start_96" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+			<e:Image id="start_97" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+			<e:Image id="start_98" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+			<e:Image id="start_99" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+			<e:Image id="start_100" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+			<e:Image id="start_101" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+			<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+			<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+			<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+			</e:Group>
+			<e:Group id="group_17" width="91" height="91" x="321.31" y="369.5" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
+			<e:Image width="109" height="138" x="-11.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_20_png"/>
+			<e:Image width="54.8" height="44" x="16.1" y="35" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>
+			<e:Image id="img_head_bg17" width="25.4" height="34.75" x="-4.55" y="-7.81" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
+			<e:Image id="horse_lv_img17" width="11.96" height="13.95" x="2.72" y="-1.66" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
+			<e:Image id="select_2_img17" width="102.5" height="132.75" x="-7.75" y="-10.83" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" name="select_2_img" source="select5_s_png" scale9Grid="4,4,99,128"/>
+			<e:Image id="start_102" width="13" height="12.5" x="25.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+			<e:Image id="start_103" width="13" height="12.5" x="38.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+			<e:Image id="start_104" width="13" height="12.5" x="51.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+			<e:Image id="start_105" width="13" height="12.5" x="64.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+			<e:Image id="start_106" width="13" height="12.5" x="77.5" y="19.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+			<e:Image id="start_107" width="7.5" height="9.25" x="79.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" name="start_5" source="icon_Male_png"/>
+			<e:Label text="Echo RAMBO" x="25.25" y="6.29" anchorOffsetX="0" width="52.25" anchorOffsetY="0" height="12.25" size="8" textColor="0x5E4343" textAlign="left" verticalAlign="bottom"/>
+			<e:Label text="123432112323" x="8.88" y="100.93" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="10" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+			<e:Label text="Exhibition Score" x="23.25" y="86.48" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="12.25" size="6" textAlign="left" verticalAlign="bottom" textColor="0xF48E18"/>
+			</e:Group>
+		</e:Group>
+		</e:Scroller>
+	</e:Group>
+	<e:Image width="424" height="629" x="899.02" y="75.86" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png"/>
+	<e:Label text="123432112323" x="1113.02" y="185.3" anchorOffsetX="0" width="127.05" anchorOffsetY="0" height="15.25" size="16" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+	<e:Label text="123123" x="1119.02" y="581.6" anchorOffsetX="0" width="127.05" anchorOffsetY="0" height="15.25" size="16" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+	<e:Label text="123123" x="949.83" y="312.28" anchorOffsetX="0" width="127.05" anchorOffsetY="0" height="15.25" size="16" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+	<e:Label text="123123" x="949.15" y="526.28" anchorOffsetX="0" width="127.05" anchorOffsetY="0" height="15.25" size="16" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+	<e:Label text="123123" x="1142.5" y="524.94" anchorOffsetX="0" width="127.05" anchorOffsetY="0" height="15.25" size="16" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+	<e:Label text="123123" x="1141.37" y="313.89" anchorOffsetX="0" width="127.05" anchorOffsetY="0" height="15.25" size="16" textAlign="center" verticalAlign="middle" textColor="0xEAFC02"/>
+	<e:Image width="121" height="35" x="937.52" y="174.55" anchorOffsetX="0" anchorOffsetY="0" source="Total-Exhibition--Score_png"/>
+	<e:Image width="170" height="125" x="927.02" y="224.71" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_19_png"/>
+	<e:Image width="151.67" height="47" x="937.52" y="234.87" anchorOffsetX="0" anchorOffsetY="0" source="Total-Number-of-Horse_png"/>
+	<e:Image width="170" height="125" x="1119.02" y="226.02" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_19_png"/>
+	<e:Image width="189.68" height="26.33" x="1110.52" y="250.31" anchorOffsetX="0" anchorOffsetY="0" source="Rewards-everyday_png"/>
+	<e:Image width="170" height="125" x="927.02" y="439.93" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_19_png"/>
+	<e:Image width="189.68" height="22.33" x="918.51" y="461.38" anchorOffsetX="0" anchorOffsetY="0" source="Horse_png"/>
+	<e:Image width="170" height="125" x="1119.02" y="441.24" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_19_png"/>
+	<e:Image width="189.68" height="26.33" x="1110.52" y="462.65" anchorOffsetX="0" anchorOffsetY="0" source="Rewards-everyday_png"/>
+	<e:Image width="418" height="78" x="904.02" y="612.46" anchorOffsetX="0" anchorOffsetY="0" source="btn_info3_png" scale9Grid="4,4,193,66"/>
+	<e:Image width="405" height="75" x="910.52" y="613.78" anchorOffsetX="0" anchorOffsetY="0" source="Claim-Rewards_png"/>
+	<e:Image width="423" height="63" x="899.02" y="361.14" source="bar_info_di_3_png" anchorOffsetX="0"/>
+	<e:Image width="423" height="63" x="900.02" y="74.96" source="bar_info_di_3_png" anchorOffsetX="0"/>
+	<e:Image width="407" height="63" x="907.02" y="358.72" anchorOffsetX="0" source="My-Exhibition_png"/>
+	<e:Image width="362" height="63" x="927.02" y="70.63" source="Total-Exhibition_png"/>
+	<e:Button id="btn_shop0" label="" x="1245.02" y="578.13" anchorOffsetX="0" width="39" anchorOffsetY="0" height="41" name="btn_shop3" scaleX="0.6" scaleY="0.6">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="icon_coin1_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label text="Rewards" x="968.52" y="578.44" textColor="0xcff7ee" size="22"/>
+</e:Skin>
