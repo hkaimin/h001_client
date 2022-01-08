@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="NoticeGroup" width="1100" height="700" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="1081" height="667" x="8" y="16.5" anchorOffsetX="0" anchorOffsetY="0" source="market_ticket_png"/>
+	<e:Image width="367" height="184" x="254" y="444" source="bar_info_di_25_2_png"/>
+	<e:Image width="304" height="311" x="732" y="73" source="bar_info_di_26_png"/>
+	<e:Label text="15%" x="789" y="183.33" anchorOffsetX="0" width="34" anchorOffsetY="0" height="18.67" size="14" textAlign="left" verticalAlign="middle"/>
+	<e:Image width="22" height="26" x="856" y="53" source="icon_level_s_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="22" height="26" x="802" y="66" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_a_png"/>
+	<e:Image width="22" height="26" x="744" y="122" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_b_png"/>
+	<e:Image width="22" height="26" x="767" y="358" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_c_png"/>
+	<e:Image width="22" height="26" x="1036" y="192" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_d_png"/>
+	<e:Label text="3%" x="864.98" y="103" anchorOffsetX="0" width="34" anchorOffsetY="0" height="18.67" size="12" textAlign="left" verticalAlign="middle"/>
+	<e:Label text="7%" x="830.67" y="109.01" anchorOffsetX="0" width="34" anchorOffsetY="0" height="18.67" size="14" textAlign="left" verticalAlign="middle"/>
+	<e:Label text="25%" x="807" y="275.33" anchorOffsetX="0" width="34" anchorOffsetY="0" height="18.67" size="14" textAlign="left" verticalAlign="middle"/>
+	<e:Label text="50%" x="985" y="218" anchorOffsetX="0" width="34" anchorOffsetY="0" height="18.67" size="14" textAlign="left" verticalAlign="middle"/>
+	<e:Image width="84" height="25" x="705" y="431.5" source="Total2_png"/>
+	<e:Image width="201" height="57" x="806" y="415.5" anchorOffsetX="0" source="bar_info_di_27_png"/>
+	<e:Label text="1" x="898" y="431.5" textAlign="center" verticalAlign="middle"/>
+	<e:Image width="34" height="24" x="1014.52" y="415.5" source="btn_point5_png" rotation="2.05"/>
+	<e:Image width="34" height="24" x="1014.52" y="472.28" source="btn_point5_png" skewX="-180"/>
+</e:Skin>

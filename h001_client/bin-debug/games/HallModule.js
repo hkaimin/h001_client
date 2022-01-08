@@ -467,7 +467,8 @@ var HallModule = (function () {
         groupHorse.scaleX = 1.2;
         groupHorse.scaleY = 1.2;
         groupHorse.getChildByName("select_2_img").visible = true;
-        this.changeHorseRight(1);
+        if (this.curPage == 2)
+            this.changeHorseRight(1);
     };
     HallModule.prototype.initMergeClick = function () {
         this.horseSelectRightPanel.getChildByName("left_horse_stat_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
@@ -660,6 +661,15 @@ var HallModule = (function () {
             this.maskNew.source = "horse_merge_page2_jpg";
             this.clearPage2HorseHome();
             this.createHorseBreeding();
+        }
+    };
+    HallModule.prototype.horseMarketUI = function () {
+        this.maskNew.source = "horse_market_page5_jpg";
+        if (this.subCurPage == 1) {
+        }
+        else if (this.subCurPage == 2) {
+        }
+        else if (this.subCurPage == 3) {
         }
     };
     HallModule.prototype.showTrainingSelect = function (index) {
@@ -951,6 +961,7 @@ var HallModule = (function () {
         CommonTools.fixFix(this.context, this.btnBackImgTemp, 1, 0, -50);
         this.btnBackImgTemp.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.panel.getChildByName("up_item_group").visible = false;
             this.btnPveAnimX = -500;
             this.setHorseXY();
             this.updatePlayToEarn();
@@ -1011,6 +1022,9 @@ var HallModule = (function () {
         else if (this.curPage == 4) {
             this.hideForAll();
             this.updatePlayToEarn();
+        }
+        else if (this.curPage == 5) {
+            this.horseMarketUI();
         }
     };
     HallModule.prototype.updateMaincoin = function (coin, save) {
@@ -1503,17 +1517,19 @@ var HallModule = (function () {
         }
         else if (clickName == "rank_head_05") {
             this.curPage = 5;
-            this.rankHead01_mask.visible = false;
+            this.rankHead01_mask.visible = true;
             this.rankHead02_mask.visible = false;
             this.rankHead03_mask.visible = false;
             this.rankHead04_mask.visible = false;
-            this.rankHead05_mask.visible = true;
-            this.rankHead01.source = "icon_homestead_n_png";
-            this.rankHead02.source = "icon_stables_n_png";
-            this.rankHead03.source = "icon_training_n_png";
-            this.rankHead04.source = "icon_task_n_png";
-            this.rankHead05.source = "icon_marketpalec_s_png";
-            this.showEditUI("scroll_notify");
+            this.rankHead05_mask.visible = false;
+            this.rankHead01.source = "icon_Royal-Club_s_png";
+            this.rankHead02.source = "icon_Horse-Market_n_png";
+            this.rankHead03.source = "icon_My-Inventory_n_png";
+            this.rankHead04.visible = false;
+            this.rankHead05.visible = false;
+            this.btnBackImg.visible = true;
+            this.updateUI();
+            // this.showEditUI("scroll_notify");
         }
         this.setHorseXY();
     };
