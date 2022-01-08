@@ -87,4 +87,5 @@
 		</e:Skin>
 		</e:skinName>
 	</e:Button>
+	<e:Label id="Process_btn_lb" text="" x="882" y="604" anchorOffsetX="0" width="437" anchorOffsetY="0" height="89" name="Process_btn_lb"/>
 </e:Skin>

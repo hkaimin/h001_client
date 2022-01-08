@@ -345,7 +345,7 @@
 	<e:Image width="170" height="125" x="1119.02" y="441.24" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_19_png"/>
 	<e:Image width="189.68" height="26.33" x="1110.52" y="462.65" anchorOffsetX="0" anchorOffsetY="0" source="Rewards-everyday_png"/>
 	<e:Image width="418" height="78" x="904.02" y="612.46" anchorOffsetX="0" anchorOffsetY="0" source="btn_info3_png" scale9Grid="4,4,193,66"/>
-	<e:Image width="405" height="75" x="910.52" y="613.78" anchorOffsetX="0" anchorOffsetY="0" source="Claim-Rewards_png"/>
+	<e:Image id="clain_rewards_btn" width="405" height="75" x="910.52" y="613.78" anchorOffsetX="0" anchorOffsetY="0" source="Claim-Rewards_png" name="clain_rewards_btn"/>
 	<e:Image width="423" height="63" x="899.02" y="361.14" source="bar_info_di_3_png" anchorOffsetX="0"/>
 	<e:Image width="423" height="63" x="900.02" y="74.96" source="bar_info_di_3_png" anchorOffsetX="0"/>
 	<e:Image width="407" height="63" x="907.02" y="358.72" anchorOffsetX="0" source="My-Exhibition_png"/>

@@ -44,9 +44,9 @@ declare module skins{
 }
 declare class LoginUI extends eui.Skin{
 }
-declare class CommonTips extends eui.Skin{
-}
 declare class NoticeGroup extends eui.Skin{
+}
+declare class CommonTips extends eui.Skin{
 }
 declare module skins{
 	class VScrollBarSkin extends eui.Skin{

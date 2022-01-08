@@ -131,7 +131,7 @@ var HallModule = (function () {
         this.btnPveAnim.name = "btn_noend_pve_anim";
         this.panel.addChild(this.btnPveAnim);
         this.setHorseXY();
-        if (this.curPage == 2 && this.subCurPage > 1)
+        if (this.curPage == 2 && this.subCurPage > 1 || this.curPage == 4 && this.subCurPage == 1)
             this.btnPveAnim.visible = false;
         this.btnPveAnim.addEventListener(egret.Event.COMPLETE, function () {
             CommonTools.logWallet("---COMPLETE------" + this.horseCurrent);
@@ -808,7 +808,157 @@ var HallModule = (function () {
         this.panel.getChildByName("horse_name_group").visible = false;
         this.btnPveAnim.visible = false;
     };
+    HallModule.prototype.createCargoSuccess = function (index) {
+        CommonAudioHandle.playEffect("success_mp3", 1);
+        this.maskBg2 = new eui.Image("black_mask_png");
+        this.maskBg2.alpha = 0.9;
+        this.maskBg2.width = this.context.getStageWidth();
+        this.maskBg2.height = this.context.getStageHeight();
+        this.context.addChild(this.maskBg2);
+        this.horseMergeResult = new eui.Panel();
+        this.horseMergeResult.skinName = "resource/eui_skins/UserUI/Cargo_success.exml";
+        this.horseMergeResult.title = "Title";
+        this.horseMergeResult.horizontalCenter = 0;
+        this.context.addChild(this.horseMergeResult);
+        CommonTools.fixFix(this.context, this.horseMergeResult, 2, 0, -40);
+        this.horseMergeResult.getChildByName("merge_fail_confirm").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.closeMergeFail();
+        }, this);
+    };
+    HallModule.prototype.task01UI = function () {
+        this.panel.getChildByName("up_item_group").visible = true;
+        this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = false;
+        this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = false;
+        this.horseSelectMiddlePanel = new eui.Panel();
+        this.horseSelectMiddlePanel.skinName = "resource/eui_skins/UserUI/PlayToEarn_select_01.exml";
+        this.horseSelectMiddlePanel.title = "Title";
+        this.horseSelectMiddlePanel.horizontalCenter = 0;
+        this.horseSelectMiddlePanel.verticalCenter = 0;
+        this.context.addChild(this.horseSelectMiddlePanel);
+        CommonTools.fixFix(this.context, this.horseSelectMiddlePanel, 2, 0, -40);
+        this.horseSelectMiddlePanel.getChildByName("clain_rewards_btn").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.testAddMain();
+        }, this);
+        this.tipsPanel = this.horseSelectMiddlePanel;
+    };
+    HallModule.prototype.task02UI = function () {
+        this.panel.getChildByName("up_item_group").visible = false;
+        var leftX2 = 280;
+        var downY2 = 180;
+        this.btnPveAnimX = 280;
+        this.setHorseXY();
+        if (ConstValue.deviveNormalScale >= 2) {
+            leftX2 -= 80;
+            downY2 -= 200;
+            this.btnPveAnimX += 0;
+        }
+        this.horseSelectMiddlePanel = new eui.Panel();
+        this.horseSelectMiddlePanel.skinName = "resource/eui_skins/UserUI/Training_middle.exml";
+        this.horseSelectMiddlePanel.title = "Title2";
+        this.horseSelectMiddlePanel.x = leftX2;
+        this.horseSelectMiddlePanel.y = downY2;
+        this.horseSelectMiddlePanel.scaleX = 0.7;
+        this.horseSelectMiddlePanel.scaleY = 0.7;
+        this.context.addChild(this.horseSelectMiddlePanel);
+        CommonTools.fixFix(this.context, this.horseSelectMiddlePanel, 2, 0, -40);
+        this.horseSelectRightPanel = new eui.Panel();
+        this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/PlayToEarn_select_02.exml";
+        this.horseSelectRightPanel.title = "Title";
+        this.horseSelectRightPanel.horizontalCenter = 0;
+        this.horseSelectRightPanel.verticalCenter = 0;
+        this.context.addChild(this.horseSelectRightPanel);
+        CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, -40);
+        this.horseSelectRightPanel.getChildByName("Process_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.createCargoSuccess();
+        }, this);
+    };
+    HallModule.prototype.task03UI = function () {
+        this.panel.getChildByName("up_item_group").visible = false;
+        var leftX2 = 280;
+        var downY2 = 180;
+        this.btnPveAnimX = 280;
+        this.setHorseXY();
+        if (ConstValue.deviveNormalScale >= 2) {
+            leftX2 -= 80;
+            downY2 -= 200;
+            this.btnPveAnimX += 0;
+        }
+        this.horseSelectMiddlePanel = new eui.Panel();
+        this.horseSelectMiddlePanel.skinName = "resource/eui_skins/UserUI/Training_middle.exml";
+        this.horseSelectMiddlePanel.title = "Title2";
+        this.horseSelectMiddlePanel.x = leftX2;
+        this.horseSelectMiddlePanel.y = downY2;
+        this.horseSelectMiddlePanel.scaleX = 0.7;
+        this.horseSelectMiddlePanel.scaleY = 0.7;
+        this.context.addChild(this.horseSelectMiddlePanel);
+        CommonTools.fixFix(this.context, this.horseSelectMiddlePanel, 2, 0, -40);
+        this.horseSelectRightPanel = new eui.Panel();
+        this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/PlayToEarn_select_03.exml";
+        this.horseSelectRightPanel.title = "Title";
+        this.horseSelectRightPanel.horizontalCenter = 0;
+        this.horseSelectRightPanel.verticalCenter = 0;
+        this.context.addChild(this.horseSelectRightPanel);
+        CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, -40);
+        this.horseSelectRightPanel.getChildByName("Process_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.createCargoSuccess();
+        }, this);
+    };
+    HallModule.prototype.clearTask = function () {
+        if (this.btnBackImgTemp != null) {
+            this.context.removeChild(this.btnBackImgTemp);
+            this.btnBackImgTemp = null;
+        }
+        if (this.horseSelectMiddlePanel != null) {
+            this.context.removeChild(this.horseSelectMiddlePanel);
+            this.horseSelectMiddlePanel = null;
+        }
+        if (this.horseSelectRightPanel != null) {
+            this.context.removeChild(this.horseSelectRightPanel);
+            this.horseSelectRightPanel = null;
+        }
+        if (this.horseSelectPanel != null) {
+            this.context.removeChild(this.horseSelectPanel);
+            this.horseSelectPanel = null;
+        }
+    };
+    HallModule.prototype.taskUpdate = function (index) {
+        this.subCurPage = index;
+        this.clearTask();
+        if (index == 1)
+            this.task01UI();
+        if (index == 2) {
+            this.btnPveAnim.visible = true;
+            this.createHorseItem();
+            this.task02UI();
+        }
+        if (index == 3) {
+            this.btnPveAnim.visible = true;
+            this.createHorseItem();
+            this.task03UI();
+        }
+        this.btnBackImgTemp = new eui.Image();
+        this.btnBackImgTemp.name = "btnTempBack";
+        this.btnBackImgTemp.source = "btn_back_png";
+        this.btnBackImgTemp.width = 102;
+        this.btnBackImgTemp.height = 67;
+        this.btnBackImgTemp.x = 0;
+        this.btnBackImgTemp.y = 660;
+        this.context.addChild(this.btnBackImgTemp);
+        CommonTools.fixFix(this.context, this.btnBackImgTemp, 1, 0, -50);
+        this.btnBackImgTemp.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.btnPveAnimX = -500;
+            this.setHorseXY();
+            this.updatePlayToEarn();
+        }, this);
+    };
     HallModule.prototype.updatePlayToEarn = function () {
+        this.clearTask();
+        this.btnPveAnim.visible = false;
         this.horseSelectMiddlePanel = new eui.Panel();
         this.horseSelectMiddlePanel.skinName = "resource/eui_skins/UserUI/PlayToEarn_select.exml";
         this.horseSelectMiddlePanel.title = "Title";
@@ -816,6 +966,29 @@ var HallModule = (function () {
         this.horseSelectMiddlePanel.verticalCenter = 0;
         this.context.addChild(this.horseSelectMiddlePanel);
         CommonTools.fixFix(this.context, this.horseSelectMiddlePanel, 2, 0, -40);
+        this.btnBackImgTemp = new eui.Image();
+        this.btnBackImgTemp.name = "btnTempBack";
+        this.btnBackImgTemp.source = "btn_back_png";
+        this.btnBackImgTemp.width = 102;
+        this.btnBackImgTemp.height = 67;
+        this.btnBackImgTemp.x = 0;
+        this.btnBackImgTemp.y = 660;
+        this.context.addChild(this.btnBackImgTemp);
+        CommonTools.fixFix(this.context, this.btnBackImgTemp, 1, 0, -50);
+        this.btnBackImgTemp.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.changePage("rank_head_01");
+        }, this);
+        this.horseSelectMiddlePanel.getChildByName("task_0" + this.subCurPage + "_select_di").visible = true;
+        this.horseSelectMiddlePanel.getChildByName("task_01_select").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            this.taskUpdate(1);
+        }, this);
+        this.horseSelectMiddlePanel.getChildByName("task_02_select").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            this.taskUpdate(2);
+        }, this);
+        this.horseSelectMiddlePanel.getChildByName("task_03_select").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            this.taskUpdate(3);
+        }, this);
     };
     HallModule.prototype.updateUI = function () {
         if (this.curPage == 1) {
@@ -1249,6 +1422,15 @@ var HallModule = (function () {
             this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = true;
             this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = true;
             this.panel.getChildByName("rank_grounp_main").visible = true;
+            if (this.btnBackImgTemp != null) {
+                this.context.removeChild(this.btnBackImgTemp);
+                this.btnBackImgTemp = null;
+            }
+            this.btnPveAnimX = this.btnPveAnimInitX;
+            this.btnPveAnim.x = this.btnPveAnimX;
+            this.drawHorse();
+            this.panel.getChildByName("up_item_group").visible = true;
+            this.tipsPanel = this.panel;
         }
         else if (clickName == "rank_head_02") {
             this.panel.getChildByName("horse_name_group").visible = false;

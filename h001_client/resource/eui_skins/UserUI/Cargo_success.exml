@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="NoticeGroup" width="747" height="626" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="509" height="446" x="111" y="104" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_23_png"/>
+	<e:Image width="678" height="324" x="62.5" y="3" anchorOffsetX="0" anchorOffsetY="0" source="pic_win_png"/>
+	<e:Image width="147" height="58" x="311.6" y="433.06" anchorOffsetX="0" anchorOffsetY="0" source="btn_info1_png"/>
+	<e:Image id="merge_fail_confirm" width="123" height="28" x="322.6" y="446.06" source="icon_confirm_png" name="merge_fail_confirm"/>
+	<e:Image width="190" height="30" x="297.04" y="289" anchorOffsetX="0" anchorOffsetY="0" source="Rewards_2_png"/>
+	<e:Button id="btn_shop0" label="" x="329.6" y="361.46" anchorOffsetX="0" width="39" anchorOffsetY="0" height="41" name="btn_shop3" scaleX="0.6" scaleY="0.6">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="icon_coin1_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label text="+ 5" x="380.5" y="360.4" textColor="0x5dc916" italic="true"/>
+</e:Skin>
