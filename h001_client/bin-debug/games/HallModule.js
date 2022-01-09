@@ -131,7 +131,7 @@ var HallModule = (function () {
         this.btnPveAnim.name = "btn_noend_pve_anim";
         this.panel.addChild(this.btnPveAnim);
         this.setHorseXY();
-        if (this.curPage == 2 && this.subCurPage > 1 || this.curPage == 4 && this.subCurPage == 1)
+        if (this.curPage == 2 && this.subCurPage > 1 || this.curPage == 4 && this.subCurPage == 1 || this.curPage == 5)
             this.btnPveAnim.visible = false;
         this.btnPveAnim.addEventListener(egret.Event.COMPLETE, function () {
             CommonTools.logWallet("---COMPLETE------" + this.horseCurrent);
@@ -348,7 +348,7 @@ var HallModule = (function () {
             leftX2 -= 0;
             downY2 -= 80;
         }
-        if (this.curPage == 2 && this.subCurPage == 1) {
+        if (this.curPage == 2 && this.subCurPage == 1 || this.curPage == 5) {
             this.horseSelectRightPanel = new eui.Panel();
             if (index == 1) {
                 this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesStatUI.exml";
@@ -364,6 +364,16 @@ var HallModule = (function () {
             this.horseSelectRightPanel.y = downY2;
             this.context.addChild(this.horseSelectRightPanel);
             CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, 0);
+            if (this.curPage == 5) {
+                if (ConstValue.deviveNormalScale >= 2) {
+                    this.horseSelectRightPanel.scaleX = 0.7;
+                    this.horseSelectRightPanel.scaleY = 0.7;
+                }
+                else {
+                    this.horseSelectRightPanel.scaleX = 0.8;
+                    this.horseSelectRightPanel.scaleY = 0.8;
+                }
+            }
             this.horseSelectRightPanel.getChildByName("horse_stat_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
                 CommonAudioHandle.playEffect("playBomb_mp3", 1);
                 this.changeHorseRight(1);
@@ -663,13 +673,61 @@ var HallModule = (function () {
             this.createHorseBreeding();
         }
     };
+    HallModule.prototype.royalClubUI = function () {
+        var leftX2 = 240;
+        var downY2 = 68;
+        if (ConstValue.deviveNormalScale >= 2) {
+            leftX2 += 70;
+            downY2 -= 0;
+        }
+        this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = false;
+        this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = false;
+        this.horseSelectMiddlePanel = new eui.Panel();
+        this.horseSelectMiddlePanel.skinName = "resource/eui_skins/UserUI/RoyalClub.exml";
+        this.horseSelectMiddlePanel.title = "Title";
+        this.horseSelectMiddlePanel.x = leftX2;
+        this.horseSelectMiddlePanel.y = downY2;
+        this.context.addChild(this.horseSelectMiddlePanel);
+        CommonTools.fixFix(this.context, this.horseSelectMiddlePanel, 2, 0, -40);
+        // this.horseSelectMiddlePanel.getChildByName("clain_rewards_btn").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+        // 	CommonAudioHandle.playEffect("playBomb_mp3",1);
+        // 	this.testAddMain();
+        // }, this);
+    };
+    HallModule.prototype.CreateMarketItems = function () {
+        var leftX2 = 240;
+        var downY2 = 68;
+        if (ConstValue.deviveNormalScale >= 2) {
+            leftX2 += 70;
+            downY2 -= 0;
+        }
+        this.horseSelectMiddlePanel = new eui.Panel();
+        this.horseSelectMiddlePanel.skinName = "resource/eui_skins/UserUI/Market_horses.exml";
+        this.horseSelectMiddlePanel.title = "Title";
+        this.horseSelectMiddlePanel.x = leftX2;
+        this.horseSelectMiddlePanel.y = downY2;
+        this.context.addChild(this.horseSelectMiddlePanel);
+        CommonTools.fixFix(this.context, this.horseSelectMiddlePanel, 2, 0, -40);
+    };
+    HallModule.prototype.MarketUI = function () {
+        this.changeHorseRight(1);
+        this.CreateMarketItems();
+    };
+    HallModule.prototype.MyInventoryUI = function () {
+        this.changeHorseRight(1);
+        this.CreateMarketItems();
+    };
     HallModule.prototype.horseMarketUI = function () {
         this.maskNew.source = "horse_market_page5_jpg";
+        this.btnPveAnim.visible = false;
         if (this.subCurPage == 1) {
+            this.royalClubUI();
         }
         else if (this.subCurPage == 2) {
+            this.MarketUI();
         }
         else if (this.subCurPage == 3) {
+            this.MyInventoryUI();
         }
     };
     HallModule.prototype.showTrainingSelect = function (index) {
@@ -992,12 +1050,15 @@ var HallModule = (function () {
         }, this);
         this.horseSelectMiddlePanel.getChildByName("task_0" + this.subCurPage + "_select_di").visible = true;
         this.horseSelectMiddlePanel.getChildByName("task_01_select").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.taskUpdate(1);
         }, this);
         this.horseSelectMiddlePanel.getChildByName("task_02_select").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.taskUpdate(2);
         }, this);
         this.horseSelectMiddlePanel.getChildByName("task_03_select").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.taskUpdate(3);
         }, this);
     };
@@ -1024,6 +1085,14 @@ var HallModule = (function () {
             this.updatePlayToEarn();
         }
         else if (this.curPage == 5) {
+            if (this.horseSelectMiddlePanel != null) {
+                this.context.removeChild(this.horseSelectMiddlePanel);
+                this.horseSelectMiddlePanel = null;
+            }
+            if (this.horseSelectRightPanel != null) {
+                this.context.removeChild(this.horseSelectRightPanel);
+                this.horseSelectRightPanel = null;
+            }
             this.horseMarketUI();
         }
     };
@@ -1412,55 +1481,79 @@ var HallModule = (function () {
     };
     HallModule.prototype.changePage = function (clickName) {
         if (clickName == "rank_head_01") {
-            if (this.curPage != 1)
-                this.maskNew.source = "new_ui_01_jpg";
-            this.curPage = 1;
-            this.subCurPage = 1;
-            this.rankHead01_mask.visible = true;
-            this.rankHead02_mask.visible = false;
-            this.rankHead03_mask.visible = false;
-            this.rankHead04_mask.visible = false;
-            this.rankHead05_mask.visible = false;
-            this.rankHead01.source = "icon_homestead_s_png";
-            this.rankHead02.source = "icon_stables_n_png";
-            this.rankHead03.source = "icon_training_n_png";
-            this.rankHead04.source = "icon_task_n_png";
-            this.rankHead05.source = "icon_marketpalec_n_png";
-            this.panel.getChildByName("horse_name_group").visible = true;
-            this.btnBackImg.visible = false;
-            this.rankHead01.visible = true;
-            this.rankHead05.visible = true;
-            this.clearPage2HorseHome();
-            this.clearTraining();
-            this.btnPveAnim.visible = true;
-            this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = true;
-            this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = true;
-            this.panel.getChildByName("rank_grounp_main").visible = true;
-            if (this.btnBackImgTemp != null) {
-                this.context.removeChild(this.btnBackImgTemp);
-                this.btnBackImgTemp = null;
+            if (this.curPage == 5) {
+                this.subCurPage = 1;
+                this.rankHead01_mask.visible = true;
+                this.rankHead02_mask.visible = false;
+                this.rankHead03_mask.visible = false;
+                this.rankHead01.source = "icon_Royal-Club_s_png";
+                this.rankHead02.source = "icon_Horse-Market_n_png";
+                this.rankHead03.source = "icon_My-Inventory_n_png";
+                this.updateUI();
             }
-            this.btnPveAnimX = this.btnPveAnimInitX;
-            this.btnPveAnim.x = this.btnPveAnimX;
-            this.drawHorse();
-            this.panel.getChildByName("up_item_group").visible = true;
-            this.tipsPanel = this.panel;
+            else {
+                if (this.curPage != 1)
+                    this.maskNew.source = "new_ui_01_jpg";
+                this.curPage = 1;
+                this.subCurPage = 1;
+                this.rankHead01_mask.visible = true;
+                this.rankHead02_mask.visible = false;
+                this.rankHead03_mask.visible = false;
+                this.rankHead04_mask.visible = false;
+                this.rankHead05_mask.visible = false;
+                this.rankHead01.source = "icon_homestead_s_png";
+                this.rankHead02.source = "icon_stables_n_png";
+                this.rankHead03.source = "icon_training_n_png";
+                this.rankHead04.source = "icon_task_n_png";
+                this.rankHead05.source = "icon_marketpalec_n_png";
+                this.panel.getChildByName("horse_name_group").visible = true;
+                this.btnBackImg.visible = false;
+                this.rankHead01.visible = true;
+                this.rankHead04.visible = true;
+                this.rankHead05.visible = true;
+                this.clearPage2HorseHome();
+                this.clearTraining();
+                this.btnPveAnim.visible = true;
+                this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = true;
+                this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = true;
+                this.panel.getChildByName("rank_grounp_main").visible = true;
+                if (this.btnBackImgTemp != null) {
+                    this.context.removeChild(this.btnBackImgTemp);
+                    this.btnBackImgTemp = null;
+                }
+                this.btnPveAnimX = this.btnPveAnimInitX;
+                this.btnPveAnim.x = this.btnPveAnimX;
+                this.drawHorse();
+                this.panel.getChildByName("up_item_group").visible = true;
+                this.tipsPanel = this.panel;
+            }
         }
         else if (clickName == "rank_head_02") {
-            this.panel.getChildByName("horse_name_group").visible = false;
-            this.curPage = 2;
-            this.subCurPage = 1;
-            this.rankHead01_mask.visible = false;
-            this.rankHead02_mask.visible = true;
-            this.rankHead03_mask.visible = false;
-            this.rankHead04_mask.visible = false;
-            this.rankHead05_mask.visible = false;
-            this.rankHead01.visible = false;
-            this.rankHead05.visible = false;
-            this.rankHead02.source = "icon_horse_s_png";
-            this.rankHead03.source = "icon_merge_n_png";
-            this.rankHead04.source = "icon_breeding_n_png";
-            this.btnBackImg.visible = true;
+            if (this.curPage == 5) {
+                this.subCurPage = 2;
+                this.rankHead01_mask.visible = false;
+                this.rankHead02_mask.visible = true;
+                this.rankHead03_mask.visible = false;
+                this.rankHead01.source = "icon_Royal-Club_n_png";
+                this.rankHead02.source = "icon_Horse-Market_s_png";
+                this.rankHead03.source = "icon_My-Inventory_n_png";
+            }
+            else {
+                this.panel.getChildByName("horse_name_group").visible = false;
+                this.curPage = 2;
+                this.subCurPage = 1;
+                this.rankHead01_mask.visible = false;
+                this.rankHead02_mask.visible = true;
+                this.rankHead03_mask.visible = false;
+                this.rankHead04_mask.visible = false;
+                this.rankHead05_mask.visible = false;
+                this.rankHead01.visible = false;
+                this.rankHead05.visible = false;
+                this.rankHead02.source = "icon_horse_s_png";
+                this.rankHead03.source = "icon_merge_n_png";
+                this.rankHead04.source = "icon_breeding_n_png";
+                this.btnBackImg.visible = true;
+            }
             this.updateUI();
         }
         else if (clickName == "rank_head_03") {
@@ -1472,6 +1565,15 @@ var HallModule = (function () {
                 this.rankHead02.source = "icon_horse_n_png";
                 this.rankHead03.source = "icon_merge_s_png";
                 this.rankHead04.source = "icon_breeding_n_png";
+            }
+            else if (this.curPage == 5) {
+                this.subCurPage = 3;
+                this.rankHead01_mask.visible = false;
+                this.rankHead02_mask.visible = false;
+                this.rankHead03_mask.visible = true;
+                this.rankHead01.source = "icon_Royal-Club_n_png";
+                this.rankHead02.source = "icon_Horse-Market_n_png";
+                this.rankHead03.source = "icon_My-Inventory_s_png";
             }
             else {
                 this.curPage = 3;
@@ -1516,6 +1618,7 @@ var HallModule = (function () {
             this.updateUI();
         }
         else if (clickName == "rank_head_05") {
+            this.panel.getChildByName("horse_name_group").visible = false;
             this.curPage = 5;
             this.rankHead01_mask.visible = true;
             this.rankHead02_mask.visible = false;
@@ -1625,6 +1728,7 @@ var HallModule = (function () {
                         this.testAddSub();
                         return [3 /*break*/, 40];
                     case 3:
+                        this.curPage = 6;
                         this.changePage("rank_head_01");
                         return [3 /*break*/, 40];
                     case 4:
@@ -2495,20 +2599,6 @@ var HallModule = (function () {
             else {
                 stateImg.source = "sevent_got_png";
             }
-            // this.panelNotice.getChildByName("item_lb_"+i).addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
-            // 	let name = e.target.name;
-            // 	let idx = parseInt(name.replace("item_lb_",""));
-            // 	if(idx > this.seventCur){
-            // 		CommonTools.addCommonTips(this.tipsPanel,"请领取第"+this.seventCur+"天奖励！");
-            // 	}else{
-            // 		if(!this.seventGetState){
-            // 			let sData = CommonTools.getDataJsonStr("getSeventDayReward",1,{});
-            // 			ConstValue.P_NET_OBJ.sendData(sData);
-            // 		}else{
-            // 			CommonTools.addCommonTips(this.tipsPanel,"已领取当天奖励");
-            // 		}
-            // 	}
-            // }, this);
         }
     };
     HallModule.prototype.handleGetMyMaps = function () {
@@ -3010,15 +3100,6 @@ var HallModule = (function () {
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
-                            // let rank_grounp_main = this.panel.getChildByName("rank_grounp_main") as eui.Group;
-                            // let rank_head_01 = rank_grounp_main.getChildByName("rank_head_01") as eui.Image;
-                            // let rank_head_02 = rank_grounp_main.getChildByName("rank_head_02") as eui.Image;
-                            // let rank_head_03 = rank_grounp_main.getChildByName("rank_head_03") as eui.Image;
-                            // if(jsonObj.d.lrank.length >=3){
-                            // 	if(jsonObj.d.lrank[0][2]!="")rank_head_01.source = jsonObj.d.lrank[0][2];
-                            // 	if(jsonObj.d.lrank[1][2]!="")rank_head_02.source = jsonObj.d.lrank[1][2];
-                            // 	if(jsonObj.d.lrank[2][2]!="")rank_head_03.source = jsonObj.d.lrank[2][2];
-                            // }
                         }
                         return [3 /*break*/, 34];
                     case 6:

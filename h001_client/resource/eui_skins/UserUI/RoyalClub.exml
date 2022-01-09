@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="NoticeGroup" width="1100" height="700" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image width="1081" height="667" x="8" y="16.5" anchorOffsetX="0" anchorOffsetY="0" source="market_ticket_png"/>
+	<e:Image width="202" height="78" x="804.92" y="511.32" anchorOffsetX="0" anchorOffsetY="0" source="btn_info3_png"/>
+	<e:Image width="181" height="23" x="815.42" y="553.32" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_16_png"/>
+	<e:Button id="btn_shop0" label="" x="834.21" y="553.67" anchorOffsetX="0" width="39" anchorOffsetY="0" height="41" name="btn_shop3" scaleX="0.6" scaleY="0.6">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="icon_coin1_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label id="main_coin_num_lb" text="1" x="859.01" y="558.32" name="main_coin_num_lb" anchorOffsetX="0" width="74" textAlign="left" anchorOffsetY="0" height="23.33" size="26" textColor="0xF9F2F2" verticalAlign="middle" scaleX="0.6" scaleY="0.6"/>
+	<e:Button id="btn_shop1" label="" x="921.83" y="554.19" anchorOffsetX="0" width="39" anchorOffsetY="0" height="41" name="btn_shop3" scaleX="0.6" scaleY="0.6">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="icon_coin2_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label id="main_coin_num_lb0" text="2" x="947.4" y="558.32" name="main_coin_num_lb" anchorOffsetX="0" width="74" textAlign="left" anchorOffsetY="0" height="23.33" size="26" textColor="0xF9F2F2" verticalAlign="middle" scaleX="0.6" scaleY="0.6"/>
+	<e:Label id="train_btn_img" text="" x="789.52" y="505.32" anchorOffsetX="0" width="242" anchorOffsetY="0" height="96" name="train_btn_img" visible="false"/>
 	<e:Image width="367" height="184" x="254" y="444" source="bar_info_di_25_2_png"/>
 	<e:Image width="304" height="311" x="732" y="73" source="bar_info_di_26_png"/>
 	<e:Label text="15%" x="789" y="183.33" anchorOffsetX="0" width="34" anchorOffsetY="0" height="18.67" size="14" textAlign="left" verticalAlign="middle"/>
@@ -18,4 +39,14 @@
 	<e:Label text="1" x="898" y="431.5" textAlign="center" verticalAlign="middle"/>
 	<e:Image width="34" height="24" x="1014.52" y="415.5" source="btn_point5_png" rotation="2.05"/>
 	<e:Image width="34" height="24" x="1014.52" y="472.28" source="btn_point5_png" skewX="-180"/>
+	<e:Label text="888" x="512.05" y="486.51" rotation="27.26" textAlign="center" verticalAlign="middle" anchorOffsetX="0" width="87.64" textColor="0xefe02b"/>
+	<e:Label text="Confirm" x="840" y="520" anchorOffsetX="0" width="133" size="28" textAlign="center" verticalAlign="middle"/>
+	<e:Button id="btn_shop2" label="" x="585.58" y="519.33" anchorOffsetX="0" width="40.67" anchorOffsetY="0" height="41" name="btn_shop3" scaleX="0.6" scaleY="0.6" rotation="33.55">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="icon_coin1_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
 </e:Skin>
