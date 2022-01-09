@@ -38,6 +38,7 @@ var ConstValue = (function () {
     ConstValue.P_WAIT_NEXT = "请等待下轮开始";
     //dapp
     ConstValue.P_NO_USER_ADDRESS = "Please install MetaMask！";
+    ConstValue.P_NO_HORSE = "Ticket to exchange horse! ";
     //config公共配置
     ConstValue.P_IS_DEBUG = false; //false正式模式 true演示模式，不联网的
     ConstValue.P_IS_INNER = true; //false线上模式 true内网模式 有些提示只在内网提示
@@ -63,6 +64,7 @@ var ConstValue = (function () {
     ConstValue.cacheUserPwd = "";
     ConstValue.cacheHasLoginSuccess = false;
     ConstValue.cacheUserInfo = null; //json
+    ConstValue.cacheContract = {}; //json
     ConstValue.cacheKeyGroup = {};
     ConstValue.gatewayType = 0; //0主服 1战斗服
     ConstValue.deviveScale = 1; //设备缩放因子

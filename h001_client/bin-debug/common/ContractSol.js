@@ -89,9 +89,19 @@ var ContractSol = (function () {
      * 玩家nft
      */
     ContractSol.nft_tokensOfOwner = function (address) {
-        ContractSol.metaNFT_nft_tokensOfOwner.tokensOfOwner(address, { from: ContractSol.sender }, function (err, token_result) {
-            console.log('--nft_tokensOfOwner-err--' + (err == null) + " " + (err == "null"));
-            console.log('--nft_tokensOfOwner-token_result--' + token_result);
+        ContractSol.metaNFT_nft_tokensOfOwner.tokensOfOwner(address, { from: ContractSol.sender }, function (error, token_result) {
+            if (error) {
+                CommonTools.logError('--nft_tokensOfOwner-error--' + error);
+                throw error;
+            }
+            else {
+                CommonTools.logWallet('--nft_tokensOfOwner-token_result--' + token_result.length);
+                CommonTools.logWallet('--nft_tokensOfOwner-token_result--' + token_result);
+                ConstValue.cacheContract["nftLen"] = token_result.length;
+                ConstValue.cacheContract["nftIndex"] = token_result;
+                if (token_result.length > 0)
+                    ConstValue.P_HALL_OBJ.autoChangeFirst();
+            }
         });
         // console.log(xx.length);
         // console.log(xx[1].c[0]);

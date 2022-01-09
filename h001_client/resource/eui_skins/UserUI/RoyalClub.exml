@@ -39,7 +39,7 @@
 	<e:Label text="1" x="898" y="431.5" textAlign="center" verticalAlign="middle"/>
 	<e:Image width="34" height="24" x="1014.52" y="415.5" source="btn_point5_png" rotation="2.05"/>
 	<e:Image width="34" height="24" x="1014.52" y="472.28" source="btn_point5_png" skewX="-180"/>
-	<e:Label text="888" x="512.05" y="486.51" rotation="27.26" textAlign="center" verticalAlign="middle" anchorOffsetX="0" width="87.64" textColor="0xefe02b"/>
+	<e:Label id="ticket_price_lb" text="888" x="512.05" y="486.51" rotation="27.26" textAlign="center" verticalAlign="middle" anchorOffsetX="0" width="87.64" textColor="0xefe02b" name="ticket_price_lb"/>
 	<e:Label text="Confirm" x="840" y="520" anchorOffsetX="0" width="133" size="28" textAlign="center" verticalAlign="middle"/>
 	<e:Button id="btn_shop2" label="" x="585.58" y="519.33" anchorOffsetX="0" width="40.67" anchorOffsetY="0" height="41" name="btn_shop3" scaleX="0.6" scaleY="0.6" rotation="33.55">
 		<e:skinName>

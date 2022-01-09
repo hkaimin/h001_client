@@ -290,7 +290,6 @@ var HallModule = (function () {
             // ContractSol.hweb3.eth.getBalance(ContractSol.sender,(err,result) =>{
             // 	console.log("--地址ETH-getBalance----"+result);
             // });
-            // ContractSol.nft_tokensOfOwner(ContractSol.sender);
             // ContractSol.maincoin_transfer(ContractSol.createAddress, 1);
             // ContractSol.maincoin_transferFrom(ContractSol.createAddress, ContractSol.sender , 2);
             // ContractSol.maincoin_increaseApproval(ContractSol.sender , 2);
@@ -298,7 +297,8 @@ var HallModule = (function () {
             ContractSol.initSOL();
             ContractSol.maincoin_balanceOf(ContractSol.sender);
             ContractSol.subcoin_balanceOf(ContractSol.sender);
-            this.changePage("rank_head_01");
+            ContractSol.nft_tokensOfOwner(ContractSol.sender);
+            this.changePage("rank_head_05");
             this.updateUI();
         }
     };
@@ -689,6 +689,7 @@ var HallModule = (function () {
         this.horseSelectMiddlePanel.y = downY2;
         this.context.addChild(this.horseSelectMiddlePanel);
         CommonTools.fixFix(this.context, this.horseSelectMiddlePanel, 2, 0, -40);
+        this.horseSelectMiddlePanel.getChildByName("ticket_price_lb").text = ConstValue.cacheUserInfo.ticketPrice;
         // this.horseSelectMiddlePanel.getChildByName("clain_rewards_btn").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
         // 	CommonAudioHandle.playEffect("playBomb_mp3",1);
         // 	this.testAddMain();
@@ -1479,6 +1480,10 @@ var HallModule = (function () {
         this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = false;
         this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = false;
     };
+    HallModule.prototype.autoChangeFirst = function () {
+        this.curPage = 6;
+        this.changePage("rank_head_01");
+    };
     HallModule.prototype.changePage = function (clickName) {
         if (clickName == "rank_head_01") {
             if (this.curPage == 5) {
@@ -1728,6 +1733,10 @@ var HallModule = (function () {
                         this.testAddSub();
                         return [3 /*break*/, 40];
                     case 3:
+                        if (this.curPage == 5 && ConstValue.cacheContract["nftLen"] == 0) {
+                            CommonTools.addCommonTips(this.tipsPanel, ConstValue.P_NO_HORSE);
+                            return [2 /*return*/];
+                        }
                         this.curPage = 6;
                         this.changePage("rank_head_01");
                         return [3 /*break*/, 40];
