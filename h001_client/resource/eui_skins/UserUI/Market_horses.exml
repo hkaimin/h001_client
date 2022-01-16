@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="LoginUI" width="673.33" height="600.67" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Scroller width="652" height="576" x="11.45" y="12.05" anchorOffsetX="0" anchorOffsetY="0">
-		<e:Group x="-261.33" y="-173.33" anchorOffsetX="0" width="922.67" anchorOffsetY="0" height="637.33">
+	<e:Scroller id="scroll" width="652" height="576" x="11.45" y="12.05" anchorOffsetX="0" anchorOffsetY="0" name="scroll">
+		<e:Group id="scroll_group" x="-261.33" y="-173.33" anchorOffsetX="0" width="922.67" anchorOffsetY="0" height="637.33" name="scroll_group">
 			<e:Group id="group_1" width="91" height="91" x="73.98" y="76.3" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
 				<e:Image width="194" height="266" x="-14.1" y="-11.2" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_29_png"/>
 				<e:Image width="91.8" height="91" x="38.1" y="66" source="stand_horse_png" anchorOffsetX="0" anchorOffsetY="0"/>

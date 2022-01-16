@@ -49,12 +49,12 @@ class HallModule {
 	private btnWxPvpAnimLb;
 	private btnPveAnim;
 	private btnPveAnimLb;
-	private btnPveAnimInitX = 440;
-	private btnPveAnimInitY = 240;
-	private btnPveAnimX = 440;
-	private btnPveAnimY = 240;
+	private btnPveAnimInitX = 580;//440
+	private btnPveAnimInitY = 350;//240
+	private btnPveAnimX = 580;
+	private btnPveAnimY = 350;
 
-	private horseCurrent = 0;
+	private horseCurrent = 1;
 
 	private isCanShowSeventDay = true;//默认情况可以打开7天签到
 	private skillData;
@@ -92,6 +92,10 @@ class HallModule {
 	private horsePanelUp = true;
 	private horseMergeResult;
 	private horseFunc;
+
+	private horseMarketData = null;
+	private horseOwnData = null;
+	private horseIndexS = 0;
 
 	public constructor(ct:Main) {
 		this.context = ct;
@@ -148,7 +152,7 @@ class HallModule {
 			this.panel.removeChild(this.btnPveAnim);
 			this.btnPveAnim = null;
 		}
-		this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("wait_01_"+this.horseCurrent+"_json"), RES.getRes("wait_01_"+this.horseCurrent+"_png"), "0");
+		this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("horse01_idle_0"+this.horseCurrent+"_json"), RES.getRes("horse01_idle_0"+this.horseCurrent+"_png"), "0");
 		this.btnPveAnim.play(1);
 		this.btnPveAnim.name = "btn_noend_pve_anim";
 		this.panel.addChild(this.btnPveAnim);
@@ -157,8 +161,8 @@ class HallModule {
 		this.btnPveAnim.addEventListener(egret.Event.COMPLETE,function(){
 			CommonTools.logWallet("---COMPLETE------"+this.horseCurrent)
 			this.horseCurrent ++;
-			if(this.horseCurrent > 9){
-				this.horseCurrent = 0;
+			if(this.horseCurrent > 3){
+				this.horseCurrent = 1;
 			}
 			this.drawHorse();
 		},this);
@@ -184,6 +188,7 @@ class HallModule {
 		this.setHorseXY();
 		this.horseFunc  = function(e:egret.Event) {
             this.btnPveAnimX += 8;
+			this.btnPveAnimY = this.btnPveAnimInitY - 50;
 			this.setHorseXY();
 			if(this.btnPveAnimX >= (this.context.getStageWidth() - 500)){
 				this.stopTraining();
@@ -220,6 +225,10 @@ class HallModule {
 		this.panel.getChildByName("btn_2v2").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.panel.getChildByName("up_item_group").getChildByName("img_coin1_add").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.panel.getChildByName("up_item_group").getChildByName("img_coin2_add").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.panel.getChildByName("sell_group").getChildByName("sell_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("sell_group"),2,0,0);
+		this.panel.getChildByName("buynft_group").getChildByName("buynft_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("buynft_group"),2,0,0);
 
 		this.rankHead01 = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_01") as eui.Image;
 		this.rankHead02 = this.panel.getChildByName("rank_grounp_main").getChildByName("rank_head_02") as eui.Image;
@@ -283,6 +292,9 @@ class HallModule {
 		if(ConstValue.cacheUserInfo != null && ConstValue.cacheUserInfo.gm == 1){//gm
 			// CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_gm"),this);
 			this.panel.getChildByName("scroll_notify").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+			this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+				this.showEditUI("scroll_notify");
+			}, this);
 		}
 		// CommonTools.fixFix(this.context,this.panel.getChildByName("btn_gm"),2,0,0);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("scroll_notify"),2,0,20);
@@ -622,7 +634,7 @@ class HallModule {
 
 		this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 			CommonAudioHandle.playEffect("playBomb_mp3",1);
-			this.createMergeSuccess(1);
+			this.createMergeSuccess(1,0);
 		}, this);
 	}
 
@@ -663,7 +675,7 @@ class HallModule {
 
 	}
 
-	private createMergeSuccess(index){
+	private createMergeSuccess(index,horseData){
 		CommonAudioHandle.playEffect("success_mp3",1);
 		this.maskBg2 = new eui.Image("black_mask_png");
 		this.maskBg2.alpha = 0.9;
@@ -686,6 +698,39 @@ class HallModule {
 		if(index == 2){
 			this.horseMergeResult.getChildByName("merge_success_title_img").source = "pic_breed_png";
 		}
+	}
+
+	private createMergeSuccessT(horseData){
+		CommonAudioHandle.playEffect("success_mp3",1);
+		let tmaskBg2 = new eui.Image("black_mask_png");
+		tmaskBg2.alpha = 0.9;
+		tmaskBg2.width = this.context.getStageWidth();
+		tmaskBg2.height = this.context.getStageHeight();
+		this.context.addChild(tmaskBg2);
+
+		let thorseMergeResult = new eui.Panel();
+		thorseMergeResult.skinName = "resource/eui_skins/UserUI/Merge_success.exml";
+		thorseMergeResult.title = "Title";
+		thorseMergeResult.name = "p_"+horseData.name;
+		thorseMergeResult.horizontalCenter = 0;
+		this.context.addChild(thorseMergeResult);
+		CommonTools.fixFix(this.context,thorseMergeResult,2,0,-40);
+
+		thorseMergeResult.getChildByName("merge_fail_confirm").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			CommonAudioHandle.playEffect("playBomb_mp3",1);
+			this.context.removeChild(tmaskBg2);
+			this.context.removeChild(thorseMergeResult);
+		}, this);
+
+		let merge_fail_title_img = thorseMergeResult.getChildByName("merge_fail_title_img") as eui.Image;
+		merge_fail_title_img.source = "pic_congratulation_png";
+		thorseMergeResult.getChildByName("merge_success_title_img").visible = false;
+		let horse_name_lb = thorseMergeResult.getChildByName("horse_name_lb") as eui.Label; 
+		horse_name_lb.text = horseData.name;
+		let merge_lv_img = thorseMergeResult.getChildByName("merge_lv_img") as eui.Image;
+		merge_lv_img.source = "icon_level_"+horseData.iType+"_png";
+		let merge_fail_icon = thorseMergeResult.getChildByName("merge_fail_icon") as eui.Image;
+		merge_fail_icon.source = "horse"+horseData.res_key+"_body_png"
 
 	}
 
@@ -722,7 +767,7 @@ class HallModule {
 
 		this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 			CommonAudioHandle.playEffect("playBomb_mp3",1);
-			this.createMergeSuccess(2);
+			this.createMergeSuccess(2,0);
 		}, this);
 
 	}
@@ -763,16 +808,37 @@ class HallModule {
 		this.horseSelectMiddlePanel.y = downY2;
         this.context.addChild(this.horseSelectMiddlePanel);
 		CommonTools.fixFix(this.context,this.horseSelectMiddlePanel,2,0,-40);
-
 		this.horseSelectMiddlePanel.getChildByName("ticket_price_lb").text = ConstValue.cacheUserInfo.ticketPrice;
 
-		// this.horseSelectMiddlePanel.getChildByName("clain_rewards_btn").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
-		// 	CommonAudioHandle.playEffect("playBomb_mp3",1);
-		// 	this.testAddMain();
-		// }, this);
+		this.horseSelectMiddlePanel.getChildByName("pay_main_lb").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			CommonAudioHandle.playEffect("playBomb_mp3",1);
+			let pay_main = parseInt(this.horseSelectMiddlePanel.getChildByName("pay_main").text);
+			if(ConstValue.cacheUserInfo.coin < pay_main){
+				CommonTools.addCommonTips(this.context,ConstValue.P_NOT_ENOUGH);
+				return;
+			}
+			ContractSol.maincoin_transfer(ContractSol.createAddress,pay_main);
+		}, this);
+
+		this.horseSelectMiddlePanel.getChildByName("up_img").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			CommonAudioHandle.playEffect("playBomb_mp3",1);
+			let total_lb = parseInt(this.horseSelectMiddlePanel.getChildByName("total_lb").text);
+			total_lb += 1
+			this.horseSelectMiddlePanel.getChildByName("total_lb").text = total_lb;
+			this.horseSelectMiddlePanel.getChildByName("pay_main").text = total_lb*ConstValue.cacheUserInfo.ticketPrice;
+		}, this);
+
+		this.horseSelectMiddlePanel.getChildByName("down_img").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			CommonAudioHandle.playEffect("playBomb_mp3",1);
+			let total_lb = parseInt(this.horseSelectMiddlePanel.getChildByName("total_lb").text);
+			if(total_lb<=0)return;
+			total_lb -= 1
+			this.horseSelectMiddlePanel.getChildByName("total_lb").text = total_lb;
+			this.horseSelectMiddlePanel.getChildByName("pay_main").text = total_lb*ConstValue.cacheUserInfo.ticketPrice;
+		}, this);
 	}
 
-	private CreateMarketItems(){
+	private CreateMarketItems(opType){
 		let leftX2 = 240;
 		let downY2 = 68;
 		if(ConstValue.deviveNormalScale >= 2){
@@ -788,16 +854,92 @@ class HallModule {
         this.context.addChild(this.horseSelectMiddlePanel);
 		CommonTools.fixFix(this.context,this.horseSelectMiddlePanel,2,0,-40);
 
+		let scroll = this.horseSelectMiddlePanel.getChildByName("scroll") as eui.Scroller;
+		let group = scroll.getChildByName("scroll_group")as eui.Group;
+		group.removeChildren();
+
+		let hData = null;
+		if(opType == 1){
+			hData = this.horseMarketData;
+		}else{
+			hData = this.horseOwnData;
+		}
+		let i = 1;
+		for(let index in hData){
+			let obj = hData[index];
+			let panelT = new eui.Panel();
+			panelT.skinName = "resource/eui_skins/UserUI/horseItemGroup_market.exml";
+			panelT.name = "p_"+obj.id;
+			let column = i%3 == 0? 3 : i%3;
+			let row = 0;
+			if(i%3==0){
+				row = i/3.0;
+			}else{
+				row = i/3.0 + 1;
+			}
+			panelT.x = (column - 1)*212;
+			panelT.y = 278*(Math.floor(row - 1));
+			group.addChild(panelT);
+
+			let group_1 = panelT.getChildByName("group_1") as eui.Group;
+			
+			if(opType == 1){
+				let pay_money = group_1.getChildByName("pay_money") as eui.Label;
+				pay_money.text = obj.money;
+			}else if(opType == 2){
+				group_1.getChildByName("btn_shop").visible = false;
+				if(obj.sellStatus == 1){
+					let pay_money = group_1.getChildByName("pay_money") as eui.Label;
+					pay_money.text = "selling";
+				}else{
+					group_1.getChildByName("pay_money").visible = false;
+				}
+			}
+
+			let horse_name = group_1.getChildByName("horse_name") as eui.Label;
+			horse_name.text = obj.name;
+			let horse_index = group_1.getChildByName("horse_index") as eui.Label;
+			horse_index.text = "#"+obj.id;
+			let horse_lv_img = group_1.getChildByName("horse_lv_img") as eui.Image;
+			horse_lv_img.source = "icon_level_"+obj.iType+"_png";
+			let horse_score = group_1.getChildByName("horse_score") as eui.Label;
+			horse_score.text = obj.score;
+			let horse_body = group_1.getChildByName("horse_body") as eui.Image;
+			horse_body.source = "horse"+obj.res_key+"_body_png"
+
+			if(this.horseIndexS == 0){
+				this.horseIndexS = obj.id;
+				group_1.getChildByName("select_2_img").visible = true;
+			}
+			panelT.addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+				CommonAudioHandle.playEffect("playBomb_mp3",1);
+				let ttp = group.getChildByName("p_"+this.horseIndexS) as eui.Panel;
+				let groupT = ttp.getChildByName("group_1") as eui.Group;
+				groupT.getChildByName("select_2_img").visible = false;
+				this.horseIndexS = obj.id;
+				group_1.getChildByName("select_2_img").visible = true;
+			}, this);
+
+			i ++;
+		}
 	}
 
 	private MarketUI(){
+		if(this.horseMarketData == null)return;
 		this.changeHorseRight(1);
-		this.CreateMarketItems();
+		this.CreateMarketItems(1);
 	}
 
 	private MyInventoryUI(){
-		this.changeHorseRight(1);
-		this.CreateMarketItems();
+		if(ConstValue.cacheContract["nftLen"]==0)
+		{
+			CommonTools.addCommonTips(this.context,ConstValue.P_NO_HORSE);
+			return;
+		}
+		if(this.horseOwnData != null){
+			this.changeHorseRight(1);
+			this.CreateMarketItems(2);
+		}
 	}
 
 	private horseMarketUI(){
@@ -1573,7 +1715,7 @@ class HallModule {
 	}
 
 	public addCommonTips(tips){
-        CommonTools.addCommonTips(this.tipsPanel,tips);
+        CommonTools.addCommonTips(this.context,tips);
     }
 
 	private clearPage2HorseHome(){
@@ -1600,6 +1742,7 @@ class HallModule {
 	}
 
 	private changePage(clickName){
+		this.horseIndexS = 0;
 		if(clickName == "rank_head_01"){
 			if(this.curPage == 5){
 				this.subCurPage = 1;
@@ -1651,6 +1794,10 @@ class HallModule {
 			}
 		}else if(clickName == "rank_head_02"){
 			if(this.curPage == 5){
+				if(this.subCurPage != 2){
+					let sData = CommonTools.getDataJsonStr("getNftMarket",1,{});
+					ConstValue.P_NET_OBJ.sendData(sData);
+				}
 				this.subCurPage = 2;
 				this.rankHead01_mask.visible = false;
 				this.rankHead02_mask.visible = true;
@@ -1692,6 +1839,9 @@ class HallModule {
 				this.rankHead03.source = "icon_merge_s_png";
 				this.rankHead04.source = "icon_breeding_n_png";
 			}else if(this.curPage == 5){
+				if(this.subCurPage != 3 && ConstValue.cacheContract["nftLen"] > 0){
+					ContractSol.nft_tokensOfOwner(ContractSol.sender);
+				}
 				this.subCurPage = 3;
 				this.rankHead01_mask.visible = false;
 				this.rankHead02_mask.visible = false;
@@ -1762,21 +1912,32 @@ class HallModule {
 
 			this.btnBackImg.visible = true;
 			this.updateUI();
-
-			// this.showEditUI("scroll_notify");
 		}
 		this.setHorseXY();
+		if(this.curPage != 5 || (this.curPage == 5 && this.subCurPage != 2)){
+			this.horseMarketData = null;
+		}
+		if(this.curPage == 5 && this.subCurPage == 3){
+			this.panel.getChildByName("sell_group").visible = true;
+		}else{
+			this.panel.getChildByName("sell_group").visible = false;
+		}
+		if(this.curPage == 5 && this.subCurPage == 2){
+			this.panel.getChildByName("buynft_group").visible = true;
+		}else{
+			this.panel.getChildByName("buynft_group").visible = false;
+		}
 	}
 
 	private testAddMain(){
-		CommonTools.addCommonTips(this.tipsPanel,"getting maincoin... ");
-		let sData = CommonTools.getDataJsonStr("AddMainCoin",1,{iAdd:5});
+		CommonTools.addCommonTips(this.tipsPanel,ConstValue.P_PUSHING_TR);
+		let sData = CommonTools.getDataJsonStr("AddMainCoin",1,{iAdd:5,iOpType:0});
 		ConstValue.P_NET_OBJ.sendData(sData);
 	}
 
 	private testAddSub(){
-		CommonTools.addCommonTips(this.tipsPanel,"getting subcoin... ");
-		let sData = CommonTools.getDataJsonStr("AddSubCoin",1,{iAdd:5});
+		CommonTools.addCommonTips(this.tipsPanel,ConstValue.P_PUSHING_TR);
+		let sData = CommonTools.getDataJsonStr("AddSubCoin",1,{iAdd:5,iOpType:0});
 		ConstValue.P_NET_OBJ.sendData(sData);
 	}
 
@@ -1817,6 +1978,16 @@ class HallModule {
 				this.testAddSub();
 				break;
 
+			case "sell_btn_lb":
+				let sDataSell = CommonTools.getDataJsonStr("SellNft",1,{nftIndex:this.horseIndexS});
+				ConstValue.P_NET_OBJ.sendData(sDataSell);
+				break;
+
+			case "buynft_btn_lb":
+				let sDataBuybtn = CommonTools.getDataJsonStr("BuyNft",1,{nftIndex:this.horseIndexS,sAddress:ContractSol.sender});
+				ConstValue.P_NET_OBJ.sendData(sDataBuybtn);
+				break;
+			
 			case "btn_back_img":
 				if(this.curPage == 5 && ConstValue.cacheContract["nftLen"]==0){//没有nft
 					CommonTools.addCommonTips(this.tipsPanel,ConstValue.P_NO_HORSE);
@@ -3264,6 +3435,54 @@ class HallModule {
 				
 			}else{
 				ContractSol.maincoin_increaseApproval(jsonObj.d.to,jsonObj.d.num);
+			}
+		}else if (jsonObj.f == "createNft"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				let lnftInfo = jsonObj.d.nftInfo;
+				let count = 1
+				for(let i in lnftInfo){
+					let obj = lnftInfo[i]
+					FightingModule.Delay(count*500, function(){
+						this.createMergeSuccessT(obj);
+					}, this);
+					count += 1
+				}
+				ConstValue.cacheContract["nftLen"] = count;
+			}
+		}else if (jsonObj.f == "getNftMarket" || jsonObj.f == "BuyNft"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				let lMarketData = jsonObj.d.lMarketData;
+				let count = 0
+				for(let i in lMarketData){
+					count += 1;
+				}
+				if(count>0){
+					ConstValue.cacheContract["nftLen"]=count;
+					this.horseMarketData = lMarketData;
+				}else{
+					this.horseMarketData = null;
+				}
+				if(this.curPage == 5 && this.subCurPage == 2)this.changePage("rank_head_02");
+			}
+		}else if (jsonObj.f == "getOwnNft"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				let lOwnNftData = jsonObj.d.lOwnNftData;
+				let count = 0
+				for(let i in lOwnNftData){
+					count += 1;
+				}
+				if(count>0){
+					this.horseOwnData = lOwnNftData;
+				}else{
+					this.horseOwnData = null;
+				}
+				if(this.curPage == 5 && this.subCurPage == 3)this.changePage("rank_head_03");
 			}
 		}else if (jsonObj.f == "AddMainCoin"){
 			if(jsonObj.m != "" || jsonObj.s != 1){

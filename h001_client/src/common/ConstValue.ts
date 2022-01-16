@@ -35,6 +35,10 @@ class ConstValue {
 	//dapp
 	static P_NO_USER_ADDRESS:string = "Please install MetaMask！";
 	static P_NO_HORSE:string = "Ticket to exchange horse! ";
+	static P_PUSHING_TR = "Pushing transaction..."
+	static P_TR_SUCCESS = "Transaction executed!"
+	static P_TR_FAIL = "Transaction failed!"
+	static P_NOT_ENOUGH= "Not enough! "
 
 	//config公共配置
 	static P_IS_DEBUG:boolean = false;//false正式模式 true演示模式，不联网的
@@ -64,7 +68,7 @@ class ConstValue {
 	static cacheUserPwd:string = "";
 	static cacheHasLoginSuccess:boolean = false;
 	static cacheUserInfo = null;//json
-	static cacheContract = {};//json
+	static cacheContract = {"nftLen":0,"nftIndex":""};//json
 
 	static cacheKeyGroup = {};
 	static gatewayType = 0;//0主服 1战斗服

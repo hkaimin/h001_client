@@ -212,6 +212,11 @@ var WebSocketUtil = (function (_super) {
                 case "getPvpRankThree":
                 case "AddMainCoin":
                 case "AddSubCoin":
+                case "createNft":
+                case "getNftMarket":
+                case "getOwnNft":
+                case "SellNft":
+                case "BuyNft":
                     if (obj_1.f == "SeventDayReward")
                         if (!HallModule.isSafeArea)
                             return;

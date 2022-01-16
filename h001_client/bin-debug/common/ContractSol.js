@@ -99,12 +99,36 @@ var ContractSol = (function () {
                 CommonTools.logWallet('--nft_tokensOfOwner-token_result--' + token_result);
                 ConstValue.cacheContract["nftLen"] = token_result.length;
                 ConstValue.cacheContract["nftIndex"] = token_result;
-                if (token_result.length > 0)
-                    ConstValue.P_HALL_OBJ.autoChangeFirst();
+                if (token_result.length > 0) {
+                    var sData = CommonTools.getDataJsonStr("getOwnNft", 1, { lNft: token_result });
+                    ConstValue.P_NET_OBJ.sendData(sData);
+                }
+                // if(token_result.length > 0)ConstValue.P_HALL_OBJ.autoChangeFirst();
             }
         });
         // console.log(xx.length);
         // console.log(xx[1].c[0]);
+    };
+    ContractSol.DelayGetReceipt = function (tHash, iOpType, arg1) {
+        CommonTools.logWallet("--DelayGetReceipt------" + tHash + " " + iOpType + " " + arg1);
+        FightingModule.Delay(5000, function () {
+            ContractSol.hweb3.eth.getTransactionReceipt(tHash, function (error, result) {
+                CommonTools.logWallet("--DelayGetReceipt----result--" + result);
+                if (result == null) {
+                    ContractSol.DelayGetReceipt(tHash, iOpType, arg1);
+                }
+                else {
+                    if (result.status.toString() == "0x1") {
+                        if (iOpType == 1) {
+                            ConstValue.P_HALL_OBJ.addCommonTips("Waiting NFT response...");
+                            ContractSol.maincoin_balanceOf(ContractSol.sender);
+                            var sData = CommonTools.getDataJsonStr("createNft", 1, { iTickets: arg1 });
+                            ConstValue.P_NET_OBJ.sendData(sData);
+                        }
+                    }
+                }
+            });
+        }, this);
     };
     /**
      * 主币transfer
@@ -127,6 +151,7 @@ var ContractSol = (function () {
             }
             else {
                 CommonTools.logWallet('--maincoin-transfer txnHash--' + txnHash);
+                ContractSol.DelayGetReceipt(txnHash, 1, _value);
             }
         });
     };
@@ -226,6 +251,7 @@ var ContractSol = (function () {
     ContractSol.BEP20_Sub_Address = "0x6A3587d791946E2C567a279886ACc10Fa962a4cc";
     ContractSol.NFTAddress = "0x14c75969e8aeb8ff68c4450ebc3090b48425f4bb";
     ContractSol.sender = "";
+    ContractSol.createAddress = "0x210729036108b7dd19bba5141e181a47a619a46f";
     return ContractSol;
 }());
 __reflect(ContractSol.prototype, "ContractSol");

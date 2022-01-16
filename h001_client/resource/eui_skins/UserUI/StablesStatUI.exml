@@ -11,7 +11,7 @@
 	<e:Image width="35" height="36" x="198.04" y="62.36" source="icon_stars_png"/>
 	<e:Image width="35" height="36" x="233.04" y="62.36" source="icon_stars_png"/>
 	<e:Label text="Ferrari" x="116" y="24" anchorOffsetX="0" width="146" textAlign="left" verticalAlign="middle"/>
-	<e:Image width="37" height="46" x="25" y="132" source="icon_female_png"/>
+	<e:Image width="37" height="46" x="25" y="132" source="icon_Male_png"/>
 	<e:Image width="18" height="18" x="143.55" y="296" source="icon_heart_png"/>
 	<e:Image width="18" height="18" x="164.66" y="296" source="icon_heart_png"/>
 	<e:Image width="18" height="18" x="185.04" y="296" source="icon_heart_png"/>

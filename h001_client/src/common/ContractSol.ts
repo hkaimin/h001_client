@@ -12,6 +12,7 @@ class ContractSol {
 	//web3
 	static hweb3; 
 	static sender = "";
+	static createAddress = "0x210729036108b7dd19bba5141e181a47a619a46f";
 
 	static res_nft_tokensOfOwner;
 	static method_nft_tokensOfOwner:Web3.MethodAbi;
@@ -116,12 +117,37 @@ class ContractSol {
 				CommonTools.logWallet('--nft_tokensOfOwner-token_result--'+token_result)
 				ConstValue.cacheContract["nftLen"] = token_result.length;
 				ConstValue.cacheContract["nftIndex"] = token_result;
-				if(token_result.length > 0)ConstValue.P_HALL_OBJ.autoChangeFirst();
+				if(token_result.length > 0){
+					let sData = CommonTools.getDataJsonStr("getOwnNft",1,{lNft:token_result});
+					ConstValue.P_NET_OBJ.sendData(sData);
+				}
+				// if(token_result.length > 0)ConstValue.P_HALL_OBJ.autoChangeFirst();
 			}
 
 		});
 		// console.log(xx.length);
 		// console.log(xx[1].c[0]);
+	}
+
+	static DelayGetReceipt(tHash,iOpType,arg1){
+		CommonTools.logWallet("--DelayGetReceipt------"+tHash+" "+iOpType+" "+arg1);
+		FightingModule.Delay(5000, function(){
+			ContractSol.hweb3.eth.getTransactionReceipt(tHash,function(error,result){
+				CommonTools.logWallet("--DelayGetReceipt----result--"+result);
+				if(result==null){
+					ContractSol.DelayGetReceipt(tHash,iOpType,arg1);
+				}else{
+					if(result.status.toString()=="0x1"){
+						if(iOpType == 1){//购买ticket
+							ConstValue.P_HALL_OBJ.addCommonTips("Waiting NFT response...");
+							ContractSol.maincoin_balanceOf(ContractSol.sender);
+							let sData = CommonTools.getDataJsonStr("createNft",1,{iTickets:arg1});
+							ConstValue.P_NET_OBJ.sendData(sData);
+						}
+					}
+				}
+			}); 
+		}, this);
 	}
 
 	/**
@@ -146,8 +172,11 @@ class ContractSol {
 				throw error;
 			}else{
 				CommonTools.logWallet('--maincoin-transfer txnHash--'+txnHash);
+				ContractSol.DelayGetReceipt(txnHash,1,_value)
 			}
 		});
+
+		
 
 	}
 
