@@ -157,7 +157,7 @@ var HallModule = (function () {
             this.btnPveAnim = null;
         }
         if (index == 4) {
-            this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("run_canter02_json"), RES.getRes("run_canter02_png"), "0");
+            this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("horse01_run01_json"), RES.getRes("horse01_run01_png"), "0");
         }
         this.btnPveAnim.play(-1);
         this.btnPveAnim.name = "btn_noend_pve_anim";
@@ -167,7 +167,7 @@ var HallModule = (function () {
             this.btnPveAnimX += 8;
             this.btnPveAnimY = this.btnPveAnimInitY - 50;
             this.setHorseXY();
-            if (this.btnPveAnimX >= (this.context.getStageWidth() - 500)) {
+            if (this.btnPveAnimX >= (this.context.getStageWidth() - 200)) {
                 this.stopTraining();
             }
             if (this.btnPveAnimX > 0 && this.btnPveAnimX % 50 == 0)
@@ -905,7 +905,7 @@ var HallModule = (function () {
         this.horseSelectMiddlePanel.visible = false;
         this.horseSelectRightPanel.visible = false;
         this.horseSelectPanel.visible = false;
-        this.btnPveAnimX = -500;
+        this.btnPveAnimX = -200;
         this.setHorseXY();
         this.drawTraining(index);
     };

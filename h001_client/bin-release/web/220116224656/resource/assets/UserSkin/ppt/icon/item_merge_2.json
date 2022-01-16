@@ -1,0 +1,7 @@
+{"file":"item_merge_2.png","frames":{
+"shape_doughnut_png":{"x":1,"y":435,"w":432,"h":432,"offX":36,"offY":42,"sourceW":500,"sourceH":500},
+"shape_ice_png":{"x":459,"y":1,"w":427,"h":446,"offX":40,"offY":29,"sourceW":500,"sourceH":500},
+"shape_mars_png":{"x":1319,"y":424,"w":420,"h":420,"offX":42,"offY":44,"sourceW":500,"sourceH":500},
+"shape_normal_png":{"x":1,"y":1,"w":456,"h":432,"offX":28,"offY":36,"sourceW":500,"sourceH":500},
+"shape_volleyball_png":{"x":1319,"y":1,"w":422,"h":421,"offX":41,"offY":39,"sourceW":500,"sourceH":500},
+"shape_watermelon_png":{"x":888,"y":1,"w":429,"h":429,"offX":37,"offY":34,"sourceW":500,"sourceH":500}}}

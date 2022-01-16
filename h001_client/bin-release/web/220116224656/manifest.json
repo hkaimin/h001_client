@@ -1,0 +1,22 @@
+{
+	"initial": [
+		"js/egret.min_8ce3cb2f.js",
+		"js/egret.web.min_51621e69.js",
+		"js/game.min_fc12b653.js",
+		"js/tween.min_6c5a88f9.js",
+		"js/assetsmanager.min_f5f8ba18.js",
+		"js/eui.min_493403ce.js",
+		"js/socket.min_afab9be.js",
+		"js/egretia-sdk.min_5ef2df81.js",
+		"js/promise.min_83a6a5d.js",
+		"js/jszip.min_aff92f.js",
+		"js/crypto-js.min_862d13a1.js",
+		"js/snappyjs.min_c4b9f9e.js",
+		"js/lzma.min_bc34bfa.js",
+		"js/PathFinding.min_6605350.js"
+	],
+	"game": [
+		"js/default.thm_4ebac279.js",
+		"js/main.min_767026c8.js"
+	]
+}
