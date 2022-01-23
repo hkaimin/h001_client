@@ -2,38 +2,44 @@
 <e:Skin class="NoticeGroup" width="433" height="635" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image width="362" height="582" x="1" y="107.68" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png"/>
 	<e:Image width="362" height="582" x="0" y="103.68" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png" visible="false"/>
-	<e:Image width="76" height="80" x="16" y="16" source="icon_level_s_png"/>
+	<e:Image id="lv_img" width="76" height="80" x="16" y="16" source="icon_level_s_png" name="lv_img"/>
 	<e:Image width="188" height="31" x="108.33" y="25" source="bar_name_png"/>
 	<e:Image width="88" height="90" x="270.32" y="12.37" source="info_tx_frame_png" anchorOffsetX="0" anchorOffsetY="0"/>
 	<e:Image width="82" height="82" x="273.95" y="16" source="tx1_1_png"/>
-	<e:Image width="35" height="36" x="93.04" y="62.36" source="icon_stars_png"/>
-	<e:Image width="35" height="36" x="128.04" y="62" source="icon_stars_png"/>
-	<e:Image width="35" height="36" x="163.04" y="62.36" source="icon_stars_png"/>
-	<e:Image width="35" height="36" x="198.04" y="62.36" source="icon_stars_png"/>
-	<e:Image width="35" height="36" x="233.04" y="62.36" source="icon_stars_png"/>
-	<e:Label text="Ferrari" x="116" y="24" anchorOffsetX="0" width="146" textAlign="left" verticalAlign="middle"/>
-	<e:Image width="150.66" height="10" x="105.54" y="222.18" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="105.54" y="222.18" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_2_png"/>
+	<e:Image id="horse_head" width="82" height="82" x="273.95" y="16" source="tx1_1_png" name="horse_head"/>
+	<e:Image id="star_1" width="35" height="36" x="93.04" y="62.36" source="icon_stars_png" name="star_1"/>
+	<e:Image id="star_2" width="35" height="36" x="128.04" y="62" source="icon_stars_png" name="star_2"/>
+	<e:Image id="star_3" width="35" height="36" x="163.04" y="62.36" source="icon_stars_png" name="star_3"/>
+	<e:Image id="star_4" width="35" height="36" x="198.04" y="62.36" source="icon_stars_png" name="star_4"/>
+	<e:Image id="star_5" width="35" height="36" x="233.04" y="62.36" source="icon_stars_png" name="star_5"/>
+	<e:Label id="horse_name" text="Ferrari" x="116" y="32" anchorOffsetX="0" width="146" textAlign="center" size="18" name="horse_name"/>
+	<e:Image id="grassLand_length" width="150.66" height="10" x="105.54" y="222.18" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png" name="grassLand_length"/>
+	<e:Image id="grassLand_value" width="110" height="9" x="105.54" y="222.18" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_2_png" name="grassLand_value"/>
 	<e:Image width="60" height="48" x="19.21" y="198.18" anchorOffsetX="0" anchorOffsetY="0" source="icon_Grassland_png"/>
-	<e:Image width="42" height="32" x="283.95" y="208.68" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_a_png"/>
+	<e:Image id="grassLand_lv" width="42" height="32" x="283.95" y="208.68" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_a_png" name="grassLand_lv"/>
 	<e:Image width="150.66" height="10" x="110.33" y="309" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="104.33" y="309" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_2_png"/>
+	<e:Image id="sand_value" width="110" height="9" x="104.33" y="309" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_2_png" name="sand_value"/>
 	<e:Image width="60" height="48" x="18" y="291" anchorOffsetX="0" anchorOffsetY="0" source="icon_sand_png"/>
-	<e:Image width="42" height="32" x="282.74" y="295.5" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_a_png"/>
+	<e:Image id="sand_lv" width="42" height="32" x="282.74" y="295.5" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_a_png" name="sand_lv"/>
 	<e:Image width="150.66" height="10" x="109.54" y="401" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="103.54" y="401" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_2_png"/>
+	<e:Image id="mud_value" width="110" height="9" x="103.54" y="401" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_2_png" name="mud_value"/>
 	<e:Image width="60" height="48" x="17.21" y="377" anchorOffsetX="0" anchorOffsetY="0" source="icon_Mud_png"/>
-	<e:Image width="42" height="32" x="281.95" y="387.5" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_a_png"/>
+	<e:Image id="mud_lv" width="42" height="32" x="281.95" y="387.5" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_a_png" name="mud_lv"/>
 	<e:Image width="362" height="63" x="0.54" y="107.68" source="bar_info_di_3_png"/>
 	<e:Image width="362" height="63" x="1" y="431" source="bar_info_di_3_png"/>
 	<e:Image width="362" height="63" x="-7.46" y="107.68" source="Site-suitability_png"/>
 	<e:Image width="362" height="63" x="-1.46" y="431" source="skills_png"/>
 	<e:Image width="22" height="22" x="304.95" y="128.18" source="sign_2_png"/>
 	<e:Image width="62" height="62" x="23" y="499" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
-	<e:Image width="62" height="62" x="142.54" y="499" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
-	<e:Image width="62" height="62" x="266.32" y="499" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
-	<e:Image width="62" height="62" x="22.21" y="566" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
-	<e:Image width="62" height="62" x="144.41" y="566" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
+	<e:Image width="62" height="62" x="23" y="499" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
+	<e:Image width="62" height="62" x="142.54" y="499" anchorOffsetX="0" anchorOffsetY="0" source="info_skill_framedi_png"/>
+	<e:Image width="44" height="44" x="152.54" y="508" anchorOffsetX="0" anchorOffsetY="0" source="icon_lock_png"/>
+	<e:Image width="62" height="62" x="266.32" y="499" anchorOffsetX="0" anchorOffsetY="0" source="info_skill_framedi_png"/>
+	<e:Image width="44" height="44" x="275.32" y="508" anchorOffsetX="0" anchorOffsetY="0" source="icon_lock_png"/>
+	<e:Image width="62" height="62" x="22.21" y="566" anchorOffsetX="0" anchorOffsetY="0" source="info_skill_framedi_png"/>
+	<e:Image width="44" height="44" x="32" y="575" anchorOffsetX="0" anchorOffsetY="0" source="icon_lock_png"/>
+	<e:Image width="62" height="62" x="144.41" y="566" anchorOffsetX="0" anchorOffsetY="0" source="info_skill_framedi_png"/>
+	<e:Image width="44" height="44" x="153.41" y="575" anchorOffsetX="0" anchorOffsetY="0" source="icon_lock_png"/>
 	<e:Image width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png" visible="false"/>
 	<e:Image id="horse_stat_lb" width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" name="horse_stat_lb" source="icon_stats_n_png"/>
 	<e:Image width="59" height="94" x="360" y="312" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png"/>

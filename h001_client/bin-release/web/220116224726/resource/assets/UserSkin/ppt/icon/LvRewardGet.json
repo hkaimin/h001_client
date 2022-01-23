@@ -1,0 +1,7 @@
+{"file":"LvRewardGet.png","frames":{
+"LvGetPro_png":{"x":498,"y":438,"w":1118,"h":39,"offX":3,"offY":3,"sourceW":1124,"sourceH":45},
+"LvGetSlot_png":{"x":498,"y":391,"w":1124,"h":45,"offX":0,"offY":0,"sourceW":1124,"sourceH":45},
+"LvGetPoint_png":{"x":0,"y":508,"w":89,"h":136,"offX":0,"offY":0,"sourceW":89,"sourceH":136},
+"LvGetBg_png":{"x":0,"y":0,"w":1149,"h":389,"offX":0,"offY":0,"sourceW":1149,"sourceH":389},
+"LvGetBottom_png":{"x":1151,"y":0,"w":151,"h":68,"offX":0,"offY":0,"sourceW":151,"sourceH":68},
+"LvGetTitle_png":{"x":0,"y":391,"w":496,"h":115,"offX":0,"offY":2,"sourceW":496,"sourceH":117}}}

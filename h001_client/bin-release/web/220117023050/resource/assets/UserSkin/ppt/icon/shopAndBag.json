@@ -1,0 +1,10 @@
+{"file":"shopAndBag.png","frames":{
+"btn_yellow_1_png":{"x":1630,"y":240,"w":66,"h":66,"offX":0,"offY":0,"sourceW":66,"sourceH":66},
+"btn_yellow_2_png":{"x":1630,"y":172,"w":66,"h":66,"offX":0,"offY":0,"sourceW":66,"sourceH":66},
+"shop_banner_png":{"x":1,"y":1,"w":1104,"h":175,"offX":0,"offY":2,"sourceW":1104,"sourceH":177},
+"shop_item_not_png":{"x":1107,"y":1,"w":173,"h":227,"offX":0,"offY":0,"sourceW":173,"sourceH":227},
+"shop_item_yes_png":{"x":1282,"y":1,"w":173,"h":227,"offX":0,"offY":0,"sourceW":173,"sourceH":227},
+"shop_page_not_png":{"x":1630,"y":88,"w":133,"h":82,"offX":1,"offY":3,"sourceW":134,"sourceH":85},
+"shop_page_yes_png":{"x":1630,"y":1,"w":134,"h":85,"offX":0,"offY":0,"sourceW":134,"sourceH":85},
+"bag_item_not_png":{"x":1457,"y":1,"w":171,"h":218,"offX":0,"offY":0,"sourceW":171,"sourceH":218},
+"bag_item_yes_png":{"x":1457,"y":221,"w":171,"h":218,"offX":0,"offY":0,"sourceW":171,"sourceH":218}}}

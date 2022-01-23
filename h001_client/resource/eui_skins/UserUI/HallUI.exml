@@ -203,4 +203,5 @@
 		<e:Label text="Confirm" x="54" y="5" anchorOffsetX="0" width="131"/>
 		<e:Label id="buynft_btn_lb" text="" x="-11" y="-8.5" anchorOffsetX="0" width="242" anchorOffsetY="0" height="96" name="buynft_btn_lb" scaleX="1" scaleY="1"/>
 	</e:Group>
+	<e:Image id="hall_horse_body" width="517" height="549" x="324.52" y="135.48" anchorOffsetX="0" anchorOffsetY="0" source="horse01_body_png" touchEnabled="false" name="hall_horse_body" visible="false"/>
 </e:Skin>

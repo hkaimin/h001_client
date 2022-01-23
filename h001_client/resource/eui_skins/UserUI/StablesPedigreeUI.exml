@@ -2,16 +2,17 @@
 <e:Skin class="NoticeGroup" width="433" height="635" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Image width="362" height="582" x="1" y="107.68" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png"/>
 	<e:Image width="362" height="582" x="0" y="103.68" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png" visible="false"/>
-	<e:Image width="76" height="80" x="16" y="16" source="icon_level_s_png"/>
+	<e:Image id="lv_img" width="76" height="80" x="16" y="16" source="icon_level_s_png" name="lv_img"/>
 	<e:Image width="188" height="31" x="108.33" y="25" source="bar_name_png"/>
 	<e:Image width="88" height="90" x="270.32" y="12.37" source="info_tx_frame_png" anchorOffsetX="0" anchorOffsetY="0"/>
 	<e:Image width="82" height="82" x="273.95" y="16" source="tx1_1_png"/>
-	<e:Image width="35" height="36" x="93.04" y="62.36" source="icon_stars_png"/>
-	<e:Image width="35" height="36" x="128.04" y="62" source="icon_stars_png"/>
-	<e:Image width="35" height="36" x="163.04" y="62.36" source="icon_stars_png"/>
-	<e:Image width="35" height="36" x="198.04" y="62.36" source="icon_stars_png"/>
-	<e:Image width="35" height="36" x="233.04" y="62.36" source="icon_stars_png"/>
-	<e:Label text="Ferrari" x="116" y="24" anchorOffsetX="0" width="146" textAlign="left" verticalAlign="middle"/>
+	<e:Image id="horse_head" width="82" height="82" x="273.95" y="16" source="tx1_1_png" name="horse_head"/>
+	<e:Image id="star_1" width="35" height="36" x="93.04" y="62.36" source="icon_stars_png" name="star_1"/>
+	<e:Image id="star_2" width="35" height="36" x="128.04" y="62" source="icon_stars_png" name="star_2"/>
+	<e:Image id="star_3" width="35" height="36" x="163.04" y="62.36" source="icon_stars_png" name="star_3"/>
+	<e:Image id="star_4" width="35" height="36" x="198.04" y="62.36" source="icon_stars_png" name="star_4"/>
+	<e:Image id="star_5" width="35" height="36" x="233.04" y="62.36" source="icon_stars_png" name="star_5"/>
+	<e:Label id="horse_name" text="Ferrari" x="116" y="32" anchorOffsetX="0" width="146" textAlign="center" size="18" name="horse_name"/>
 	<e:Image width="362" height="63" x="1" y="431" source="bar_info_di_3_png"/>
 	<e:Image width="362" height="63" x="-1.46" y="431" source="Gene-factor_png"/>
 	<e:Image width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png" visible="false"/>
@@ -22,6 +23,7 @@
 	<e:Image id="horse_pedigree_lb" width="59" height="94" x="360" y="412" anchorOffsetX="0" anchorOffsetY="0" name="horse_pedigree_lb" source="icon_pedigree_s_png"/>
 	<e:Image width="81" height="108" x="17.75" y="502.5" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png"/>
 	<e:Image width="53" height="53" x="32.04" y="514.5" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="53" height="53" x="32.04" y="514.5" anchorOffsetX="0" anchorOffsetY="0" source="horse01_head02_png"/>
 	<e:Image width="12" height="12" x="28.75" y="590.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
 	<e:Image width="12" height="12" x="40.5" y="590.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
 	<e:Image width="12" height="12" x="52.25" y="590.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
@@ -46,6 +48,7 @@
 		<e:Group anchorOffsetX="0" width="327" anchorOffsetY="0" height="291">
 			<e:Image width="81" height="108" x="38.64" y="8.5" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png" scaleX="1" scaleY="1"/>
 			<e:Image width="53" height="53" x="52.93000000000001" y="20.5" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="53" height="53" x="52.93" y="20.5" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" source="horse01_head02_png"/>
 			<e:Image width="12" height="12" x="49.64" y="96.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
 			<e:Image width="12" height="12" x="61.39" y="96.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
 			<e:Image width="12" height="12" x="73.14" y="96.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
@@ -56,6 +59,7 @@
 			<e:Image width="14" height="19" x="46.64" y="14.5" source="icon_level_s_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
 			<e:Image width="81" height="108" x="212.64" y="10" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png" scaleX="1" scaleY="1"/>
 			<e:Image width="53" height="53" x="226.93" y="22" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="53" height="53" x="226.93" y="22" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" source="horse01_head02_png"/>
 			<e:Image width="12" height="12" x="223.64" y="98.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
 			<e:Image width="12" height="12" x="235.39" y="98.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
 			<e:Image width="12" height="12" x="247.14" y="98.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
@@ -68,6 +72,7 @@
 			<e:Image width="20" height="100" x="154" y="66" source="sign_point_1_png" scale9Grid="5,0,12,5" scaleX="1" scaleY="1"/>
 			<e:Image width="81" height="108" x="123.46" y="170" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png" scaleX="1" scaleY="1"/>
 			<e:Image width="53" height="53" x="137.75" y="182" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="53" height="53" x="137.75" y="182" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" source="horse01_head02_png"/>
 			<e:Image width="12" height="12" x="134.46" y="258.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
 			<e:Image width="12" height="12" x="146.21" y="258.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
 			<e:Image width="12" height="12" x="157.96" y="258.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>

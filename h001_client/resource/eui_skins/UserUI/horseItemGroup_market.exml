@@ -11,7 +11,7 @@
 		<e:Image id="start_3" width="17" height="15.5" x="85.5" y="24.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
 		<e:Image id="start_4" width="17" height="15.5" x="98.5" y="24.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
 		<e:Image id="start_5" width="17" height="15.5" x="111.5" y="24.63" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
-		<e:Image width="13.5" height="19.25" x="140.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" source="icon_Male_png"/>
+		<e:Image id="horse_sex" width="13.5" height="19.25" x="140.5" y="8.36" anchorOffsetX="0" anchorOffsetY="0" source="icon_Male_png" name="horse_sex"/>
 		<e:Image width="177" height="48" x="-2" y="195" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_28_png"/>
 		<e:Label id="horse_name" text="Echo RAMBO" x="46.25" y="10.29" anchorOffsetX="0" width="94.25" anchorOffsetY="0" height="15.25" size="12" textAlign="center" verticalAlign="middle" textColor="0xedd3d3" name="horse_name"/>
 		<e:Label id="pay_money" text="123456" x="73" y="197.63" anchorOffsetX="0" width="73.05" anchorOffsetY="0" height="37.25" size="18" textAlign="center" verticalAlign="middle" textColor="0xeafc02" name="pay_money"/>

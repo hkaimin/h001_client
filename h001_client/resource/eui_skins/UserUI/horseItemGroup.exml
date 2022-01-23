@@ -3,13 +3,14 @@
 	<e:Group id="group_1" width="91" height="91" x="59" y="59" anchorOffsetY="45" name="group_1" anchorOffsetX="45" scaleX="1" scaleY="1" touchChildren="false" touchThrough="false">
 		<e:Image width="88" height="90" x="1.5" y="0.5" source="info_tx_frame_png" anchorOffsetX="0" anchorOffsetY="0"/>
 		<e:Image width="82" height="82" x="4.5" y="3.5" source="tx1_1_png"/>
+		<e:Image id="horse_head" width="82" height="82" x="4.5" y="3.5" name="horse_head" source="horse01_head01_png"/>
 		<e:Image id="select_2_img" width="87" height="90" x="1.5" y="-1" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" source="select2_s_png" scale9Grid="10,9,91,91" name="select_2_img" visible="false"/>
 		<e:Image id="img_head_bg" width="25.4" height="34.75" x="2.65" y="-0.61" anchorOffsetX="0" anchorOffsetY="0" name="img_head_bg" source="icon_level_png" scaleX="1" scaleY="1"/>
 		<e:Image id="horse_lv_img" width="11.96" height="13.95" x="9.92" y="5.54" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0" rotation="4.76"/>
-		<e:Image id="start_0" width="13" height="12.5" x="11.5" y="68.9" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
-		<e:Image id="start_1" width="13" height="12.5" x="24.5" y="68.9" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
-		<e:Image id="start_2" width="13" height="12.5" x="37.5" y="68.9" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
-		<e:Image id="start_3" width="13" height="12.5" x="50.5" y="68.9" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
-		<e:Image id="start_4" width="13" height="12.5" x="63.5" y="68.9" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
+		<e:Image id="start_1" width="13" height="12.5" x="11.5" y="68.9" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_1"/>
+		<e:Image id="start_2" width="13" height="12.5" x="24.5" y="68.9" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_2"/>
+		<e:Image id="start_3" width="13" height="12.5" x="37.5" y="68.9" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_3"/>
+		<e:Image id="start_4" width="13" height="12.5" x="50.5" y="68.9" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_4"/>
+		<e:Image id="start_5" width="13" height="12.5" x="63.5" y="68.9" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="start_5"/>
 	</e:Group>
 </e:Skin>

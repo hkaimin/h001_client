@@ -69,10 +69,12 @@ var HallModule = (function () {
         this.buyClass = 0;
         this.curPage = 1;
         this.subCurPage = 1;
+        this.subSubCurPage = 1;
         this.horsePanelUp = true;
         this.horseMarketData = null;
         this.horseOwnData = null;
         this.horseIndexS = 0;
+        this.horseItemS = 0;
         this.isdisplay = false;
         this.context = ct;
         HallModule.isNoEnd = false;
@@ -135,7 +137,7 @@ var HallModule = (function () {
         this.panel.addChild(this.btnPveAnim);
         this.setHorseXY();
         if (this.curPage == 2 && this.subCurPage > 1 || this.curPage == 4 && this.subCurPage == 1 || this.curPage == 5)
-            this.btnPveAnim.visible = false;
+            this.btnPveAnim2D.visible = false;
         this.btnPveAnim.addEventListener(egret.Event.COMPLETE, function () {
             CommonTools.logWallet("---COMPLETE------" + this.horseCurrent);
             this.horseCurrent++;
@@ -193,7 +195,7 @@ var HallModule = (function () {
         this.panel.verticalCenter = 0;
         this.context.addChild(this.panel);
         this.tipsPanel = this.panel;
-        this.drawHorse();
+        // this.drawHorse();
         this.panel.getChildByName("btn_map_diy").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.panel.getChildByName("img_info").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.panel.getChildByName("btn_training_pve").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
@@ -219,16 +221,17 @@ var HallModule = (function () {
         this.rankHead03.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.rankHead04.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.rankHead05.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+        // this.btnPveAnim2D = this.panel.getChildByName("hall_horse_body") as eui.Image;
+        this.btnPveAnim2D = new eui.Image("horse01_body_png");
+        this.btnPveAnim2D.width = 500;
+        this.btnPveAnim2D.height = 500;
+        this.btnPveAnim2D.horizontalCenter = 0;
+        this.btnPveAnim2D.verticalCenter = 0;
+        this.context.addChild(this.btnPveAnim2D);
         this.btnBackImg = this.panel.getChildByName("rank_grounp_main").getChildByName("btn_back_img");
         this.btnBackImg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-        // CommonTools.fixFix(this.context,this.panel.getChildByName("btn_shop"),1,0,10);
         CommonTools.fixFix(this.context, this.panel.getChildByName("btn_map_diy"), 2, 30, 20);
-        // CommonTools.fixFix(this.context,this.panel.getChildByName("btn_match_pvp"),2,-20,20);
-        // CommonTools.fixFix(this.context,this.panel.getChildByName("btn_match_pvp_anim"),2,-20,20);
         CommonTools.fixFix(this.context, this.panel.getChildByName("btn_training_pve"), 2, 30, 20);
-        // CommonTools.fixFix(this.context,this.panel.getChildByName("btn_noend_pve"),2,40,20);
-        // CommonTools.fixFix(this.context,this.panel.getChildByName("btn_friend_pvp"),2,30,20);
-        // CommonTools.fixFix(this.context,this.panel.getChildByName("btn_friend_pvp_anim"),2,30,20);
         CommonTools.fixFix(this.context, this.panel.getChildByName("btn_2v2"), 2, 30, 20);
         CommonTools.fixFix(this.context, this.panel.getChildByName("info_grp"), 1, 44, 10);
         CommonTools.fixFix(this.context, this.panel.getChildByName("img_head_bg"), 1, 34, 10);
@@ -328,47 +331,136 @@ var HallModule = (function () {
         }
     };
     HallModule.prototype.resetHorse = function () {
-        var scrollShop = this.horseSelectPanel.getChildByName("horse_panel_group").getChildByName("res_scroller");
-        scrollShop.viewport.scrollV = 0;
-        var groupShop = scrollShop.getChildByName("res_group");
-        var count = 20;
-        for (var iCnt = 0; iCnt < count; iCnt++) {
-            var tempPanel = groupShop.getChildByName("p_" + iCnt);
-            var tempGroup = tempPanel.getChildByName("group_1");
-            tempGroup.scaleX = 1;
-            tempGroup.scaleY = 1;
-            tempGroup.getChildByName("select_2_img").visible = false;
-        }
-        var showCnt = 0;
-        if (count >= 5)
-            showCnt = 2;
-        var groupItem = groupShop.getChildByName("p_" + showCnt);
-        var groupHorse = groupItem.getChildByName("group_1");
-        groupHorse.scaleX = 1.2;
-        groupHorse.scaleY = 1.2;
-        groupHorse.getChildByName("select_2_img").visible = true;
+        // let scrollShop = this.horseSelectPanel.getChildByName("horse_panel_group").getChildByName("res_scroller") as eui.Scroller;
+        // scrollShop.viewport.scrollV = 0;
+        // let groupShop = scrollShop.getChildByName("res_group") as eui.Group;
+        // let count = 20;
+        // for(let iCnt=0;iCnt<count;iCnt++){
+        // 	let tempPanel = groupShop.getChildByName("p_"+iCnt) as eui.Panel;
+        // 	let tempGroup = tempPanel.getChildByName("group_1") as eui.Group;
+        // 	tempGroup.scaleX = 1;
+        // 	tempGroup.scaleY = 1;
+        // 	tempGroup.getChildByName("select_2_img").visible = false;
+        // }
+        // let showCnt = 0;
+        // if(count >= 5)showCnt = 2;
+        // let groupItem = groupShop.getChildByName("p_"+showCnt) as eui.Panel;
+        // let groupHorse = groupItem.getChildByName("group_1") as eui.Group;
+        // groupHorse.scaleX = 1.2;
+        // groupHorse.scaleY = 1.2;
+        // groupHorse.getChildByName("select_2_img").visible = true;
     };
     HallModule.prototype.changeHorseRight = function (index) {
+        this.subSubCurPage = index;
         if (this.horseSelectRightPanel != null) {
             this.context.removeChild(this.horseSelectRightPanel);
             this.horseSelectRightPanel = null;
         }
+        var selectIdx = 0;
+        if (this.curPage == 5) {
+            selectIdx = this.horseIndexS;
+        }
+        else {
+            selectIdx = this.horseItemS;
+        }
+        var horseObj = this.getOwnHorseInfoById(selectIdx);
         var leftX2 = 900;
         var downY2 = 100;
         if (ConstValue.deviveNormalScale >= 2) {
             leftX2 -= 0;
             downY2 -= 80;
         }
-        if (this.curPage == 2 && this.subCurPage == 1 || this.curPage == 5) {
+        if (this.curPage == 2 || this.curPage == 5) {
             this.horseSelectRightPanel = new eui.Panel();
             if (index == 1) {
                 this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesStatUI.exml";
+                this.horseSelectRightPanel.getChildByName("horse_sex").source = horseObj.iSex == 1 ? "icon_Male_png" : "icon_female_png";
+                this.horseSelectRightPanel.getChildByName("horse_score").text = horseObj.score;
+                var energy_length = this.horseSelectRightPanel.getChildByName("energy_length");
+                var strength_w = energy_length.width * (horseObj.strength * 1.0 / horseObj.MaxStrength);
+                this.horseSelectRightPanel.getChildByName("strength_value").width = strength_w;
+                this.horseSelectRightPanel.getChildByName("strength_text").text = horseObj.strength + "/" + horseObj.MaxStrength;
+                var speed_w = energy_length.width * (horseObj.speed * 1.0 / horseObj.MaxSpeed);
+                this.horseSelectRightPanel.getChildByName("speed_value").width = speed_w;
+                this.horseSelectRightPanel.getChildByName("speed_text").text = horseObj.speed + "/" + horseObj.MaxSpeed;
+                var dexterity_w = energy_length.width * (horseObj.dexterity * 1.0 / horseObj.MaxDexterity);
+                this.horseSelectRightPanel.getChildByName("dexterity_value").width = dexterity_w;
+                this.horseSelectRightPanel.getChildByName("dexterity_text").text = horseObj.dexterity + "/" + horseObj.MaxDexterity;
+                var burse_w = energy_length.width * (horseObj.burse * 1.0 / horseObj.MaxBurse);
+                this.horseSelectRightPanel.getChildByName("burst_value").width = burse_w;
+                this.horseSelectRightPanel.getChildByName("burst_text").text = horseObj.burse + "/" + horseObj.MaxBurse;
+                this.horseSelectRightPanel.getChildByName("stamina_value").text = horseObj.stamina;
+                this.horseSelectRightPanel.getChildByName("start_value").text = horseObj.start;
+                this.horseSelectRightPanel.getChildByName("wisdom_value").text = horseObj.wisdom;
+                this.horseSelectRightPanel.getChildByName("constitution_value").text = horseObj.constitution;
             }
             else if (index == 2) {
                 this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesSkillUI.exml";
+                var grassLand_length = this.horseSelectRightPanel.getChildByName("grassLand_length");
+                var iPerGrass = horseObj.grassland * 1.0 / horseObj.landMax;
+                var grassLand_w = grassLand_length.width * iPerGrass;
+                this.horseSelectRightPanel.getChildByName("grassLand_value").width = grassLand_w;
+                if (iPerGrass > 0.9) {
+                    this.horseSelectRightPanel.getChildByName("grassLand_lv").source = "icon_level_s_png";
+                }
+                else if (iPerGrass > 0.8) {
+                    this.horseSelectRightPanel.getChildByName("grassLand_lv").source = "icon_level_a_png";
+                }
+                else if (iPerGrass > 0.7) {
+                    this.horseSelectRightPanel.getChildByName("grassLand_lv").source = "icon_level_b_png";
+                }
+                else if (iPerGrass > 0.6) {
+                    this.horseSelectRightPanel.getChildByName("grassLand_lv").source = "icon_level_c_png";
+                }
+                else {
+                    this.horseSelectRightPanel.getChildByName("grassLand_lv").source = "icon_level_d_png";
+                }
+                var iPerSand = horseObj.sand * 1.0 / horseObj.landMax;
+                var sand_w = grassLand_length.width * iPerSand;
+                this.horseSelectRightPanel.getChildByName("sand_value").width = sand_w;
+                if (iPerSand > 0.9) {
+                    this.horseSelectRightPanel.getChildByName("sand_lv").source = "icon_level_s_png";
+                }
+                else if (iPerSand > 0.8) {
+                    this.horseSelectRightPanel.getChildByName("sand_lv").source = "icon_level_a_png";
+                }
+                else if (iPerSand > 0.7) {
+                    this.horseSelectRightPanel.getChildByName("sand_lv").source = "icon_level_b_png";
+                }
+                else if (iPerSand > 0.6) {
+                    this.horseSelectRightPanel.getChildByName("sand_lv").source = "icon_level_c_png";
+                }
+                else {
+                    this.horseSelectRightPanel.getChildByName("sand_lv").source = "icon_level_d_png";
+                }
+                var iPerMud = horseObj.mud * 1.0 / horseObj.landMax;
+                var mud_w = grassLand_length.width * iPerMud;
+                this.horseSelectRightPanel.getChildByName("mud_value").width = mud_w;
+                if (iPerMud > 0.9) {
+                    this.horseSelectRightPanel.getChildByName("mud_lv").source = "icon_level_s_png";
+                }
+                else if (iPerMud > 0.8) {
+                    this.horseSelectRightPanel.getChildByName("mud_lv").source = "icon_level_a_png";
+                }
+                else if (iPerMud > 0.7) {
+                    this.horseSelectRightPanel.getChildByName("mud_lv").source = "icon_level_b_png";
+                }
+                else if (iPerMud > 0.6) {
+                    this.horseSelectRightPanel.getChildByName("mud_lv").source = "icon_level_c_png";
+                }
+                else {
+                    this.horseSelectRightPanel.getChildByName("mud_lv").source = "icon_level_d_png";
+                }
             }
             else {
                 this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesPedigreeUI.exml";
+            }
+            this.horseSelectRightPanel.getChildByName("horse_head").source = "horse" + horseObj.res_key + "_head01_png";
+            this.horseSelectRightPanel.getChildByName("horse_name").text = horseObj.name;
+            this.horseSelectRightPanel.getChildByName("lv_img").source = "icon_level_" + horseObj.iType + "_png";
+            for (var starNum = 1; starNum <= 5; starNum++) {
+                if (starNum > horseObj.star)
+                    this.horseSelectRightPanel.getChildByName("star_" + starNum).source = "icon_stars_0_png";
             }
             this.horseSelectRightPanel.title = "Title";
             this.horseSelectRightPanel.x = leftX2;
@@ -387,17 +479,31 @@ var HallModule = (function () {
             }
             this.horseSelectRightPanel.getChildByName("horse_stat_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
                 CommonAudioHandle.playEffect("playBomb_mp3", 1);
+                this.subSubCurPage = 1;
                 this.changeHorseRight(1);
             }, this);
             this.horseSelectRightPanel.getChildByName("horse_skill_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
                 CommonAudioHandle.playEffect("playBomb_mp3", 1);
+                this.subSubCurPage = 2;
                 this.changeHorseRight(2);
             }, this);
             this.horseSelectRightPanel.getChildByName("horse_pedigree_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
                 CommonAudioHandle.playEffect("playBomb_mp3", 1);
+                this.subSubCurPage = 3;
                 this.changeHorseRight(3);
             }, this);
         }
+    };
+    HallModule.prototype.getOwnHorseInfoById = function (id) {
+        var hData = this.horseOwnData;
+        if (this.subCurPage == 5)
+            hData = this.horseMarketData;
+        for (var index in hData) {
+            var obj = hData[index];
+            if (obj.id == id)
+                return obj;
+        }
+        return null;
     };
     HallModule.prototype.createHorseItem = function () {
         if (this.horseSelectPanel != null) {
@@ -451,20 +557,31 @@ var HallModule = (function () {
             }
             this.resetHorse();
         }, this);
-        var count = 20;
-        var _loop_1 = function (i) {
+        var i = 0;
+        var _loop_1 = function (hIndex) {
+            var obj = this_1.horseOwnData[hIndex];
+            if (this_1.horseItemS == 0)
+                this_1.horseItemS = obj.id;
             var panelT = new eui.Panel();
             panelT.skinName = "resource/eui_skins/UserUI/horseItemGroup.exml";
-            panelT.name = "p_" + i;
+            panelT.name = "p_" + obj.id;
             var xOff = 0;
             var yOff = 0;
             panelT.x = 11 + 120 * (i % 5);
             panelT.y = 15 + 120 * (Math.floor(i / 5));
             groupShop.addChild(panelT);
+            var tGroup = panelT.getChildByName("group_1");
+            tGroup.getChildByName("horse_lv_img").source = "icon_level_" + obj.iType + "_png";
+            tGroup.getChildByName("horse_head").source = "horse" + obj.res_key + "_head01_png";
+            for (var star = 1; star <= 5; star++) {
+                if (star > obj.star)
+                    tGroup.getChildByName("start_" + star).source = "icon_stars_0_png";
+            }
             panelT.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
                 CommonAudioHandle.playEffect("playBomb_mp3", 1);
-                for (var iCnt = 0; iCnt < count; iCnt++) {
-                    var tempPanel = groupShop.getChildByName("p_" + iCnt);
+                for (var thIndex in this.horseOwnData) {
+                    var tobj = this.horseOwnData[thIndex];
+                    var tempPanel = groupShop.getChildByName("p_" + tobj.id);
                     var tempGroup = tempPanel.getChildByName("group_1");
                     tempGroup.scaleX = 1;
                     tempGroup.scaleY = 1;
@@ -474,16 +591,19 @@ var HallModule = (function () {
                 groupHorse.scaleX = 1.2;
                 groupHorse.scaleY = 1.2;
                 groupHorse.getChildByName("select_2_img").visible = true;
+                this.horseItemS = obj.id;
+                this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").source = "icon_level_" + obj.iType + "_png";
+                this.changeHorseRight(this.subSubCurPage);
             }, this_1);
+            i++;
         };
         var this_1 = this;
-        for (var i = 0; i < count; i++) {
-            _loop_1(i);
+        for (var hIndex in this.horseOwnData) {
+            _loop_1(hIndex);
         }
-        var showCnt = 0;
-        if (count >= 5)
-            showCnt = 2;
-        var groupItem = groupShop.getChildByName("p_" + showCnt);
+        // let showCnt = 0;
+        // if(count >= 5)showCnt = 2;
+        var groupItem = groupShop.getChildByName("p_" + this.horseItemS);
         var groupHorse = groupItem.getChildByName("group_1");
         groupHorse.scaleX = 1.2;
         groupHorse.scaleY = 1.2;
@@ -698,7 +818,7 @@ var HallModule = (function () {
         if (this.subCurPage == 1) {
             this.maskNew.source = "horse_home_page2_jpg";
             this.createHorseItem();
-            this.btnPveAnim.visible = true;
+            this.btnPveAnim2D.visible = true;
             this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = true;
             this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = true;
         }
@@ -822,9 +942,18 @@ var HallModule = (function () {
             horse_score.text = obj.score;
             var horse_body = group_1.getChildByName("horse_body");
             horse_body.source = "horse" + obj.res_key + "_body_png";
+            var horse_sex = group_1.getChildByName("horse_sex");
+            horse_sex.source = obj.iSex == 1 ? "icon_Male_png" : "icon_female_png";
+            for (var starNum = 1; starNum <= 5; starNum++) {
+                if (starNum > obj.star) {
+                    var horse_star = group_1.getChildByName("start_" + starNum);
+                    horse_star.source = "icon_stars_0_png";
+                }
+            }
             if (this_2.horseIndexS == 0) {
                 this_2.horseIndexS = obj.id;
                 group_1.getChildByName("select_2_img").visible = true;
+                this_2.changeHorseRight(1);
             }
             panelT.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
                 CommonAudioHandle.playEffect("playBomb_mp3", 1);
@@ -833,6 +962,7 @@ var HallModule = (function () {
                 groupT.getChildByName("select_2_img").visible = false;
                 this.horseIndexS = obj.id;
                 group_1.getChildByName("select_2_img").visible = true;
+                this.changeHorseRight(this.subSubCurPage);
             }, this_2);
             i++;
         };
@@ -844,7 +974,7 @@ var HallModule = (function () {
     HallModule.prototype.MarketUI = function () {
         if (this.horseMarketData == null)
             return;
-        this.changeHorseRight(1);
+        // this.changeHorseRight(1);
         this.CreateMarketItems(1);
     };
     HallModule.prototype.MyInventoryUI = function () {
@@ -853,13 +983,13 @@ var HallModule = (function () {
             return;
         }
         if (this.horseOwnData != null) {
-            this.changeHorseRight(1);
+            // this.changeHorseRight(1);
             this.CreateMarketItems(2);
         }
     };
     HallModule.prototype.horseMarketUI = function () {
         this.maskNew.source = "horse_market_page5_jpg";
-        this.btnPveAnim.visible = false;
+        this.btnPveAnim2D.visible = false;
         if (this.subCurPage == 1) {
             this.royalClubUI();
         }
@@ -1014,7 +1144,7 @@ var HallModule = (function () {
         this.panel.getChildByName("rank_grounp_main").visible = false;
         this.panel.getChildByName("up_item_group").visible = false;
         this.panel.getChildByName("horse_name_group").visible = false;
-        this.btnPveAnim.visible = false;
+        this.btnPveAnim2D.visible = false;
     };
     HallModule.prototype.createCargoSuccess = function (index) {
         CommonAudioHandle.playEffect("success_mp3", 1);
@@ -1139,12 +1269,12 @@ var HallModule = (function () {
         if (index == 1)
             this.task01UI();
         if (index == 2) {
-            this.btnPveAnim.visible = true;
+            this.btnPveAnim2D.visible = true;
             this.createHorseItem();
             this.task02UI();
         }
         if (index == 3) {
-            this.btnPveAnim.visible = true;
+            this.btnPveAnim2D.visible = true;
             this.createHorseItem();
             this.task03UI();
         }
@@ -1167,7 +1297,7 @@ var HallModule = (function () {
     };
     HallModule.prototype.updatePlayToEarn = function () {
         this.clearTask();
-        this.btnPveAnim.visible = false;
+        this.btnPveAnim2D.visible = false;
         this.horseSelectMiddlePanel = new eui.Panel();
         this.horseSelectMiddlePanel.skinName = "resource/eui_skins/UserUI/PlayToEarn_select.exml";
         this.horseSelectMiddlePanel.title = "Title";
@@ -1615,7 +1745,7 @@ var HallModule = (function () {
             this.context.removeChild(this.maskBg2);
             this.maskBg2 = null;
         }
-        this.btnPveAnim.visible = false;
+        this.btnPveAnim2D.visible = false;
         this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = false;
         this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = false;
     };
@@ -1658,7 +1788,7 @@ var HallModule = (function () {
                 this.rankHead05.visible = true;
                 this.clearPage2HorseHome();
                 this.clearTraining();
-                this.btnPveAnim.visible = true;
+                this.btnPveAnim2D.visible = true;
                 this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = true;
                 this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = true;
                 this.panel.getChildByName("rank_grounp_main").visible = true;
@@ -1666,11 +1796,18 @@ var HallModule = (function () {
                     this.context.removeChild(this.btnBackImgTemp);
                     this.btnBackImgTemp = null;
                 }
-                this.btnPveAnimX = this.btnPveAnimInitX;
-                this.btnPveAnim.x = this.btnPveAnimX;
-                this.drawHorse();
+                // this.btnPveAnimX = this.btnPveAnimInitX;
+                // this.btnPveAnim.x = this.btnPveAnimX;
+                // this.drawHorse();
                 this.panel.getChildByName("up_item_group").visible = true;
                 this.tipsPanel = this.panel;
+                if (this.horseItemS == 0) {
+                    var obj = this.horseOwnData[0];
+                    this.horseItemS = obj.id;
+                }
+                var hObj = this.getOwnHorseInfoById(this.horseItemS);
+                this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").source = "icon_level_" + hObj.iType + "_png";
+                this.panel.getChildByName("horse_name_group").getChildByName("horse_name_lb").text = hObj.name;
             }
         }
         else if (clickName == "rank_head_02") {
@@ -1785,7 +1922,7 @@ var HallModule = (function () {
             this.btnBackImg.visible = true;
             this.updateUI();
         }
-        this.setHorseXY();
+        // this.setHorseXY();
         if (this.curPage != 5 || (this.curPage == 5 && this.subCurPage != 2)) {
             this.horseMarketData = null;
         }
@@ -3285,7 +3422,6 @@ var HallModule = (function () {
                                 count += 1;
                             }
                             if (count > 0) {
-                                ConstValue.cacheContract["nftLen"] = count;
                                 this.horseMarketData = lMarketData;
                             }
                             else {
@@ -3306,6 +3442,7 @@ var HallModule = (function () {
                                 count += 1;
                             }
                             if (count > 0) {
+                                ConstValue.cacheContract["nftLen"] = count;
                                 this.horseOwnData = lOwnNftData;
                             }
                             else {
