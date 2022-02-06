@@ -17,7 +17,7 @@
 			"name": "diymap"
 		},
 		{
-			"keys": "weixin_login_png,nft_tokensOfOwner_json,maincoin_transfer_json,maincoin_balanceOf_json,maincoin_transferFrom_json,maincoin_increaseApproval_json,login_bg_jpg",
+			"keys": "weixin_login_png,nft_tokensOfOwner_json,maincoin_transfer_json,maincoin_balanceOf_json,maincoin_transferFrom_json,maincoin_increaseApproval_json,login_bg_jpg,nft_approve_json,nft_transferFrom_json",
 			"name": "pre_preload"
 		}
 	],
@@ -1967,6 +1967,16 @@
 			"url": "assets/UserSkin/ppt/horse/horse10/horse10_head02.png",
 			"type": "image",
 			"name": "horse10_head02_png"
+		},
+		{
+			"url": "abi/nft_approve.json",
+			"type": "json",
+			"name": "nft_approve_json"
+		},
+		{
+			"url": "abi/nft_transferFrom.json",
+			"type": "json",
+			"name": "nft_transferFrom_json"
 		}
 	]
 }

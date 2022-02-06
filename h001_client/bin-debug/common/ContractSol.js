@@ -51,7 +51,12 @@ var ContractSol = (function () {
         ContractSol.res_nft_tokensOfOwner = RES.getRes("nft_tokensOfOwner_json");
         ContractSol.method_nft_tokensOfOwner = ContractSol.res_nft_tokensOfOwner;
         ContractSol.abiDef_nft_tokensOfOwner = ContractSol.method_nft_tokensOfOwner;
-        ContractSol.metaNFT_nft_tokensOfOwner = ContractSol.hweb3.eth.contract([ContractSol.abiDef_nft_tokensOfOwner]).at(ContractSol.NFTAddress);
+        ContractSol.res_nft_approve = RES.getRes("nft_approve_json");
+        ContractSol.method_nft_approve = ContractSol.res_nft_approve;
+        ContractSol.abiDef_nft_approve = ContractSol.method_nft_approve;
+        ContractSol.res_nft_transferFrom = RES.getRes("nft_transferFrom_json");
+        ContractSol.method_nft_transferFrom = ContractSol.res_nft_transferFrom;
+        ContractSol.abiDef_nft_transferFrom = ContractSol.method_nft_transferFrom;
         ContractSol.res_maincoin_transfer = RES.getRes("maincoin_transfer_json");
         ContractSol.method_maincoin_transfer = ContractSol.res_maincoin_transfer;
         ContractSol.abiDef_maincoin_transfer = ContractSol.method_maincoin_transfer;
@@ -84,12 +89,17 @@ var ContractSol = (function () {
             ContractSol.abiDef_subcoin_balanceOf,
             ContractSol.abiDef_subcoin_transferFrom
         ]).at(ContractSol.BEP20_Sub_Address);
+        ContractSol.metaNFT_nft = ContractSol.hweb3.eth.contract([
+            ContractSol.abiDef_nft_tokensOfOwner,
+            ContractSol.abiDef_nft_approve,
+            ContractSol.abiDef_nft_transferFrom
+        ]).at(ContractSol.NFTAddress);
     };
     /**
      * 玩家nft
      */
     ContractSol.nft_tokensOfOwner = function (address) {
-        ContractSol.metaNFT_nft_tokensOfOwner.tokensOfOwner(address, { from: ContractSol.sender }, function (error, token_result) {
+        ContractSol.metaNFT_nft.tokensOfOwner(address, { from: ContractSol.sender }, function (error, token_result) {
             if (error) {
                 CommonTools.logError('--nft_tokensOfOwner-error--' + error);
                 throw error;
@@ -109,6 +119,21 @@ var ContractSol = (function () {
         // console.log(xx.length);
         // console.log(xx[1].c[0]);
     };
+    /**
+     * 玩家nft
+     */
+    ContractSol.nft_approve = function (_index) {
+        ContractSol.metaNFT_nft.approve(ContractSol.createAddress, _index, { from: ContractSol.sender }, function (error, token_result) {
+            if (error) {
+                CommonTools.logError('--nft_approve-error--' + error);
+                throw error;
+            }
+            else {
+                CommonTools.logWallet('--nft_approve-success');
+                ConstValue.P_HALL_OBJ.sellNft();
+            }
+        });
+    };
     ContractSol.DelayGetReceipt = function (tHash, iOpType, arg1) {
         CommonTools.logWallet("--DelayGetReceipt------" + tHash + " " + iOpType + " " + arg1);
         FightingModule.Delay(5000, function () {
@@ -119,11 +144,16 @@ var ContractSol = (function () {
                 }
                 else {
                     if (result.status.toString() == "0x1") {
-                        if (iOpType == 1) {
+                        if (iOpType == ContractSol.BUY_TICKET) {
                             ConstValue.P_HALL_OBJ.addCommonTips("Waiting NFT response...");
                             ContractSol.maincoin_balanceOf(ContractSol.sender);
                             var sData = CommonTools.getDataJsonStr("createNft", 1, { iTickets: arg1 });
                             ConstValue.P_NET_OBJ.sendData(sData);
+                        }
+                        else if (iOpType == ContractSol.BUY_MARKET_NFT) {
+                            ConstValue.P_HALL_OBJ.addCommonTips("Waiting Market response...");
+                            ContractSol.maincoin_balanceOf(ContractSol.sender);
+                            ConstValue.P_HALL_OBJ.pBuyNft();
                         }
                     }
                 }
@@ -133,7 +163,7 @@ var ContractSol = (function () {
     /**
      * 主币transfer
      */
-    ContractSol.maincoin_transfer = function (_to, _value) {
+    ContractSol.maincoin_transfer = function (_to, _value, iOpr) {
         // ContractSol.hweb3.eth.sendTransaction({
         // 	from:ContractSol.sender,
         // 	to:ContractSol.createAddress,
@@ -151,7 +181,7 @@ var ContractSol = (function () {
             }
             else {
                 CommonTools.logWallet('--maincoin-transfer txnHash--' + txnHash);
-                ContractSol.DelayGetReceipt(txnHash, 1, _value);
+                ContractSol.DelayGetReceipt(txnHash, iOpr, _value);
             }
         });
     };
@@ -250,6 +280,8 @@ var ContractSol = (function () {
     ContractSol.BEP20_Main_Address = "0xa9e75f8838c7173412f229a7cd13a6b6e0fe6e39";
     ContractSol.BEP20_Sub_Address = "0x6A3587d791946E2C567a279886ACc10Fa962a4cc";
     ContractSol.NFTAddress = "0x14c75969e8aeb8ff68c4450ebc3090b48425f4bb";
+    ContractSol.BUY_TICKET = 1;
+    ContractSol.BUY_MARKET_NFT = 2;
     ContractSol.sender = "";
     ContractSol.createAddress = "0x210729036108b7dd19bba5141e181a47a619a46f";
     return ContractSol;

@@ -64,6 +64,7 @@ var HallModule = (function () {
         this.btnPveAnimInitY = 350; //240
         this.btnPveAnimX = 580;
         this.btnPveAnimY = 350;
+        this.btnPveAnim2D = null;
         this.horseCurrent = 1;
         this.isCanShowSeventDay = true; //默认情况可以打开7天签到
         this.buyClass = 0;
@@ -98,6 +99,8 @@ var HallModule = (function () {
         });
     };
     HallModule.prototype.setHorseXY = function () {
+        if (this.btnPveAnim == null)
+            return;
         if (ConstValue.deviveNormalScale < 2) {
             // CommonTools.logWallet("---COMPLETE---deviveNormalScale--<2-")
             if (this.curPage == 2) {
@@ -203,6 +206,8 @@ var HallModule = (function () {
         this.panel.getChildByName("up_item_group").getChildByName("img_coin1_add").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.panel.getChildByName("up_item_group").getChildByName("img_coin2_add").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.panel.getChildByName("sell_group").getChildByName("sell_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+        this.panel.getChildByName("sell_group").getChildByName("up_img").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+        this.panel.getChildByName("sell_group").getChildByName("down_img").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         CommonTools.fixFix(this.context, this.panel.getChildByName("sell_group"), 2, 0, 0);
         this.panel.getChildByName("buynft_group").getChildByName("buynft_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         CommonTools.fixFix(this.context, this.panel.getChildByName("buynft_group"), 2, 0, 0);
@@ -221,13 +226,12 @@ var HallModule = (function () {
         this.rankHead03.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.rankHead04.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         this.rankHead05.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-        // this.btnPveAnim2D = this.panel.getChildByName("hall_horse_body") as eui.Image;
-        this.btnPveAnim2D = new eui.Image("horse01_body_png");
-        this.btnPveAnim2D.width = 500;
-        this.btnPveAnim2D.height = 500;
-        this.btnPveAnim2D.horizontalCenter = 0;
-        this.btnPveAnim2D.verticalCenter = 0;
-        this.context.addChild(this.btnPveAnim2D);
+        // this.btnPveAnim2D = new eui.Image("horse01_body_png");
+        // this.btnPveAnim2D.width = 500;
+        // this.btnPveAnim2D.height = 500;
+        // this.btnPveAnim2D.horizontalCenter = 0;
+        // this.btnPveAnim2D.verticalCenter = 0;
+        // this.context.addChild(this.btnPveAnim2D);
         this.btnBackImg = this.panel.getChildByName("rank_grounp_main").getChildByName("btn_back_img");
         this.btnBackImg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
         CommonTools.fixFix(this.context, this.panel.getChildByName("btn_map_diy"), 2, 30, 20);
@@ -364,6 +368,8 @@ var HallModule = (function () {
             selectIdx = this.horseItemS;
         }
         var horseObj = this.getOwnHorseInfoById(selectIdx);
+        if (horseObj == null)
+            return;
         var leftX2 = 900;
         var downY2 = 100;
         if (ConstValue.deviveNormalScale >= 2) {
@@ -393,6 +399,7 @@ var HallModule = (function () {
                 this.horseSelectRightPanel.getChildByName("start_value").text = horseObj.start;
                 this.horseSelectRightPanel.getChildByName("wisdom_value").text = horseObj.wisdom;
                 this.horseSelectRightPanel.getChildByName("constitution_value").text = horseObj.constitution;
+                this.horseSelectRightPanel.getChildByName("life_time").text = horseObj.days + " days";
             }
             else if (index == 2) {
                 this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesSkillUI.exml";
@@ -496,8 +503,17 @@ var HallModule = (function () {
     };
     HallModule.prototype.getOwnHorseInfoById = function (id) {
         var hData = this.horseOwnData;
-        if (this.subCurPage == 5)
+        if (this.subCurPage == 2)
             hData = this.horseMarketData;
+        for (var index in hData) {
+            var obj = hData[index];
+            if (obj.id == id)
+                return obj;
+        }
+        return null;
+    };
+    HallModule.prototype.getPOwnHorseInfoById = function (id) {
+        var hData = this.horseOwnData;
         for (var index in hData) {
             var obj = hData[index];
             if (obj.id == id)
@@ -548,12 +564,14 @@ var HallModule = (function () {
             if (this.horsePanelUp) {
                 this.horsePanelUp = false;
                 egret.Tween.get(this.horseSelectPanel).to({ y: upY }, 1000);
-                this.maskBg2.visible = true;
+                if (this.maskBg2 != null)
+                    this.maskBg2.visible = true;
             }
             else {
                 this.horsePanelUp = true;
                 egret.Tween.get(this.horseSelectPanel).to({ y: downY }, 1000);
-                this.maskBg2.visible = false;
+                if (this.maskBg2 != null)
+                    this.maskBg2.visible = false;
             }
             this.resetHorse();
         }, this);
@@ -593,6 +611,7 @@ var HallModule = (function () {
                 groupHorse.getChildByName("select_2_img").visible = true;
                 this.horseItemS = obj.id;
                 this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").source = "icon_level_" + obj.iType + "_png";
+                this.btnPveAnim2D.source = "horse" + obj.res_key + "_body_png";
                 this.changeHorseRight(this.subSubCurPage);
             }, this_1);
             i++;
@@ -818,7 +837,8 @@ var HallModule = (function () {
         if (this.subCurPage == 1) {
             this.maskNew.source = "horse_home_page2_jpg";
             this.createHorseItem();
-            this.btnPveAnim2D.visible = true;
+            if (this.btnPveAnim2D != null)
+                this.btnPveAnim2D.visible = true;
             this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = true;
             this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = true;
         }
@@ -857,7 +877,7 @@ var HallModule = (function () {
                 CommonTools.addCommonTips(this.context, ConstValue.P_NOT_ENOUGH);
                 return;
             }
-            ContractSol.maincoin_transfer(ContractSol.createAddress, pay_main);
+            ContractSol.maincoin_transfer(ContractSol.createAddress, pay_main, ContractSol.BUY_TICKET);
         }, this);
         this.horseSelectMiddlePanel.getChildByName("up_img").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
@@ -953,6 +973,7 @@ var HallModule = (function () {
             if (this_2.horseIndexS == 0) {
                 this_2.horseIndexS = obj.id;
                 group_1.getChildByName("select_2_img").visible = true;
+                this_2.panel.getChildByName("buynft_group").getChildByName("buy_nft_main").text = obj.money;
                 this_2.changeHorseRight(1);
             }
             panelT.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
@@ -962,6 +983,7 @@ var HallModule = (function () {
                 groupT.getChildByName("select_2_img").visible = false;
                 this.horseIndexS = obj.id;
                 group_1.getChildByName("select_2_img").visible = true;
+                this.panel.getChildByName("buynft_group").getChildByName("buy_nft_main").text = obj.money;
                 this.changeHorseRight(this.subSubCurPage);
             }, this_2);
             i++;
@@ -989,7 +1011,8 @@ var HallModule = (function () {
     };
     HallModule.prototype.horseMarketUI = function () {
         this.maskNew.source = "horse_market_page5_jpg";
-        this.btnPveAnim2D.visible = false;
+        if (this.btnPveAnim2D != null)
+            this.btnPveAnim2D.visible = false;
         if (this.subCurPage == 1) {
             this.royalClubUI();
         }
@@ -1144,7 +1167,8 @@ var HallModule = (function () {
         this.panel.getChildByName("rank_grounp_main").visible = false;
         this.panel.getChildByName("up_item_group").visible = false;
         this.panel.getChildByName("horse_name_group").visible = false;
-        this.btnPveAnim2D.visible = false;
+        if (this.btnPveAnim2D != null)
+            this.btnPveAnim2D.visible = false;
     };
     HallModule.prototype.createCargoSuccess = function (index) {
         CommonAudioHandle.playEffect("success_mp3", 1);
@@ -1269,12 +1293,14 @@ var HallModule = (function () {
         if (index == 1)
             this.task01UI();
         if (index == 2) {
-            this.btnPveAnim2D.visible = true;
+            if (this.btnPveAnim2D != null)
+                this.btnPveAnim2D.visible = true;
             this.createHorseItem();
             this.task02UI();
         }
         if (index == 3) {
-            this.btnPveAnim2D.visible = true;
+            if (this.btnPveAnim2D != null)
+                this.btnPveAnim2D.visible = true;
             this.createHorseItem();
             this.task03UI();
         }
@@ -1297,7 +1323,8 @@ var HallModule = (function () {
     };
     HallModule.prototype.updatePlayToEarn = function () {
         this.clearTask();
-        this.btnPveAnim2D.visible = false;
+        if (this.btnPveAnim2D != null)
+            this.btnPveAnim2D.visible = false;
         this.horseSelectMiddlePanel = new eui.Panel();
         this.horseSelectMiddlePanel.skinName = "resource/eui_skins/UserUI/PlayToEarn_select.exml";
         this.horseSelectMiddlePanel.title = "Title";
@@ -1367,6 +1394,7 @@ var HallModule = (function () {
         }
     };
     HallModule.prototype.updateMaincoin = function (coin, save) {
+        ConstValue.cacheUserInfo.coin = coin;
         this.panel.getChildByName("up_item_group").getChildByName("main_coin_num_lb").text = coin;
         if (save) {
             var sData = CommonTools.getDataJsonStr("saveCoinInfo", 1, { mainCoin: coin, subCoin: 0 });
@@ -1374,6 +1402,7 @@ var HallModule = (function () {
         }
     };
     HallModule.prototype.updateSubcoin = function (coin, save) {
+        ConstValue.cacheUserInfo.diamond = coin;
         this.panel.getChildByName("up_item_group").getChildByName("sub_coin_num_lb").text = coin;
         if (save) {
             var sData = CommonTools.getDataJsonStr("saveCoinInfo", 1, { mainCoin: 0, subCoin: coin });
@@ -1745,7 +1774,8 @@ var HallModule = (function () {
             this.context.removeChild(this.maskBg2);
             this.maskBg2 = null;
         }
-        this.btnPveAnim2D.visible = false;
+        if (this.btnPveAnim2D != null)
+            this.btnPveAnim2D.visible = false;
         this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = false;
         this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = false;
     };
@@ -1788,7 +1818,8 @@ var HallModule = (function () {
                 this.rankHead05.visible = true;
                 this.clearPage2HorseHome();
                 this.clearTraining();
-                this.btnPveAnim2D.visible = true;
+                if (this.btnPveAnim2D != null)
+                    this.btnPveAnim2D.visible = true;
                 this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = true;
                 this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = true;
                 this.panel.getChildByName("rank_grounp_main").visible = true;
@@ -1808,6 +1839,17 @@ var HallModule = (function () {
                 var hObj = this.getOwnHorseInfoById(this.horseItemS);
                 this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").source = "icon_level_" + hObj.iType + "_png";
                 this.panel.getChildByName("horse_name_group").getChildByName("horse_name_lb").text = hObj.name;
+                if (this.btnPveAnim2D == null) {
+                    this.btnPveAnim2D = new eui.Image("horse" + hObj.res_key + "_body_png");
+                    this.btnPveAnim2D.width = 500;
+                    this.btnPveAnim2D.height = 500;
+                    this.btnPveAnim2D.horizontalCenter = 0;
+                    this.btnPveAnim2D.verticalCenter = 0;
+                    this.context.addChild(this.btnPveAnim2D);
+                }
+                else {
+                    this.btnPveAnim2D.source = "horse" + hObj.res_key + "_body_png";
+                }
             }
         }
         else if (clickName == "rank_head_02") {
@@ -1949,9 +1991,18 @@ var HallModule = (function () {
         var sData = CommonTools.getDataJsonStr("AddSubCoin", 1, { iAdd: 5, iOpType: 0 });
         ConstValue.P_NET_OBJ.sendData(sData);
     };
+    HallModule.prototype.sellNft = function () {
+        var money_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb");
+        var sDataSell = CommonTools.getDataJsonStr("SellNft", 1, { nftIndex: this.horseIndexS, money: parseInt(money_text.text) });
+        ConstValue.P_NET_OBJ.sendData(sDataSell);
+    };
+    HallModule.prototype.pBuyNft = function () {
+        var sDataBuybtn = CommonTools.getDataJsonStr("PBuyNft", 1, { nftIndex: this.horseIndexS, sAddress: ContractSol.sender });
+        ConstValue.P_NET_OBJ.sendData(sDataBuybtn);
+    };
     HallModule.prototype.onClick = function (e) {
         return __awaiter(this, void 0, void 0, function () {
-            var name, _a, sDataSell, sDataBuybtn, sDataNoendHelp, sDataSkillHelp, sDataReady, sDataReady, sData_1, sData_gobarr, sData, sDataGG, sData_rank_3, sData_rank_1, sData_rank_2, sData_2, sData_role_detail, sData_noend, sData_3, sData_shop, sData_bag, sData_RoleList, sData_Reward, sData_skill, sDataBuy, sDataBuy, sDataUse, account_lb_txt, sData_4;
+            var name, _a, sellobj, up_text, down_text, checkOwn, buyMain, sDataNoendHelp, sDataSkillHelp, sDataReady, sDataReady, sData_1, sData_gobarr, sData, sDataGG, sData_rank_3, sData_rank_1, sData_rank_2, sData_2, sData_role_detail, sData_noend, sData_3, sData_shop, sData_bag, sData_RoleList, sData_Reward, sData_skill, sDataBuy, sDataBuy, sDataUse, account_lb_txt, sData_4;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -1985,90 +2036,115 @@ var HallModule = (function () {
                             case "img_coin1_add": return [3 /*break*/, 1];
                             case "img_coin2_add": return [3 /*break*/, 2];
                             case "sell_btn_lb": return [3 /*break*/, 3];
-                            case "buynft_btn_lb": return [3 /*break*/, 4];
-                            case "btn_back_img": return [3 /*break*/, 5];
-                            case "noend_tip": return [3 /*break*/, 6];
-                            case "btn_tip": return [3 /*break*/, 7];
-                            case "friend_rank_lb": return [3 /*break*/, 8];
-                            case "btn_2v2": return [3 /*break*/, 9];
-                            case "btn_close": return [3 /*break*/, 10];
-                            case "btn_close_wx_vs": return [3 /*break*/, 11];
-                            case "btn_start": return [3 /*break*/, 12];
-                            case "btn_shop": return [3 /*break*/, 13];
-                            case "btn_training_pve": return [3 /*break*/, 14];
-                            case "btn_ranking": return [3 /*break*/, 15];
-                            case "btn_gonggao": return [3 /*break*/, 16];
-                            case "all_rank_lb": return [3 /*break*/, 17];
-                            case "barrier_rank_lb": return [3 /*break*/, 17];
-                            case "match_rank_lb": return [3 /*break*/, 18];
-                            case "lv_rank_lb": return [3 /*break*/, 19];
-                            case "btn_noticetip": return [3 /*break*/, 20];
-                            case "btn_match_pvp": return [3 /*break*/, 21];
-                            case "img_info": return [3 /*break*/, 23];
-                            case "btn_friend_pvp": return [3 /*break*/, 24];
-                            case "btn_noend_pve": return [3 /*break*/, 25];
-                            case "btn_map_diy": return [3 /*break*/, 26];
-                            case "btn_map_shop": return [3 /*break*/, 28];
-                            case "btn_redtv": return [3 /*break*/, 29];
-                            case "btn_map_bag": return [3 /*break*/, 30];
-                            case "btn_select_role": return [3 /*break*/, 31];
-                            case "btn_close_edit": return [3 /*break*/, 32];
-                            case "btn_uplv_task": return [3 /*break*/, 33];
-                            case "btn_skill": return [3 /*break*/, 34];
-                            case "btn_maprank": return [3 /*break*/, 35];
-                            case "btn_setting": return [3 /*break*/, 36];
-                            case "scroll_notify": return [3 /*break*/, 37];
-                            case "btn_one_lb": return [3 /*break*/, 38];
-                            case "btn_two_lb": return [3 /*break*/, 38];
-                            case "btn_three_lb": return [3 /*break*/, 38];
-                            case "btn_four_lb": return [3 /*break*/, 38];
-                            case "btn_buy": return [3 /*break*/, 39];
-                            case "btn_confirm_modify": return [3 /*break*/, 40];
+                            case "up_img": return [3 /*break*/, 4];
+                            case "down_img": return [3 /*break*/, 5];
+                            case "buynft_btn_lb": return [3 /*break*/, 6];
+                            case "btn_back_img": return [3 /*break*/, 7];
+                            case "noend_tip": return [3 /*break*/, 8];
+                            case "btn_tip": return [3 /*break*/, 9];
+                            case "friend_rank_lb": return [3 /*break*/, 10];
+                            case "btn_2v2": return [3 /*break*/, 11];
+                            case "btn_close": return [3 /*break*/, 12];
+                            case "btn_close_wx_vs": return [3 /*break*/, 13];
+                            case "btn_start": return [3 /*break*/, 14];
+                            case "btn_shop": return [3 /*break*/, 15];
+                            case "btn_training_pve": return [3 /*break*/, 16];
+                            case "btn_ranking": return [3 /*break*/, 17];
+                            case "btn_gonggao": return [3 /*break*/, 18];
+                            case "all_rank_lb": return [3 /*break*/, 19];
+                            case "barrier_rank_lb": return [3 /*break*/, 19];
+                            case "match_rank_lb": return [3 /*break*/, 20];
+                            case "lv_rank_lb": return [3 /*break*/, 21];
+                            case "btn_noticetip": return [3 /*break*/, 22];
+                            case "btn_match_pvp": return [3 /*break*/, 23];
+                            case "img_info": return [3 /*break*/, 25];
+                            case "btn_friend_pvp": return [3 /*break*/, 26];
+                            case "btn_noend_pve": return [3 /*break*/, 27];
+                            case "btn_map_diy": return [3 /*break*/, 28];
+                            case "btn_map_shop": return [3 /*break*/, 30];
+                            case "btn_redtv": return [3 /*break*/, 31];
+                            case "btn_map_bag": return [3 /*break*/, 32];
+                            case "btn_select_role": return [3 /*break*/, 33];
+                            case "btn_close_edit": return [3 /*break*/, 34];
+                            case "btn_uplv_task": return [3 /*break*/, 35];
+                            case "btn_skill": return [3 /*break*/, 36];
+                            case "btn_maprank": return [3 /*break*/, 37];
+                            case "btn_setting": return [3 /*break*/, 38];
+                            case "scroll_notify": return [3 /*break*/, 39];
+                            case "btn_one_lb": return [3 /*break*/, 40];
+                            case "btn_two_lb": return [3 /*break*/, 40];
+                            case "btn_three_lb": return [3 /*break*/, 40];
+                            case "btn_four_lb": return [3 /*break*/, 40];
+                            case "btn_buy": return [3 /*break*/, 41];
+                            case "btn_confirm_modify": return [3 /*break*/, 42];
                         }
-                        return [3 /*break*/, 41];
+                        return [3 /*break*/, 43];
                     case 1:
                         this.testAddMain();
-                        return [3 /*break*/, 42];
+                        return [3 /*break*/, 44];
                     case 2:
                         this.testAddSub();
-                        return [3 /*break*/, 42];
+                        return [3 /*break*/, 44];
                     case 3:
-                        sDataSell = CommonTools.getDataJsonStr("SellNft", 1, { nftIndex: this.horseIndexS });
-                        ConstValue.P_NET_OBJ.sendData(sDataSell);
-                        return [3 /*break*/, 42];
+                        sellobj = this.getOwnHorseInfoById(this.horseIndexS);
+                        if (sellobj == null)
+                            return [2 /*return*/];
+                        if (sellobj.sellStatus == 1) {
+                            this.addCommonTips(ConstValue.P_ON_SALE);
+                            return [2 /*return*/];
+                        }
+                        ContractSol.nft_approve(this.horseIndexS);
+                        return [3 /*break*/, 44];
                     case 4:
-                        sDataBuybtn = CommonTools.getDataJsonStr("BuyNft", 1, { nftIndex: this.horseIndexS, sAddress: ContractSol.sender });
-                        ConstValue.P_NET_OBJ.sendData(sDataBuybtn);
-                        return [3 /*break*/, 42];
+                        up_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb");
+                        if (parseInt(up_text.text) >= 9999)
+                            return [2 /*return*/];
+                        up_text.text = parseInt(up_text.text) + 1 + "";
+                        return [3 /*break*/, 44];
                     case 5:
+                        down_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb");
+                        if (parseInt(down_text.text) <= 1)
+                            return [2 /*return*/];
+                        down_text.text = parseInt(down_text.text) - 1 + "";
+                        return [3 /*break*/, 44];
+                    case 6:
+                        checkOwn = this.getPOwnHorseInfoById(this.horseIndexS);
+                        if (checkOwn != null) {
+                            this.addCommonTips(ConstValue.P_OWN_NFT);
+                            return [2 /*return*/];
+                        }
+                        buyMain = parseInt(this.panel.getChildByName("buynft_group").getChildByName("buy_nft_main").text);
+                        ContractSol.maincoin_transfer(ContractSol.createAddress, buyMain, ContractSol.BUY_MARKET_NFT);
+                        return [3 /*break*/, 44];
+                    case 7:
                         if (this.curPage == 5 && ConstValue.cacheContract["nftLen"] == 0) {
                             CommonTools.addCommonTips(this.tipsPanel, ConstValue.P_NO_HORSE);
                             return [2 /*return*/];
                         }
                         this.curPage = 6;
                         this.changePage("rank_head_01");
-                        return [3 /*break*/, 42];
-                    case 6:
+                        return [3 /*break*/, 44];
+                    case 8:
                         sDataNoendHelp = CommonTools.getDataJsonStr("getHelp", 1, { helpID: "1" });
                         ConstValue.P_NET_OBJ.sendData(sDataNoendHelp);
-                        return [3 /*break*/, 42];
-                    case 7:
+                        return [3 /*break*/, 44];
+                    case 9:
                         sDataSkillHelp = CommonTools.getDataJsonStr("getHelp", 1, { helpID: "2" });
                         ConstValue.P_NET_OBJ.sendData(sDataSkillHelp);
-                        return [3 /*break*/, 42];
-                    case 8:
-                        CommonTools.addCommonTips(this.tipsPanel, "暂未开放");
-                        return [3 /*break*/, 42];
-                    case 9:
-                        CommonTools.addCommonTips(this.tipsPanel, "敬请期待");
-                        return [3 /*break*/, 42];
+                        return [3 /*break*/, 44];
                     case 10:
-                        this.closeNotice();
-                        return [3 /*break*/, 42];
+                        CommonTools.addCommonTips(this.tipsPanel, "暂未开放");
+                        return [3 /*break*/, 44];
                     case 11:
-                        this.closeWxVsUI();
-                        return [3 /*break*/, 42];
+                        CommonTools.addCommonTips(this.tipsPanel, "敬请期待");
+                        return [3 /*break*/, 44];
                     case 12:
+                        this.closeNotice();
+                        return [3 /*break*/, 44];
+                    case 13:
+                        this.closeWxVsUI();
+                        return [3 /*break*/, 44];
+                    case 14:
                         if (this.isMainRoomer) {
                             sDataReady = CommonTools.getDataJsonStr("startGame1V1", 1, { fightRoomKey: Main.roomkey });
                             ConstValue.P_NET_OBJ.sendData(sDataReady);
@@ -2077,11 +2153,11 @@ var HallModule = (function () {
                             sDataReady = CommonTools.getDataJsonStr("setReady1V1", 1, { fightRoomKey: Main.roomkey });
                             ConstValue.P_NET_OBJ.sendData(sDataReady);
                         }
-                        return [3 /*break*/, 42];
-                    case 13:
+                        return [3 /*break*/, 44];
+                    case 15:
                         CommonTools.addCommonTips(this.tipsPanel, ConstValue.P_SEND_WAITING);
-                        return [3 /*break*/, 42];
-                    case 14:
+                        return [3 /*break*/, 44];
+                    case 16:
                         if (HallModule.curGuide == 2) {
                             HallModule.curGuide = 0;
                             sData_1 = CommonTools.getDataJsonStr("getNextGuild", 1, {});
@@ -2090,52 +2166,52 @@ var HallModule = (function () {
                         HallModule.isTrainBrr = true;
                         sData_gobarr = CommonTools.getDataJsonStr("C2GEnterTrain", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_gobarr);
-                        return [3 /*break*/, 42];
-                    case 15:
+                        return [3 /*break*/, 44];
+                    case 17:
                         sData = CommonTools.getDataJsonStr("openRnakUI", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData);
-                        return [3 /*break*/, 42];
-                    case 16:
+                        return [3 /*break*/, 44];
+                    case 18:
                         sDataGG = CommonTools.getDataJsonStr("getGonggao", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sDataGG);
-                        return [3 /*break*/, 42];
-                    case 17:
+                        return [3 /*break*/, 44];
+                    case 19:
                         sData_rank_3 = CommonTools.getDataJsonStr("getTotalGuankaRank", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_rank_3);
-                        return [3 /*break*/, 42];
-                    case 18:
+                        return [3 /*break*/, 44];
+                    case 20:
                         sData_rank_1 = CommonTools.getDataJsonStr("getTotalPvpRank", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_rank_1);
-                        return [3 /*break*/, 42];
-                    case 19:
+                        return [3 /*break*/, 44];
+                    case 21:
                         sData_rank_2 = CommonTools.getDataJsonStr("getTotalLvRank", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_rank_2);
-                        return [3 /*break*/, 42];
-                    case 20:
+                        return [3 /*break*/, 44];
+                    case 22:
                         this.showNotice("resource/eui_skins/UserUI/NoticeUI.exml", name);
-                        return [3 /*break*/, 42];
-                    case 21:
+                        return [3 /*break*/, 44];
+                    case 23:
                         if (HallModule.curGuide == 6) {
                             HallModule.curGuide = 0;
                             sData_2 = CommonTools.getDataJsonStr("getNextGuild", 1, {});
                             ConstValue.P_NET_OBJ.sendData(sData_2);
                         }
                         return [4 /*yield*/, this.context.loadResource("fighting", 3)];
-                    case 22:
+                    case 24:
                         _b.sent();
-                        return [3 /*break*/, 42];
-                    case 23:
+                        return [3 /*break*/, 44];
+                    case 25:
                         sData_role_detail = CommonTools.getDataJsonStr("getRoleDetail", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_role_detail);
-                        return [3 /*break*/, 42];
-                    case 24:
+                        return [3 /*break*/, 44];
+                    case 26:
                         this.showNotice("resource/eui_skins/UserUI/SelectShareVsMapUI.exml", name);
-                        return [3 /*break*/, 42];
-                    case 25:
+                        return [3 /*break*/, 44];
+                    case 27:
                         sData_noend = CommonTools.getDataJsonStr("C2GOpenWujinUI", 1, { diffLevel: 1 });
                         ConstValue.P_NET_OBJ.sendData(sData_noend);
-                        return [3 /*break*/, 42];
-                    case 26:
+                        return [3 /*break*/, 44];
+                    case 28:
                         if (HallModule.curGuide == 7) {
                             HallModule.curGuide = 0;
                             sData_3 = CommonTools.getDataJsonStr("getNextGuild", 1, {});
@@ -2143,48 +2219,48 @@ var HallModule = (function () {
                         }
                         if (ConstValue.cacheUserInfo.btnCtrlData["5"].openLv > ConstValue.cacheUserInfo.lv) {
                             CommonTools.addCommonTips(this.tipsPanel, "等级" + ConstValue.cacheUserInfo.btnCtrlData["5"].openLv + "级后开放");
-                            return [3 /*break*/, 42];
+                            return [3 /*break*/, 44];
                         }
                         return [4 /*yield*/, this.context.loadResource("diymap", 4)];
-                    case 27:
+                    case 29:
                         _b.sent();
-                        return [3 /*break*/, 42];
-                    case 28:
+                        return [3 /*break*/, 44];
+                    case 30:
                         sData_shop = CommonTools.getDataJsonStr("openShopUI", 1, { iType: 0 });
                         ConstValue.P_NET_OBJ.sendData(sData_shop);
-                        return [3 /*break*/, 42];
-                    case 29:
+                        return [3 /*break*/, 44];
+                    case 31:
                         this.showAD(5);
-                        return [3 /*break*/, 42];
-                    case 30:
+                        return [3 /*break*/, 44];
+                    case 32:
                         sData_bag = CommonTools.getDataJsonStr("openBagUI", 1, { iType: 0 });
                         ConstValue.P_NET_OBJ.sendData(sData_bag);
-                        return [3 /*break*/, 42];
-                    case 31:
+                        return [3 /*break*/, 44];
+                    case 33:
                         sData_RoleList = CommonTools.getDataJsonStr("showAllClassList", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_RoleList);
                         // this.showNotice("resource/eui_skins/UserUI/RoleInfoUI.exml","btn_img_info");
-                        return [3 /*break*/, 42];
-                    case 32:
+                        return [3 /*break*/, 44];
+                    case 34:
                         this.closeSub();
-                        return [3 /*break*/, 42];
-                    case 33:
+                        return [3 /*break*/, 44];
+                    case 35:
                         sData_Reward = CommonTools.getDataJsonStr("showUpgradeReward", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_Reward);
-                        return [3 /*break*/, 42];
-                    case 34:
+                        return [3 /*break*/, 44];
+                    case 36:
                         sData_skill = CommonTools.getDataJsonStr("C2G_Open_MainUI", 1, {});
                         ConstValue.P_NET_OBJ.sendData(sData_skill);
-                        return [3 /*break*/, 42];
-                    case 35:
+                        return [3 /*break*/, 44];
+                    case 37:
                         if (ConstValue.P_MAP_OBJ == null) {
                             ConstValue.P_MAP_OBJ = new MapDIYModule(this.context, null, 0);
                         }
-                        return [3 /*break*/, 42];
-                    case 36:
+                        return [3 /*break*/, 44];
+                    case 38:
                         this.showNotice("resource/eui_skins/UserUI/MainSetting.exml", "btn_setting");
-                        return [3 /*break*/, 42];
-                    case 37:
+                        return [3 /*break*/, 44];
+                    case 39:
                         // let arr = ["2","4","6","8","9","10","7"];
                         // for(let i=0;i<arr.length;i++){
                         // 	egret.localStorage.setItem(GuideModule.guide_tip_new[arr[i]].saveKey,"0");
@@ -2192,11 +2268,11 @@ var HallModule = (function () {
                         FightingModule.curBarrNo = 29;
                         // this.showGuide();
                         this.showEditUI(name);
-                        return [3 /*break*/, 42];
-                    case 38:
+                        return [3 /*break*/, 44];
+                    case 40:
                         this.clickShopPage(name);
-                        return [3 /*break*/, 42];
-                    case 39:
+                        return [3 /*break*/, 44];
+                    case 41:
                         if (this.shopUIType == 1) {
                             if (this.shopPayType != 3) {
                                 sDataBuy = CommonTools.getDataJsonStr("Buy", 1, { iNo: this.shopItemNo, iType: this.shopPageType, num: 1 });
@@ -2212,8 +2288,8 @@ var HallModule = (function () {
                             sDataUse = CommonTools.getDataJsonStr("useItem", 1, { iNo: this.shopItemNo, iType: this.shopPageType, iItemID: this.shopItemItemID });
                             ConstValue.P_NET_OBJ.sendData(sDataUse);
                         }
-                        return [3 /*break*/, 42];
-                    case 40:
+                        return [3 /*break*/, 44];
+                    case 42:
                         account_lb_txt = this.panelSub.getChildByName("account_lb_txt");
                         if (account_lb_txt.text == "") {
                             CommonTools.addCommonTips(this.tipsPanel, ConstValue.P_MODIFY_NULL_FAIL);
@@ -2237,11 +2313,11 @@ var HallModule = (function () {
                             }
                             ConstValue.P_NET_OBJ.sendData(sData_4);
                         }
-                        return [3 /*break*/, 42];
-                    case 41:
+                        return [3 /*break*/, 44];
+                    case 43:
                         CommonTools.log("11111111 default");
-                        return [3 /*break*/, 42];
-                    case 42: return [2 /*return*/];
+                        return [3 /*break*/, 44];
+                    case 44: return [2 /*return*/];
                 }
             });
         });

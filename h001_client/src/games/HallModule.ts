@@ -53,7 +53,7 @@ class HallModule {
 	private btnPveAnimInitY = 350;//240
 	private btnPveAnimX = 580;
 	private btnPveAnimY = 350;
-	private btnPveAnim2D;
+	private btnPveAnim2D = null;
 
 	private horseCurrent = 1;
 
@@ -124,6 +124,7 @@ class HallModule {
 	}
 
 	private setHorseXY(){
+		if(this.btnPveAnim == null)return;
 		if(ConstValue.deviveNormalScale < 2){
 			// CommonTools.logWallet("---COMPLETE---deviveNormalScale--<2-")
 			if(this.curPage == 2){
@@ -229,6 +230,8 @@ class HallModule {
 		this.panel.getChildByName("up_item_group").getChildByName("img_coin1_add").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.panel.getChildByName("up_item_group").getChildByName("img_coin2_add").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.panel.getChildByName("sell_group").getChildByName("sell_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.panel.getChildByName("sell_group").getChildByName("up_img").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.panel.getChildByName("sell_group").getChildByName("down_img").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("sell_group"),2,0,0);
 		this.panel.getChildByName("buynft_group").getChildByName("buynft_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		CommonTools.fixFix(this.context,this.panel.getChildByName("buynft_group"),2,0,0);
@@ -250,15 +253,13 @@ class HallModule {
 		this.rankHead03.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.rankHead04.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.rankHead05.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-
-		// this.btnPveAnim2D = this.panel.getChildByName("hall_horse_body") as eui.Image;
 		
-		this.btnPveAnim2D = new eui.Image("horse01_body_png");
-		this.btnPveAnim2D.width = 500;
-        this.btnPveAnim2D.height = 500;
-		this.btnPveAnim2D.horizontalCenter = 0;
-        this.btnPveAnim2D.verticalCenter = 0;
-		this.context.addChild(this.btnPveAnim2D);
+		// this.btnPveAnim2D = new eui.Image("horse01_body_png");
+		// this.btnPveAnim2D.width = 500;
+        // this.btnPveAnim2D.height = 500;
+		// this.btnPveAnim2D.horizontalCenter = 0;
+        // this.btnPveAnim2D.verticalCenter = 0;
+		// this.context.addChild(this.btnPveAnim2D);
 
 		this.btnBackImg = this.panel.getChildByName("rank_grounp_main").getChildByName("btn_back_img");
 		this.btnBackImg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
@@ -407,6 +408,7 @@ class HallModule {
 			selectIdx = this.horseItemS;
 		}
 		let horseObj = this.getOwnHorseInfoById(selectIdx);
+		if(horseObj==null)return;
 		let leftX2 = 900;
 		let downY2 = 100;
 		if(ConstValue.deviveNormalScale >= 2){
@@ -440,7 +442,7 @@ class HallModule {
 				this.horseSelectRightPanel.getChildByName("start_value").text = horseObj.start
 				this.horseSelectRightPanel.getChildByName("wisdom_value").text = horseObj.wisdom
 				this.horseSelectRightPanel.getChildByName("constitution_value").text = horseObj.constitution
-
+				this.horseSelectRightPanel.getChildByName("life_time").text = horseObj.days + " days"
 			}else if(index == 2){
 				this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesSkillUI.exml";
 				let grassLand_length = this.horseSelectRightPanel.getChildByName("grassLand_length") as eui.Image;
@@ -540,7 +542,16 @@ class HallModule {
 
 	private getOwnHorseInfoById(id){
 		let hData = this.horseOwnData;
-		if(this.subCurPage == 5)hData = this.horseMarketData;
+		if(this.subCurPage == 2)hData = this.horseMarketData;
+		for(let index in hData){
+			let obj = hData[index];
+			if(obj.id == id)return obj; 
+		}
+		return null;
+	}
+
+	private getPOwnHorseInfoById(id){
+		let hData = this.horseOwnData;
 		for(let index in hData){
 			let obj = hData[index];
 			if(obj.id == id)return obj; 
@@ -594,11 +605,11 @@ class HallModule {
 			if(this.horsePanelUp){
 				this.horsePanelUp = false;
 				egret.Tween.get(this.horseSelectPanel).to({y:upY}, 1000);
-				this.maskBg2.visible = true;
+				if(this.maskBg2!=null)this.maskBg2.visible = true;
 			}else{
 				this.horsePanelUp = true;
 				egret.Tween.get(this.horseSelectPanel).to({y:downY}, 1000);
-				this.maskBg2.visible = false;
+				if(this.maskBg2!=null)this.maskBg2.visible = false;
 			}
 			this.resetHorse();
 		}, this);
@@ -639,6 +650,7 @@ class HallModule {
 				groupHorse.getChildByName("select_2_img").visible = true;
 				this.horseItemS = obj.id;
 				this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").source = "icon_level_"+obj.iType+"_png";
+				this.btnPveAnim2D.source = "horse"+obj.res_key+"_body_png";
 				this.changeHorseRight(this.subSubCurPage);
 			}, this);
 			i ++;
@@ -896,7 +908,7 @@ class HallModule {
 		if(this.subCurPage == 1){
 			this.maskNew.source = "horse_home_page2_jpg";
 			this.createHorseItem();
-			this.btnPveAnim2D.visible = true;
+			if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = true;
 			this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = true;
 			this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = true;
 		}else if(this.subCurPage == 2){
@@ -937,7 +949,7 @@ class HallModule {
 				CommonTools.addCommonTips(this.context,ConstValue.P_NOT_ENOUGH);
 				return;
 			}
-			ContractSol.maincoin_transfer(ContractSol.createAddress,pay_main);
+			ContractSol.maincoin_transfer(ContractSol.createAddress,pay_main,ContractSol.BUY_TICKET);
 		}, this);
 
 		this.horseSelectMiddlePanel.getChildByName("up_img").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
@@ -1038,6 +1050,7 @@ class HallModule {
 			if(this.horseIndexS == 0){
 				this.horseIndexS = obj.id;
 				group_1.getChildByName("select_2_img").visible = true;
+				this.panel.getChildByName("buynft_group").getChildByName("buy_nft_main").text = obj.money
 				this.changeHorseRight(1);
 			}
 			panelT.addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
@@ -1047,6 +1060,7 @@ class HallModule {
 				groupT.getChildByName("select_2_img").visible = false;
 				this.horseIndexS = obj.id;
 				group_1.getChildByName("select_2_img").visible = true;
+				this.panel.getChildByName("buynft_group").getChildByName("buy_nft_main").text = obj.money
 				this.changeHorseRight(this.subSubCurPage);
 			}, this);
 
@@ -1074,7 +1088,7 @@ class HallModule {
 
 	private horseMarketUI(){
 		this.maskNew.source = "horse_market_page5_jpg";
-		this.btnPveAnim2D.visible = false;
+		if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = false;
 		if(this.subCurPage == 1){
 			this.royalClubUI();
 		}else if(this.subCurPage == 2){
@@ -1234,7 +1248,7 @@ class HallModule {
 		this.panel.getChildByName("rank_grounp_main").visible = false;
 		this.panel.getChildByName("up_item_group").visible = false;
 		this.panel.getChildByName("horse_name_group").visible = false;
-		this.btnPveAnim2D.visible = false;
+		if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = false;
 	}	
 
 	private createCargoSuccess(index){
@@ -1376,12 +1390,12 @@ class HallModule {
 		this.clearTask();
 		if(index==1)this.task01UI();
 		if(index==2){
-			this.btnPveAnim2D.visible = true;
+			if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = true;
 			this.createHorseItem();
 			this.task02UI();
 		}
 		if(index==3){
-			this.btnPveAnim2D.visible = true;
+			if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = true;
 			this.createHorseItem();
 			this.task03UI();
 		}
@@ -1405,7 +1419,7 @@ class HallModule {
 
 	private updatePlayToEarn(){
 		this.clearTask();
-		this.btnPveAnim2D.visible = false;
+		if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = false;
 		this.horseSelectMiddlePanel = new eui.Panel();
 		this.horseSelectMiddlePanel.skinName = "resource/eui_skins/UserUI/PlayToEarn_select.exml";
         this.horseSelectMiddlePanel.title = "Title";
@@ -1478,6 +1492,7 @@ class HallModule {
 	}
 
 	public updateMaincoin(coin,save){
+		ConstValue.cacheUserInfo.coin = coin
 		this.panel.getChildByName("up_item_group").getChildByName("main_coin_num_lb").text = coin;
 		if(save){
 			let sData = CommonTools.getDataJsonStr("saveCoinInfo",1,{mainCoin:coin,subCoin:0});
@@ -1486,6 +1501,7 @@ class HallModule {
 	}
 
 	public updateSubcoin(coin,save){
+		ConstValue.cacheUserInfo.diamond = coin
 		this.panel.getChildByName("up_item_group").getChildByName("sub_coin_num_lb").text = coin;
 		if(save){
 			let sData = CommonTools.getDataJsonStr("saveCoinInfo",1,{mainCoin:0,subCoin:coin});
@@ -1861,7 +1877,7 @@ class HallModule {
 			this.context.removeChild(this.maskBg2);
 			this.maskBg2 = null;
 		}
-		this.btnPveAnim2D.visible = false;
+		if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = false;
 		this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = false;
 		this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = false;
 	}
@@ -1908,7 +1924,7 @@ class HallModule {
 				this.rankHead05.visible = true;			
 				this.clearPage2HorseHome();
 				this.clearTraining();
-				this.btnPveAnim2D.visible = true;
+				if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = true;
 				this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = true;
 				this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = true;
 				this.panel.getChildByName("rank_grounp_main").visible = true;
@@ -1928,7 +1944,18 @@ class HallModule {
 				let hObj = this.getOwnHorseInfoById(this.horseItemS);
 				this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").source = "icon_level_"+hObj.iType+"_png";
 				this.panel.getChildByName("horse_name_group").getChildByName("horse_name_lb").text = hObj.name;
-		}
+				
+				if(this.btnPveAnim2D == null){
+					this.btnPveAnim2D = new eui.Image("horse"+hObj.res_key+"_body_png");
+					this.btnPveAnim2D.width = 500;
+					this.btnPveAnim2D.height = 500;
+					this.btnPveAnim2D.horizontalCenter = 0;
+					this.btnPveAnim2D.verticalCenter = 0;
+					this.context.addChild(this.btnPveAnim2D);
+				}else{
+					this.btnPveAnim2D.source = "horse"+hObj.res_key+"_body_png";
+				}
+			}
 		}else if(clickName == "rank_head_02"){
 			if(this.curPage == 5){
 				if(this.subCurPage != 2){
@@ -2078,6 +2105,17 @@ class HallModule {
 		ConstValue.P_NET_OBJ.sendData(sData);
 	}
 
+	public sellNft(){
+		let money_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb") as eui.Label;
+		let sDataSell = CommonTools.getDataJsonStr("SellNft",1,{nftIndex:this.horseIndexS,money:parseInt(money_text.text)});
+		ConstValue.P_NET_OBJ.sendData(sDataSell);
+	}
+
+	public pBuyNft(){
+		let sDataBuybtn = CommonTools.getDataJsonStr("PBuyNft",1,{nftIndex:this.horseIndexS,sAddress:ContractSol.sender});
+		ConstValue.P_NET_OBJ.sendData(sDataBuybtn);
+	}
+
 	private async onClick(e: egret.TouchEvent){
 		if(this.context.loadingView!=null && !ConstValue.P_IS_DEBUG){
 			CommonTools.log("还在加载中......return ");
@@ -2116,13 +2154,37 @@ class HallModule {
 				break;
 
 			case "sell_btn_lb":
-				let sDataSell = CommonTools.getDataJsonStr("SellNft",1,{nftIndex:this.horseIndexS});
-				ConstValue.P_NET_OBJ.sendData(sDataSell);
+				let sellobj = this.getOwnHorseInfoById(this.horseIndexS)
+				if(sellobj == null)return
+				if(sellobj.sellStatus == 1){
+					this.addCommonTips(ConstValue.P_ON_SALE)
+					return
+				}
+				ContractSol.nft_approve(this.horseIndexS)
+				break;
+
+			case "up_img":
+				let up_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb") as eui.Label;
+				if(parseInt(up_text.text)>=9999)return;
+				up_text.text = parseInt(up_text.text) + 1 + ""
+				break;
+
+			case "down_img":
+				let down_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb") as eui.Label;
+				if(parseInt(down_text.text)<=1)return;
+				down_text.text = parseInt(down_text.text) - 1 + ""
 				break;
 
 			case "buynft_btn_lb":
-				let sDataBuybtn = CommonTools.getDataJsonStr("BuyNft",1,{nftIndex:this.horseIndexS,sAddress:ContractSol.sender});
-				ConstValue.P_NET_OBJ.sendData(sDataBuybtn);
+				let checkOwn = this.getPOwnHorseInfoById(this.horseIndexS)
+				if(checkOwn != null){
+					this.addCommonTips(ConstValue.P_OWN_NFT)
+					return
+				}
+				// let sDataBuybtn = CommonTools.getDataJsonStr("BuyNft",1,{nftIndex:this.horseIndexS,sAddress:ContractSol.sender});
+				// ConstValue.P_NET_OBJ.sendData(sDataBuybtn);
+				let buyMain = parseInt(this.panel.getChildByName("buynft_group").getChildByName("buy_nft_main").text)
+				ContractSol.maincoin_transfer(ContractSol.createAddress,buyMain,ContractSol.BUY_MARKET_NFT);
 				break;
 			
 			case "btn_back_img":

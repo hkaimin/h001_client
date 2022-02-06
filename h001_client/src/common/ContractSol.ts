@@ -9,6 +9,9 @@ class ContractSol {
 	static BEP20_Sub_Address = "0x6A3587d791946E2C567a279886ACc10Fa962a4cc";
 	static NFTAddress = "0x14c75969e8aeb8ff68c4450ebc3090b48425f4bb";
 
+	static BUY_TICKET = 1;
+	static BUY_MARKET_NFT = 2;
+
 	//web3
 	static hweb3; 
 	static sender = "";
@@ -17,7 +20,16 @@ class ContractSol {
 	static res_nft_tokensOfOwner;
 	static method_nft_tokensOfOwner:Web3.MethodAbi;
 	static abiDef_nft_tokensOfOwner:Web3.AbiDefinition;
-	static metaNFT_nft_tokensOfOwner;
+
+	static res_nft_approve;
+	static method_nft_approve:Web3.MethodAbi;
+	static abiDef_nft_approve:Web3.AbiDefinition;
+
+	static res_nft_transferFrom;
+	static method_nft_transferFrom:Web3.MethodAbi;
+	static abiDef_nft_transferFrom:Web3.AbiDefinition;
+
+	static metaNFT_nft;
 
 	static res_maincoin_transfer;
 	static method_maincoin_transfer:Web3.MethodAbi;
@@ -59,8 +71,14 @@ class ContractSol {
 		ContractSol.method_nft_tokensOfOwner = ContractSol.res_nft_tokensOfOwner;
 		ContractSol.abiDef_nft_tokensOfOwner = ContractSol.method_nft_tokensOfOwner;
 		
-		ContractSol.metaNFT_nft_tokensOfOwner = ContractSol.hweb3.eth.contract([ContractSol.abiDef_nft_tokensOfOwner]).at(ContractSol.NFTAddress);
-		
+		ContractSol.res_nft_approve = RES.getRes("nft_approve_json");
+		ContractSol.method_nft_approve = ContractSol.res_nft_approve;
+		ContractSol.abiDef_nft_approve = ContractSol.method_nft_approve;
+
+		ContractSol.res_nft_transferFrom = RES.getRes("nft_transferFrom_json");
+		ContractSol.method_nft_transferFrom = ContractSol.res_nft_transferFrom;
+		ContractSol.abiDef_nft_transferFrom = ContractSol.method_nft_transferFrom;
+
 		ContractSol.res_maincoin_transfer = RES.getRes("maincoin_transfer_json");
 		ContractSol.method_maincoin_transfer = ContractSol.res_maincoin_transfer;
 		ContractSol.abiDef_maincoin_transfer = ContractSol.method_maincoin_transfer;
@@ -102,13 +120,19 @@ class ContractSol {
 			ContractSol.abiDef_subcoin_transferFrom
 			]).at(ContractSol.BEP20_Sub_Address);
 
+		ContractSol.metaNFT_nft = ContractSol.hweb3.eth.contract([
+			ContractSol.abiDef_nft_tokensOfOwner,
+			ContractSol.abiDef_nft_approve,
+			ContractSol.abiDef_nft_transferFrom
+			]).at(ContractSol.NFTAddress);
+
 	}
 
 	/**
 	 * 玩家nft
 	 */
 	static nft_tokensOfOwner(address){
-		ContractSol.metaNFT_nft_tokensOfOwner.tokensOfOwner(address,{from:ContractSol.sender},(error,token_result) => {
+		ContractSol.metaNFT_nft.tokensOfOwner(address,{from:ContractSol.sender},(error,token_result) => {
 			if(error){
 				CommonTools.logError('--nft_tokensOfOwner-error--'+error)
 				throw error;
@@ -129,6 +153,21 @@ class ContractSol {
 		// console.log(xx[1].c[0]);
 	}
 
+	/**
+	 * 玩家nft
+	 */
+	static nft_approve(_index){
+		ContractSol.metaNFT_nft.approve(ContractSol.createAddress,_index,{from:ContractSol.sender},(error,token_result) => {
+			if(error){
+				CommonTools.logError('--nft_approve-error--'+error)
+				throw error;
+			}else{
+				CommonTools.logWallet('--nft_approve-success');
+				ConstValue.P_HALL_OBJ.sellNft();				
+			}
+		});
+	}
+
 	static DelayGetReceipt(tHash,iOpType,arg1){
 		CommonTools.logWallet("--DelayGetReceipt------"+tHash+" "+iOpType+" "+arg1);
 		FightingModule.Delay(5000, function(){
@@ -138,11 +177,15 @@ class ContractSol {
 					ContractSol.DelayGetReceipt(tHash,iOpType,arg1);
 				}else{
 					if(result.status.toString()=="0x1"){
-						if(iOpType == 1){//购买ticket
+						if(iOpType == ContractSol.BUY_TICKET){//购买ticket
 							ConstValue.P_HALL_OBJ.addCommonTips("Waiting NFT response...");
 							ContractSol.maincoin_balanceOf(ContractSol.sender);
 							let sData = CommonTools.getDataJsonStr("createNft",1,{iTickets:arg1});
 							ConstValue.P_NET_OBJ.sendData(sData);
+						}else if(iOpType == ContractSol.BUY_MARKET_NFT){
+							ConstValue.P_HALL_OBJ.addCommonTips("Waiting Market response...");
+							ContractSol.maincoin_balanceOf(ContractSol.sender);
+							ConstValue.P_HALL_OBJ.pBuyNft();
 						}
 					}
 				}
@@ -153,7 +196,7 @@ class ContractSol {
 	/**
 	 * 主币transfer
 	 */
-	static maincoin_transfer(_to,_value){
+	static maincoin_transfer(_to,_value,iOpr){
 		
 		// ContractSol.hweb3.eth.sendTransaction({
 		// 	from:ContractSol.sender,
@@ -172,7 +215,7 @@ class ContractSol {
 				throw error;
 			}else{
 				CommonTools.logWallet('--maincoin-transfer txnHash--'+txnHash);
-				ContractSol.DelayGetReceipt(txnHash,1,_value)
+				ContractSol.DelayGetReceipt(txnHash,iOpr,_value)
 			}
 		});
 
