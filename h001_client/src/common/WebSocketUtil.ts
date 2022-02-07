@@ -190,6 +190,7 @@ class WebSocketUtil extends egret.DisplayObjectContainer {
                 case "getOwnNft":
                 case "SellNft":
                 case "BuyNft":
+                case "PBuyNft":
                     if(obj.f == "SeventDayReward")if(!HallModule.isSafeArea)return;
                     if(ConstValue.P_HALL_OBJ != null){
                         ConstValue.P_HALL_OBJ.handlePacket(obj);

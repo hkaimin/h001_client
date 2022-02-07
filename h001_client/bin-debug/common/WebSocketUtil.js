@@ -217,6 +217,7 @@ var WebSocketUtil = (function (_super) {
                 case "getOwnNft":
                 case "SellNft":
                 case "BuyNft":
+                case "PBuyNft":
                     if (obj_1.f == "SeventDayReward")
                         if (!HallModule.isSafeArea)
                             return;

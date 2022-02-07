@@ -119,9 +119,6 @@ var ContractSol = (function () {
         // console.log(xx.length);
         // console.log(xx[1].c[0]);
     };
-    /**
-     * 玩家nft
-     */
     ContractSol.nft_approve = function (_index) {
         ContractSol.metaNFT_nft.approve(ContractSol.createAddress, _index, { from: ContractSol.sender }, function (error, token_result) {
             if (error) {
@@ -131,6 +128,19 @@ var ContractSol = (function () {
             else {
                 CommonTools.logWallet('--nft_approve-success');
                 ConstValue.P_HALL_OBJ.sellNft();
+            }
+        });
+    };
+    ContractSol.nft_transferFrom = function (_index) {
+        ContractSol.metaNFT_nft.transferFrom(ContractSol.createAddress, ContractSol.sender, _index, { from: ContractSol.sender }, function (error, token_result) {
+            if (error) {
+                CommonTools.logError('--nft_transferFrom-error--' + error);
+                throw error;
+            }
+            else {
+                CommonTools.logWallet('--nft_transferFrom-success');
+                var sDataBuybtn = CommonTools.getDataJsonStr("BuyNft", 1, { nftIndex: _index, sAddress: ContractSol.sender });
+                ConstValue.P_NET_OBJ.sendData(sDataBuybtn);
             }
         });
     };

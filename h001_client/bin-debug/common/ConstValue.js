@@ -45,6 +45,7 @@ var ConstValue = (function () {
     ConstValue.P_NOT_ENOUGH = "Not enough! ";
     ConstValue.P_ON_SALE = "The horse was on sale! ";
     ConstValue.P_OWN_NFT = "This is your NFT! ";
+    ConstValue.P_GET_NFT = "Getting NFT! ";
     //config公共配置
     ConstValue.P_IS_DEBUG = false; //false正式模式 true演示模式，不联网的
     ConstValue.P_IS_INNER = true; //false线上模式 true内网模式 有些提示只在内网提示

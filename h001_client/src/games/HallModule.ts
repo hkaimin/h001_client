@@ -2181,10 +2181,8 @@ class HallModule {
 					this.addCommonTips(ConstValue.P_OWN_NFT)
 					return
 				}
-				// let sDataBuybtn = CommonTools.getDataJsonStr("BuyNft",1,{nftIndex:this.horseIndexS,sAddress:ContractSol.sender});
-				// ConstValue.P_NET_OBJ.sendData(sDataBuybtn);
 				let buyMain = parseInt(this.panel.getChildByName("buynft_group").getChildByName("buy_nft_main").text)
-				ContractSol.maincoin_transfer(ContractSol.createAddress,buyMain,ContractSol.BUY_MARKET_NFT);
+				ContractSol.maincoin_transfer(ContractSol.createAddress,buyMain,ContractSol.BUY_MARKET_NFT)
 				break;
 			
 			case "btn_back_img":
@@ -3665,6 +3663,17 @@ class HallModule {
 					this.horseMarketData = null;
 				}
 				if(this.curPage == 5 && this.subCurPage == 2)this.changePage("rank_head_02");
+			}
+		}else if (jsonObj.f == "PBuyNft"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				if(jsonObj.d.nftIndex > 0){
+					this.addCommonTips(ConstValue.P_GET_NFT)
+					ContractSol.nft_transferFrom(jsonObj.d.nftIndex)
+				}else{
+					this.addCommonTips(ConstValue.P_TR_FAIL)
+				}
 			}
 		}else if (jsonObj.f == "getOwnNft"){
 			if(jsonObj.m != "" || jsonObj.s != 1){
