@@ -155,11 +155,11 @@ var Main = (function (_super) {
                         this.loadingView = null;
                         if (!(iSub == 1)) return [3 /*break*/, 1];
                         ConstValue.P_LOGIN_OBJ = new LoginModule(this);
-                        return [3 /*break*/, 8];
+                        return [3 /*break*/, 9];
                     case 1:
                         if (!(iSub == 2)) return [3 /*break*/, 2];
                         ConstValue.P_HALL_OBJ = new HallModule(this);
-                        return [3 /*break*/, 8];
+                        return [3 /*break*/, 9];
                     case 2:
                         if (!(iSub == 3)) return [3 /*break*/, 3];
                         if (ConstValue.P_IS_DEBUG) {
@@ -169,7 +169,7 @@ var Main = (function (_super) {
                             sData = CommonTools.getDataJsonStr("enterPPRoom", 1, {});
                             ConstValue.P_NET_OBJ.sendData(sData);
                         }
-                        return [3 /*break*/, 8];
+                        return [3 /*break*/, 9];
                     case 3:
                         if (!(iSub == 4)) return [3 /*break*/, 4];
                         if (ConstValue.P_IS_DEBUG) {
@@ -178,14 +178,14 @@ var Main = (function (_super) {
                             sData = CommonTools.getDataJsonStr("openDiyMapUI", 1, { theme: 1 });
                             ConstValue.P_NET_OBJ.sendData(sData);
                         }
-                        return [3 /*break*/, 8];
+                        return [3 /*break*/, 9];
                     case 4:
                         if (!(iSub == 5)) return [3 /*break*/, 5];
                         if (ConstValue.P_IS_DEBUG) {
                         }
                         else {
                         }
-                        return [3 /*break*/, 8];
+                        return [3 /*break*/, 9];
                     case 5:
                         if (!(iSub == 6)) return [3 /*break*/, 6];
                         if (ConstValue.P_IS_DEBUG) {
@@ -200,14 +200,19 @@ var Main = (function (_super) {
                                 ConstValue.P_FIGHT_OBJ.updateInfo(this.dDataInfo2);
                             }
                         }
-                        return [3 /*break*/, 8];
+                        return [3 /*break*/, 9];
                     case 6:
                         if (!(iSub == 7)) return [3 /*break*/, 8];
                         return [4 /*yield*/, this.loadResource("preloadHall", 2)];
                     case 7:
                         _a.sent();
-                        _a.label = 8;
-                    case 8: return [2 /*return*/];
+                        return [3 /*break*/, 9];
+                    case 8:
+                        if (iSub == 8) {
+                            ConstValue.P_HALL_OBJ.showWaitingAnim();
+                        }
+                        _a.label = 9;
+                    case 9: return [2 /*return*/];
                 }
             });
         });

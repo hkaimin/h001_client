@@ -65,7 +65,7 @@ var LoadingUI = (function (_super) {
         else {
             CommonTools.log("=====================load preload ,use ui");
             if (ConstValue.P_LOGIN_OBJ == null) {
-                var imgBg = new eui.Image("login_bg_ppt_png");
+                var imgBg = new eui.Image("horse_playToEarn_page4_jpg");
                 imgBg.width = this.iScreenWidth;
                 var scaleDevice = 1334.0 / this.iScreenWidth;
                 imgBg.height = 750.0 / scaleDevice;

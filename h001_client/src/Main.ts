@@ -137,6 +137,8 @@ class Main extends eui.UILayer {
             }
         }else if(iSub == 7){
             await this.loadResource("preloadHall",2);
+        }else if(iSub == 8){
+            ConstValue.P_HALL_OBJ.showWaitingAnim()
         }
     }
 

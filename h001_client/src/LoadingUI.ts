@@ -61,7 +61,7 @@ class LoadingUI extends egret.Sprite implements RES.PromiseTaskReporter {
         }else{
             CommonTools.log("=====================load preload ,use ui")
             if(ConstValue.P_LOGIN_OBJ == null){
-                let imgBg = new eui.Image("login_bg_ppt_png");
+                let imgBg = new eui.Image("horse_playToEarn_page4_jpg");
                 imgBg.width = this.iScreenWidth;
                 let scaleDevice = 1334.0/this.iScreenWidth;
                 imgBg.height = 750.0/scaleDevice;

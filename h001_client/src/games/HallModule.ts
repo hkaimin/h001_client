@@ -54,6 +54,7 @@ class HallModule {
 	private btnPveAnimX = 580;
 	private btnPveAnimY = 350;
 	private btnPveAnim2D = null;
+	private btnPveAnim3D = null;
 
 	private horseCurrent = 1;
 
@@ -141,7 +142,7 @@ class HallModule {
 				this.btnPveAnim.y = this.btnPveAnimY + 40;
 			}else{
 				this.btnPveAnim.x = this.btnPveAnimX;
-				this.btnPveAnim.y = this.btnPveAnimY;
+				this.btnPveAnim.y = this.btnPveAnimY - 180;
 			}
 		}
 	}
@@ -153,19 +154,25 @@ class HallModule {
 				this.btnPveAnim.removeEventListener(egret.Event.ENTER_FRAME,this.horseFunc,this);
 				this.horseFunc = null;
 			}
-			this.panel.removeChild(this.btnPveAnim);
+			this.context.removeChild(this.btnPveAnim);
 			this.btnPveAnim = null;
 		}
-		this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("horse01_idle_0"+this.horseCurrent+"_json"), RES.getRes("horse01_idle_0"+this.horseCurrent+"_png"), "0");
+		let animName = ""
+		if(this.horseCurrent < 10){
+			animName =  "horse03_wait_0"+this.horseCurrent
+		}else{
+			animName =  "horse03_wait_"+this.horseCurrent
+		}
+		this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes(animName+"_json"), RES.getRes(animName+"_png"), "0");
 		this.btnPveAnim.play(1);
 		this.btnPveAnim.name = "btn_noend_pve_anim";
-		this.panel.addChild(this.btnPveAnim);
+		this.context.addChild(this.btnPveAnim);
 		this.setHorseXY();
-		if(this.curPage == 2 && this.subCurPage > 1 || this.curPage == 4 && this.subCurPage == 1 || this.curPage == 5)this.btnPveAnim2D.visible = false;
+		// if(this.curPage == 2 && this.subCurPage > 1 || this.curPage == 4 && this.subCurPage == 1 || this.curPage == 5)this.btnPveAnim2D.visible = false;
 		this.btnPveAnim.addEventListener(egret.Event.COMPLETE,function(){
 			CommonTools.logWallet("---COMPLETE------"+this.horseCurrent)
 			this.horseCurrent ++;
-			if(this.horseCurrent > 3){
+			if(this.horseCurrent > 17){
 				this.horseCurrent = 1;
 			}
 			this.drawHorse();
@@ -253,13 +260,6 @@ class HallModule {
 		this.rankHead03.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.rankHead04.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 		this.rankHead05.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-		
-		// this.btnPveAnim2D = new eui.Image("horse01_body_png");
-		// this.btnPveAnim2D.width = 500;
-        // this.btnPveAnim2D.height = 500;
-		// this.btnPveAnim2D.horizontalCenter = 0;
-        // this.btnPveAnim2D.verticalCenter = 0;
-		// this.context.addChild(this.btnPveAnim2D);
 
 		this.btnBackImg = this.panel.getChildByName("rank_grounp_main").getChildByName("btn_back_img");
 		this.btnBackImg.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
@@ -425,6 +425,22 @@ class HallModule {
 				let strength_w = energy_length.width * (horseObj.strength*1.0/horseObj.MaxStrength);
 				this.horseSelectRightPanel.getChildByName("strength_value").width = strength_w;
 				this.horseSelectRightPanel.getChildByName("strength_text").text = horseObj.strength+"/"+horseObj.MaxStrength;
+
+				let energy_w = energy_length.width * (horseObj.energy*1.0/horseObj.energyMax);
+				this.horseSelectRightPanel.getChildByName("energy_value").width = energy_w;
+				this.horseSelectRightPanel.getChildByName("energy_text").text = horseObj.energy+"/"+horseObj.energyMax;
+
+				for(let iBreed=1;iBreed<=horseObj.breedMax;iBreed++){
+					if(horseObj.breed >= iBreed){
+						this.horseSelectRightPanel.getChildByName("breed_0"+iBreed).source = "icon_heart_png"
+					}else{
+						this.horseSelectRightPanel.getChildByName("breed_0"+iBreed).source = "icon_heart_1_png"
+					}
+				}
+				for(let iBreed=1;iBreed<=6;iBreed++){
+					if(horseObj.breedMax < iBreed)this.horseSelectRightPanel.getChildByName("breed_0"+iBreed).visible = false
+				}
+				this.horseSelectRightPanel.getChildByName("breed_limit_lb").text = horseObj.breed+"/"+horseObj.breedMax
 
 				let speed_w = energy_length.width * (horseObj.speed*1.0/horseObj.MaxSpeed);
 				this.horseSelectRightPanel.getChildByName("speed_value").width = speed_w;
@@ -1125,7 +1141,18 @@ class HallModule {
 		this.horseSelectLeftPanel.getChildByName("training_img_0"+index).alpha = 1;
 	}
 
+	public showWaitingAnim(){
+		this.maskBg2 = new eui.Image("horse_playToEarn_page4_jpg");
+		this.maskBg2.alpha = 1;
+		this.maskBg2.width = this.context.getStageWidth();
+		this.maskBg2.height = this.context.getStageHeight();
+		this.context.addChild(this.maskBg2);
+
+		this.drawHorse()
+	}
+
 	private startTraining(index){
+		if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = false;
 		this.horseSelectLeftPanel.visible = false;
 		this.horseSelectMiddlePanel.visible = false;
 		this.horseSelectRightPanel.visible = false;
@@ -1157,13 +1184,20 @@ class HallModule {
 	}
 
 	private stopTraining(){
+		if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = true;
 		this.horseSelectLeftPanel.visible = true;
 		this.horseSelectMiddlePanel.visible = true;
 		this.horseSelectRightPanel.visible = true;
 		this.horseSelectPanel.visible = true;
-		this.btnPveAnimX = this.btnPveAnimInitX;
-		this.btnPveAnim.x = this.btnPveAnimX;
-		this.drawHorse();
+		if(this.btnPveAnim != null){
+			this.btnPveAnim.removeEventListener(egret.Event.COMPLETE);
+			if(this.horseFunc != null){
+				this.btnPveAnim.removeEventListener(egret.Event.ENTER_FRAME,this.horseFunc,this);
+				this.horseFunc = null;
+			}
+			this.panel.removeChild(this.btnPveAnim);
+			this.btnPveAnim = null;
+		}
 		this.createTrainingSuccess();
 	}
 
@@ -1952,6 +1986,16 @@ class HallModule {
 					this.btnPveAnim2D.horizontalCenter = 0;
 					this.btnPveAnim2D.verticalCenter = 0;
 					this.context.addChild(this.btnPveAnim2D);
+
+					this.btnPveAnim3D = new eui.Image("play_horse_png");
+					this.btnPveAnim3D.width = 50;
+					this.btnPveAnim3D.height = 50;
+					this.btnPveAnim3D.name = "btnPveAnim3D"
+					this.btnPveAnim3D.x = this.context.getStageWidth()/2
+					this.btnPveAnim3D.y = this.context.getStageHeight() * 0.2
+					this.context.addChild(this.btnPveAnim3D);
+					this.context.getChildByName("btnPveAnim3D").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+
 				}else{
 					this.btnPveAnim2D.source = "horse"+hObj.res_key+"_body_png";
 				}
@@ -2285,6 +2329,10 @@ class HallModule {
 				}
 				await this.context.loadResource("fighting",3);
 				break;
+			
+			case "btnPveAnim3D":
+				await this.context.loadResource("horse_03_wait",8)
+				break
 
 			case "img_info":
 				let sData_role_detail = CommonTools.getDataJsonStr("getRoleDetail",1,{});
