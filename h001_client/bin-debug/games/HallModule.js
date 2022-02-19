@@ -137,10 +137,10 @@ var HallModule = (function () {
         }
         var animName = "";
         if (this.horseCurrent < 10) {
-            animName = "horse03_wait_0" + this.horseCurrent;
+            animName = "horse10_wait_0" + this.horseCurrent;
         }
         else {
-            animName = "horse03_wait_" + this.horseCurrent;
+            animName = "horse10_wait_" + this.horseCurrent;
         }
         this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes(animName + "_json"), RES.getRes(animName + "_png"), "0");
         this.btnPveAnim.play(1);
@@ -2244,7 +2244,7 @@ var HallModule = (function () {
                     case 24:
                         _b.sent();
                         return [3 /*break*/, 46];
-                    case 25: return [4 /*yield*/, this.context.loadResource("horse_03_wait", 8)];
+                    case 25: return [4 /*yield*/, this.context.loadResource("horse_10_wait", 8)];
                     case 26:
                         _b.sent();
                         return [3 /*break*/, 46];

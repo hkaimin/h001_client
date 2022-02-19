@@ -31,6 +31,34 @@
 		{
 			"keys": "horse03_wait_01_json,horse03_wait_01_png,horse03_wait_02_json,horse03_wait_02_png,horse03_wait_03_json,horse03_wait_03_png,horse03_wait_04_json,horse03_wait_04_png,horse03_wait_05_json,horse03_wait_05_png,horse03_wait_06_json,horse03_wait_06_png,horse03_wait_07_json,horse03_wait_07_png,horse03_wait_08_json,horse03_wait_08_png,horse03_wait_09_json,horse03_wait_09_png,horse03_wait_10_json,horse03_wait_10_png,horse03_wait_11_json,horse03_wait_11_png,horse03_wait_12_json,horse03_wait_12_png,horse03_wait_13_json,horse03_wait_13_png,horse03_wait_14_json,horse03_wait_14_png,horse03_wait_15_json,horse03_wait_15_png,horse03_wait_16_json,horse03_wait_16_png,horse03_wait_17_json,horse03_wait_17_png",
 			"name": "horse_03_wait"
+		},
+		{
+			"keys": "horse04_wait_01_json,horse04_wait_01_png,horse04_wait_02_json,horse04_wait_02_png,horse04_wait_03_json,horse04_wait_03_png,horse04_wait_04_json,horse04_wait_04_png,horse04_wait_05_json,horse04_wait_05_png,horse04_wait_06_json,horse04_wait_06_png,horse04_wait_07_json,horse04_wait_07_png,horse04_wait_08_json,horse04_wait_08_png,horse04_wait_09_json,horse04_wait_09_png,horse04_wait_10_json,horse04_wait_10_png,horse04_wait_11_json,horse04_wait_11_png,horse04_wait_12_json,horse04_wait_12_png,horse04_wait_13_json,horse04_wait_13_png,horse04_wait_14_json,horse04_wait_14_png,horse04_wait_15_json,horse04_wait_15_png,horse04_wait_16_json,horse04_wait_16_png",
+			"name": "horse_04_wait"
+		},
+		{
+			"keys": "horse05_wait_05_png,horse05_wait_06_png,horse05_wait_07_png,horse05_wait_08_png,horse05_wait_09_png,horse05_wait_06_json,horse05_wait_07_json,horse05_wait_08_json,horse05_wait_09_json,horse05_wait_10_json,horse05_wait_01_png,horse05_wait_02_png,horse05_wait_03_png,horse05_wait_04_png,horse05_wait_10_png,horse05_wait_11_png,horse05_wait_12_png,horse05_wait_13_png,horse05_wait_14_png,horse05_wait_15_png,horse05_wait_16_png,horse05_wait_17_png,horse05_wait_01_json,horse05_wait_02_json,horse05_wait_03_json,horse05_wait_04_json,horse05_wait_05_json,horse05_wait_11_json,horse05_wait_12_json,horse05_wait_13_json,horse05_wait_16_json,horse05_wait_17_json,horse05_wait_14_json,horse05_wait_15_json",
+			"name": "horse_05_wait"
+		},
+		{
+			"keys": "horse06_wait_01_png,horse06_wait_02_png,horse06_wait_03_png,horse06_wait_04_png,horse06_wait_05_png,horse06_wait_06_png,horse06_wait_07_png,horse06_wait_08_png,horse06_wait_09_png,horse06_wait_10_png,horse06_wait_11_png,horse06_wait_12_png,horse06_wait_13_png,horse06_wait_14_png,horse06_wait_15_png,horse06_wait_16_png,horse06_wait_17_png,horse06_wait_03_json,horse06_wait_02_json,horse06_wait_05_json,horse06_wait_04_json,horse06_wait_06_json,horse06_wait_07_json,horse06_wait_08_json,horse06_wait_09_json,horse06_wait_10_json,horse06_wait_11_json,horse06_wait_12_json,horse06_wait_14_json,horse06_wait_15_json,horse06_wait_16_json,horse06_wait_17_json,horse06_wait_01_json,horse06_wait_13_json",
+			"name": "horse_06_wait"
+		},
+		{
+			"keys": "horse07_wait_01_png,horse07_wait_02_png,horse07_wait_03_png,horse07_wait_05_png,horse07_wait_04_png,horse07_wait_06_png,horse07_wait_07_png,horse07_wait_08_png,horse07_wait_09_png,horse07_wait_10_png,horse07_wait_11_png,horse07_wait_12_png,horse07_wait_13_png,horse07_wait_14_png,horse07_wait_15_png,horse07_wait_16_png,horse07_wait_17_png,horse07_wait_01_json,horse07_wait_02_json,horse07_wait_03_json,horse07_wait_04_json,horse07_wait_05_json,horse07_wait_06_json,horse07_wait_07_json,horse07_wait_08_json,horse07_wait_09_json,horse07_wait_10_json,horse07_wait_11_json,horse07_wait_12_json,horse07_wait_14_json,horse07_wait_13_json,horse07_wait_15_json,horse07_wait_16_json,horse07_wait_17_json",
+			"name": "horse_07_wait"
+		},
+		{
+			"keys": "horse08_wait_01_png,horse08_wait_02_png,horse08_wait_03_png,horse08_wait_04_png,horse08_wait_05_png,horse08_wait_06_png,horse08_wait_07_png,horse08_wait_08_png,horse08_wait_09_png,horse08_wait_10_png,horse08_wait_11_png,horse08_wait_12_png,horse08_wait_13_png,horse08_wait_14_png,horse08_wait_15_png,horse08_wait_16_png,horse08_wait_17_png,horse08_wait_01_json,horse08_wait_02_json,horse08_wait_03_json,horse08_wait_04_json,horse08_wait_05_json,horse08_wait_06_json,horse08_wait_07_json,horse08_wait_08_json,horse08_wait_09_json,horse08_wait_10_json,horse08_wait_11_json,horse08_wait_12_json,horse08_wait_14_json,horse08_wait_15_json,horse08_wait_16_json,horse08_wait_17_json,horse08_wait_13_json",
+			"name": "horse_08_wait"
+		},
+		{
+			"keys": "horse09_wait_01_png,horse09_wait_02_png,horse09_wait_03_png,horse09_wait_04_png,horse09_wait_05_png,horse09_wait_06_png,horse09_wait_07_png,horse09_wait_08_png,horse09_wait_09_png,horse09_wait_10_png,horse09_wait_11_png,horse09_wait_12_png,horse09_wait_13_png,horse09_wait_14_png,horse09_wait_15_png,horse09_wait_16_png,horse09_wait_17_png,horse09_wait_01_json,horse09_wait_03_json,horse09_wait_02_json,horse09_wait_04_json,horse09_wait_05_json,horse09_wait_06_json,horse09_wait_07_json,horse09_wait_08_json,horse09_wait_09_json,horse09_wait_10_json,horse09_wait_11_json,horse09_wait_12_json,horse09_wait_13_json,horse09_wait_14_json,horse09_wait_16_json,horse09_wait_15_json,horse09_wait_17_json",
+			"name": "horse_09_wait"
+		},
+		{
+			"keys": "horse10_wait_01_png,horse10_wait_02_png,horse10_wait_03_png,horse10_wait_04_png,horse10_wait_05_png,horse10_wait_06_png,horse10_wait_07_png,horse10_wait_08_png,horse10_wait_09_png,horse10_wait_10_png,horse10_wait_11_png,horse10_wait_12_png,horse10_wait_13_png,horse10_wait_14_png,horse10_wait_15_png,horse10_wait_16_png,horse10_wait_17_png,horse10_wait_01_json,horse10_wait_03_json,horse10_wait_02_json,horse10_wait_04_json,horse10_wait_05_json,horse10_wait_06_json,horse10_wait_07_json,horse10_wait_08_json,horse10_wait_09_json,horse10_wait_12_json,horse10_wait_10_json,horse10_wait_11_json,horse10_wait_13_json,horse10_wait_14_json,horse10_wait_15_json,horse10_wait_16_json,horse10_wait_17_json",
+			"name": "horse_10_wait"
 		}
 	],
 	"resources": [
@@ -2474,6 +2502,1186 @@
 			"url": "assets/UserSkin/ppt/horse/horse03/wait/horse03_wait_17.png",
 			"type": "image",
 			"name": "horse03_wait_17_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_01.json",
+			"type": "json",
+			"name": "horse04_wait_01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_01.png",
+			"type": "image",
+			"name": "horse04_wait_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_02.json",
+			"type": "json",
+			"name": "horse04_wait_02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_02.png",
+			"type": "image",
+			"name": "horse04_wait_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_03.json",
+			"type": "json",
+			"name": "horse04_wait_03_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_03.png",
+			"type": "image",
+			"name": "horse04_wait_03_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_04.json",
+			"type": "json",
+			"name": "horse04_wait_04_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_04.png",
+			"type": "image",
+			"name": "horse04_wait_04_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_05.json",
+			"type": "json",
+			"name": "horse04_wait_05_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_05.png",
+			"type": "image",
+			"name": "horse04_wait_05_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_06.json",
+			"type": "json",
+			"name": "horse04_wait_06_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_06.png",
+			"type": "image",
+			"name": "horse04_wait_06_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_07.json",
+			"type": "json",
+			"name": "horse04_wait_07_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_07.png",
+			"type": "image",
+			"name": "horse04_wait_07_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_08.json",
+			"type": "json",
+			"name": "horse04_wait_08_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_08.png",
+			"type": "image",
+			"name": "horse04_wait_08_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_09.json",
+			"type": "json",
+			"name": "horse04_wait_09_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_09.png",
+			"type": "image",
+			"name": "horse04_wait_09_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_10.json",
+			"type": "json",
+			"name": "horse04_wait_10_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_10.png",
+			"type": "image",
+			"name": "horse04_wait_10_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_11.json",
+			"type": "json",
+			"name": "horse04_wait_11_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_11.png",
+			"type": "image",
+			"name": "horse04_wait_11_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_12.json",
+			"type": "json",
+			"name": "horse04_wait_12_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_12.png",
+			"type": "image",
+			"name": "horse04_wait_12_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_13.json",
+			"type": "json",
+			"name": "horse04_wait_13_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_13.png",
+			"type": "image",
+			"name": "horse04_wait_13_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_14.json",
+			"type": "json",
+			"name": "horse04_wait_14_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_14.png",
+			"type": "image",
+			"name": "horse04_wait_14_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_15.json",
+			"type": "json",
+			"name": "horse04_wait_15_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_15.png",
+			"type": "image",
+			"name": "horse04_wait_15_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_16.json",
+			"type": "json",
+			"name": "horse04_wait_16_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/wait/horse04_wait_16.png",
+			"type": "image",
+			"name": "horse04_wait_16_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_05.png",
+			"type": "image",
+			"name": "horse05_wait_05_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_06.png",
+			"type": "image",
+			"name": "horse05_wait_06_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_07.png",
+			"type": "image",
+			"name": "horse05_wait_07_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_08.png",
+			"type": "image",
+			"name": "horse05_wait_08_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_09.png",
+			"type": "image",
+			"name": "horse05_wait_09_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_06.json",
+			"type": "json",
+			"name": "horse05_wait_06_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_07.json",
+			"type": "json",
+			"name": "horse05_wait_07_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_08.json",
+			"type": "json",
+			"name": "horse05_wait_08_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_09.json",
+			"type": "json",
+			"name": "horse05_wait_09_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_10.json",
+			"type": "json",
+			"name": "horse05_wait_10_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_01.png",
+			"type": "image",
+			"name": "horse05_wait_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_02.png",
+			"type": "image",
+			"name": "horse05_wait_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_03.png",
+			"type": "image",
+			"name": "horse05_wait_03_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_04.png",
+			"type": "image",
+			"name": "horse05_wait_04_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_10.png",
+			"type": "image",
+			"name": "horse05_wait_10_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_11.png",
+			"type": "image",
+			"name": "horse05_wait_11_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_12.png",
+			"type": "image",
+			"name": "horse05_wait_12_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_13.png",
+			"type": "image",
+			"name": "horse05_wait_13_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_14.png",
+			"type": "image",
+			"name": "horse05_wait_14_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_15.png",
+			"type": "image",
+			"name": "horse05_wait_15_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_16.png",
+			"type": "image",
+			"name": "horse05_wait_16_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_17.png",
+			"type": "image",
+			"name": "horse05_wait_17_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_01.json",
+			"type": "json",
+			"name": "horse05_wait_01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_02.json",
+			"type": "json",
+			"name": "horse05_wait_02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_03.json",
+			"type": "json",
+			"name": "horse05_wait_03_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_04.json",
+			"type": "json",
+			"name": "horse05_wait_04_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_05.json",
+			"type": "json",
+			"name": "horse05_wait_05_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_11.json",
+			"type": "json",
+			"name": "horse05_wait_11_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_12.json",
+			"type": "json",
+			"name": "horse05_wait_12_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_13.json",
+			"type": "json",
+			"name": "horse05_wait_13_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_16.json",
+			"type": "json",
+			"name": "horse05_wait_16_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_17.json",
+			"type": "json",
+			"name": "horse05_wait_17_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_14.json",
+			"type": "json",
+			"name": "horse05_wait_14_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/wait/horse05_wait_15.json",
+			"type": "json",
+			"name": "horse05_wait_15_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_01.png",
+			"type": "image",
+			"name": "horse06_wait_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_02.png",
+			"type": "image",
+			"name": "horse06_wait_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_03.png",
+			"type": "image",
+			"name": "horse06_wait_03_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_04.png",
+			"type": "image",
+			"name": "horse06_wait_04_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_05.png",
+			"type": "image",
+			"name": "horse06_wait_05_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_06.png",
+			"type": "image",
+			"name": "horse06_wait_06_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_07.png",
+			"type": "image",
+			"name": "horse06_wait_07_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_08.png",
+			"type": "image",
+			"name": "horse06_wait_08_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_09.png",
+			"type": "image",
+			"name": "horse06_wait_09_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_10.png",
+			"type": "image",
+			"name": "horse06_wait_10_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_11.png",
+			"type": "image",
+			"name": "horse06_wait_11_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_12.png",
+			"type": "image",
+			"name": "horse06_wait_12_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_13.png",
+			"type": "image",
+			"name": "horse06_wait_13_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_14.png",
+			"type": "image",
+			"name": "horse06_wait_14_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_15.png",
+			"type": "image",
+			"name": "horse06_wait_15_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_16.png",
+			"type": "image",
+			"name": "horse06_wait_16_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_17.png",
+			"type": "image",
+			"name": "horse06_wait_17_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_03.json",
+			"type": "json",
+			"name": "horse06_wait_03_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_02.json",
+			"type": "json",
+			"name": "horse06_wait_02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_05.json",
+			"type": "json",
+			"name": "horse06_wait_05_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_04.json",
+			"type": "json",
+			"name": "horse06_wait_04_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_06.json",
+			"type": "json",
+			"name": "horse06_wait_06_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_07.json",
+			"type": "json",
+			"name": "horse06_wait_07_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_08.json",
+			"type": "json",
+			"name": "horse06_wait_08_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_09.json",
+			"type": "json",
+			"name": "horse06_wait_09_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_10.json",
+			"type": "json",
+			"name": "horse06_wait_10_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_11.json",
+			"type": "json",
+			"name": "horse06_wait_11_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_12.json",
+			"type": "json",
+			"name": "horse06_wait_12_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_14.json",
+			"type": "json",
+			"name": "horse06_wait_14_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_15.json",
+			"type": "json",
+			"name": "horse06_wait_15_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_16.json",
+			"type": "json",
+			"name": "horse06_wait_16_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_17.json",
+			"type": "json",
+			"name": "horse06_wait_17_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_01.json",
+			"type": "json",
+			"name": "horse06_wait_01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/wait/horse06_wait_13.json",
+			"type": "json",
+			"name": "horse06_wait_13_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_01.png",
+			"type": "image",
+			"name": "horse07_wait_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_02.png",
+			"type": "image",
+			"name": "horse07_wait_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_03.png",
+			"type": "image",
+			"name": "horse07_wait_03_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_05.png",
+			"type": "image",
+			"name": "horse07_wait_05_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_04.png",
+			"type": "image",
+			"name": "horse07_wait_04_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_06.png",
+			"type": "image",
+			"name": "horse07_wait_06_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_07.png",
+			"type": "image",
+			"name": "horse07_wait_07_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_08.png",
+			"type": "image",
+			"name": "horse07_wait_08_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_09.png",
+			"type": "image",
+			"name": "horse07_wait_09_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_10.png",
+			"type": "image",
+			"name": "horse07_wait_10_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_11.png",
+			"type": "image",
+			"name": "horse07_wait_11_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_12.png",
+			"type": "image",
+			"name": "horse07_wait_12_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_13.png",
+			"type": "image",
+			"name": "horse07_wait_13_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_14.png",
+			"type": "image",
+			"name": "horse07_wait_14_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_15.png",
+			"type": "image",
+			"name": "horse07_wait_15_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_16.png",
+			"type": "image",
+			"name": "horse07_wait_16_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_17.png",
+			"type": "image",
+			"name": "horse07_wait_17_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_01.json",
+			"type": "json",
+			"name": "horse07_wait_01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_02.json",
+			"type": "json",
+			"name": "horse07_wait_02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_03.json",
+			"type": "json",
+			"name": "horse07_wait_03_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_04.json",
+			"type": "json",
+			"name": "horse07_wait_04_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_05.json",
+			"type": "json",
+			"name": "horse07_wait_05_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_06.json",
+			"type": "json",
+			"name": "horse07_wait_06_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_07.json",
+			"type": "json",
+			"name": "horse07_wait_07_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_08.json",
+			"type": "json",
+			"name": "horse07_wait_08_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_09.json",
+			"type": "json",
+			"name": "horse07_wait_09_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_10.json",
+			"type": "json",
+			"name": "horse07_wait_10_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_11.json",
+			"type": "json",
+			"name": "horse07_wait_11_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_12.json",
+			"type": "json",
+			"name": "horse07_wait_12_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_14.json",
+			"type": "json",
+			"name": "horse07_wait_14_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_13.json",
+			"type": "json",
+			"name": "horse07_wait_13_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_15.json",
+			"type": "json",
+			"name": "horse07_wait_15_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_16.json",
+			"type": "json",
+			"name": "horse07_wait_16_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/wait/horse07_wait_17.json",
+			"type": "json",
+			"name": "horse07_wait_17_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_01.png",
+			"type": "image",
+			"name": "horse08_wait_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_02.png",
+			"type": "image",
+			"name": "horse08_wait_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_03.png",
+			"type": "image",
+			"name": "horse08_wait_03_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_04.png",
+			"type": "image",
+			"name": "horse08_wait_04_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_05.png",
+			"type": "image",
+			"name": "horse08_wait_05_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_06.png",
+			"type": "image",
+			"name": "horse08_wait_06_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_07.png",
+			"type": "image",
+			"name": "horse08_wait_07_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_08.png",
+			"type": "image",
+			"name": "horse08_wait_08_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_09.png",
+			"type": "image",
+			"name": "horse08_wait_09_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_10.png",
+			"type": "image",
+			"name": "horse08_wait_10_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_11.png",
+			"type": "image",
+			"name": "horse08_wait_11_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_12.png",
+			"type": "image",
+			"name": "horse08_wait_12_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_13.png",
+			"type": "image",
+			"name": "horse08_wait_13_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_14.png",
+			"type": "image",
+			"name": "horse08_wait_14_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_15.png",
+			"type": "image",
+			"name": "horse08_wait_15_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_16.png",
+			"type": "image",
+			"name": "horse08_wait_16_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_17.png",
+			"type": "image",
+			"name": "horse08_wait_17_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_01.json",
+			"type": "json",
+			"name": "horse08_wait_01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_02.json",
+			"type": "json",
+			"name": "horse08_wait_02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_03.json",
+			"type": "json",
+			"name": "horse08_wait_03_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_04.json",
+			"type": "json",
+			"name": "horse08_wait_04_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_05.json",
+			"type": "json",
+			"name": "horse08_wait_05_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_06.json",
+			"type": "json",
+			"name": "horse08_wait_06_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_07.json",
+			"type": "json",
+			"name": "horse08_wait_07_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_08.json",
+			"type": "json",
+			"name": "horse08_wait_08_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_09.json",
+			"type": "json",
+			"name": "horse08_wait_09_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_10.json",
+			"type": "json",
+			"name": "horse08_wait_10_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_11.json",
+			"type": "json",
+			"name": "horse08_wait_11_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_12.json",
+			"type": "json",
+			"name": "horse08_wait_12_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_14.json",
+			"type": "json",
+			"name": "horse08_wait_14_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_15.json",
+			"type": "json",
+			"name": "horse08_wait_15_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_16.json",
+			"type": "json",
+			"name": "horse08_wait_16_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_17.json",
+			"type": "json",
+			"name": "horse08_wait_17_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/wait/horse08_wait_13.json",
+			"type": "json",
+			"name": "horse08_wait_13_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_01.png",
+			"type": "image",
+			"name": "horse09_wait_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_02.png",
+			"type": "image",
+			"name": "horse09_wait_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_03.png",
+			"type": "image",
+			"name": "horse09_wait_03_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_04.png",
+			"type": "image",
+			"name": "horse09_wait_04_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_05.png",
+			"type": "image",
+			"name": "horse09_wait_05_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_06.png",
+			"type": "image",
+			"name": "horse09_wait_06_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_07.png",
+			"type": "image",
+			"name": "horse09_wait_07_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_08.png",
+			"type": "image",
+			"name": "horse09_wait_08_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_09.png",
+			"type": "image",
+			"name": "horse09_wait_09_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_10.png",
+			"type": "image",
+			"name": "horse09_wait_10_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_11.png",
+			"type": "image",
+			"name": "horse09_wait_11_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_12.png",
+			"type": "image",
+			"name": "horse09_wait_12_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_13.png",
+			"type": "image",
+			"name": "horse09_wait_13_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_14.png",
+			"type": "image",
+			"name": "horse09_wait_14_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_15.png",
+			"type": "image",
+			"name": "horse09_wait_15_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_16.png",
+			"type": "image",
+			"name": "horse09_wait_16_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_17.png",
+			"type": "image",
+			"name": "horse09_wait_17_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_01.json",
+			"type": "json",
+			"name": "horse09_wait_01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_03.json",
+			"type": "json",
+			"name": "horse09_wait_03_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_02.json",
+			"type": "json",
+			"name": "horse09_wait_02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_04.json",
+			"type": "json",
+			"name": "horse09_wait_04_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_05.json",
+			"type": "json",
+			"name": "horse09_wait_05_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_06.json",
+			"type": "json",
+			"name": "horse09_wait_06_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_07.json",
+			"type": "json",
+			"name": "horse09_wait_07_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_08.json",
+			"type": "json",
+			"name": "horse09_wait_08_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_09.json",
+			"type": "json",
+			"name": "horse09_wait_09_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_10.json",
+			"type": "json",
+			"name": "horse09_wait_10_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_11.json",
+			"type": "json",
+			"name": "horse09_wait_11_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_12.json",
+			"type": "json",
+			"name": "horse09_wait_12_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_13.json",
+			"type": "json",
+			"name": "horse09_wait_13_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_14.json",
+			"type": "json",
+			"name": "horse09_wait_14_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_16.json",
+			"type": "json",
+			"name": "horse09_wait_16_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_15.json",
+			"type": "json",
+			"name": "horse09_wait_15_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/wait/horse09_wait_17.json",
+			"type": "json",
+			"name": "horse09_wait_17_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_01.png",
+			"type": "image",
+			"name": "horse10_wait_01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_02.png",
+			"type": "image",
+			"name": "horse10_wait_02_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_03.png",
+			"type": "image",
+			"name": "horse10_wait_03_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_04.png",
+			"type": "image",
+			"name": "horse10_wait_04_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_05.png",
+			"type": "image",
+			"name": "horse10_wait_05_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_06.png",
+			"type": "image",
+			"name": "horse10_wait_06_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_07.png",
+			"type": "image",
+			"name": "horse10_wait_07_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_08.png",
+			"type": "image",
+			"name": "horse10_wait_08_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_09.png",
+			"type": "image",
+			"name": "horse10_wait_09_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_10.png",
+			"type": "image",
+			"name": "horse10_wait_10_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_11.png",
+			"type": "image",
+			"name": "horse10_wait_11_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_12.png",
+			"type": "image",
+			"name": "horse10_wait_12_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_13.png",
+			"type": "image",
+			"name": "horse10_wait_13_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_14.png",
+			"type": "image",
+			"name": "horse10_wait_14_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_15.png",
+			"type": "image",
+			"name": "horse10_wait_15_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_16.png",
+			"type": "image",
+			"name": "horse10_wait_16_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_17.png",
+			"type": "image",
+			"name": "horse10_wait_17_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_01.json",
+			"type": "json",
+			"name": "horse10_wait_01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_03.json",
+			"type": "json",
+			"name": "horse10_wait_03_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_02.json",
+			"type": "json",
+			"name": "horse10_wait_02_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_04.json",
+			"type": "json",
+			"name": "horse10_wait_04_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_05.json",
+			"type": "json",
+			"name": "horse10_wait_05_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_06.json",
+			"type": "json",
+			"name": "horse10_wait_06_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_07.json",
+			"type": "json",
+			"name": "horse10_wait_07_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_08.json",
+			"type": "json",
+			"name": "horse10_wait_08_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_09.json",
+			"type": "json",
+			"name": "horse10_wait_09_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_12.json",
+			"type": "json",
+			"name": "horse10_wait_12_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_10.json",
+			"type": "json",
+			"name": "horse10_wait_10_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_11.json",
+			"type": "json",
+			"name": "horse10_wait_11_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_13.json",
+			"type": "json",
+			"name": "horse10_wait_13_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_14.json",
+			"type": "json",
+			"name": "horse10_wait_14_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_15.json",
+			"type": "json",
+			"name": "horse10_wait_15_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_16.json",
+			"type": "json",
+			"name": "horse10_wait_16_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/wait/horse10_wait_17.json",
+			"type": "json",
+			"name": "horse10_wait_17_json"
 		}
 	]
 }
