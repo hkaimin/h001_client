@@ -161,7 +161,9 @@ class HallModule {
 		this.btnPveAnim.addEventListener(egret.Event.COMPLETE,function(){
 			CommonTools.logWallet("---COMPLETE------"+this.horseCurrent)
 			this.horseCurrent ++;
-			if(this.horseCurrent > 17){
+			let maxHorse = 17
+			if(hObj.res_key == "04")maxHorse = 16
+			if(this.horseCurrent > maxHorse){
 				this.horseCurrent = 1;
 			}
 			this.drawHorse();
