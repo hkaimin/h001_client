@@ -127,27 +127,16 @@ class HallModule {
 	private setHorseXY(){
 		if(this.btnPveAnim == null)return;
 		if(ConstValue.deviveNormalScale < 2){
-			// CommonTools.logWallet("---COMPLETE---deviveNormalScale--<2-")
-			if(this.curPage == 2){
-				this.btnPveAnim.x = this.btnPveAnimX - 180;
-				this.btnPveAnim.y = this.btnPveAnimY;
-			}else{
-				this.btnPveAnim.x = this.btnPveAnimX;
-				this.btnPveAnim.y = this.btnPveAnimY;
-			}
+			this.btnPveAnim.x = this.btnPveAnimX;
+			this.btnPveAnim.y = this.btnPveAnimY;
 		}else{
-			// CommonTools.logWallet("---COMPLETE---deviveNormalScale-->2-")
-			if(this.curPage == 2){
-				this.btnPveAnim.x = this.btnPveAnimX - 220;
-				this.btnPveAnim.y = this.btnPveAnimY + 40;
-			}else{
-				this.btnPveAnim.x = this.btnPveAnimX;
-				this.btnPveAnim.y = this.btnPveAnimY - 180;
-			}
+			this.btnPveAnim.x = this.btnPveAnimX;
+			this.btnPveAnim.y = this.btnPveAnimY - 180;
 		}
 	}
 
 	private drawHorse(){
+		let hObj = this.getOwnHorseInfoById(this.horseItemS);
 		if(this.btnPveAnim != null){
 			this.btnPveAnim.removeEventListener(egret.Event.COMPLETE);
 			if(this.horseFunc != null){
@@ -159,9 +148,9 @@ class HallModule {
 		}
 		let animName = ""
 		if(this.horseCurrent < 10){
-			animName =  "horse10_wait_0"+this.horseCurrent
+			animName =  "horse"+hObj.res_key+"_wait_0"+this.horseCurrent
 		}else{
-			animName =  "horse10_wait_"+this.horseCurrent
+			animName =  "horse"+hObj.res_key+"_wait_"+this.horseCurrent
 		}
 		this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes(animName+"_json"), RES.getRes(animName+"_png"), "0");
 		this.btnPveAnim.play(1);
@@ -925,6 +914,7 @@ class HallModule {
 			this.maskNew.source = "horse_home_page2_jpg";
 			this.createHorseItem();
 			if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = true;
+			if(this.btnPveAnim3D != null)this.btnPveAnim3D.visible = true;
 			this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = true;
 			this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = true;
 		}else if(this.subCurPage == 2){
@@ -1105,6 +1095,7 @@ class HallModule {
 	private horseMarketUI(){
 		this.maskNew.source = "horse_market_page5_jpg";
 		if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = false;
+		if(this.btnPveAnim3D != null)this.btnPveAnim3D.visible = false;
 		if(this.subCurPage == 1){
 			this.royalClubUI();
 		}else if(this.subCurPage == 2){
@@ -1140,19 +1131,38 @@ class HallModule {
 		this.horseSelectLeftPanel.getChildByName("training_img_0"+index).source = resName;
 		this.horseSelectLeftPanel.getChildByName("training_img_0"+index).alpha = 1;
 	}
+	
+	private closeWaitingAnim(){
+		if(this.maskBg2 != null){
+			if(this.btnPveAnim != null){
+				this.btnPveAnim.removeEventListener(egret.Event.COMPLETE);
+				if(this.horseFunc != null){
+					this.btnPveAnim.removeEventListener(egret.Event.ENTER_FRAME,this.horseFunc,this);
+					this.horseFunc = null;
+				}
+				this.context.removeChild(this.btnPveAnim);
+				this.btnPveAnim = null;
+			}
+			this.context.removeChild(this.maskBg2)
+			this.maskBg2 = null
+		}
+	}
 
 	public showWaitingAnim(){
 		this.maskBg2 = new eui.Image("horse_playToEarn_page4_jpg");
 		this.maskBg2.alpha = 1;
 		this.maskBg2.width = this.context.getStageWidth();
 		this.maskBg2.height = this.context.getStageHeight();
+		this.maskBg2.addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			this.closeWaitingAnim()
+		}, this);
 		this.context.addChild(this.maskBg2);
-
 		this.drawHorse()
 	}
 
 	private startTraining(index){
 		if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = false;
+		if(this.btnPveAnim3D != null)this.btnPveAnim3D.visible = false;
 		this.horseSelectLeftPanel.visible = false;
 		this.horseSelectMiddlePanel.visible = false;
 		this.horseSelectRightPanel.visible = false;
@@ -1185,6 +1195,7 @@ class HallModule {
 
 	private stopTraining(){
 		if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = true;
+		if(this.btnPveAnim3D != null)this.btnPveAnim3D.visible = true;
 		this.horseSelectLeftPanel.visible = true;
 		this.horseSelectMiddlePanel.visible = true;
 		this.horseSelectRightPanel.visible = true;
@@ -1283,6 +1294,7 @@ class HallModule {
 		this.panel.getChildByName("up_item_group").visible = false;
 		this.panel.getChildByName("horse_name_group").visible = false;
 		if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = false;
+		if(this.btnPveAnim3D != null)this.btnPveAnim3D.visible = false;
 	}	
 
 	private createCargoSuccess(index){
@@ -1425,11 +1437,13 @@ class HallModule {
 		if(index==1)this.task01UI();
 		if(index==2){
 			if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = true;
+			if(this.btnPveAnim3D != null)this.btnPveAnim3D.visible = true;
 			this.createHorseItem();
 			this.task02UI();
 		}
 		if(index==3){
 			if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = true;
+			if(this.btnPveAnim3D != null)this.btnPveAnim3D.visible = true;
 			this.createHorseItem();
 			this.task03UI();
 		}
@@ -1454,6 +1468,7 @@ class HallModule {
 	private updatePlayToEarn(){
 		this.clearTask();
 		if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = false;
+		if(this.btnPveAnim3D != null)this.btnPveAnim3D.visible = false;
 		this.horseSelectMiddlePanel = new eui.Panel();
 		this.horseSelectMiddlePanel.skinName = "resource/eui_skins/UserUI/PlayToEarn_select.exml";
         this.horseSelectMiddlePanel.title = "Title";
@@ -1912,6 +1927,7 @@ class HallModule {
 			this.maskBg2 = null;
 		}
 		if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = false;
+		if(this.btnPveAnim3D != null)this.btnPveAnim3D.visible = false;
 		this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = false;
 		this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = false;
 	}
@@ -1959,6 +1975,7 @@ class HallModule {
 				this.clearPage2HorseHome();
 				this.clearTraining();
 				if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = true;
+				if(this.btnPveAnim3D != null)this.btnPveAnim3D.visible = true;
 				this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = true;
 				this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = true;
 				this.panel.getChildByName("rank_grounp_main").visible = true;
@@ -1987,12 +2004,18 @@ class HallModule {
 					this.btnPveAnim2D.verticalCenter = 0;
 					this.context.addChild(this.btnPveAnim2D);
 
-					this.btnPveAnim3D = new eui.Image("play_horse_png");
-					this.btnPveAnim3D.width = 50;
-					this.btnPveAnim3D.height = 50;
+					this.btnPveAnim3D = new eui.Image("sign_1_png");
+					this.btnPveAnim3D.width = 30;
+					this.btnPveAnim3D.height = 30;
 					this.btnPveAnim3D.name = "btnPveAnim3D"
-					this.btnPveAnim3D.x = this.context.getStageWidth()/2
-					this.btnPveAnim3D.y = this.context.getStageHeight() * 0.2
+					if(ConstValue.deviveNormalScale >= 2){
+						this.btnPveAnim3D.x = this.context.getStageWidth() * 0.56
+						this.btnPveAnim3D.y = this.context.getStageHeight() * 0.11
+					}else{
+						this.btnPveAnim3D.x = this.context.getStageWidth() * 0.58
+						this.btnPveAnim3D.y = this.context.getStageHeight() * 0.18
+					}
+					
 					this.context.addChild(this.btnPveAnim3D);
 					this.context.getChildByName("btnPveAnim3D").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
 
@@ -2331,7 +2354,8 @@ class HallModule {
 				break;
 			
 			case "btnPveAnim3D":
-				await this.context.loadResource("horse_10_wait",8)
+				let hObj = this.getOwnHorseInfoById(this.horseItemS);
+				await this.context.loadResource("horse_"+hObj.res_key+"_wait",8)
 				break
 
 			case "img_info":
