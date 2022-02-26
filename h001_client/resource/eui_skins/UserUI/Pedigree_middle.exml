@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="NoticeGroup" width="362" height="177" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image width="81" height="108" x="55.64" y="12.5" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png"/>
-	<e:Image width="53" height="53" x="69.93" y="24.5" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="12" height="12" x="66.64" y="100.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="12" height="12" x="78.39" y="100.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="12" height="12" x="90.14" y="100.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="12" height="12" x="102.39" y="100.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="12" height="12" x="114.18" y="100.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Label text="Ferrari xxxx" x="62.89" y="82.5" anchorOffsetX="0" width="67" textAlign="center" textColor="0x070202" size="10" anchorOffsetY="0" height="19" verticalAlign="middle"/>
-	<e:Image width="30" height="40" x="55.64" y="12.5" source="icon_level_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="14" height="19" x="63.64" y="18.5" source="icon_level_s_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="81" height="108" x="229.64" y="14" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png"/>
-	<e:Image width="53" height="53" x="243.93" y="26" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="12" height="12" x="240.64" y="102.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="12" height="12" x="252.39" y="102.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="12" height="12" x="264.14" y="102.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="12" height="12" x="276.39" y="102.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="12" height="12" x="288.18" y="102.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Label text="Ferrari xxxx" x="236.89" y="84" anchorOffsetX="0" width="67" textAlign="center" textColor="0x070202" size="10" anchorOffsetY="0" height="19" verticalAlign="middle"/>
-	<e:Image width="30" height="40" x="229.64" y="14" source="icon_level_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="14" height="19" x="237.64" y="20" source="icon_level_s_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="10" height="93" x="229.64" y="62.5" anchorOffsetX="0" anchorOffsetY="0" source="sign_point_2_png" rotation="90" scale9Grid="4,0,3,6"/>
-	<e:Image width="20" height="100" x="171" y="70" source="sign_point_1_png" scale9Grid="5,0,12,5"/>
+<e:Skin class="NoticeGroup" width="326" height="177" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="81" height="108" x="34.64" y="12.5" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png"/>
+	<e:Image width="53" height="53" x="48.93" y="24.5" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image id="pe_left_head" width="53" height="53" x="48.93" y="24.5" anchorOffsetX="0" anchorOffsetY="0" source="horse01_head02_png" name="pe_left_head"/>
+	<e:Image id="pe_left_start_01" width="12" height="12" x="45.64" y="100.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_left_start_01"/>
+	<e:Image id="pe_left_start_02" width="12" height="12" x="57.39" y="100.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_left_start_02"/>
+	<e:Image id="pe_left_start_03" width="12" height="12" x="69.14" y="100.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_left_start_03"/>
+	<e:Image id="pe_left_start_04" width="12" height="12" x="81.39" y="100.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_left_start_04"/>
+	<e:Image id="pe_left_start_05" width="12" height="12" x="93.18" y="100.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_left_start_05"/>
+	<e:Label id="pe_left_name" text="System 03" x="41.89" y="82.5" anchorOffsetX="0" width="67" textAlign="center" textColor="0x070202" size="10" anchorOffsetY="0" height="19" verticalAlign="middle" name="pe_left_name"/>
+	<e:Image width="30" height="40" x="34.64" y="12.5" source="icon_level_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image id="pe_left_type" width="14" height="19" x="42.64" y="18.5" source="icon_level_s_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_left_type"/>
+	<e:Image width="81" height="108" x="208.64" y="14" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png"/>
+	<e:Image width="53" height="53" x="222.93" y="26" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image id="pe_right_head" width="53" height="53" x="222.93" y="26" anchorOffsetX="0" anchorOffsetY="0" source="horse01_head02_png" name="pe_right_head"/>
+	<e:Image id="pe_right_start_01" width="12" height="12" x="220.64" y="102.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_right_start_01"/>
+	<e:Image id="pe_right_start_02" width="12" height="12" x="232.39" y="102.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_right_start_02"/>
+	<e:Image id="pe_right_start_03" width="12" height="12" x="243.14" y="102.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_right_start_03"/>
+	<e:Image id="pe_right_start_04" width="12" height="12" x="256.39" y="102.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_right_start_04"/>
+	<e:Image id="pe_right_start_05" width="12" height="12" x="268.18" y="102.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_right_start_05"/>
+	<e:Label id="pe_right_name" text="System 04" x="216.89" y="84" anchorOffsetX="0" width="67" textAlign="center" textColor="0x070202" size="10" anchorOffsetY="0" height="19" verticalAlign="middle" name="pe_right_name"/>
+	<e:Image width="30" height="40" x="209.64" y="14" source="icon_level_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image id="pe_right_type" width="14" height="19" x="217.64" y="20" source="icon_level_s_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_right_type"/>
+	<e:Image width="10" height="93" x="209.64" y="62.5" anchorOffsetX="0" anchorOffsetY="0" source="sign_point_2_png" rotation="90" scale9Grid="4,0,3,6"/>
+	<e:Image width="20" height="100" x="151" y="70" source="sign_point_1_png" scale9Grid="5,0,12,5"/>
 </e:Skin>

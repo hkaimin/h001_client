@@ -29,7 +29,7 @@
 	<e:Image width="362" height="63" x="1" y="431" source="bar_info_di_3_png"/>
 	<e:Image width="362" height="63" x="-7.46" y="107.68" source="Site-suitability_png"/>
 	<e:Image width="362" height="63" x="-1.46" y="431" source="skills_png"/>
-	<e:Image width="22" height="22" x="304.95" y="128.18" source="sign_2_png"/>
+	<e:Image id="question" width="22" height="22" x="304.95" y="128.18" source="sign_2_png" name="question"/>
 	<e:Image width="62" height="62" x="23" y="499" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
 	<e:Image width="62" height="62" x="23" y="499" anchorOffsetX="0" anchorOffsetY="0" source="skill1_png"/>
 	<e:Image width="62" height="62" x="142.54" y="499" anchorOffsetX="0" anchorOffsetY="0" source="info_skill_framedi_png"/>

@@ -345,6 +345,24 @@ var HallModule = (function () {
         // groupHorse.scaleY = 1.2;
         // groupHorse.getChildByName("select_2_img").visible = true;
     };
+    HallModule.prototype.showHorseHelp = function (index) {
+        var helpPanel = new eui.Panel();
+        helpPanel.skinName = "resource/eui_skins/UserUI/HorseHelpUI.exml";
+        helpPanel.title = "Title";
+        helpPanel.horizontalCenter = 0;
+        helpPanel.verticalCenter = 0;
+        var maskBgT = new eui.Image("mask_layer_png");
+        maskBgT.width = this.context.getStageWidth();
+        maskBgT.height = this.context.getStageHeight();
+        maskBgT.addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.context.removeChild(maskBgT);
+            this.context.removeChild(helpPanel);
+        }, this);
+        this.context.addChild(maskBgT);
+        this.context.addChild(helpPanel);
+        CommonTools.fixFix(this.context, helpPanel, 2, 0, 0);
+    };
     HallModule.prototype.changeHorseRight = function (index) {
         this.subSubCurPage = index;
         if (this.horseSelectRightPanel != null) {
@@ -468,7 +486,26 @@ var HallModule = (function () {
             }
             else {
                 this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesPedigreeUI.exml";
+                var pe_scroller = this.horseSelectRightPanel.getChildByName("pe_scroller");
+                var pe_group = pe_scroller.getChildByName("pe_group");
+                pe_group.removeChildren();
+                var pe_start = new eui.Panel();
+                pe_start.skinName = "resource/eui_skins/UserUI/Pedigree_start.exml";
+                pe_group.addChild(pe_start);
+                var pe_middle = new eui.Panel();
+                pe_middle.skinName = "resource/eui_skins/UserUI/Pedigree_middle.exml";
+                pe_middle.y += 160;
+                pe_group.addChild(pe_middle);
+                var pe_single = new eui.Panel();
+                pe_single.skinName = "resource/eui_skins/UserUI/Pedigree_single.exml";
+                pe_single.x += 120;
+                pe_single.y += 340;
+                pe_group.addChild(pe_single);
             }
+            this.horseSelectRightPanel.getChildByName("question").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+                CommonAudioHandle.playEffect("playBomb_mp3", 1);
+                this.showHorseHelp(index);
+            }, this);
             this.horseSelectRightPanel.getChildByName("horse_head").source = "horse" + horseObj.res_key + "_head01_png";
             this.horseSelectRightPanel.getChildByName("horse_name").text = horseObj.name;
             this.horseSelectRightPanel.getChildByName("lv_img").source = "icon_level_" + horseObj.iType + "_png";

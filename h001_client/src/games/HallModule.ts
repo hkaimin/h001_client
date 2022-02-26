@@ -386,6 +386,27 @@ class HallModule {
 		// groupHorse.getChildByName("select_2_img").visible = true;
 	}
 
+	private showHorseHelp(index){
+		let helpPanel= new eui.Panel();
+		helpPanel.skinName = "resource/eui_skins/UserUI/HorseHelpUI.exml";
+		helpPanel.title = "Title";
+		helpPanel.horizontalCenter = 0;
+		helpPanel.verticalCenter = 0;
+		
+		let maskBgT = new eui.Image("mask_layer_png");
+		maskBgT.width = this.context.getStageWidth();
+		maskBgT.height = this.context.getStageHeight();
+		maskBgT.addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			CommonAudioHandle.playEffect("playBomb_mp3",1)
+			this.context.removeChild(maskBgT);
+			this.context.removeChild(helpPanel);
+		}, this);
+		this.context.addChild(maskBgT);
+		this.context.addChild(helpPanel);
+		CommonTools.fixFix(this.context,helpPanel,2,0,0);
+
+	}
+
 	private changeHorseRight(index){
 		this.subSubCurPage = index;
 		if(this.horseSelectRightPanel != null){
@@ -450,6 +471,7 @@ class HallModule {
 				this.horseSelectRightPanel.getChildByName("wisdom_value").text = horseObj.wisdom
 				this.horseSelectRightPanel.getChildByName("constitution_value").text = horseObj.constitution
 				this.horseSelectRightPanel.getChildByName("life_time").text = horseObj.days + " days"
+
 			}else if(index == 2){
 				this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesSkillUI.exml";
 				let grassLand_length = this.horseSelectRightPanel.getChildByName("grassLand_length") as eui.Image;
@@ -501,7 +523,30 @@ class HallModule {
 
 			}else{
 				this.horseSelectRightPanel.skinName = "resource/eui_skins/UserUI/StablesPedigreeUI.exml";
+				let pe_scroller = this.horseSelectRightPanel.getChildByName("pe_scroller") as eui.Scroller;
+				let pe_group = pe_scroller.getChildByName("pe_group") as eui.Group;
+				pe_group.removeChildren();
+
+				let pe_start = new eui.Panel();
+				pe_start.skinName = "resource/eui_skins/UserUI/Pedigree_start.exml";
+				pe_group.addChild(pe_start);
+
+				let pe_middle = new eui.Panel();
+				pe_middle.skinName = "resource/eui_skins/UserUI/Pedigree_middle.exml";
+				pe_middle.y += 160;
+				pe_group.addChild(pe_middle);
+
+				let pe_single = new eui.Panel();
+				pe_single.skinName = "resource/eui_skins/UserUI/Pedigree_single.exml";
+				pe_single.x += 120;
+				pe_single.y += 340;
+				pe_group.addChild(pe_single);
 			}
+			this.horseSelectRightPanel.getChildByName("question").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+				CommonAudioHandle.playEffect("playBomb_mp3",1);
+				this.showHorseHelp(index)
+			}, this);
+
 			this.horseSelectRightPanel.getChildByName("horse_head").source = "horse"+horseObj.res_key+"_head01_png";
 			this.horseSelectRightPanel.getChildByName("horse_name").text = horseObj.name;
 			this.horseSelectRightPanel.getChildByName("lv_img").source = "icon_level_"+horseObj.iType+"_png";
