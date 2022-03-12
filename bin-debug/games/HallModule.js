@@ -923,11 +923,13 @@ var HallModule = (function () {
                 CommonTools.addCommonTips(this.context, ConstValue.P_NOT_ENOUGH);
                 return;
             }
-            ContractSol.maincoin_transfer(ContractSol.createAddress, pay_main, ContractSol.BUY_TICKET);
+            ContractSol.maincoin_transfer(ContractSol.createAddress, pay_main * ContractSol.EXCHANGE_RATE, ContractSol.BUY_TICKET);
         }, this);
         this.horseSelectMiddlePanel.getChildByName("up_img").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
             var total_lb = parseInt(this.horseSelectMiddlePanel.getChildByName("total_lb").text);
+            if (total_lb >= 3)
+                return;
             total_lb += 1;
             this.horseSelectMiddlePanel.getChildByName("total_lb").text = total_lb;
             this.horseSelectMiddlePanel.getChildByName("pay_main").text = total_lb * ConstValue.cacheUserInfo.ticketPrice;
@@ -935,7 +937,7 @@ var HallModule = (function () {
         this.horseSelectMiddlePanel.getChildByName("down_img").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
             var total_lb = parseInt(this.horseSelectMiddlePanel.getChildByName("total_lb").text);
-            if (total_lb <= 0)
+            if (total_lb <= 1)
                 return;
             total_lb -= 1;
             this.horseSelectMiddlePanel.getChildByName("total_lb").text = total_lb;
@@ -1291,7 +1293,11 @@ var HallModule = (function () {
         CommonTools.fixFix(this.context, this.horseSelectMiddlePanel, 2, 0, -40);
         this.horseSelectMiddlePanel.getChildByName("clain_rewards_btn").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
-            this.testAddMain();
+            if (parseInt(this.horseSelectMiddlePanel.getChildByName("my_reward_tip").text) <= 0)
+                return;
+            this.addCommonTips(ConstValue.P_PUSHING_TR);
+            var sData = CommonTools.getDataJsonStr("claimExhi", 1, { lNft: ConstValue.cacheContract["nftIndex"] });
+            ConstValue.P_NET_OBJ.sendData(sData);
         }, this);
         this.tipsPanel = this.horseSelectMiddlePanel;
         var L_select_group = this.horseSelectMiddlePanel.getChildByName("L_select_group");
@@ -1399,8 +1405,6 @@ var HallModule = (function () {
                     group.getChildByName("p_" + obj.id).getChildByName("group_1").getChildByName("L_select_checked").visible = true;
             }
         }, this);
-        this.horseSelectMiddlePanel.getChildByName("my_horse_num").text = tL_horse;
-        this.horseSelectMiddlePanel.getChildByName("my_reward_round").text = tL_score;
         var M_select_group = this.horseSelectMiddlePanel.getChildByName("M_select_groupp");
         var M_scoller = M_select_group.getChildByName("M_scrolle");
         var M_s_group = M_scoller.getChildByName("M_s_group");
@@ -1478,6 +1482,8 @@ var HallModule = (function () {
         ii -= 1;
         M_select_cnt.text = "0/" + ii;
         M_select_score.text = "0";
+        this.horseSelectMiddlePanel.getChildByName("my_horse_num").text = tM_horse;
+        this.horseSelectMiddlePanel.getChildByName("my_reward_round").text = tM_score;
         M_select_group.getChildByName("M_rest_btn").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
             var sArr = new Array();
@@ -1601,6 +1607,12 @@ var HallModule = (function () {
             this.horseSelectPanel = null;
         }
     };
+    HallModule.prototype.timeGetTotalExhi = function () {
+        FightingModule.Delay(60000, function () {
+            var sData = CommonTools.getDataJsonStr("getTotalExhi", 1, { lNft: ConstValue.cacheContract["nftIndex"] });
+            ConstValue.P_NET_OBJ.sendData(sData);
+        }, this);
+    };
     HallModule.prototype.taskUpdate = function (index) {
         this.subCurPage = index;
         this.clearTask();
@@ -1687,7 +1699,7 @@ var HallModule = (function () {
             var horse_lv_img = this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img");
             horse_lv_img.source = ConstValue.horseLv[ConstValue.cacheUserInfo.lv.toString()].lv_icon;
             this.panel.getChildByName("horse_name_group").getChildByName("horse_name_lb").text = ConstValue.cacheUserInfo.name;
-            this.panel.getChildByName("up_item_group").getChildByName("main_coin_num_lb").text = ConstValue.cacheUserInfo.coin;
+            this.panel.getChildByName("up_item_group").getChildByName("main_coin_num_lb").text = parseInt(ConstValue.cacheUserInfo.coin) / 100.0;
             this.panel.getChildByName("up_item_group").getChildByName("sub_coin_num_lb").text = ConstValue.cacheUserInfo.diamond;
         }
         else if (this.curPage == 2) {
@@ -1718,7 +1730,7 @@ var HallModule = (function () {
     };
     HallModule.prototype.updateMaincoin = function (coin, save) {
         ConstValue.cacheUserInfo.coin = coin;
-        this.panel.getChildByName("up_item_group").getChildByName("main_coin_num_lb").text = coin;
+        this.panel.getChildByName("up_item_group").getChildByName("main_coin_num_lb").text = parseInt(coin) / 100.0;
         if (save) {
             var sData = CommonTools.getDataJsonStr("saveCoinInfo", 1, { mainCoin: coin, subCoin: 0 });
             ConstValue.P_NET_OBJ.sendData(sData);
@@ -3900,6 +3912,7 @@ var HallModule = (function () {
                                 this.horseSelectMiddlePanel.getChildByName("R_horse_total").text = jsonObj.d.iTotalHorse;
                                 this.horseSelectMiddlePanel.getChildByName("R_Reward_total").text = jsonObj.d.iCurTotalRewards / 100.0;
                                 this.horseSelectMiddlePanel.getChildByName("my_reward_tip").text = jsonObj.d.iOwnRewards / 100.0;
+                                this.timeGetTotalExhi(); //60秒回调一次
                             }
                         }
                         return [3 /*break*/, 40];
@@ -3915,7 +3928,7 @@ var HallModule = (function () {
                         }
                         return [3 /*break*/, 40];
                     case 9:
-                        if (!(jsonObj.f == "AddMainCoin")) return [3 /*break*/, 10];
+                        if (!(jsonObj.f == "AddMainCoin" || jsonObj.f == "claimExhi")) return [3 /*break*/, 10];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -3923,6 +3936,10 @@ var HallModule = (function () {
                             FightingModule.Delay(60000, function () {
                                 ContractSol.maincoin_balanceOf(ContractSol.sender);
                             }, this);
+                            if (this.curPage == 4 && this.subCurPage == 1) {
+                                this.horseOwnData = jsonObj.d.lOwnNftData;
+                                this.taskUpdate(1);
+                            }
                         }
                         return [3 /*break*/, 40];
                     case 10:

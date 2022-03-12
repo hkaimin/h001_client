@@ -221,6 +221,7 @@ var WebSocketUtil = (function (_super) {
                 case "getTotalExhi":
                 case "joinExhi":
                 case "gorestExhi":
+                case "claimExhi":
                     if (obj_1.f == "SeventDayReward")
                         if (!HallModule.isSafeArea)
                             return;

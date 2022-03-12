@@ -194,6 +194,7 @@ class WebSocketUtil extends egret.DisplayObjectContainer {
                 case "getTotalExhi":
                 case "joinExhi":
                 case "gorestExhi":
+                case "claimExhi":
                     if(obj.f == "SeventDayReward")if(!HallModule.isSafeArea)return;
                     if(ConstValue.P_HALL_OBJ != null){
                         ConstValue.P_HALL_OBJ.handlePacket(obj);

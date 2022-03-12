@@ -11,6 +11,7 @@ class ContractSol {
 
 	static BUY_TICKET = 1;
 	static BUY_MARKET_NFT = 2;
+	static EXCHANGE_RATE = 100;
 
 	//web3
 	static hweb3; 
@@ -190,7 +191,7 @@ class ContractSol {
 						if(iOpType == ContractSol.BUY_TICKET){//购买ticket
 							ConstValue.P_HALL_OBJ.addCommonTips("Waiting NFT response...");
 							ContractSol.maincoin_balanceOf(ContractSol.sender);
-							let sData = CommonTools.getDataJsonStr("createNft",1,{iTickets:arg1});
+							let sData = CommonTools.getDataJsonStr("createNft",1,{iTickets:arg1/100});
 							ConstValue.P_NET_OBJ.sendData(sData);
 						}else if(iOpType == ContractSol.BUY_MARKET_NFT){
 							ConstValue.P_HALL_OBJ.addCommonTips("Waiting Market response...");
