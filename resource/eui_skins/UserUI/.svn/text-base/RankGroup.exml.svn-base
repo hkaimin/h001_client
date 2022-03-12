@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="NoticeGroup" width="808" height="78" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="group_1" width="807.58" height="73.58" x="0.7" y="0.66" anchorOffsetY="0" anchorOffsetX="0" scaleX="1" scaleY="1" name="group_1">
+		<e:Image width="798.79" height="72.83" x="5.57" y="1.84" anchorOffsetX="0" anchorOffsetY="0" source="rank_data_normal_png" scale9Grid="12,12,811,50"/>
+		<e:Label id="rank" text="27" x="47.62" y="25.67" anchorOffsetX="0" width="47.33" anchorOffsetY="0" height="26" name="rank" textColor="0x566dc2"/>
+		<e:Label id="name" text="无敌掌门人" x="248.54" y="23.54" anchorOffsetX="0" width="164" anchorOffsetY="0" height="29.03" name="name" textColor="0x566dc2"/>
+		<e:Label id="desc" text="10" x="551.99" y="23.95" anchorOffsetX="0" width="67.79" anchorOffsetY="0" height="32.06" size="26" name="desc" textColor="0x566dc2" textAlign="center" verticalAlign="middle"/>
+		<e:Label id="desc2" text="11.12%" x="695.3" y="22.34" anchorOffsetX="0" width="98.79" anchorOffsetY="0" height="32.06" size="26" name="desc2" textColor="0x566DC2" textAlign="center" verticalAlign="middle"/>
+		<e:Label id="lb" text="胜场 ： " x="482.78" y="27.2" anchorOffsetX="0" width="88.79" anchorOffsetY="0" height="32.06" size="26" textColor="0x7e8bc4" name="lb"/>
+		<e:Label id="lb2" text="胜率 ：" x="618.78" y="27.2" anchorOffsetX="0" width="88.79" anchorOffsetY="0" height="32.06" size="26" textColor="0x7E8BC4" name="lb2"/>
+		<e:Image width="58.67" height="55.67" x="178.98" y="11.14" anchorOffsetX="0" anchorOffsetY="0" source="mini_head"/>
+		<e:Image id="head" width="54.67" height="50.34" x="181.69" y="13.5" anchorOffsetX="0" anchorOffsetY="0" name="head" source="default_head_png"/>
+	</e:Group>
+</e:Skin>

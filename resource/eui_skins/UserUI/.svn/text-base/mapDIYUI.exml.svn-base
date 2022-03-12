@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="1334" height="690.73" x="-0.62" y="60.13" anchorOffsetX="0" anchorOffsetY="0" source="diy_bg_png"/>
+	<e:Image width="305" height="48" x="161" y="110.96" anchorOffsetX="0" anchorOffsetY="0" source="diy_xiala_bg_png"/>
+	<e:Image id="btn_ground" width="69" height="113" x="95.64" y="214.18" source="diy_page_yes_png" name="btn_ground"/>
+	<e:Image id="btn_block" width="69" height="113" x="95.6" y="347.83" name="btn_block" source="diy_page_not_png"/>
+	<e:Image id="btn_decorate" width="69" height="113" x="95.65" y="484.13" source="diy_page_not_png" name="btn_decorate"/>
+	<e:Button id="STYLE_BTN" label="" x="415.26" y="120.84" anchorOffsetX="0" width="33.24" anchorOffsetY="0" height="28.24" name="STYLE_BTN">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="diy_btn_xia_01_png" source.down="diy_btn_xia_02_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Scroller id="res_scroller" width="320" height="445.33" x="164.88" y="213.98" anchorOffsetY="0" anchorOffsetX="0" name="res_scroller">
+		<e:Group id="res_group" anchorOffsetX="0" width="320" anchorOffsetY="0" height="448.33" name="res_group">
+			<e:Button label="Button" x="12" y="16" height="80" width="80"/>
+			<e:Button label="Button" x="117.34" y="16" height="80" width="80"/>
+			<e:Button label="Button" x="224" y="16" height="80" width="80"/>
+		</e:Group>
+	</e:Scroller>
+	<e:Label text="选择主题地图" x="182.88" y="122.96" size="26" textColor="0x95583d"/>
+	<e:Button id="btn_mymap" label="" x="12.21" y="536.93" anchorOffsetX="0" width="170.67" anchorOffsetY="0" height="167.33" name="btn_mymap">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="mymap_1_png" source.down="mymap_2_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label id="t_di" text="地" x="118" y="247" size="26" textColor="0xf7d69d" name="t_di"/>
+	<e:Label id="t_biao" text="表" x="118" y="276.9" size="26" textColor="0xF7D69D" name="t_biao"/>
+	<e:Label id="t_zhang" text="障" x="117.65" y="374.43" size="26" textColor="0xd5b6a0" name="t_zhang"/>
+	<e:Label id="t_ai" text="碍" x="117.65" y="404.33" size="26" textColor="0xd5b6a0" name="t_ai"/>
+	<e:Label id="t_zhuang" text="装" x="118.33" y="510.93" size="26" textColor="0xD5B6A0" name="t_zhuang"/>
+	<e:Label id="t_shi" text="饰" x="118.33" y="540.83" size="26" textColor="0xD5B6A0" name="t_shi"/>
+	<e:Label id="btn_ground_lb" text="" x="96" y="214.18" anchorOffsetX="0" width="69" anchorOffsetY="0" height="113" name="btn_ground_lb"/>
+	<e:Label id="btn_block_lb" text="" x="96.83" y="349" anchorOffsetX="0" width="69" anchorOffsetY="0" height="113" name="btn_block_lb"/>
+	<e:Label id="btn_decorate_lb" text="" x="95" y="484.43" anchorOffsetX="0" width="69" anchorOffsetY="0" height="113" name="btn_decorate_lb"/>
+	<e:Label id="lb_1p" text="" x="356.88" y="665" anchorOffsetX="0" width="120" anchorOffsetY="0" height="58" name="lb_1p" border="false"/>
+	<e:Label id="lb_2p" text="" x="530" y="666" anchorOffsetX="0" width="120" anchorOffsetY="0" height="58" name="lb_2p" border="false"/>
+	<e:Label id="lb_eraser" text="" x="691.75" y="664" anchorOffsetX="0" width="120" anchorOffsetY="0" height="58" name="lb_eraser" border="false"/>
+	<e:Label id="lb_save" text="" x="856.1" y="664" anchorOffsetX="0" width="120" anchorOffsetY="0" height="58" name="lb_save" border="false"/>
+	<e:Button id="btn_rank" label="" x="1169.96" y="76.88" name="btn_rank" anchorOffsetY="0" height="85.9" anchorOffsetX="0" width="130.97">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="map_rank_01_png" source.down="map_rank_02_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image id="img_coin_bg" width="129.33" height="31.33" x="684.68" y="21.54" anchorOffsetX="0" anchorOffsetY="0" source="mini_own" name="img_coin_bg"/>
+	<e:Image id="img_zuan_bg" width="124" height="31.33" x="961.39" y="21.54" anchorOffsetX="0" anchorOffsetY="0" source="mini_own" name="img_zuan_bg"/>
+	<e:Button id="btn_noticetip" label="" x="929.61" y="12.64" anchorOffsetX="0" width="46" anchorOffsetY="0" height="49.33" name="btn_noticetip">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="mini_zuanshi"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btn_shop3" label="" x="651.52" y="12.64" anchorOffsetX="0" width="46" anchorOffsetY="0" height="49.33" name="btn_shop">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="mini_coin"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label id="coin_num_lb" text="2222" x="718.41" y="24.21" name="coin_num_lb" anchorOffsetX="0" width="88.51" textAlign="right" anchorOffsetY="0" height="27.33" verticalAlign="middle" size="26" textColor="0x476b8d"/>
+	<e:Label id="zuan_num_lb" text="2222" x="989.56" y="24.88" name="zuan_num_lb" anchorOffsetX="0" width="89" textAlign="right" anchorOffsetY="0" height="26" size="26" verticalAlign="middle" textColor="0x476b8d"/>
+</e:Skin>

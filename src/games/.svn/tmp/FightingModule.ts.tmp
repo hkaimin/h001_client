@@ -1,0 +1,950 @@
+/**
+ * 战斗模块
+ */
+class FightingModule {
+	/**上级容器 */
+    private context:Main;
+    /** 模块本体*/
+    private panel;
+    /** 地表层*/
+    private static groundLayer;
+    public static groundLayerSubObj = {};
+    public static groundLayerSubObjDanger = {};
+    /** 人物层 */
+    private pMainRole = "";//role1左 role2右
+    private p1 = 119;//左
+    private p2 = 120;//右
+    public static playerLayer;
+    public static playerLayerSubObj = {};
+    /** 子弹层 */
+    public static bulletLayer;
+    public static bulletLayerSubObj = {};
+    /** 地图组件层 */
+    public static mapLayer;
+    public static mapLayerSubObj = {};
+    public static mapLayerLock = false;
+
+    public static mapLeftLimit = 177;
+    public static mapUpLimit = 106;
+    public static mapRightLimit = 823;
+    public static mapDownLimit = 649;
+
+    /**AI */
+    public static aiSubObj = {};
+
+    /**摇杆 */
+    private controlerParent;
+    private controlerHit;
+    private controlerHit_x = 28;
+    private controlerHit_y = 183;
+    private r = 104;
+
+    private controlerHit_x_c = 132;
+    private controlerHit_y_c = 287;
+
+    private initRow = 7;
+    private initColumn = 9;
+    private firstItemX = 167;
+    private firstItemY = 134;
+    private groundItemW = 82;
+    private groundItemH = 82;
+    private groundOffX = -25;
+    private groundOffY = -28;
+    
+    public APP_MODE = 1;//1:7*9  2:9*11
+    public FIGHT_MODE = 1;//1pvp 2pve
+    private scaleX = 1;
+    private scaleY = 1;
+    private playerData = null;
+    private playerLen = 0;
+    private curPlayer = null;
+    
+    private vsPanel = null;
+    private resultPanel = null;
+    private miniGamePanel = null;
+    private maskBg;
+    private maskVsBg;
+    private maskMiniBg;
+    private maskResultBg;
+
+    private otherCount = 0;
+    private counterTimer = null;
+    private countDown = 3;
+
+    private infoPanel;
+
+    //test
+    private testGround = [
+        1,1,1,1,1,1,2,2,1,
+        1,1,1,1,1,1,2,1,2,
+        1,1,1,3,1,1,2,2,1,
+        3,2,2,1,1,1,2,2,3,
+        1,1,3,1,1,1,2,2,1,
+        1,2,1,1,1,1,2,3,2,
+        1,1,1,1,1,1,2,3,2
+    ];
+
+    private testMap = [
+        1,1,1,1,1,1,2,6,1,
+        1,119,1,1,1,1,2,6,1,
+        1,1,1,1,1,1,2,6,1,
+        3,2,2,1,1,120,2,6,1,
+        1,1,13,1,1,1,2,6,1,
+        1,9,6,1,1,1,2,6,1,
+        1,12,11,1,1,1,2,6,1
+    ];
+
+    private testGround2 = [
+        1,1,1,1,1,1,2,2,1,1,1,
+        1,1,1,1,1,1,2,1,2,1,1,
+        1,1,1,3,1,1,2,2,1,1,1,
+        3,2,2,1,1,1,2,2,3,1,1,
+        1,1,3,1,1,1,2,2,1,1,1,
+        1,2,1,1,1,1,2,3,2,1,1,
+        1,1,1,1,1,1,2,3,2,1,1,
+        1,1,1,1,1,1,2,3,2,1,1,
+        1,1,1,1,1,1,2,3,2,1,1
+    ];
+
+    private testMap2 = [
+        0,0,0,0,0,0,0,0,5,6,0,
+        0,119,0,0,0,0,0,6,5,6,0,
+        0,0,0,0,0,0,0,6,5,6,0,
+        0,0,0,0,0,120,0,6,5,6,0,
+        0,0,13,0,0,0,0,6,5,6,0,
+        0,9,6,0,0,0,0,0,0,0,0,
+        0,9,6,0,0,0,0,6,5,6,0,
+        0,9,6,0,0,0,0,6,5,6,0,
+        0,12,11,0,0,0,0,6,5,6,0
+    ];
+    //test
+    
+	/**
+     * 构造函数
+     */
+    public constructor(ct:Main) {
+        CommonAudioHandle.play("mainmenu_mp3",0);
+        CommonTools.log("=init===1==========")
+		this.context = ct;
+
+        this.maskBg = new eui.Image("bg_ppt_1_png");
+		this.maskBg.width = this.context.getStageWidth();
+		this.maskBg.height = this.context.getStageHeight();
+		this.context.addChild(this.maskBg);
+
+        this.panel = new eui.Panel();
+		this.panel.skinName = "resource/eui_skins/UserUI/fightingUI.exml";
+        this.panel.title = "Title";
+        this.panel.horizontalCenter = 0;
+        this.panel.verticalCenter = 0;
+        this.context.addChild(this.panel);
+
+        let backBtn = new eui.Image("btn_back_png");
+		backBtn.width = 60;
+		backBtn.height = 60;
+        backBtn.x = 44;
+        backBtn.y = 10;
+        backBtn.name = "back_btn";
+		this.context.addChild(backBtn);
+        backBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+
+        this.infoPanel = new eui.Panel();
+		this.infoPanel.skinName = "resource/eui_skins/UserUI/FightInfoGroup.exml";
+        this.infoPanel.title = "TitleInfo";
+        this.infoPanel.x = 0;
+        this.infoPanel.y = 110;
+        this.infoPanel.scaleX = 0.6;
+        this.infoPanel.scaleY = 0.6;
+        this.context.addChild(this.infoPanel);
+
+        CommonTools.log("=init===2==========")
+        CommonTools.fixFix(this.context,this.panel,1,0,0);
+        this.initConfig();
+        ConstValue.gatewayType = 1;
+        // this.initScene();//初始化地图
+	}
+
+    /**
+	 * 初始化配置
+	 */
+	private initConfig(){
+		LZMA.decompress(EBitUtil.getArr(new egret.ByteArray(RES.getRes("config_json"))), (d) => {
+			// CommonTools.log("initXYConfig=========dddd======"+d);
+            ConstValue.P_CONFIG = <ConfigInterface> JSON.parse(d);
+			// this.initScene();//初始化地图
+        }, (t) => {
+            //ELog.info("conf:",t);
+        });
+	}
+
+    public initMapData(jsonObj){
+        this.APP_MODE = jsonObj.map_mode;
+        this.FIGHT_MODE = jsonObj.fight_mode;
+        this.testGround = jsonObj.bgConf;
+        this.testMap = jsonObj.layerConf;
+        this.playerData = jsonObj.player;
+    }
+
+    private setControl(x,y){
+        let angle = Math.atan2((y-this.controlerHit_y_c),(x-this.controlerHit_x_c));//弧度 0.6
+        let theta = angle*(180/Math.PI);//角度 60
+        let x1 = this.controlerHit_x + this.r * Math.cos(theta * 3.14/180);
+        let y1 = this.controlerHit_y + this.r * Math.sin(theta * 3.14/180);
+        this.controlerHit.x = x1;
+        this.controlerHit.y = y1;
+    }
+
+    private myKeyDown(evt:any){
+        CommonTools.logDebug("keydown =====code:"+evt.keyCode)
+        if(evt.keyCode == 87 || evt.keyCode == 83 || evt.keyCode == 65 || evt.keyCode == 68){
+            let mainPl = ConstValue.P_FIGHT_OBJ.getMainPlayer();
+            if(mainPl.keyDir != evt.keyCode){
+                if(mainPl.func != null){
+                    mainPl.setMoving(false);
+                    mainPl.removeEventListener(egret.Event.ENTER_FRAME,mainPl.func, mainPl);
+                    mainPl.func = null;
+                }
+                mainPl.func = function(e:egret.Event) {
+                    mainPl.setMoving(true);
+                    mainPl.move(-1,true);
+                }
+                mainPl.addEventListener(egret.Event.ENTER_FRAME, mainPl.func, mainPl);
+                mainPl.keyDir = evt.keyCode;
+            }
+
+            if(evt.keyCode == 87){//W
+                mainPl.setMoving(true);
+                mainPl.move(0,false);
+            }
+            if(evt.keyCode == 83){//S
+                mainPl.setMoving(true);
+                mainPl.move(2,false);
+            }
+            if(evt.keyCode == 65){//A
+                mainPl.setMoving(true);
+                mainPl.move(3,false);
+            }
+            if(evt.keyCode == 68){//D
+                mainPl.setMoving(true);
+                mainPl.move(1,false);
+            }
+
+        }
+        
+        if(evt.keyCode == 74){//J
+            let mainPl = ConstValue.P_FIGHT_OBJ.getMainPlayer();
+            mainPl.markPosition(-1);
+            let sData = CommonTools.getDataJsonStr("syncPut",1,{x:mainPl.x,y:mainPl.y,idx:parseInt(mainPl.curMapIdx),playerID:0});
+            ConstValue.P_NET_OBJ.sendData2(sData);
+        }
+    }
+
+    private myKeyUp(evt:any){
+        CommonTools.logDebug("keyup =====code:"+evt.keyCode)
+        if(evt.keyCode == 87 || evt.keyCode == 83 || evt.keyCode == 65 || evt.keyCode == 68){
+            ConstValue.P_FIGHT_OBJ.controlerHit.x = ConstValue.P_FIGHT_OBJ.controlerHit_x;
+            ConstValue.P_FIGHT_OBJ.controlerHit.y = ConstValue.P_FIGHT_OBJ.controlerHit_y;
+            let mainPl = ConstValue.P_FIGHT_OBJ.getMainPlayer();
+            mainPl.setMoving(false);
+            mainPl.removeEventListener(egret.Event.ENTER_FRAME,mainPl.func, mainPl);
+            mainPl.func = null;
+            mainPl.keyDir = -1;
+
+            let sData = CommonTools.getDataJsonStr("syncPos",1,{x:mainPl.x,y:mainPl.y,direction:-1,speed:mainPl.speed,idx:parseInt(mainPl.curMapIdx),playerID:0});
+            ConstValue.P_NET_OBJ.sendData2(sData);
+        }
+    }
+
+    private initScene(){
+        if(this.APP_MODE == 2){
+            this.initRow = 9;
+            this.initColumn = 11;
+            this.scaleX = 0.8;
+            this.scaleY = 0.8;
+
+            //-----test------------------------
+            // this.testMap = this.testMap2;
+            // this.testGround = this.testGround2;
+            //-----test------------------------
+        }
+
+        //地表层
+        FightingModule.groundLayer = this.panel.getChildByName("fighting_parent").getChildByName("ground_layer");
+        FightingModule.playerLayer = this.panel.getChildByName("fighting_parent").getChildByName("player_layer");
+        FightingModule.bulletLayer = this.panel.getChildByName("fighting_parent").getChildByName("bullet_layer");
+        FightingModule.mapLayer = this.panel.getChildByName("fighting_parent").getChildByName("map_layer");
+        
+        
+        if(this.APP_MODE == 2){
+            this.panel.getChildByName("fighting_parent").getChildByName("fighting_platform").width = 802;
+            this.panel.getChildByName("fighting_parent").getChildByName("fighting_platform").height = 670;
+            this.panel.getChildByName("fighting_parent").x = 156;
+            this.panel.getChildByName("fighting_parent").y = -50;
+        }else if(this.APP_MODE == 1){
+            this.panel.getChildByName("fighting_parent").x = 145;
+            this.panel.getChildByName("fighting_parent").y = -45;
+        }
+        this.controlerParent = this.panel.getChildByName("controler_parent");
+        this.controlerHit = this.panel.getChildByName("controler_parent").getChildByName("controler_hit_btn");
+
+        this.panel.getChildByName("test").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+            let sData = CommonTools.getDataJsonStr("test",1,{v:1});
+			ConstValue.P_NET_OBJ.sendData2(sData);
+        }, this);
+
+        this.panel.getChildByName("boom_btn").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+            let mainPl = this.getMainPlayer();
+            // mainPl.fire();
+            mainPl.markPosition(-1);
+            let sData = CommonTools.getDataJsonStr("syncPut",1,{x:mainPl.x,y:mainPl.y,idx:parseInt(mainPl.curMapIdx),playerID:0});
+			ConstValue.P_NET_OBJ.sendData2(sData);
+        }, this);
+
+        this.controlerParent.addEventListener(egret.TouchEvent.TOUCH_BEGIN, function(e:egret.TouchEvent){
+            let mainPl = this.getMainPlayer();
+            if(mainPl.func != null){
+                // this.controlerHit.x = this.controlerHit_x;
+                // this.controlerHit.y = this.controlerHit_y;
+                mainPl.setMoving(false);
+                mainPl.removeEventListener(egret.Event.ENTER_FRAME,mainPl.func, mainPl);
+                mainPl.func = null;
+            }
+            mainPl.func = function(e:egret.Event) {
+				mainPl.setMoving(true);
+                mainPl.move(-1,true);
+			}
+            mainPl.addEventListener(egret.Event.ENTER_FRAME, mainPl.func, mainPl);
+        }, this);
+
+        document.addEventListener("keydown",this.myKeyDown);
+        document.addEventListener("keyup",this.myKeyUp);
+
+        this.controlerParent.addEventListener(egret.TouchEvent.TOUCH_END, function(e:egret.TouchEvent){
+            this.controlerHit.x = this.controlerHit_x;
+            this.controlerHit.y = this.controlerHit_y;
+            let mainPl = this.getMainPlayer();
+            mainPl.setMoving(false);
+            mainPl.removeEventListener(egret.Event.ENTER_FRAME,mainPl.func, mainPl);
+            mainPl.func = null;
+
+            let sData = CommonTools.getDataJsonStr("syncPos",1,{x:mainPl.x,y:mainPl.y,direction:-1,speed:mainPl.speed,idx:parseInt(mainPl.curMapIdx),playerID:0});
+			ConstValue.P_NET_OBJ.sendData2(sData);
+        }, this);
+
+        this.controlerParent.addEventListener(egret.TouchEvent.TOUCH_MOVE, function(e:egret.TouchEvent){
+            CommonTools.log("=e.localX, e.localY========x:::="+e.localX+ " y:::" +e.localY);
+
+            let mainPl = this.getMainPlayer();
+            if(e.localX >= this.controlerHit_x_c && e.localY >= this.controlerHit_y_c){//第四象限
+                if((e.localX - this.controlerHit_x_c) >= (e.localY - this.controlerHit_y_c)){//向右
+                    CommonTools.log("四-------右")
+                    // this.controlerHit.x = this.controlerHit_x + this.r;
+                    // this.controlerHit.y = this.controlerHit_y;
+                    mainPl.setMoving(true);
+                    mainPl.move(1,false);
+                }else{//向下
+                    CommonTools.log("四-------下")
+                    // this.controlerHit.x = this.controlerHit_x;
+                    // this.controlerHit.y = this.controlerHit_y + this.r;
+                    mainPl.setMoving(true);
+                    mainPl.move(2,false);
+                }
+            }else if(e.localX >= this.controlerHit_x_c && e.localY <= this.controlerHit_y_c){//第一象限
+                if((e.localX - this.controlerHit_x_c) >= (this.controlerHit_y_c - e.localY)){//向右
+                    CommonTools.log("一-------右")
+                    // this.controlerHit.x = this.controlerHit_x + this.r;
+                    // this.controlerHit.y = this.controlerHit_y;
+                    mainPl.setMoving(true);
+                    mainPl.move(1,false);
+                }else{//向上
+                    CommonTools.log("一-------上")
+                    // this.controlerHit.x = this.controlerHit_x;
+                    // this.controlerHit.y = this.controlerHit_y - this.r;
+                    mainPl.setMoving(true);
+                    mainPl.move(0,false);
+                }
+            }else if(e.localX <= this.controlerHit_x_c && e.localY <= this.controlerHit_y_c){//第二象限
+                if((this.controlerHit_x_c - e.localX) >= (this.controlerHit_y_c - e.localY)){//向左
+                    CommonTools.log("二-------左")
+                    // this.controlerHit.x = this.controlerHit_x - this.r;
+                    // this.controlerHit.y = this.controlerHit_y;
+                    mainPl.setMoving(true);
+                    mainPl.move(3,false);
+                }else{//向上
+                    CommonTools.log("二-------上")
+                    // this.controlerHit.x = this.controlerHit_x;
+                    // this.controlerHit.y = this.controlerHit_y - this.r;
+                    mainPl.setMoving(true);
+                    mainPl.move(0,false);
+                }
+            }else if(e.localX <= this.controlerHit_x_c && e.localY >= this.controlerHit_y_c){//第三象限
+                if((this.controlerHit_x_c - e.localX) >= (e.localY - this.controlerHit_y_c)){//向左
+                    CommonTools.log("三-------左")
+                    // this.controlerHit.x = this.controlerHit_x - this.r;
+                    // this.controlerHit.y = this.controlerHit_y;
+                    mainPl.setMoving(true);
+                    mainPl.move(3,false);
+                }else{//向下
+                    CommonTools.log("三-------下")
+                    // this.controlerHit.x = this.controlerHit_x;
+                    // this.controlerHit.y = this.controlerHit_y + this.r;
+                    mainPl.setMoving(true);
+                    mainPl.move(2,false);
+                }
+            }
+            this.setControl(e.localX,e.localY);
+        }, this);
+
+        let count = 0;
+        for(let i=0;i<this.initRow;i++){
+            for(let j=0;j<this.initColumn;j++){
+                let wItem = this.groundItemW;
+                let hItem = this.groundItemH;
+                let xOff = this.groundOffX;
+                let yOff = this.groundOffY;
+                if(this.APP_MODE == 2 && j > 0){//第二列才改x偏移
+                    xOff = -32;
+                    wItem = this.groundItemW*this.scaleX;
+                }
+                if(this.APP_MODE == 2 && i > 0){//第二行才改y偏移
+                    yOff = -32;
+                    hItem = this.groundItemH*this.scaleY;
+                }
+                let x = this.firstItemX + wItem*j + xOff;
+                let y = this.firstItemY + hItem*i + yOff;
+                let para = {"img":"res_"+this.testGround[count]+"_png","x":x,"y":y,"name":"ground_"+count,"curIdx":count};
+                // CommonTools.log("para========================"+JSON.stringify(para))
+                let mapItemObj = new Fight.MapItem(para);
+                mapItemObj.setRow(i);
+                mapItemObj.setColumn(j);
+                mapItemObj.setType(ConstValue.P_CONFIG["MapBase"][this.testGround[count].toString()]["Type"]);
+                if(this.APP_MODE == 2){
+                    mapItemObj.scaleX = this.scaleX;
+                    mapItemObj.scaleY = this.scaleY;
+                }
+                FightingModule.groundLayer.addChild(mapItemObj);
+                FightingModule.groundLayerSubObj[count.toString()] = mapItemObj;
+                FightingModule.groundLayerSubObjDanger[mapItemObj.getColumn()+"_"+mapItemObj.getRow()] = mapItemObj;
+
+                let offY = -48;
+                if(this.APP_MODE == 2){
+                    offY = -42;
+                }
+
+                if(this.testMap[count] <=3){
+                    offY = -9;
+                }
+
+                if(this.testMap[count] > 100 && this.playerLen <= this.getPlayerTotal()){//大于100的是人物
+                    this.playerLen ++;
+                    let paraPlayer = {}
+                    let playerObj = null;
+                    let isP1 = false;
+                    if(this.testMap[count] == this.p1){
+                        let pObj = this.getPlayerBySize(1);
+                        let offX = 40;
+                        let offY = 0;
+                        if(this.APP_MODE == 2){
+                            offX = 28;
+                        }
+                        paraPlayer = {"pObj":pObj,"side":1,"x":x+offX,"y":y+offY,"name":"role1","isAI":pObj.isAI};
+                        isP1 = true;
+                        
+                    }else{
+                        let pObj = this.getPlayerBySize(2);
+                        let offX = 40;
+                        let offY = 0;
+                        if(this.APP_MODE == 2){
+                            offX = 28;
+                        }
+                        paraPlayer = {"pObj":pObj,"side":2,"x":x+offX,"y":y+offY,"name":"role2","isAI":pObj.isAI}
+
+                    }
+                    playerObj = new Fight.Player(paraPlayer);
+                    if(playerObj.roleId == ConstValue.cacheUserInfo.id){
+                        this.curPlayer = playerObj;
+                    }
+                    if(this.APP_MODE == 2){
+                        playerObj.scaleX = this.scaleX;
+                        playerObj.scaleY =  this.scaleY;
+                    }
+                    FightingModule.playerLayer.addChild(playerObj);
+                    playerObj.markPosition(-1);
+
+                    FightingModule.playerLayerSubObj[count.toString()] = playerObj;
+                    // let xx = playerObj.getBounds();
+                    // CommonTools.logDebug("xx-----------------"+xx)
+
+                    if(playerObj.isAI == 1){
+                        let aiObj = new AIUtil(playerObj,this.testMap,this.initRow,this.initColumn,this.APP_MODE);
+                        FightingModule.aiSubObj[count.toString()] = aiObj;
+                    }
+
+                    CommonTools.log("init player x,y "+playerObj.x + " "+playerObj.y)
+                }else if(this.testMap[count] > 0 && this.testMap[count] < 100){
+                    let paraMap = {"img":"res_"+this.testMap[count]+"_png","x":x,"y":y+offY,"name":"mapitem_"+count,"curIdx":count};
+                    let mapItemObj2 = new Fight.MapItem(paraMap);
+                    mapItemObj2.setRow(i);
+                    mapItemObj2.setColumn(j);
+                    mapItemObj2.setType(ConstValue.P_CONFIG["MapBase"][this.testMap[count].toString()]["Type"]);
+                    // CommonTools.log("mapitem ------ row:"+mapItemObj2.getRow()+" column:"+mapItemObj2.getColumn()+" type:"+mapItemObj2.getType())
+                    if(this.APP_MODE == 2){
+                        mapItemObj2.scaleX = this.scaleX;
+                        mapItemObj2.scaleY = this.scaleY;
+                    }
+                    FightingModule.mapLayer.addChild(mapItemObj2);
+                    FightingModule.mapLayerSubObj[count.toString()] = mapItemObj2;
+                }
+                
+                count ++;
+            }
+        }        
+    }
+
+    private getPlayerBySize(whichSize){
+        for(let i in this.playerData){
+            let pObj = this.playerData[i];
+            if(pObj.player_side == whichSize){
+                return pObj;
+            }
+        }
+        return null;
+    }
+
+    private getPlayerTotal(){
+        let num = 0;
+        for(let i in this.playerData){
+            num++;
+        }
+        return num;
+    }
+
+    private async onClick(e: egret.TouchEvent){
+        let name = e.target.name;
+		CommonTools.log("==========name::::"+name);
+        switch(name){
+			case "replay_btn":
+                this.replay();
+				break;
+            case "goback_btn":
+            case "back_btn":
+                this.clear();
+                break;
+            default:
+				CommonTools.log("11111111 default");
+				break;
+        }
+    }
+
+    private showResultpanel(mainPlayer){
+        if(this.resultPanel == null){
+            this.maskResultBg = new eui.Image("mask_layer_png");
+            this.maskResultBg.width = this.context.getStageWidth();
+            this.maskResultBg.height = this.context.getStageHeight();
+            this.context.addChild(this.maskResultBg);
+
+            this.resultPanel = new eui.Panel();
+            this.resultPanel.horizontalCenter = 0;
+            this.resultPanel.verticalCenter = 0;
+            this.resultPanel.skinName = "resource/eui_skins/UserUI/FightResultUI.exml";
+            this.context.addChild(this.resultPanel);
+            CommonTools.fixFix(this.context,this.resultPanel,1,0,0);
+
+            let replay_btn = this.resultPanel.getChildByName("replay_btn");
+            CommonButtonHandle.beginTouch(replay_btn,this);
+            replay_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+
+            let goback_btn = this.resultPanel.getChildByName("goback_btn");
+            CommonButtonHandle.beginTouch(goback_btn,this);
+            goback_btn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+
+            let win_title_img = this.resultPanel.getChildByName("win_title_img") as eui.Image;
+            if(mainPlayer.win == 0){
+                win_title_img.source = RES.getRes("fail_png");
+                CommonAudioHandle.playEffect("failure_mp3",1);
+            }else{
+                CommonAudioHandle.playEffect("success_mp3",1);
+            }
+
+            CommonTools.niceTip(this.resultPanel,1,this);
+        }
+    }
+
+    private closeResultpanel(){
+        if(this.resultPanel != null){
+            this.context.removeChild(this.resultPanel);
+            this.resultPanel = null;
+        }
+        if(this.maskResultBg != null){
+            this.context.removeChild(this.maskResultBg);
+            this.maskResultBg = null;
+        }
+    }
+
+    public closeNice(){
+        
+    }
+
+    private isAiVs(){
+        for(let i in FightingModule.aiSubObj){
+            return true;
+        }
+        return false;
+    }
+
+    public showVsMiniGamepanel(){
+        if(this.miniGamePanel == null){
+            this.maskMiniBg = new eui.Image("fighting_vs_png");
+            this.maskMiniBg.width = this.context.getStageWidth();
+            this.maskMiniBg.height = this.context.getStageHeight();
+            this.context.addChild(this.maskMiniBg);
+
+            this.miniGamePanel = new eui.Panel();
+            this.miniGamePanel.horizontalCenter = 0;
+            this.miniGamePanel.verticalCenter = 0;
+            this.miniGamePanel.skinName = "resource/eui_skins/UserUI/FightingVsMiniGameUI.exml";
+            this.context.addChild(this.miniGamePanel);
+            CommonTools.fixFix(this.context,this.miniGamePanel,1,0,0);
+            let time_countdown = this.miniGamePanel.getChildByName("time_countdown") as eui.Label;
+            let my_click_num_lb = this.miniGamePanel.getChildByName("my_click_num_lb") as eui.Label;
+            let other_click_num_lb = this.miniGamePanel.getChildByName("other_click_num_lb") as eui.Label;
+            this.miniGamePanel.getChildByName("click_btn").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+                if(this.countDown > 0){
+                    CommonTools.addCommonTips(this.context,"倒计时中...");
+                    return;
+                }
+                let sData = CommonTools.getDataJsonStr("normalClick",1,{});
+                ConstValue.P_NET_OBJ.sendData2(sData);
+            }, this);
+
+            this.miniGamePanel.getChildByName("giveup_btn").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+                
+                
+            }, this);
+
+            this.miniGamePanel.getChildByName("use_btn").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+                
+                
+            }, this);
+            
+            this.counterTimer = new egret.Timer(1000,0);
+            this.counterTimer.addEventListener(egret.TimerEvent.TIMER,function(){
+				if (this.countDown == 0){
+                    time_countdown.visible = false;
+                    if(this.otherCount == 0){
+                        CommonTools.addCommonTips(this.context,"开始抢夺！！GO");
+                    }else{
+                        CommonTools.addCommonTips(this.context,"扑街，7头！！加油，加油...冇吃饭啊，丢");
+                    }
+                    if(this.isAiVs()){
+                        this.otherCount++;
+                        other_click_num_lb.text = this.otherCount + " 对手";
+                    }
+                    // this.counterTimer.stop();
+				}else{
+					this.countDown--;
+                    time_countdown.text = this.countDown;
+				}
+			},this);
+			this.counterTimer.start();
+        }
+    }
+
+    private updateClickData(dClickData){
+        let my_click_num_lb = this.miniGamePanel.getChildByName("my_click_num_lb") as eui.Label;
+        let other_click_num_lb = this.miniGamePanel.getChildByName("other_click_num_lb") as eui.Label;
+        for(let i in FightingModule.playerLayerSubObj){
+            let obj = FightingModule.playerLayerSubObj[i];
+            if(obj.roleId == dClickData.uid){
+                if(obj.whichSide == 1){
+                    my_click_num_lb.text = obj.name + " " + dClickData.click;
+                }else{
+                    other_click_num_lb.text = obj.name + " " + dClickData.click;
+                }
+            }
+        }
+    }
+
+    public showVspanel(){
+        if(this.vsPanel == null){
+            this.maskVsBg = new eui.Image("fighting_vs_png");
+            this.maskVsBg.width = this.context.getStageWidth();
+            this.maskVsBg.height = this.context.getStageHeight();
+            this.context.addChild(this.maskVsBg);
+
+            this.vsPanel = new eui.Panel();
+            this.vsPanel.horizontalCenter = 0;
+            this.vsPanel.verticalCenter = 0;
+            this.vsPanel.skinName = "resource/eui_skins/UserUI/FightingVsUI.exml";
+            this.context.addChild(this.vsPanel);
+            CommonTools.fixFix(this.context,this.vsPanel,1,0,0);
+        }
+    }
+
+    public releaseVsPanel(){
+        if(this.vsPanel != null){
+            this.vsPanel.getChildByName("match_tip").text = "匹配成功";
+        }else{
+            this.showVspanel();
+            this.vsPanel.getChildByName("match_tip").text = "匹配成功";
+        }
+        FightingModule.Delay(3000,function(){
+            if(this.vsPanel != null){
+                this.context.removeChild(this.vsPanel);
+                this.vsPanel = null;
+            }
+            if(this.maskVsBg != null){
+                this.context.removeChild(this.maskVsBg);
+                this.maskVsBg = null;
+            }
+            this.initScene();
+            if(this.miniGamePanel == null){
+                for(let i in FightingModule.aiSubObj){
+                    let obj = FightingModule.aiSubObj[i];
+                    obj.startAI();
+                }
+            }
+        },this);
+    }
+
+    public releaseMiniGamePanel(){
+        if(this.miniGamePanel != null){
+            this.context.removeChild(this.miniGamePanel);
+            this.miniGamePanel = null;
+        }
+        if(this.maskMiniBg != null){
+            this.context.removeChild(this.maskMiniBg);
+            this.maskMiniBg = null;
+        }
+    }
+
+    public updateInfo(dData){
+        let dMain = dData[ConstValue.cacheUserInfo.id];
+        this.infoPanel.getChildByName("group_1").getChildByName("heart_num_lb").text = dMain.life;
+        this.infoPanel.getChildByName("group_1").getChildByName("spead_num_lb").text = dMain.speed;
+        this.infoPanel.getChildByName("group_1").getChildByName("boom_num_lb").text = dMain.paopaocount;
+        this.infoPanel.getChildByName("group_1").getChildByName("fire_num_lb").text = dMain.power;
+    }
+
+    public getMainPlayer(){
+        return this.curPlayer;
+    }
+
+    private getPlayerById(roleId){
+        for(let i in FightingModule.playerLayerSubObj){
+            let pObj = FightingModule.playerLayerSubObj[i];
+            if(pObj.roleId== roleId){
+                return pObj;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 延时执行操作
+     */
+    public static Delay(time:number, func:Function, target:any){
+        var ti:egret.Timer = new egret.Timer(time,1);
+        ti.addEventListener(egret.TimerEvent.TIMER, func, target);
+        ti.start();
+    }
+
+    public getInitRow(){
+        return this.initRow;
+    }
+
+    public getInitColumn(){
+        return this.initColumn;
+    }
+
+    private syncMove(jsonData){
+        let mainPl = this.getPlayerById(jsonData.rid);
+        if(mainPl.isMainPlayer){
+            return;
+        }
+        if(jsonData.direction == -1){
+            if(mainPl.func != null){
+                mainPl.setMoving(false);
+                mainPl.removeEventListener(egret.Event.ENTER_FRAME,mainPl.func, mainPl);
+                mainPl.func = null;
+            }
+            return;
+        }
+        // mainPl.x = jsonData.x;//x,y修正一下
+        // mainPl.y = jsonData.y;
+        if(mainPl.func == null){
+            mainPl.func = function(e:egret.Event) {
+                mainPl.setMoving(true);
+                mainPl.move(-1,true);
+            }
+            mainPl.addEventListener(egret.Event.ENTER_FRAME, mainPl.func, mainPl);
+
+            mainPl.setMoving(true);
+            mainPl.move(jsonData.direction,false);
+        }else{
+            mainPl.setMoving(true);
+            mainPl.move(jsonData.direction,false);
+        }
+    }
+
+    private getMapObjByIdx(idx){
+        for(let i in FightingModule.mapLayerSubObj){
+            let obj = FightingModule.mapLayerSubObj[i];
+            if(obj.getCurIdx() == idx){
+                return obj;
+            }
+        }
+        return null;
+    }
+
+    private syncBoomZhuan(data){
+        let obj = this.getMapObjByIdx(data["breakidx"]);
+
+        for(let i in  FightingModule.aiSubObj){
+            let tAi = FightingModule.aiSubObj[i];
+            tAi.openBlock(obj.getColumn(),obj.getRow())
+        }
+
+        let baoEff = CommonTools.getAnimDraw(RES.getRes("SpeedNet_json"), RES.getRes("SpeedNet_png"), "0");
+        FightingModule.mapLayer.addChild(baoEff);
+        let x = obj.x;
+        let y = obj.y;
+        baoEff.x = x;
+        baoEff.y = y;
+        FightingModule.mapLayer.removeChild(obj);
+
+        FightingModule.mapLayerSubObj[data["breakidx"].toString()] = null;
+        delete FightingModule.mapLayerSubObj[data["breakidx"].toString()];
+
+        baoEff.scaleX = 3;
+        baoEff.scaleY = 3;
+        baoEff.x += 40;
+        baoEff.y += 70;
+        baoEff.play(1);
+        baoEff.once(egret.Event.COMPLETE, function(e:egret.Event){
+            if(data.effect["type"] != null){
+                let itemType = null;
+                if(data.effect["type"] == 1){//速度
+                    itemType = new eui.Image(RES.getRes("mini_res_json.mini_speed")); 
+                }else if(data.effect["type"] == 3){//威力
+                    itemType = new eui.Image(RES.getRes("mini_res_json.mini_weili")); 
+                }else if(data.effect["type"] == 2){//数量
+                    itemType = new eui.Image(RES.getRes("mini_res_json.mini_boom")); 
+                }
+                
+                FightingModule.groundLayerSubObj[data["breakidx"].toString()].addSub(itemType,data.effect["type"]);
+            }
+            FightingModule.mapLayer.removeChild(baoEff);
+        }, this);
+    }
+
+    private async clear(){
+        for(let i in FightingModule.aiSubObj){
+            let obj = FightingModule.aiSubObj[i];
+            obj.stopAI();
+        }
+
+        let sData = CommonTools.getDataJsonStr("exitPPRoom",1,{});
+        ConstValue.P_NET_OBJ.sendData(sData);
+        this.closeResultpanel();
+        this.context.removeChild(this.panel);
+        FightingModule.groundLayerSubObj = {};
+        FightingModule.playerLayerSubObj = {};
+        FightingModule.bulletLayerSubObj = {};
+        FightingModule.mapLayerSubObj = {};
+        FightingModule.groundLayerSubObjDanger = {};
+
+        FightingModule.aiSubObj = {};
+        document.removeEventListener("keydown",this.myKeyDown);
+        document.removeEventListener("keyup",this.myKeyUp);
+        await this.context.loadResource("preloadHall",2);
+        ConstValue.P_FIGHT_OBJ = null;
+    }
+
+    private async replay(){
+        this.clear();
+        await this.context.loadResource("fighting",3);
+    }
+
+    /**
+	 * 回包处理
+	 */
+	public handlePacket(jsonObj:any){
+        if (jsonObj.f == "syncPosBroadcase"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				this.syncMove(jsonObj.d);
+			}
+		}else if (jsonObj.f == "syncPut"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+                if(jsonObj.d["rid"] == null){
+                    return;
+                }
+				let pObj = this.getPlayerById(jsonObj.d.rid);
+                pObj.x = jsonObj.d.x;
+                pObj.y = jsonObj.d.y;
+                pObj.fire(jsonObj.d.paopaoID);
+			}
+		}else if (jsonObj.f == "syncBoomZhuan"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+                if(jsonObj.d["breakidx"] == null){
+                    return;
+                }
+				this.syncBoomZhuan(jsonObj.d);
+			}
+		}else if (jsonObj.f == "syncpickItem"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+                for(let i in jsonObj.d.player){
+                    let obj = jsonObj.d.player[i];
+                    let playobj = this.getPlayerById(obj.uid);
+                    playobj.speed = obj.speed;
+                    playobj.bulletLen = obj.power;
+                }
+                this.updateInfo(jsonObj.d.player);
+                CommonAudioHandle.playEffect("eatProp_mp3",1);
+			}
+		}else if (jsonObj.f == "gameResult"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+                for(let i in jsonObj.d.player){
+                    let obj = jsonObj.d.player[i];
+                    if(obj.uid == ConstValue.cacheUserInfo.id){
+                        this.showResultpanel(obj);
+                        break;
+                    }
+                }
+
+                for(let i in FightingModule.aiSubObj){
+                    let obj = FightingModule.aiSubObj[i];
+                    obj.stopAI();
+                }
+			}
+		}else if (jsonObj.f == "miniGameInfo"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+                ConstValue.P_FIGHT_OBJ.showVsMiniGamepanel();
+
+                for(let i in FightingModule.aiSubObj){
+                    let obj = FightingModule.aiSubObj[i];
+                    obj.stopAI();
+                }
+			}
+		}else if (jsonObj.f == "UpdateClick"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+                this.updateClickData(jsonObj.d);
+			}
+		}
+    }
+
+}

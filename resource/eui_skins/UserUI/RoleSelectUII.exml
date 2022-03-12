@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="631" height="472" x="394.33" y="179.75" anchorOffsetX="0" anchorOffsetY="0" source="role_select_ground_png"/>
+	<e:Button id="btn_close" label="" x="61.66" y="61.4" name="btn_close" anchorOffsetX="35" width="70.67" anchorOffsetY="31" height="69.27">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_back_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image width="236" height="348" x="667" y="55.56" anchorOffsetX="0" anchorOffsetY="0" source="role_select_bg_png"/>
+	<e:Image width="353" height="105" x="28.68" y="179.75" anchorOffsetX="0" anchorOffsetY="0" source="role_select_p1_png"/>
+	<e:Image width="353" height="105" x="28.68" y="180.41" anchorOffsetX="0" anchorOffsetY="0" source="role_select_pick_png"/>
+	<e:Image width="353" height="105" x="26.66" y="298.56" anchorOffsetX="0" anchorOffsetY="0" source="role_select_p2_png"/>
+	<e:Image width="353" height="105" x="26.66" y="415.99" anchorOffsetX="0" anchorOffsetY="0" source="role_select_p1_png"/>
+	<e:Image width="353" height="105" x="26.66" y="534.83" anchorOffsetX="0" anchorOffsetY="0" source="role_select_p2_png"/>
+	<e:Image width="294" height="52" x="510.69" y="571.97" anchorOffsetX="0" anchorOffsetY="0" source="role_select_down_png"/>
+	<e:Label text="精神小伙子子" x="203.16" y="217.24" anchorOffsetX="0" width="140.67" anchorOffsetY="0" height="31.34" size="22" textColor="0x9d6357" verticalAlign="middle"/>
+	<e:Label text="精神小伙子子" x="203.16" y="343.66" anchorOffsetX="0" width="140.67" anchorOffsetY="0" height="31.34" size="22" textColor="0x9D6357" verticalAlign="middle"/>
+	<e:Label text="精神小伙子子" x="203.16" y="452.82" anchorOffsetX="0" width="140.67" anchorOffsetY="0" height="31.34" size="22" textColor="0x9D6357" verticalAlign="middle"/>
+	<e:Label text="精神小伙子子" x="201.83" y="571.66" anchorOffsetX="0" width="140.67" anchorOffsetY="0" height="31.34" size="22" textColor="0x9D6357" verticalAlign="middle"/>
+	<e:Label text="精神小伙子子" x="627.82" y="488.15" anchorOffsetX="0" width="140.67" anchorOffsetY="0" height="31.34" size="22" verticalAlign="middle" textColor="0xdd644b"/>
+	<e:Button id="btn_gold" label="" x="539.24" y="578.64" anchorOffsetX="0" width="39.33" anchorOffsetY="0" height="45.33" name="btn_gold">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="mini_coin"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label id="lb_gold" text="2222" x="584.34" y="589.93" name="lb_gold" anchorOffsetX="0" width="60.33" anchorOffsetY="0" height="15.33" size="24" textColor="0xfefcfe"/>
+	<e:Image width="164" height="71" x="686.49" y="562.47" anchorOffsetX="0" anchorOffsetY="0" source="role_select_pay_01_png"/>
+	<e:Label text="购  买" x="764.49" y="597.3" size="26" textColor="0xfefcfe" anchorOffsetX="33" anchorOffsetY="13"/>
+	<e:Image width="323.67" height="487.67" x="987.67" y="145.8" anchorOffsetX="0" anchorOffsetY="0" source="role_select_right_bg_png" scale9Grid="13,13,122,128"/>
+	<e:Label text="角色基础属性" x="1024.46" y="167.78" rotation="359.83" anchorOffsetX="0" width="250.01" textAlign="center" size="26" textColor="0xb49f6b"/>
+	<e:Label text="属性描述" x="1025.33" y="494.99" rotation="359.83" anchorOffsetX="0" width="250.01" textAlign="center" size="26" textColor="0xB49F6B" anchorOffsetY="0" height="28.69"/>
+	<e:Label text="描述文字描述文字描述文字描述文字描述文字描述文字描述文" x="1037.32" y="533" anchorOffsetX="0" width="238" anchorOffsetY="0" height="87.33" size="22" textColor="0x9d6357"/>
+	<e:Image width="310" height="56" x="994.5" y="228.08" anchorOffsetX="0" anchorOffsetY="0" source="role_select_item_bg_png"/>
+	<e:Image width="310" height="56" x="994.5" y="288.41" anchorOffsetX="0" anchorOffsetY="0" source="role_select_item_bg_png"/>
+	<e:Image width="310" height="56" x="995.37" y="348.34" anchorOffsetX="0" anchorOffsetY="0" source="role_select_item_bg_png"/>
+	<e:Image width="310" height="56" x="995.37" y="407.53" anchorOffsetX="0" anchorOffsetY="0" source="role_select_item_bg_png"/>
+	<e:Button id="btn_shop" label="" x="1025.33" y="236.09" anchorOffsetX="0" width="46" anchorOffsetY="0" height="44" name="btn_shop">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="mini_heart"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btn_shop0" label="" x="1027.12" y="356.67" anchorOffsetX="0" width="46" anchorOffsetY="0" height="44" name="btn_shop">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="mini_speed"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btn_shop1" label="" x="1026.66" y="295.9" anchorOffsetX="0" width="46" anchorOffsetY="0" height="44" name="btn_shop">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="mini_boom"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btn_shop2" label="" x="1025.79" y="414.66" anchorOffsetX="0" width="46" anchorOffsetY="0" height="44" name="btn_shop">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="mini_weili"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label text="生命值" x="1073.12" y="242.43" anchorOffsetX="0" width="108.67" anchorOffsetY="0" height="31.33" size="22" textColor="0x9D6357" textAlign="center" verticalAlign="middle"/>
+	<e:Label text="22" x="1181.17" y="241.91" anchorOffsetX="0" width="108.67" anchorOffsetY="0" height="31.33" size="22" textColor="0x9D6357" textAlign="center" verticalAlign="middle"/>
+	<e:Label text="22" x="1181.17" y="302.24" anchorOffsetX="0" width="108.67" anchorOffsetY="0" height="31.33" size="22" textColor="0x9D6357" textAlign="center" verticalAlign="middle"/>
+	<e:Label text="22" x="1181.79" y="364.34" anchorOffsetX="0" width="108.67" anchorOffsetY="0" height="31.33" size="22" textColor="0x9D6357" textAlign="center" verticalAlign="middle"/>
+	<e:Label text="炸弹数" x="1073.12" y="302.23" anchorOffsetX="0" width="108.67" anchorOffsetY="0" height="31.33" size="22" textColor="0x9D6357" textAlign="center" verticalAlign="middle"/>
+	<e:Label text="速度值" x="1072.5" y="363.01" anchorOffsetX="0" width="108.67" anchorOffsetY="0" height="31.33" size="22" textColor="0x9D6357" textAlign="center" verticalAlign="middle"/>
+	<e:Label text="威力值" x="1073.12" y="418.65" anchorOffsetX="0" width="108.67" anchorOffsetY="0" height="31.33" size="22" textColor="0x9D6357" textAlign="center" verticalAlign="middle"/>
+	<e:Label text="22" x="1181.17" y="419.98" anchorOffsetX="0" width="108.67" anchorOffsetY="0" height="31.33" size="22" textColor="0x9D6357" textAlign="center" verticalAlign="middle"/>
+</e:Skin>

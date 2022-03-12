@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="NoticeGroup" width="508" height="313" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="group_1" width="491" height="292" x="9" y="9" anchorOffsetY="0" name="group_1" anchorOffsetX="0">
+		<e:Image id="img_coin_bg" width="127" height="42" x="185" y="35" anchorOffsetX="0" anchorOffsetY="0" source="mini_own" name="img_coin_bg"/>
+		<e:Button id="btn_heart" label="" x="156" y="26" anchorOffsetX="0" width="58" anchorOffsetY="0" height="60" name="btn_heart">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="mini_heart"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Label id="heart_num_lb" text="2" x="253.45" y="56" name="heart_num_lb" anchorOffsetX="36.45" anchorOffsetY="14" textAlign="center" verticalAlign="middle" width="74" textColor="0x476b8d"/>
+		<e:Image id="img_coin_bg0" width="127" height="42" x="187.5" y="109" anchorOffsetX="0" anchorOffsetY="0" source="mini_own" name="img_coin_bg"/>
+		<e:Button id="btn_speed" label="" x="158.5" y="100" anchorOffsetX="0" width="58" anchorOffsetY="0" height="60" name="btn_speed">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="mini_speed"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Label id="spead_num_lb" text="2" x="258.54" y="131" name="spead_num_lb" anchorOffsetX="37.04" anchorOffsetY="15" textAlign="center" verticalAlign="middle" width="73" textColor="0x476b8d"/>
+		<e:Image id="img_coin_bg1" width="127" height="42" x="189.5" y="178" anchorOffsetX="0" anchorOffsetY="0" source="mini_own" name="img_coin_bg"/>
+		<e:Button id="btn_boom" label="" x="155.5" y="169" anchorOffsetX="0" width="60" anchorOffsetY="0" height="60" name="btn_boom">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="mini_boom"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Label id="boom_num_lb" text="2" x="258.05" y="199" name="boom_num_lb" anchorOffsetX="37.55" anchorOffsetY="14" textAlign="center" verticalAlign="middle" width="74" textColor="0x476b8d"/>
+		<e:Image id="img_coin_bg2" width="127" height="42" x="187.5" y="248" anchorOffsetX="0" anchorOffsetY="0" source="mini_own" name="img_coin_bg"/>
+		<e:Button id="btn_power" label="" x="161.5" y="239" anchorOffsetX="0" width="58" anchorOffsetY="0" height="60" name="btn_power">
+			<e:skinName>
+				<e:Skin states="up,down,disabled">
+				<e:Image width="100%" height="100%" source="mini_weili"/>
+				<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+				</e:Skin>
+			</e:skinName>
+		</e:Button>
+		<e:Label id="fire_num_lb" text="2" x="259.57" y="269" name="fire_num_lb" anchorOffsetX="39.07" anchorOffsetY="14" textAlign="center" verticalAlign="middle" width="77" textColor="0x476b8d"/>
+		<e:Image width="214" height="56" x="138" y="14" anchorOffsetX="0" anchorOffsetY="0" source="match_art_lb_png" visible="false"/>
+	</e:Group>
+</e:Skin>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="fighting_parent" width="1077" height="738" x="101.23" y="6" anchorOffsetX="0" anchorOffsetY="0" name="fighting_parent">
+		<e:Image id="fighting_platform" width="732" height="471.57" x="185.44" y="103.73" anchorOffsetX="0" anchorOffsetY="0" name="fighting_platform" source="main_setting_bg_png" scale9Grid="4,64,171,113"/>
+		<e:Label id="tip_title" text="技能" x="349.44" y="120.62" size="36" textAlign="center" verticalAlign="middle" textColor="0x404e73" name="tip_title" anchorOffsetX="0" width="396" anchorOffsetY="0" height="34"/>
+		<e:Scroller id="t_s" width="669.7" height="392.42" x="217" y="171" anchorOffsetX="0" anchorOffsetY="0" name="t_s">
+			<e:Group id="t_g" anchorOffsetX="0" width="657.58" anchorOffsetY="0" height="400" name="t_g">
+				<e:Label id="tip_content" text="" x="12.58" y="42.08" size="24" textAlign="left" verticalAlign="top" name="tip_content" anchorOffsetX="0" width="652.85" anchorOffsetY="0" height="1080" textColor="0x5a71d1" lineSpacing="10" scaleX="1" scaleY="1"/>
+			</e:Group>
+		</e:Scroller>
+	</e:Group>
+	<e:Button id="btn_close" label="" x="1008.18" y="112.96" name="btn_close" anchorOffsetX="32" width="64.67" anchorOffsetY="34" height="70.66" scaleX="1" scaleY="1">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_close_blue_01_png" source.down="btn_close_blue_02_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+</e:Skin>

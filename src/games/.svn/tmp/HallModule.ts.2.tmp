@@ -1,0 +1,1371 @@
+/**
+ * 大厅模块
+ */
+class HallModule {
+	private context:Main;
+	private panel;
+	private panelNotice;
+	private panelSub;
+	private sCurModifyBtn:string = "";
+	private sCurModifyValue:string = "";
+	private sCurModifyValue2:string = "";
+	private choicePanel;
+	private lRank;
+	private lMyRank;
+	private sMyRankDesc;
+	private shopUIType = 1;
+	private dShopOrBagData;
+	private shopPageType = 0;
+	private shopItemNo = 0;
+	private shopItemItemID = 0;
+	private shopItemName = "";
+	private maskBg;
+	private maskBg2;
+	private barrData;
+	private barrLayer = 1;
+	private seventData;
+	private seventCur = 0;
+	private seventGetState = false;
+	private shopItemClickName = "";
+	private bodyAniDown;
+	private showWxVsPanel = null;
+	private isMainRoomer = false;
+	private selectMapData;
+	private selectKey;
+	public static isNoEnd = false;
+
+	public constructor(ct:Main) {
+		this.context = ct;
+		HallModule.isNoEnd = false;
+		// this.init();
+		this.initConfig();
+		// sData = CommonTools.getDataJsonStr("getTotalLvRank",1,{});
+		// ConstValue.P_NET_OBJ.sendData(sData);
+		// sData = CommonTools.getDataJsonStr("getFriendPvpRank",1,{});
+		// ConstValue.P_NET_OBJ.sendData(sData);
+		// sData = CommonTools.getDataJsonStr("getFriendLvRank",1,{});
+		// ConstValue.P_NET_OBJ.sendData(sData);
+	}
+
+	/**
+	 * 初始化配置
+	 */
+	private initConfig(){
+		LZMA.decompress(EBitUtil.getArr(new egret.ByteArray(RES.getRes("config_json"))), (d) => {
+			// CommonTools.log("initXYConfig=========dddd======"+d);
+            ConstValue.P_CONFIG = <ConfigInterface> JSON.parse(d);
+			// this.initScene();//初始化地图
+			this.init();
+        }, (t) => {
+            //ELog.info("conf:",t);
+        });
+	}
+
+	private init(){
+		// this.initConfig();
+		CommonAudioHandle.play("mainmenu_mp3",0);
+		this.panel = new eui.Panel();
+		this.panel.skinName = "resource/eui_skins/UserUI/HallUI.exml";
+        this.panel.title = "Title";
+        this.panel.horizontalCenter = 0;
+        this.panel.verticalCenter = 0;
+        this.context.addChild(this.panel);
+
+		// CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_match_pvp"),this);
+		this.panel.getChildByName("btn_match_pvp").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.panel.getChildByName("btn_map_diy").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.panel.getChildByName("btn_map_shop").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.panel.getChildByName("btn_map_bag").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.panel.getChildByName("btn_noend_pve").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.panel.getChildByName("btn_friend_pvp").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		this.panel.getChildByName("img_info").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_map_diy"),2,0,0);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_map_shop"),2,0,30);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_map_bag"),2,0,0);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_match_pvp"),2,0,0);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_training_pve"),2,0,0);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_noend_pve"),2,0,0);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_friend_pvp"),2,0,0);
+
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_setting"),2,0,0);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_ranking"),2,0,0);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_vip"),2,0,30);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_activity"),2,0,30);
+
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_shop"),1,0,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("info_grp"),1,44,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("img_head_bg"),1,34,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("img_info"),1,44,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("img_exp_bg"),1,27,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("img_exp_value"),1,27,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("img_coin_bg"),1,-10,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("img_zuan_bg"),1,0,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_noticetip"),1,0,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("hall_id_lb"),1,34,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("coin_num_lb"),1,-10,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("zuan_num_lb"),1,-10,10);
+		CommonTools.fixFix(this.context,this.panel.getChildByName("img_lv_lb"),1,30,10);
+
+		CommonTools.fixFix(this.context,this.panel.getChildByName("rank_grounp_main"),1,44,10);
+
+		let imgHead = this.panel.getChildByName("img_info") as eui.Image;
+		if(ConstValue.cacheUserInfo.headPic != "")imgHead.source = ConstValue.cacheUserInfo.headPic;
+
+		let lbName = this.panel.getChildByName("hall_id_lb") as eui.Label;
+		lbName.text = ConstValue.cacheUserInfo.name;
+
+		let lbLv = this.panel.getChildByName("img_lv_lb") as eui.Label;
+		lbLv.text = ConstValue.cacheUserInfo.lv;
+
+		let lbExp = this.panel.getChildByName("img_exp_value") as eui.Image;
+		lbExp.width = ConstValue.cacheUserInfo.exp * 1.0 / 100000 * lbExp.width;
+
+		let lbCoin = this.panel.getChildByName("coin_num_lb") as eui.Label;
+		lbCoin.text = ConstValue.cacheUserInfo.coin;
+
+		let lbZuan = this.panel.getChildByName("zuan_num_lb") as eui.Label;
+		lbZuan.text = ConstValue.cacheUserInfo.diamond;
+
+		if(ConstValue.cacheUserInfo != null && ConstValue.cacheUserInfo.gm == 1){//gm
+			CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_gm"),this);
+			this.panel.getChildByName("btn_gm").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		}
+		CommonTools.fixFix(this.context,this.panel.getChildByName("btn_gm"),2,44,0);
+
+		// let sData = CommonTools.getDataJsonStr("openRnakUI",1,{});
+		// ConstValue.P_NET_OBJ.sendData(sData);
+		// this.clickNotice("lb_notice_click0");
+
+		// this.btnClose = new eui.Button();
+        // this.btnClose.label = "btnClose!";
+        // this.btnClose.y = 35;
+        // this.btnClose.horizontalCenter = 0;
+        // this.context.addChild(this.btnClose);
+        // this.btnClose.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
+
+		ConstValue.gatewayType = 0;
+		//加载资源
+        // const platform:any = window.platform;
+        // platform.openDataContext.postMessage({
+        //     command:'loadRes'
+        // });
+		// Main.roomkey = 600000021;
+		CommonTools.log('--Main.roomkey--------'+Main.roomkey)
+		if(Main.roomkey != null){
+			CommonTools.log('--Main.roomkey----xxxx----'+Main.roomkey)
+			// let sData = CommonTools.getDataJsonStr("gmFunc",1,{gmCmd:"enter1V1 "+Main.roomkey});
+			// ConstValue.P_NET_OBJ.sendData(sData);
+			let sData = CommonTools.getDataJsonStr("enter1V1Room",1,{fightRoomKey:Main.roomkey});
+			ConstValue.P_NET_OBJ.sendData(sData);
+		}
+	}
+
+	private clickNotice(name:string){
+		let scroll = this.panelNotice.getChildByName("left_scroller");
+		let group = scroll.getChildByName("left_group");
+		let lb_title = this.panelNotice.getChildByName("lb_title") as eui.Label;
+		let lb_mail_info = this.panelNotice.getChildByName("lb_mail_info") as eui.Label;
+
+		let iChilds = group.numChildren;
+		let idx = parseInt(name.replace("lb_notice_click",""));
+		for(let i=0;i<iChilds;i++){
+			let childObj = group.getChildByName("p_"+i);
+			let groupT = childObj.getChildByName("group_1") as eui.Group;
+			if(i==idx){
+				groupT.getChildByName("img_yellow").visible = true;
+				groupT.getChildByName("img_red").visible = false;
+				let img_letter = groupT.getChildByName("img_letter") as eui.Image;
+				img_letter.source = RES.getRes("mail_open2_png");
+				lb_title.text = "标题：" + "喜报！！" + (i+1);
+				lb_mail_info.text = "恭喜用户1000"+i+"喜获超级大奖xxxxxxxxxxxxxx";
+			}else{
+				groupT.getChildByName("img_yellow").visible = false;
+			}
+		}
+	}
+
+	private clickShopItem(name:string){
+		this.shopItemClickName = name;
+		let scroll = this.panelNotice.getChildByName("res_scroller");
+		let group = scroll.getChildByName("res_group");
+		let img_show_icon = this.panelNotice.getChildByName("shop_show_icon") as eui.Image;
+		let lb_show_info = this.panelNotice.getChildByName("shop_show_info") as eui.Label;
+
+		let lbCoin = this.panelNotice.getChildByName("lb_gold") as eui.Label;
+		lbCoin.text = ConstValue.cacheUserInfo.coin;
+
+		let lbZuan = this.panelNotice.getChildByName("lb_diamond") as eui.Label;
+		lbZuan.text = ConstValue.cacheUserInfo.diamond;
+
+		let iChilds = group.numChildren;
+		let idx = parseInt(name.replace("shop_item_click",""));
+		if(this.shopUIType == 1){
+			// lb_show_info.text = this.dShopOrBagData.lShopInfo[idx].sDes;
+			this.shopItemNo = this.dShopOrBagData.lShopInfo[idx].iNo;
+			// this.shopItemName = this.dShopOrBagData.lShopInfo[idx].sName;
+			lb_show_info.text = this.getConf("ItemData",this.dShopOrBagData.lShopInfo[idx].iNo.toString(),"desc");
+			this.shopItemName = this.getConf("ItemData",this.dShopOrBagData.lShopInfo[idx].iNo.toString(),"name");
+		}else{
+			// lb_show_info.text = this.dShopOrBagData.lItmeInfo[idx].sDes;
+			this.shopItemNo = this.dShopOrBagData.lItmeInfo[idx].iNo;
+			this.shopItemItemID = this.dShopOrBagData.lItmeInfo[idx].iItemID;
+			// this.shopItemName = this.dShopOrBagData.lItmeInfo[idx].sName;
+			lb_show_info.text = this.getConf("ItemData",this.dShopOrBagData.lItmeInfo[idx].iNo.toString(),"desc");
+			this.shopItemName = this.getConf("ItemData",this.dShopOrBagData.lItmeInfo[idx].iNo.toString(),"name");
+		}
+		for(let i=0;i<iChilds;i++){
+			let childObj = group.getChildByName("p_"+i);
+			let groupT = childObj.getChildByName("group_1") as eui.Group;
+			let img_item = groupT.getChildByName("shop_item_icon") as eui.Image;
+			let img_bg = groupT.getChildByName("shop_item_bg") as eui.Image;
+			let source_bg_not = "shop_item_not_png";
+			let source_bg_yes = "shop_item_yes_png";
+			if(this.shopUIType == 2){
+				source_bg_not = "bag_item_not_png";
+				source_bg_yes = "bag_item_yes_png";
+			}
+			if(i==idx){
+				img_show_icon.source = img_item.source;
+				img_bg.source = source_bg_yes;
+			}else{
+				img_bg.source = source_bg_not;
+			}
+		}
+	}
+
+	private clickShopPage(name:string){
+		let btn_fashion = this.panelNotice.getChildByName("btn_fashion") as eui.Image;
+		let btn_paopao = this.panelNotice.getChildByName("btn_paopao") as eui.Image;
+		let btn_texiao = this.panelNotice.getChildByName("btn_texiao") as eui.Image;
+		let btn_daoju = this.panelNotice.getChildByName("btn_daoju") as eui.Image;
+		let t_shi = this.panelNotice.getChildByName("t_shi") as eui.Label;
+		let t_zhuang = this.panelNotice.getChildByName("t_zhuang") as eui.Label;
+		let t_pao1 = this.panelNotice.getChildByName("t_pao1") as eui.Label;
+		let t_pao2 = this.panelNotice.getChildByName("t_pao2") as eui.Label;
+		let t_te = this.panelNotice.getChildByName("t_te") as eui.Label;
+		let t_xiao = this.panelNotice.getChildByName("t_xiao") as eui.Label;
+		let t_dao = this.panelNotice.getChildByName("t_dao") as eui.Label;
+		let t_ju = this.panelNotice.getChildByName("t_ju") as eui.Label;
+		let source_not = "shop_page_not_png";
+		let source_yes = "shop_page_yes_png";
+		let color_not = 0xfff1cf;
+		let color_yes = 0xea8c31;
+		if(this.shopUIType == 2){
+			source_not = "rank_select_01_png";
+			source_yes = "rank_select_02_png";
+			color_not = 0xa0b3dc;
+			color_yes = 0x7479db;
+		}
+		let iType = 1;
+		switch(name){
+			case "btn_one_lb":
+				btn_fashion.source = source_yes;
+				btn_paopao.source = source_not;
+				btn_texiao.source = source_not;
+				btn_daoju.source = source_not;
+				t_shi.textColor = color_yes;
+				t_zhuang.textColor = color_yes;
+				t_pao1.textColor = color_not;
+				t_pao2.textColor = color_not;
+				t_te.textColor = color_not;
+				t_xiao.textColor = color_not;
+				t_dao.textColor = color_not;
+				t_ju.textColor = color_not;
+				iType = 1;
+				break;
+			case "btn_two_lb":
+				btn_fashion.source = source_not;
+				btn_paopao.source = source_yes;
+				btn_texiao.source = source_not;
+				btn_daoju.source = source_not;
+				t_shi.textColor = color_not;
+				t_zhuang.textColor = color_not;
+				t_pao1.textColor = color_yes;
+				t_pao2.textColor = color_yes;
+				t_te.textColor = color_not;
+				t_xiao.textColor = color_not;
+				t_dao.textColor = color_not;
+				t_ju.textColor = color_not;
+				iType = 2;
+				break;
+			case "btn_three_lb":
+				btn_fashion.source = source_not;
+				btn_paopao.source = source_not;
+				btn_texiao.source = source_yes;
+				btn_daoju.source = source_not;
+				t_shi.textColor = color_not;
+				t_zhuang.textColor = color_not;
+				t_pao1.textColor = color_not;
+				t_pao2.textColor = color_not;
+				t_te.textColor = color_yes;
+				t_xiao.textColor = color_yes;
+				t_dao.textColor = color_not;
+				t_ju.textColor = color_not;
+				iType = 3;
+				break;
+			case "btn_four_lb":
+				btn_fashion.source = source_not;
+				btn_paopao.source = source_not;
+				btn_texiao.source = source_not;
+				btn_daoju.source = source_yes;
+				t_shi.textColor = color_not;
+				t_zhuang.textColor = color_not;
+				t_pao1.textColor = color_not;
+				t_pao2.textColor = color_not;
+				t_te.textColor = color_not;
+				t_xiao.textColor = color_not;
+				t_dao.textColor = color_yes;
+				t_ju.textColor = color_yes;
+				iType = 4;
+				break;
+			default:
+				break;
+		}
+		if(this.shopUIType == 1){
+			this.shopPageType = iType - 1;
+			let sData_shop = CommonTools.getDataJsonStr("openShopUI",1,{iType:this.shopPageType});
+			ConstValue.P_NET_OBJ.sendData(sData_shop);
+		}else{
+			this.shopPageType = iType - 1;
+			let sData_shop = CommonTools.getDataJsonStr("openBagUI",1,{iType:this.shopPageType});
+			ConstValue.P_NET_OBJ.sendData(sData_shop);
+		}
+	}
+
+	private async onClick(e: egret.TouchEvent){
+		if(this.context.loadingView!=null && !ConstValue.P_IS_DEBUG){
+			CommonTools.log("还在加载中......return ");
+			return;
+		}
+
+		let name = e.target.name;
+		CommonTools.log("==========name::::"+name);
+		if(name.indexOf("lb_notice_click")>=0){
+			this.clickNotice(name);
+			return;
+		}else if(name.indexOf("shop_item_click")>=0){
+			this.clickShopItem(name);
+			return;
+		}
+
+		switch(name){
+			case "btn_close":
+				this.closeNotice();
+				break;
+
+			case "btn_close_wx_vs":
+				this.closeWxVsUI();
+				break;
+
+			case "btn_start":
+				if(this.isMainRoomer){
+					let sDataReady = CommonTools.getDataJsonStr("startGame1V1",1,{fightRoomKey:Main.roomkey});
+					ConstValue.P_NET_OBJ.sendData(sDataReady);
+				}else{
+					let sDataReady = CommonTools.getDataJsonStr("setReady1V1",1,{fightRoomKey:Main.roomkey});
+					ConstValue.P_NET_OBJ.sendData(sDataReady);
+				}
+				break;
+
+			case "btn_shop":
+				CommonTools.addCommonTips(this.context,ConstValue.P_SEND_WAITING);
+				break;
+			
+			case "btn_rank":
+				let sData = CommonTools.getDataJsonStr("openRnakUI",1,{});
+				ConstValue.P_NET_OBJ.sendData(sData);
+				break;
+
+			case "all_rank_lb":
+			case "match_rank_lb":
+				let sData_rank_1 = CommonTools.getDataJsonStr("getTotalPvpRank",1,{});
+				ConstValue.P_NET_OBJ.sendData(sData_rank_1);
+				break;
+
+			case "lv_rank_lb":
+				let sData_rank_2 = CommonTools.getDataJsonStr("getTotalLvRank",1,{});
+				ConstValue.P_NET_OBJ.sendData(sData_rank_2);
+				break;
+
+			case "btn_noticetip":
+				this.showNotice("resource/eui_skins/UserUI/NoticeUI.exml",name);
+				break
+
+			case "btn_match_pvp":
+				await this.context.loadResource("fighting",3);
+				break;
+
+			case "btn_friend_pvp":
+				this.showNotice("resource/eui_skins/UserUI/SelectShareVsMapUI.exml",name);
+				break;
+
+			case "btn_noend_pve":
+				let sData_noend = CommonTools.getDataJsonStr("C2GOpenWujinUI",1,{diffLevel:1});
+				ConstValue.P_NET_OBJ.sendData(sData_noend);
+				break;
+			
+			case "btn_map_diy":
+				await this.context.loadResource("diymap",4);
+				break;
+
+			case "btn_map_shop":
+				let sData_shop = CommonTools.getDataJsonStr("openShopUI",1,{iType:0});
+				ConstValue.P_NET_OBJ.sendData(sData_shop);
+				break
+
+			case "btn_map_bag":
+				let sData_bag = CommonTools.getDataJsonStr("openBagUI",1,{iType:0});
+				ConstValue.P_NET_OBJ.sendData(sData_bag);
+				break
+
+			case "img_info":
+				this.showNotice("resource/eui_skins/UserUI/RoleInfoUI.exml","btn_img_info");
+				break
+
+			case "btn_close_edit":
+				this.closeSub();
+				break;
+
+			case "btn_gm":
+				this.showEditUI(name);
+				break;
+
+			case "btn_one_lb":			
+			case "btn_two_lb":
+			case "btn_three_lb":
+			case "btn_four_lb":
+				this.clickShopPage(name);
+				break;
+			
+			case "btn_buy":
+				if(this.shopUIType == 1){
+					let sDataBuy = CommonTools.getDataJsonStr("Buy",1,{iNo:this.shopItemNo,iType:this.shopPageType,num:1});
+					ConstValue.P_NET_OBJ.sendData(sDataBuy);
+				}else{
+					let sDataUse = CommonTools.getDataJsonStr("useItem",1,{iNo:this.shopItemNo,iType:this.shopPageType,iItemID:this.shopItemItemID});
+					ConstValue.P_NET_OBJ.sendData(sDataUse);
+				}
+				break;
+
+			case "btn_confirm_modify":
+				let account_lb_txt = this.panelSub.getChildByName("account_lb_txt") as eui.Label;
+				if(account_lb_txt.text == ""){
+					CommonTools.addCommonTips(this.context,ConstValue.P_MODIFY_NULL_FAIL);
+					return;
+				}
+				if(ConstValue.P_IS_DEBUG){
+					CommonTools.addCommonTips(this.context,ConstValue.P_SEND_MODIFY_SUCCESS);
+					this.closeSub();
+				}else{
+					this.sCurModifyValue = account_lb_txt.text;
+					let sData = "";
+					if(this.sCurModifyBtn == "btn_gm"){
+						sData = CommonTools.getDataJsonStr("gmFunc",1,{gmCmd:this.sCurModifyValue});
+					}
+					if(sData == ""){
+						if(ConstValue.P_IS_INNER){
+							CommonTools.addCommonTips(this.context,"btn_confirm_modify sData 为空");
+						}
+						return;
+					}
+					ConstValue.P_NET_OBJ.sendData(sData);
+				}
+				break;
+
+			default:
+				CommonTools.log("11111111 default");
+				break;
+		}
+	}
+
+	/**
+     * 排行榜关闭按钮
+     */
+    private btnClose: eui.Button;
+
+	private bitmap: egret.Bitmap;
+
+    private isdisplay = false;
+
+    /**
+     * 排行榜遮罩，为了避免点击开放数据域影响到主域，在主域中建立一个遮罩层级来屏蔽点击事件.</br>
+     * 根据自己的需求来设置遮罩的 alpha 值 0~1.</br>
+     * 
+     */
+    private rankingListMask: egret.Shape;
+
+	private getConf(tablename,index,key){
+		try {
+			return ConstValue.P_CONFIG[tablename][index][key];
+		} catch (error) {
+			return "";
+		}
+		
+	}
+
+    /**
+     * 点击按钮
+     * Click the button
+     */
+    private async onButtonClick(e: egret.TouchEvent) {
+        // let openDataContext = wx.getOpenDataContext();
+		CommonTools.log("shareAppMessage-------1")
+		let sData = CommonTools.getDataJsonStr("gmFunc",1,{gmCmd:"test1v1"});
+		ConstValue.P_NET_OBJ.sendData(sData);
+        let platform: any = window.platform;
+		await platform.shareAppMessage(ConstValue.cacheUserInfo.id+"");
+		CommonTools.log("shareAppMessage-------2")
+
+        // if (this.isdisplay) {
+        //     this.bitmap.parent && this.bitmap.parent.removeChild(this.bitmap);
+        //     this.rankingListMask.parent && this.rankingListMask.parent.removeChild(this.rankingListMask);
+        //     this.isdisplay = false;
+        //     platform.openDataContext.postMessage({
+        //         isDisplay: this.isdisplay,
+        //         text: 'hello',
+        //         year: (new Date()).getFullYear(),
+        //         command: "close"
+        //     });
+        // } else {
+        //     //处理遮罩，避免开放数据域事件影响主域。
+        //     this.rankingListMask = new egret.Shape();
+        //     this.rankingListMask.graphics.beginFill(0x000000, 1);
+        //     this.rankingListMask.graphics.drawRect(0, 0, this.context.stage.width, this.context.stage.height);
+        //     this.rankingListMask.graphics.endFill();
+        //     this.rankingListMask.alpha = 0.5;
+        //     this.rankingListMask.touchEnabled = true;
+        //     this.context.addChild(this.rankingListMask);
+
+        //     //简单实现，打开这关闭使用一个按钮。
+        //     this.context.addChild(this.btnClose);
+        //     //主要示例代码开始
+        //     this.bitmap = platform.openDataContext.createDisplayObject(null, this.context.stage.stageWidth, this.context.stage.stageHeight);
+        //     this.context.addChild(this.bitmap);
+		// 	platform.openDataContext.postMessage({
+        //         command: "loadRes"
+        //     });
+        //     //主域向子域发送自定义消息
+        //     platform.openDataContext.postMessage({
+        //         isDisplay: this.isdisplay,
+        //         text: 'hello',
+        //         year: (new Date()).getFullYear(),
+        //         command: "open"
+        //     });
+        //     //主要示例代码结束            
+        //     this.isdisplay = true;
+        // }
+ 
+    }
+
+	private showNotice(exmlName:string,btnName:string){
+		this.maskBg = new eui.Image("mask_layer_png");
+		this.maskBg.width = this.context.getStageWidth();
+		this.maskBg.height = this.context.getStageHeight();
+		this.context.addChild(this.maskBg);
+
+		this.panelNotice = new eui.Panel();
+		this.panelNotice.skinName = exmlName;
+        this.panelNotice.title = "Title";
+        this.panelNotice.horizontalCenter = 0;
+        this.panelNotice.verticalCenter = 0;
+        this.context.addChild(this.panelNotice);
+		CommonTools.fixFix(this.context,this.panelNotice,1,0,0);
+
+		CommonButtonHandle.beginTouch(this.panelNotice.getChildByName("btn_close"),this);
+		this.panelNotice.getChildByName("btn_close").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		
+		this.handlePanel(this.panelNotice,btnName);
+		CommonTools.niceTip(this.panelNotice,1,this);
+	}
+
+	private showWxVsUI(dData){
+
+		this.maskBg2 = new eui.Image("vs_bg_1v1_png");
+		this.maskBg2.width = this.context.getStageWidth();
+		this.maskBg2.height = this.context.getStageHeight();
+		this.context.addChild(this.maskBg2);
+
+		this.showWxVsPanel = new eui.Panel();
+		this.showWxVsPanel.skinName = "resource/eui_skins/UserUI/WxVsWaitUI.exml";
+        this.showWxVsPanel.title = "Title";
+        this.showWxVsPanel.horizontalCenter = 0;
+        this.showWxVsPanel.verticalCenter = 0;
+        this.context.addChild(this.showWxVsPanel);
+		CommonTools.fixFix(this.context,this.showWxVsPanel,1,0,0);
+
+		CommonButtonHandle.beginTouch(this.showWxVsPanel.getChildByName("btn_close_wx_vs"),this);
+		this.showWxVsPanel.getChildByName("btn_close_wx_vs").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+		
+		CommonButtonHandle.beginTouch(this.showWxVsPanel.getChildByName("btn_start"),this);
+		this.showWxVsPanel.getChildByName("btn_start").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+
+		this.updateWxVsUI(dData);
+	}
+
+	private updateWxVsUI(dData){
+		let left_online = this.showWxVsPanel.getChildByName("left_online") as eui.Label;
+		let left_name = this.showWxVsPanel.getChildByName("left_name") as eui.Label;
+		let left_ready = this.showWxVsPanel.getChildByName("left_ready") as eui.Label;
+
+		let right_online = this.showWxVsPanel.getChildByName("right_online") as eui.Label;
+		let right_name = this.showWxVsPanel.getChildByName("right_name") as eui.Label;
+		let right_ready = this.showWxVsPanel.getChildByName("right_ready") as eui.Label;
+
+		if(dData.lWaitInfo.length == 1){
+			left_online.text = dData.lWaitInfo[0].isOnline == 1?"在线" : "等待";
+			left_name.text = dData.lWaitInfo[0].name;
+			left_ready.text = dData.lWaitInfo[0].isReady == 1?"已准备" : "等待";
+
+			if(dData.lWaitInfo[0].rid == ConstValue.cacheUserInfo.id){
+				this.isMainRoomer = true;
+			}
+		}else{
+			left_online.text = dData.lWaitInfo[0].isOnline == 1?"在线" : "等待";
+			left_name.text = dData.lWaitInfo[0].name;
+			left_ready.text = dData.lWaitInfo[0].isReady == 1?"已准备" : "等待";
+
+			right_online.text = dData.lWaitInfo[1].isOnline == 1?"在线" : "等待";
+			right_name.text = dData.lWaitInfo[1].name;
+			right_ready.text = dData.lWaitInfo[1].isReady == 1?"已准备" : "等待";
+		}
+
+		if(dData.MapInfo["roleId"] != null){
+			this.showWxVsPanel.getChildByName("img_wx_wenhao").visible = false;
+			new MapMiniDIYModule(this.showWxVsPanel,dData.MapInfo.bgconf,dData.MapInfo.layerconf,3);
+		}
+		if(dData.lWaitInfo.length == 1){
+			let img_lefthead = this.showWxVsPanel.getChildByName("img_lefthead") as eui.Image;
+			if(dData.lWaitInfo[0].head != "")img_lefthead.source = dData.lWaitInfo[0].head;
+		}
+		if(dData.lWaitInfo.length == 2){
+			let img_lefthead = this.showWxVsPanel.getChildByName("img_lefthead") as eui.Image;
+			if(dData.lWaitInfo[0].head != "")img_lefthead.source = dData.lWaitInfo[0].head;
+			let img_righthead = this.showWxVsPanel.getChildByName("img_righthead") as eui.Image;
+			if(dData.lWaitInfo[1].head != "")img_righthead.source = dData.lWaitInfo[1].head;
+		}
+		
+	}
+
+	private showEditUI(btnName:string){
+		this.panelSub = new eui.Panel();
+		this.panelSub.skinName = "resource/eui_skins/UserUI/EditUI.exml";
+        this.panelSub.title = "Title";
+        this.panelSub.horizontalCenter = 0;
+        this.panelSub.verticalCenter = 0;
+        this.context.addChild(this.panelSub);
+
+		CommonButtonHandle.beginTouch(this.panelSub.getChildByName("btn_close_edit"),this);
+		this.panelSub.getChildByName("btn_close_edit").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+
+		CommonButtonHandle.beginTouch(this.panelSub.getChildByName("btn_confirm_modify"),this);
+		this.panelSub.getChildByName("btn_confirm_modify").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+
+		this.panelSub.getChildByName("lb_edit_title").text = ConstValue.P_MODIFY_TITLE;
+		this.sCurModifyBtn = btnName;
+		if (btnName == "modify_nichen_btn"){
+			this.panelSub.getChildByName("lb_desc").text = ConstValue.P_MODIFY_NICHENG;
+		}else if (btnName == "modify_pwd_btn"){
+
+			this.panelSub.getChildByName("lb_old_pwd").text = ConstValue.P_MODIFY_OLD_PWD;
+			this.panelSub.getChildByName("lb_desc").text = ConstValue.P_MODIFY_NEW_PWD;
+			this.panelSub.getChildByName("lb_new_pwd").text = ConstValue.P_MODIFY_NEW_PWD;
+
+			this.panelSub.getChildByName("lb_old_pwd").visible = true;
+			this.panelSub.getChildByName("bg_old").visible = true;
+			this.panelSub.getChildByName("account_lb_old").visible = true;
+			this.panelSub.getChildByName("account_lb_old").displayAsPassword = true;
+
+			this.panelSub.getChildByName("account_lb_txt").displayAsPassword = true;
+
+			this.panelSub.getChildByName("lb_new_pwd").visible = true;
+			this.panelSub.getChildByName("bg_new").visible = true;
+			this.panelSub.getChildByName("account_lb_new").visible = true;
+			this.panelSub.getChildByName("account_lb_new").displayAsPassword = true;
+
+		}else if (btnName == "modify_realname_btn"){
+			this.panelSub.getChildByName("lb_desc").text = ConstValue.P_MODIFY_REALNAME;
+		}else if (btnName == "modify_wx_btn"){
+			this.panelSub.getChildByName("lb_desc").text = ConstValue.P_MODIFY_WX;
+		}else if (btnName == "modify_beget_btn"){
+			this.panelSub.getChildByName("lb_desc").text = ConstValue.P_MODIFY_BEGET;
+		}else if (btnName == "btn_gm"){
+			this.panelSub.getChildByName("lb_edit_title").text = "gm";
+			this.panelSub.getChildByName("lb_desc").text = "输入命令：";
+		}else if (btnName == "hall_question_btn"){
+			this.panelSub.getChildByName("lb_edit_title").text = "反馈";
+			this.panelSub.getChildByName("lb_desc").text = "问题描述：";
+		}
+
+	}
+
+	private showChoiceUI(){
+		if(this.choicePanel == null){
+			this.choicePanel = new eui.Panel();
+			this.choicePanel.skinName = "resource/eui_skins/UserUI/OptionUI.exml";
+			this.choicePanel.title = "Title";
+			this.context.addChild(this.choicePanel);
+
+			let x = this.panel.getChildByName("btn_choice").x ;
+			let y = this.panel.getChildByName("btn_choice").y ;
+			this.choicePanel.x = x - 50;
+			this.choicePanel.y = y + 50;
+		}else{
+			this.context.removeChild(this.choicePanel);
+			this.choicePanel = null;
+		}
+	}
+
+	private handleRank(group,parG){
+		for(let i in this.lRank){
+			let arr = this.lRank[i];
+			let ii = parseInt(i);
+			CommonTools.log("lRank-------i:"+i)
+			let panelT = new eui.Panel();
+			panelT.skinName = "resource/eui_skins/UserUI/RankGroup.exml";
+			panelT.name = "p_"+i;
+			panelT.y = ii*72;
+			group.addChild(panelT);
+			let groupT = panelT.getChildByName("group_1") as eui.Group;
+			let rank = groupT.getChildByName("rank") as eui.Label;
+			rank.text = (ii+1)+"";
+			let name = groupT.getChildByName("name") as eui.Label;
+			name.name = arr[1];
+			let desc = groupT.getChildByName("desc") as eui.Label;
+			desc.text = "胜场 ： "+arr[3]+"   胜率："+arr[4]+"%";
+		}
+
+		let rankG = parG.getChildByName("myrankG") as eui.Group;
+		let rank = rankG.getChildByName("myrank") as eui.Label;
+		rank.text = this.sMyRankDesc;
+		let name = rankG.getChildByName("name") as eui.Label;
+		name.text = this.lMyRank[1];
+		let desc = rankG.getChildByName("desc") as eui.Label;
+		desc.text = "胜场 ： "+this.lMyRank[3]+"   胜率："+this.lMyRank[4]+"%";
+	}
+
+	private handleSeventDay(){
+		for(let i=1;i<=7;i++){
+			if(this.seventCur == 0 && this.seventData[i.toString()].bGet == 0){
+				this.seventCur = i;
+			}
+			if(this.seventCur == i && this.seventData[i.toString()].bGet == 1){
+				this.seventGetState = true;
+			}
+
+			let iconImg = this.panelNotice.getChildByName("item_icon_"+i) as eui.Image;
+			iconImg.source = this.getConf("ItemData",this.seventData[i.toString()].itemNo,"res") + "_png";
+
+			let itemName = this.panelNotice.getChildByName("lb_name_"+i) as eui.Label;
+			itemName.text = this.getConf("ItemData",this.seventData[i.toString()].itemNo,"name");
+
+			let stateImg = this.panelNotice.getChildByName("item_state_"+i) as eui.Image;
+			if(this.seventData[i.toString()].bGet == 0){
+				stateImg.source = "sevent_get_png";
+			}else{
+				stateImg.source = "sevent_got_png";
+			}
+
+			this.panelNotice.getChildByName("item_lb_"+i).addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+				let name = e.target.name;
+				let idx = parseInt(name.replace("item_lb_",""));
+				if(idx > this.seventCur){
+					CommonTools.addCommonTips(this.context,"请领取第"+this.seventCur+"天奖励！");
+				}else{
+					if(!this.seventGetState){
+						let sData = CommonTools.getDataJsonStr("getSeventDayReward",1,{});
+						ConstValue.P_NET_OBJ.sendData(sData);
+					}else{
+						CommonTools.addCommonTips(this.context,"已领取当天奖励");
+					}
+				}
+			}, this);
+		}
+	}
+
+	private handleGetMyMaps(){
+
+        let group = this.panelNotice.getChildByName("fighting_parent")
+            .getChildByName("scroll").getChildByName("scroll_group") as eui.Group;
+
+        let i = 0;
+        for(let key in this.selectMapData){
+            let obj = this.selectMapData[key];
+            
+            let panelT = new eui.Panel();
+            panelT.skinName = "resource/eui_skins/UserUI/MapViewGroup.exml";
+            panelT.name = "p_"+i;
+            panelT.x += 40;
+            panelT.y += 50+10*i+255*i; 
+            group.addChild(panelT);
+
+            panelT.getChildByName("view_fight_btn").visible = false;
+            panelT.getChildByName("view_change_btn").visible = false;
+
+            let panelGroup = panelT.getChildByName("group_1") as eui.Group;
+            let lb_title = panelGroup.getChildByName("lb_title") as eui.Label;
+            lb_title.text = obj.mapName;
+            let lb_author = panelGroup.getChildByName("lb_author") as eui.Label;
+            lb_author.text = ConstValue.cacheUserInfo.name;
+            let lb_sign = panelGroup.getChildByName("lb_sign") as eui.Label;
+            lb_sign.text = obj.mapSign;
+
+			let btn_add = panelT.getChildByName("view_add_btn") as eui.Button;
+			btn_add.label = "邀 请";
+            btn_add.addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+                this.selectKey = key;
+				let sData_friend_pvp = CommonTools.getDataJsonStr("open1V1RoomByMap",1,{mapID:parseInt(this.selectKey)});
+				ConstValue.P_NET_OBJ.sendData(sData_friend_pvp);
+            }, this);  
+
+            new MapMiniDIYModule(panelT,obj.bgconf,obj.layerconf,2);
+            i++;
+        } 
+
+	}
+
+	private handleSelectMap(){
+		this.panelNotice.getChildByName("btn_random").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			this.panelNotice.getChildByName("img_left").visible = true;
+			this.panelNotice.getChildByName("img_right").visible = false;
+		}, this);
+
+		this.panelNotice.getChildByName("btn_mymap").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			this.panelNotice.getChildByName("img_left").visible = false;
+			this.panelNotice.getChildByName("img_right").visible = true;
+		}, this);
+
+		this.panelNotice.getChildByName("btn_certain_map").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			this.closeNotice();
+			if(this.panelNotice.getChildByName("img_left").visible){
+				let sData_friend_pvp = CommonTools.getDataJsonStr("open1V1Room",1,{});
+				ConstValue.P_NET_OBJ.sendData(sData_friend_pvp);
+			}else{
+				let sDataMymap = CommonTools.getDataJsonStr("getMyMaps",1,{});
+                ConstValue.P_NET_OBJ.sendData(sDataMymap);
+			}
+		}, this);
+	}
+
+	private handleNoEnd(group,parG){
+		let firstX = 25;
+		let firstY = 128;
+		let i = 1;
+		let starDesc = parG.getChildByName("lb_star_total") as eui.Label;
+		let starBg = parG.getChildByName("lb_bg_total") as eui.Image;
+		starDesc.text = "获得"+this.barrData.nowstar+"/"+this.barrData.totalstar+"颗星";
+		let pro = this.barrData.nowstar / this.barrData.totalstar*1.0;
+		starBg.width = starBg.width*pro;
+
+		let guankaLayer = parG.getChildByName("guanka_layer") as eui.Label;
+		guankaLayer.text = "第"+this.barrLayer+"层";
+		
+		parG.getChildByName("btn_left").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			if(this.barrLayer == 1){
+				CommonTools.addCommonTips(this.context,"当前为首页关卡");
+				return;
+			}
+			this.barrLayer--;
+			let sData_noend = CommonTools.getDataJsonStr("C2GOpenWujinUI",1,{diffLevel:this.barrLayer});
+			ConstValue.P_NET_OBJ.sendData(sData_noend);
+		}, this);
+
+		parG.getChildByName("btn_right").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			if(this.barrLayer + 1 > this.barrData.totallayer){
+				CommonTools.addCommonTips(this.context,"当前为尾页关卡");
+				return;
+			}
+			this.barrLayer++;
+			let sData_noend = CommonTools.getDataJsonStr("C2GOpenWujinUI",1,{diffLevel:this.barrLayer});
+			ConstValue.P_NET_OBJ.sendData(sData_noend);
+		}, this);
+
+		for(let idx in this.barrData.barrierList){
+			let obj = this.barrData.barrierList[idx];
+			let panelT = new eui.Panel();
+			panelT.skinName = "resource/eui_skins/UserUI/noEndBarrStartGroup.exml";
+			panelT.name = "p_"+i;
+			let column = i%6 == 0? 6 : i%6;
+			let row = 0;
+			if(i%6==0){
+				row = i/6.0;
+			}else{
+				row = i/6.0 + 1;
+			}
+			panelT.x = firstX + 165*(column - 1);
+			panelT.y = firstY + 120*(Math.floor(row - 1));
+			// panelT.y = firstY;
+			group.addChild(panelT);
+			let groupT = panelT.getChildByName("group_1") as eui.Group;
+			let num_lb = groupT.getChildByName("num_lb") as eui.Label;
+			num_lb.text = obj.barrierNo + "";
+			for(let iStar=1;iStar<=obj.star;iStar++){
+				if(iStar>3)break;
+				let imgStar = groupT.getChildByName("star_0"+iStar) as eui.Image;
+				imgStar.source = "barr_pass_start_png";
+			}
+
+			panelT.addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+                // CommonTools.log("xxxxxxx,,,,"+obj.barrierNo)
+				HallModule.isNoEnd = true;
+				let sData_gobarr = CommonTools.getDataJsonStr("C2GGotoBarrier",1,{barrierNo:obj.barrierNo});
+				ConstValue.P_NET_OBJ.sendData(sData_gobarr);
+            }, this);
+
+			i++;
+		}
+	}
+
+	private updateShopUI(clickFlag){
+		let scrollShop = this.panelNotice.getChildByName("res_scroller");
+		let groupShop = scrollShop.getChildByName("res_group") as eui.Group;
+		groupShop.removeChildren();
+		let iCount = 0;
+		if(this.shopUIType == 1){
+			iCount = this.dShopOrBagData.lShopInfo.length;
+		}else{
+			iCount = this.dShopOrBagData.lItmeInfo.length;
+			if(this.shopItemClickName != ""){
+				let idx = parseInt(this.shopItemClickName.replace("shop_item_click",""));
+				if(idx >= iCount){
+					clickFlag = true;
+					this.shopItemClickName = "";
+				}
+			}
+		}
+		for(let i=0;i<iCount;i++){
+			let panelT = new eui.Panel();
+			panelT.skinName = "resource/eui_skins/UserUI/ShopItemGroup.exml";
+			panelT.name = "p_"+i;
+			let xOff = 5;
+			if(this.shopUIType == 2)xOff = 20;
+			panelT.x = xOff+ 180*(i%3) + 5*(i%3);
+			panelT.y = 20+ 230*(Math.floor(i/3)) + 20*(Math.floor(i/3));
+			groupShop.addChild(panelT);
+			let groupT = panelT.getChildByName("group_1") as eui.Group;
+			let ttt = groupT.getChildByName("shop_item_bg") as eui.Image;
+			let payLogo = groupT.getChildByName("shop_item_pay") as eui.Image;
+			let img_item = groupT.getChildByName("shop_item_icon") as eui.Image;
+			let labelClick = groupT.getChildByName("shop_item_click") as eui.Label;
+			labelClick.name = "shop_item_click" + i;
+			labelClick.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+
+			let labelName = groupT.getChildByName("shop_item_name") as eui.Label;
+			let labelMoney = groupT.getChildByName("shop_item_money") as eui.Label;
+			
+			if(this.shopUIType == 1){
+				// img_item.source = this.dShopOrBagData.lShopInfo[i].sRes + "_png";
+				// labelName.text = this.dShopOrBagData.lShopInfo[i].sName;
+				img_item.source = this.getConf("ItemData",this.dShopOrBagData.lShopInfo[i].iNo.toString(),"res") + "_png";
+				// CommonTools.log("i-----------"+i);
+				labelName.text = this.getConf("ItemData",this.dShopOrBagData.lShopInfo[i].iNo.toString(),"name");
+				labelMoney.text = this.dShopOrBagData.lShopInfo[i].NeedCoin;
+				if(i == 0){
+					ttt.source = "shop_item_yes_png";
+					if(clickFlag)this.clickShopItem(labelClick.name);
+				}
+			}else{
+				payLogo.visible = false;
+				// img_item.source = this.dShopOrBagData.lItmeInfo[i].sRes + "_png";
+				// labelName.text = this.dShopOrBagData.lItmeInfo[i].sName;
+				img_item.source = this.getConf("ItemData",this.dShopOrBagData.lItmeInfo[i].iNo.toString(),"res") + "_png";
+				labelName.text = this.getConf("ItemData",this.dShopOrBagData.lItmeInfo[i].iNo.toString(),"name");
+				labelMoney.text = "x " +this.dShopOrBagData.lItmeInfo[i].iNum;
+				let ttt = groupT.getChildByName("shop_item_bg") as eui.Image;
+				let tttName = groupT.getChildByName("shop_item_name") as eui.Label;
+				tttName.y -= 5;
+				if(i == 0){
+					ttt.source = "bag_item_yes_png";
+					if(clickFlag)this.clickShopItem(labelClick.name);
+				}else{
+					ttt.source = "bag_item_not_png";
+				}
+			}
+		}
+	}
+
+	private handlePanel(panelCtx:eui.Panel,btnName:string){
+		switch(btnName){
+
+			case "btn_rank":
+				let parent = panelCtx.getChildByName("fighting_parent") as eui.Group;
+				let scroll = parent.getChildByName("scroll") as eui.Scroller;
+				let group = scroll.getChildByName("scroll_group")as eui.Group;
+				group.removeChildren();
+
+				parent.getChildByName("all_rank_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+				CommonButtonHandle.beginTouch(parent.getChildByName("all_rank_lb"),this);
+
+				parent.getChildByName("friend_rank_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+				CommonButtonHandle.beginTouch(parent.getChildByName("friend_rank_lb"),this);
+
+				parent.getChildByName("match_rank_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+				CommonButtonHandle.beginTouch(parent.getChildByName("match_rank_lb"),this);
+
+				parent.getChildByName("lv_rank_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+				CommonButtonHandle.beginTouch(parent.getChildByName("lv_rank_lb"),this);
+
+				this.handleRank(group,parent);
+				break;
+
+			case "all_rank_lb":
+				let parent_all = panelCtx.getChildByName("fighting_parent") as eui.Group;
+				let scroll_all = parent_all.getChildByName("scroll") as eui.Scroller;
+				let group_all = scroll_all.getChildByName("scroll_group")as eui.Group;
+				group_all.removeChildren();
+
+				parent_all.getChildByName("all_rank_bg").visible = true;
+				parent_all.getChildByName("friend_rank_bg").visible = false;
+
+				this.handleRank(group_all,parent_all);
+				break;
+
+			case "friend_rank_lb":
+				let parent_friend = panelCtx.getChildByName("fighting_parent") as eui.Group;
+				let scroll_friend = parent_friend.getChildByName("scroll") as eui.Scroller;
+				let group_friend = scroll_friend.getChildByName("scroll_group")as eui.Group;
+				group_friend.removeChildren();
+
+				parent_friend.getChildByName("all_rank_bg").visible = false;
+				parent_friend.getChildByName("friend_rank_bg").visible = true;
+				break;
+			
+			case "match_rank_lb":
+			case "getTotalPvpRank":
+				let parent_match = panelCtx.getChildByName("fighting_parent") as eui.Group;
+				let scroll_match = parent_match.getChildByName("scroll") as eui.Scroller;
+				let group_match = scroll_match.getChildByName("scroll_group")as eui.Group;
+				group_match.removeChildren();
+
+				let img = parent_match.getChildByName("match_rank_bg") as eui.Image;
+				img.source = RES.getRes("rank_select_02_png");
+
+				let img2 = parent_match.getChildByName("lv_rank_bg") as eui.Image;
+				img2.source = RES.getRes("rank_select_01_png");
+
+				this.handleRank(group_match,parent_match);
+				break;
+
+			case "lv_rank_lb":
+			case "getTotalLvRank":
+				let parent_lv = panelCtx.getChildByName("fighting_parent") as eui.Group;
+				let scroll_lv = parent_lv.getChildByName("scroll") as eui.Scroller;
+				let group_lv = scroll_lv.getChildByName("scroll_group")as eui.Group;
+				group_lv.removeChildren();
+
+				let img_lv = parent_lv.getChildByName("match_rank_bg") as eui.Image;
+				img_lv.source = RES.getRes("rank_select_01_png");
+
+				let img2_lv = parent_lv.getChildByName("lv_rank_bg") as eui.Image;
+				img2_lv.source = RES.getRes("rank_select_02_png");
+
+				this.handleRank(group_lv,parent_lv);
+				break;
+
+			case "btn_map_shop":
+			case "btn_map_bag":
+				this.panelNotice.getChildByName("btn_one_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+				this.panelNotice.getChildByName("btn_two_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+				this.panelNotice.getChildByName("btn_three_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+				this.panelNotice.getChildByName("btn_four_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+				CommonButtonHandle.beginTouch(this.panelNotice.getChildByName("btn_buy"),this);
+				this.panelNotice.getChildByName("btn_buy").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+				this.updateShopUI(true);
+				break;
+
+			case "btn_noend_pve":
+				let groupNoEnd = panelCtx.getChildByName("fighting_parent") as eui.Group;
+				groupNoEnd.removeChildren();
+				this.handleNoEnd(groupNoEnd,panelCtx);
+			 	break;
+
+			case "SeventDayReward":
+				this.handleSeventDay();
+			 	break;
+
+			case "getMyMaps":
+				this.handleGetMyMaps();
+			 	break;
+
+			case "btn_friend_pvp":
+				this.handleSelectMap();
+			 	break;
+
+			case "btn_img_info":
+				this.bodyAniDown = CommonTools.getAnimDraw(RES.getRes("p1_static_json"), RES.getRes("p1_static_png"), "0");
+				this.bodyAniDown.play(-1);
+				this.panelNotice.addChild(this.bodyAniDown);
+				this.bodyAniDown.x = 660;
+				this.bodyAniDown.y = 520;
+				break;
+
+			case "btn_noticetip":
+				let clearGroup = panelCtx.getChildByName("group_clear") as eui.Group;
+				clearGroup.getChildByName("lb_clear_click").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+				CommonButtonHandle.beginTouch(clearGroup.getChildByName("lb_clear_click"),this);
+				if (ConstValue.P_IS_DEBUG || 1<2){
+					let iCount = 10;
+					let iOffY = 72;
+					let scroll = this.panelNotice.getChildByName("left_scroller");
+					let group = scroll.getChildByName("left_group");
+					let lb_title = this.panelNotice.getChildByName("lb_title") as eui.Label;
+					lb_title.text = "标题：";
+					let lb_mail_info = this.panelNotice.getChildByName("lb_mail_info") as eui.Label;
+					lb_mail_info.text = "";
+
+					for(let i=0;i<iCount;i++){
+						let panelT = new eui.Panel();
+						panelT.skinName = "resource/eui_skins/UserUI/NoticeGroup.exml";
+						panelT.name = "p_"+i;
+						panelT.y = i*72;
+						group.addChild(panelT);
+						let groupT = panelT.getChildByName("group_1") as eui.Group;
+						groupT.getChildByName("img_yellow").visible = false;
+						let labelTitle = groupT.getChildByName("lb_title") as eui.Label;
+						labelTitle.text = "喜报！！"+(i+1);
+						let labelClick = groupT.getChildByName("lb_notice_click") as eui.Label;
+						labelClick.name = "lb_notice_click" + i;
+						labelClick.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+						CommonButtonHandle.beginTouch(labelClick,this);
+					}
+				}else{
+					let sData = CommonTools.getDataJsonStr("getAllMail",1,{roleId:ConstValue.cacheUserInfo.id});
+					ConstValue.P_NET_OBJ.sendData(sData);
+				}
+				break;
+
+			default:
+				CommonTools.log("22222222 default");
+				break;
+		}
+	}
+
+	/**
+	 * 回包处理
+	 */
+	public async handlePacket(jsonObj:any){
+		if (jsonObj.f == "setName"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				CommonTools.addCommonTips(this.context,ConstValue.P_MODIFY_FAIL);
+			}else{
+				CommonTools.addCommonTips(this.context,ConstValue.P_SEND_MODIFY_SUCCESS);
+				this.panelNotice.getChildByName("nickName_lb").text = jsonObj.d.name;
+				ConstValue.cacheUserInfo.name = jsonObj.d.name;
+				this.closeSub();
+			}
+		}else if (jsonObj.f == "gmFunc"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				CommonTools.addCommonTips(this.context,"执行失败");
+			}else{
+				CommonTools.addCommonTips(this.context,"执行成功");
+			}
+		}else if (jsonObj.f == "WaitingInfo"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				CommonTools.addCommonTips(this.context,ConstValue.P_ENTER_ROOM_FAIL);
+			}else{
+				if(ConstValue.P_FIGHT_OBJ == null){
+					ConstValue.P_FIGHT_OBJ = new FightingModule(this.context);
+				}
+				if(jsonObj.d.state < 2){//等待人
+					// ConstValue.P_FIGHT_OBJ.showVsMiniGamepanel();
+					ConstValue.P_FIGHT_OBJ.showVspanel();
+				}else if(jsonObj.d.state == 2){//开始比赛
+					FightingModule.readyTwo = true;
+					this.context.dDataInfo2 = jsonObj.d.player;
+					if(ConstValue.P_FIGHT_OBJ.playerData != null){
+						FightingModule.readyRes = true;
+						ConstValue.P_FIGHT_OBJ.releaseVsPanel();
+						ConstValue.P_FIGHT_OBJ.updateInfo(jsonObj.d.player);
+					}
+				}
+			}
+		}else if (jsonObj.f == "syncMapData"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				if(ConstValue.cacheKeyGroup["fighting"] == null){
+					this.context.dDataInfo = jsonObj.d;
+					await this.context.loadResource("fighting",6);
+				}else{
+					if(ConstValue.P_FIGHT_OBJ == null){
+						ConstValue.P_FIGHT_OBJ = new FightingModule(this.context);
+					}
+					ConstValue.P_FIGHT_OBJ.initMapData(jsonObj.d);
+					if(FightingModule.readyTwo && !FightingModule.readyRes){
+						ConstValue.P_FIGHT_OBJ.releaseVsPanel();
+						ConstValue.P_FIGHT_OBJ.updateInfo(this.context.dDataInfo2);
+					}
+				}
+			}
+		}else if (jsonObj.f == "openDiyMapUI"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				if(ConstValue.P_MAP_OBJ == null){
+					ConstValue.P_MAP_OBJ = new MapDIYModule(this.context,jsonObj.d,1);
+					// new MapMiniDIYModule(this.context,jsonObj.d);
+				}
+			}
+		}else if (jsonObj.f == "openShopUI"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				this.dShopOrBagData = jsonObj.d;
+				this.shopUIType = 1;
+				if(this.panelNotice == null){
+					this.showNotice("resource/eui_skins/UserUI/PayShopUI.exml","btn_map_shop");
+				}else{
+					this.updateShopUI(false);
+					let iCount = this.dShopOrBagData.lShopInfo.length;
+					if(iCount>0)this.clickShopItem(this.shopItemClickName);
+				}
+			}
+		}else if (jsonObj.f == "openBagUI"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				if(jsonObj.d.lItmeInfo[0] == null){
+					CommonTools.addCommonTips(this.context,"暂无数据");
+					return
+				}
+				this.dShopOrBagData = jsonObj.d;
+				this.shopUIType = 2;
+				if(this.panelNotice == null){
+					this.showNotice("resource/eui_skins/UserUI/BagUI.exml","btn_map_bag");
+				}else{
+					this.updateShopUI(false);
+					this.clickShopItem(this.shopItemClickName);
+				}
+			}
+		}else if (jsonObj.f == "Buy"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				if(jsonObj.d.err == 0){
+					// CommonTools.addCommonTips(this.context,"获得："+this.shopItemName+" x1");
+				}
+			}
+		}else if (jsonObj.f == "getMyMaps"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				FightingModule.Delay(500, function(){
+					this.selectMapData = jsonObj.d;
+					this.showNotice("resource/eui_skins/UserUI/MapViewUI.exml","getMyMaps");
+				}, this);
+			}
+		}else if (jsonObj.f == "C2GOpenWujinUI"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				this.barrData = jsonObj.d;
+				this.showNotice("resource/eui_skins/UserUI/noEndBarrUI.exml","btn_noend_pve");
+			}
+		}else if (jsonObj.f == "C2GGotoBarrier"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				// await this.context.loadResource("fighting",5);
+			}
+		}else if (jsonObj.f == "SeventDayReward"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				this.seventData = jsonObj.d;
+				if(this.panelNotice == null){
+					this.showNotice("resource/eui_skins/UserUI/SeventDayGet.exml",jsonObj.f);
+				}else{
+					this.handleSeventDay();
+				}
+			}
+		}else if (jsonObj.f == "open1V1Room" || jsonObj.f == "open1V1RoomByMap"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				CommonTools.log("shareAppMessage-------1")
+				Main.roomkey = jsonObj.d.roomkey;
+				let platform: any = window.platform;
+				await platform.shareAppMessage(jsonObj.d.roomkey);
+			}
+		}else if (jsonObj.f == "showMatch1v1RoomUI"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				if(jsonObj.d.roomID != null){
+					Main.roomkey = jsonObj.d.roomID;
+				}
+				if(this.showWxVsPanel == null){
+					this.showWxVsUI(jsonObj.d);
+				}else{
+					this.updateWxVsUI(jsonObj.d);
+				}
+			}
+		}else if (jsonObj.f == "openRnakUI" || jsonObj.f == "getTotalPvpRank" || jsonObj.f == "getTotalLvRank"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				this.lRank = jsonObj.d.lRank;
+				this.lMyRank = jsonObj.d.myRank;
+				this.sMyRankDesc = jsonObj.d.myRankDesc;
+				if(jsonObj.f == "openRnakUI"){
+					this.showNotice("resource/eui_skins/UserUI/NewRankUI.exml","btn_rank");
+				}else{
+					this.handlePanel(this.panelNotice,jsonObj.f);
+				}
+				CommonTools.log("this.lRank-------------"+this.lRank)
+			}
+		}
+	}
+
+	public closeNotice(){
+		CommonTools.niceTip(this.panelNotice,2,this);
+	}
+
+	public closeWxVsUI(){
+		if(this.isMainRoomer){
+			let sData = CommonTools.getDataJsonStr("remove1V1Room",1,{});
+			ConstValue.P_NET_OBJ.sendData(sData);
+			this.isMainRoomer = false;
+		}else{
+			let sData = CommonTools.getDataJsonStr("leaveGame1v1",1,{fightRoomKey:Main.roomkey});
+			ConstValue.P_NET_OBJ.sendData(sData);
+		}
+		CommonTools.niceTip(this.showWxVsPanel,2,this);
+	}
+
+	public closeNice(){
+		if(this.showWxVsPanel != null && this.panelNotice == null){
+			if(this.maskBg2 != null)this.context.removeChild(this.maskBg2);
+			this.maskBg2 = null;
+			this.context.removeChild(this.showWxVsPanel);
+			this.showWxVsPanel = null;
+		}else{
+			if(this.bodyAniDown != null){
+				this.panelNotice.removeChild(this.bodyAniDown);
+				this.bodyAniDown = null;
+			}
+			if (this.panelNotice != null)this.context.removeChild(this.panelNotice);
+			if(this.maskBg != null)this.context.removeChild(this.maskBg);
+			this.maskBg = null;
+			this.panelNotice = null;
+			this.dShopOrBagData = null;
+			this.shopPageType = 0;
+			this.shopItemNo = 0;
+			this.shopItemItemID = 0;
+			this.shopItemName = "";
+			this.shopItemClickName = "";
+		}
+	}
+
+	private closeSub(){
+		if (this.panelSub != null)this.context.removeChild(this.panelSub);
+		this.panelSub = null;
+	}
+
+	public clear(){
+		this.closeSub();
+		// this.closeNotice();
+		this.context.removeChild(this.panel);
+		ConstValue.P_HALL_OBJ = null;
+	}
+}

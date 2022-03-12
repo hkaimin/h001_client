@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="777.88" height="437.39" x="295.06" y="127.3" anchorOffsetX="0" anchorOffsetY="0" source="shop_bg_png"/>
+	<e:Button id="btn_close_edit" label="" x="997.78" y="140.85" name="btn_close_edit" anchorOffsetX="34" width="68.33" anchorOffsetY="32" height="67.33">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_back_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label id="lb_edit_title" text="保存地图" x="615.07" y="162.18" size="28" name="lb_edit_title" textColor="0x1c93ed"/>
+	<e:Button id="btn_confirm_modify" label="提交" x="683" y="494.78" name="btn_confirm_modify" anchorOffsetX="50" width="102" anchorOffsetY="23" height="44">
+	</e:Button>
+	<e:Image width="369.03" height="136.42" x="507.4" y="276.06" anchorOffsetX="0" anchorOffsetY="0" source="LoginTexture_json.inputtxt_png" scale9Grid="8,4,151,31"/>
+	<e:TextInput id="map_sign_tx" width="338.11" height="87.94" x="528.34" y="298.97" anchorOffsetX="0" anchorOffsetY="0" name="map_sign_tx" text="输入地图个性签名"/>
+	<e:Image id="bg_new" width="249.33" height="44" x="566.67" y="211.8" anchorOffsetX="0" anchorOffsetY="0" source="LoginTexture_json.inputtxt_png" name="bg_new"/>
+	<e:TextInput id="map_name_tx" width="225.99" height="27.33" x="578.34" y="220.14" anchorOffsetX="0" anchorOffsetY="0" name="map_name_tx" text="输入地图名字"/>
+</e:Skin>

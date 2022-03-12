@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="NoticeGroup" width="89" height="112.67" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="81" height="108" x="3.64" y="2.31" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png"/>
+	<e:Image width="53" height="53" x="17.93" y="14.31" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image id="pe_head" width="53" height="53" x="17.93" y="14.31" anchorOffsetX="0" anchorOffsetY="0" source="horse01_head02_png" name="pe_head"/>
+	<e:Image id="pe_start_01" width="12" height="12" x="14.64" y="90.56" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_start_01"/>
+	<e:Image id="pe_start_02" width="12" height="12" x="26.39" y="90.56" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_start_02"/>
+	<e:Image id="pe_start_03" width="12" height="12" x="38.14" y="90.56" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_start_03"/>
+	<e:Image id="pe_start_04" width="12" height="12" x="50.39" y="90.56" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_start_04"/>
+	<e:Image id="pe_start_05" width="12" height="12" x="62.18" y="90.56" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_start_05"/>
+	<e:Label id="pe_name" text="System 05" x="10.89" y="72.31" anchorOffsetX="0" width="67" textAlign="center" textColor="0x070202" size="10" anchorOffsetY="0" height="19" verticalAlign="middle" name="pe_name"/>
+	<e:Image width="30" height="40" x="3.64" y="2.31" source="icon_level_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image id="pe_type" width="14" height="19" x="11.64" y="8.31" source="icon_level_s_png" anchorOffsetX="0" anchorOffsetY="0" name="pe_type"/>
+</e:Skin>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="519.72" height="651.85" x="390.42" y="48.07" anchorOffsetX="0" anchorOffsetY="0" source="role_info_bg_png"/>
+	<e:Label id="lb_life" text="1(PVE:1)" x="579.04" y="261.3" size="14" textColor="0x486b8f" textAlign="center" name="lb_life" anchorOffsetX="0" width="64" anchorOffsetY="0" height="32" verticalAlign="middle"/>
+	<e:Label id="lb_boom" text="1(PVE:1)" x="577.04" y="320.78" size="14" textColor="0x486B8F" textAlign="center" verticalAlign="middle" name="lb_boom" anchorOffsetX="0" width="66" anchorOffsetY="0" height="33"/>
+	<e:Label text="等级" x="427.24" y="454.95" size="30" textAlign="center" verticalAlign="middle" textColor="0xfefcfe" stroke="3" strokeColor="0x985d3a"/>
+	<e:Label id="lb_lv" text="100" x="502.39" y="456.18" size="30" textColor="0xFEFCFE" textAlign="center" verticalAlign="middle" name="lb_lv" stroke="3" strokeColor="0x985d3a"/>
+	<e:Label id="info_name" text="我是技安他哥" x="530.19" y="166.71" size="30" textColor="0xFEFCFE" textAlign="center" verticalAlign="middle" name="info_name" stroke="3" strokeColor="0xd85729" anchorOffsetX="0" width="268" anchorOffsetY="0" height="43"/>
+	<e:Label id="lb_exp" text="10000" x="487.19" y="489.22" size="30" textColor="0xFEFCFE" textAlign="center" verticalAlign="middle" name="lb_exp" stroke="3" strokeColor="0x985d3a"/>
+	<e:Label text="经验" x="426.6" y="489.22" size="30" textColor="0xFEFCFE" textAlign="center" verticalAlign="middle" stroke="3" strokeColor="0x985d3a"/>
+	<e:Label id="lb_speed" text="1(PVE:1)" x="731.98" y="261.3" size="14" textColor="0x486B8F" textAlign="center" name="lb_speed" anchorOffsetX="0" width="64" anchorOffsetY="0" height="32" verticalAlign="middle"/>
+	<e:Label id="lb_power" text="1(PVE:1)" x="729.98" y="320.78" size="14" textColor="0x486B8F" textAlign="center" verticalAlign="middle" name="lb_power" anchorOffsetX="0" width="69" anchorOffsetY="0" height="33"/>
+	<e:Button id="btn_close" label="" x="845.83" y="150.94" name="btn_close" anchorOffsetX="36" width="70.67" anchorOffsetY="32" height="69.27">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_yellow_1_png" source.down="btn_yellow_2_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+</e:Skin>

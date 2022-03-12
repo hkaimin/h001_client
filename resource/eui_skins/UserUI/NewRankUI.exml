@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="fighting_parent" width="1077" height="738" x="102.74" y="6" anchorOffsetX="0" anchorOffsetY="0" name="fighting_parent">
+		<e:Image width="346.67" height="66.67" x="76.26" y="45.52" anchorOffsetX="0" anchorOffsetY="0" source="rank_title_lb_png"/>
+		<e:Image width="295" height="88" x="746.99" y="35.53" anchorOffsetX="0" anchorOffsetY="0" source="rank_png"/>
+		<e:Image id="fighting_platform" width="1023.69" height="579.88" x="49.99" y="105.54" anchorOffsetX="0" anchorOffsetY="0" source="fighting_kuang_png" name="fighting_platform" scale9Grid="29,29,143,142"/>
+		<e:Image width="809.39" height="507.88" x="219.06" y="140.99" anchorOffsetX="0" anchorOffsetY="0" source="normal_bg_1_png" scale9Grid="4,0,128,146"/>
+		<e:Image id="match_rank_bg" width="135.63" height="68.72" x="85.55" y="220" anchorOffsetX="0" anchorOffsetY="0" name="match_rank_bg" source="rank_select_01_png"/>
+		<e:Image id="lv_rank_bg" width="134.3" height="68.72" x="85.55" y="300" anchorOffsetX="0" anchorOffsetY="0" source="rank_select_01_png" name="lv_rank_bg"/>
+		<e:Label id="match_rank_lb" text="匹配对战" x="157.84" y="257.77" anchorOffsetX="58" width="118" anchorOffsetY="28" height="52.67" textAlign="center" verticalAlign="middle" size="26" name="match_rank_lb" stroke="3" strokeColor="0x7b86bb" textColor="0xa0b3dc"/>
+		<e:Image id="barrier_rank_bg" width="135.63" height="68.72" x="85.55" y="140" anchorOffsetX="0" anchorOffsetY="0" source="rank_select_02_png" name="barrier_rank_bg"/>
+		<e:Label id="barrier_rank_lb" text="闯关达人" x="157.84" y="178.11" anchorOffsetX="58" width="118" anchorOffsetY="28" height="52.67" textAlign="center" verticalAlign="middle" size="26" name="barrier_rank_lb" textColor="0x7479DB" stroke="3" strokeColor="0xCAE9FF"/>
+		<e:Label id="lv_rank_lb" text="等级" x="155.15" y="335.73" anchorOffsetX="58" width="118" anchorOffsetY="27" height="52.67" textAlign="center" verticalAlign="middle" size="26" name="lv_rank_lb" stroke="3" strokeColor="0x7b86bb" textColor="0xa0b3dc"/>
+		<e:Scroller id="scroll" width="815.15" height="435.6" x="218.17" y="138.33" anchorOffsetX="0" anchorOffsetY="0" name="scroll">
+			<e:Group id="scroll_group" anchorOffsetX="0" width="813.64" anchorOffsetY="0" height="435.6" name="scroll_group">
+			</e:Group>
+		</e:Scroller>
+		<e:Group id="myrankG" width="807.58" height="67.83" x="219.54" y="577.19" anchorOffsetY="0" anchorOffsetX="0" scaleX="1" scaleY="1" name="myrankG">
+			<e:Image width="798.79" height="67.83" x="5.57" y="2.84" anchorOffsetX="0" anchorOffsetY="0" source="rank_data_mine_png"/>
+			<e:Label id="myrank" text="2" x="9.29" y="22.99" anchorOffsetX="0" width="105.66" anchorOffsetY="0" height="28.67" name="myrank" textColor="0x566dc2" textAlign="center" verticalAlign="middle"/>
+			<e:Label id="name" text="你大爷" x="248.54" y="20.86" anchorOffsetX="0" width="164" anchorOffsetY="0" height="29.03" name="name" textColor="0x566dc2"/>
+			<e:Label id="desc" text="10" x="553.33" y="19.93" anchorOffsetX="0" width="67.79" anchorOffsetY="0" height="32.06" size="26" name="desc" textColor="0x566DC2" textAlign="center" verticalAlign="middle"/>
+			<e:Label id="desc2" text="22.22%" x="697.97" y="19.84" anchorOffsetX="0" width="90.94" anchorOffsetY="0" height="32.06" size="26" name="desc2" textColor="0x566DC2" textAlign="center" verticalAlign="middle"/>
+			<e:Label id="lb" text="胜场 ：" x="484.12" y="23.18" anchorOffsetX="0" width="88.79" anchorOffsetY="0" height="32.06" size="26" textColor="0x7E8BC4" name="lb"/>
+			<e:Label id="lb2" text="胜率 ：" x="620.12" y="23.18" anchorOffsetX="0" width="88.79" anchorOffsetY="0" height="32.06" size="26" textColor="0x7E8BC4" name="lb2"/>
+			<e:Image width="64.67" height="59.67" x="174.98" y="4.66" anchorOffsetX="0" anchorOffsetY="0" source="mini_head"/>
+			<e:Image id="head" width="54.67" height="50.34" x="179.69" y="9.02" anchorOffsetX="0" anchorOffsetY="0" name="head" source="default_head_png"/>
+		</e:Group>
+		<e:Image id="all_rank_bg" width="169.33" height="62.66" x="75.76" y="49.84" anchorOffsetX="0" anchorOffsetY="0" source="rank_title_l_png" name="all_rank_bg"/>
+		<e:Image id="friend_rank_bg" width="170.66" height="54.44" x="250.93" y="44.21" anchorOffsetX="0" anchorOffsetY="0" scaleY="1.2" source="rank_title_r_png" name="friend_rank_bg" visible="false"/>
+		<e:Label id="friend_rank_lb" text="好友榜" x="321.16" y="82.18" name="friend_rank_lb" size="26" textColor="0xb16f52" stroke="3" strokeColor="0xfcdec4" anchorOffsetX="39" anchorOffsetY="15"/>
+		<e:Label id="all_rank_lb" text="总排行" x="152.07" y="80.5" anchorOffsetY="13" height="-4.67" name="all_rank_lb" size="26" textColor="0xfffbf9" stroke="3" strokeColor="0xe59272" anchorOffsetX="39"/>
+	</e:Group>
+	<e:Button id="btn_close" label="" x="17.26" y="20.13" name="btn_close" anchorOffsetX="0" width="64.67" anchorOffsetY="0" height="70.66" scaleX="1" scaleY="1">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_back_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+</e:Skin>

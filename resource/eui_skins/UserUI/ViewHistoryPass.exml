@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="751.3" height="453.91" x="295.35" y="172.16" anchorOffsetX="0" anchorOffsetY="0" source="view_history_bg_png"/>
+	<e:Button id="btn_close" label="" x="1028.49" y="185.49" name="btn_close" anchorOffsetX="40" width="80" anchorOffsetY="40" height="80">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_close_blue_01_png" source.down="btn_close_blue_02_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button label="" x="855.3" y="540" anchorOffsetX="0" width="170" anchorOffsetY="0" height="66">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_type1_1_png" source.down="btn_type2_2_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image id="star_01" width="154" height="185" x="442.34" y="235.16" anchorOffsetX="0" anchorOffsetY="0" name="star_01" source="start_02_png"/>
+	<e:Image id="star_02" width="154" height="185" x="602.3" y="281.08" anchorOffsetX="0" anchorOffsetY="0" source="start_02_png" name="star_02"/>
+	<e:Image id="star_03" width="154" height="185" x="756.3" y="235.16" anchorOffsetX="0" anchorOffsetY="0" source="start_02_png" name="star_03"/>
+	<e:Image id="win_title_img" width="382" height="85" x="490.64" y="102.06" anchorOffsetX="0" anchorOffsetY="0" name="win_title_img" source="view_history_title_png"/>
+	<e:Label text="历史战绩" x="615.3" y="203.16" size="32" textColor="0x6581d7"/>
+	<e:Label id="view_barr_title" text="第 01 关" x="621.3" y="129.49" size="32" textColor="0xfffef6" stroke="3" strokeColor="0x6371b2" name="view_barr_title" textAlign="center" verticalAlign="middle"/>
+	<e:Label text="平均胜率：" x="362.34" y="466" anchorOffsetX="0" width="136" anchorOffsetY="0" height="34" textColor="0x5ac4fb" size="22" textAlign="left" verticalAlign="middle"/>
+	<e:Label id="info_1" text="100%" x="468.34" y="466" anchorOffsetX="0" width="118" anchorOffsetY="0" height="32" textColor="0xfefcfe" name="info_1" size="22" textAlign="left" verticalAlign="middle"/>
+	<e:Image width="21" height="21" x="336.5" y="471.5" anchorOffsetX="0" anchorOffsetY="0" source="blue_star_png"/>
+	<e:Label text="我的最佳通关时间：" x="364.34" y="503" anchorOffsetX="0" width="208" anchorOffsetY="0" height="34" textColor="0x5AC4FB" size="22" verticalAlign="middle"/>
+	<e:Label id="info_2" text="10.12s" x="558.3" y="504" anchorOffsetX="0" width="160" anchorOffsetY="0" height="32" textColor="0xFEFCFE" name="info_2" size="22" textAlign="left" verticalAlign="middle"/>
+	<e:Image width="21" height="21" x="336.5" y="507" anchorOffsetX="0" anchorOffsetY="0" source="blue_star_png"/>
+	<e:Label text="全服最佳玩家：" x="362.34" y="541" anchorOffsetX="0" width="166" anchorOffsetY="0" height="32" textColor="0x5AC4FB" size="22" textAlign="left" verticalAlign="middle"/>
+	<e:Label id="info_3" text="小猪佩奇 10.12s" x="513.3" y="541" anchorOffsetX="0" width="286" anchorOffsetY="0" height="32" textColor="0xFEFCFE" name="info_3" size="22" textAlign="left" verticalAlign="middle"/>
+	<e:Image width="21" height="21" x="336.5" y="544" anchorOffsetX="0" anchorOffsetY="0" source="blue_star_png"/>
+	<e:Label id="start_btn" text="开始挑战" x="938" y="574" anchorOffsetX="82" width="166" anchorOffsetY="32" height="60" textAlign="center" verticalAlign="middle" size="26" stroke="3" strokeColor="0xf47b33" name="start_btn"/>
+</e:Skin>

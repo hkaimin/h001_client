@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="fighting_platform" width="1165.63" height="610.18" x="79.64" y="69.91" anchorOffsetX="0" anchorOffsetY="0" source="fighting_kuang_png" name="fighting_platform" scale9Grid="28,29,143,143"/>
+	<e:Button id="btn_close" label="" x="1186.12" y="55.76" name="btn_close" anchorOffsetX="0" width="76.33" anchorOffsetY="0" height="75.33" scaleX="1" scaleY="1">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_yellow_1_png" source.down="btn_yellow_2_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image id="btn_random" width="488" height="377" x="139.61" y="186.5" anchorOffsetX="0" anchorOffsetY="0" source="btn_random_map_png" name="btn_random"/>
+	<e:Image id="btn_mymap" width="488" height="377" x="698.12" y="186.5" anchorOffsetX="0" anchorOffsetY="0" source="btn_diy_map_png" name="btn_mymap"/>
+	<e:Button label="" x="576.97" y="563.5" anchorOffsetX="0" width="170.97" anchorOffsetY="0" height="77.06">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_type1_1_png" source.down="btn_type2_2_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label text="选择地图后邀请您的好友一起来玩吧" x="424.7" y="110.03" anchorOffsetX="0" width="484.61" anchorOffsetY="0" height="42.12" size="26" textColor="0x7479db" borderColor="0x000000" backgroundColor="0x000000" stroke="3" strokeColor="0xcae9ff" verticalAlign="middle" textAlign="center"/>
+	<e:Image id="img_left" width="80" height="80" x="514.24" y="460.79" anchorOffsetX="0" anchorOffsetY="0" source="sevent_got_png" name="img_left"/>
+	<e:Image id="img_right" width="80" height="80" x="1072.03" y="460.79" anchorOffsetX="0" anchorOffsetY="0" source="sevent_got_png" name="img_right" visible="false"/>
+	<e:Label id="btn_certain_map" text="确  定" x="661.97" y="600.94" anchorOffsetX="80" width="161.88" anchorOffsetY="34" height="66.36" textAlign="center" verticalAlign="middle" size="32" stroke="3" textColor="0xfefcfe" strokeColor="0xf47b33" name="btn_certain_map"/>
+</e:Skin>

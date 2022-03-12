@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:TextInput id="account_lb_txt" width="304" height="63" x="555" y="592.5" anchorOffsetX="0" anchorOffsetY="0" name="account_lb_txt"/>
+	<e:TextInput id="password_lb_txt" width="304" height="63" x="555" y="676" anchorOffsetX="0" anchorOffsetY="0" displayAsPassword="true" name="password_lb_txt"/>
+	<e:Label id="account_lb_title" text="账号：" x="420" y="592.5" anchorOffsetY="0" height="40" size="45" name="account_lb_title"/>
+	<e:Label id="password_lb_title" text="密码：" x="420" y="687.5" anchorOffsetY="0" height="40" size="45" name="password_lb_title"/>
+	<e:Label id="btn_registe" text="注册" x="942" y="609" name="btn_registe" anchorOffsetY="0" height="36"/>
+	<e:Label id="btn_login" text="登录" x="942" y="687.5" name="btn_login"/>
+	<e:Image id="btn_login_wx" width="220" height="51" x="688.34" y="620.27" anchorOffsetX="110" anchorOffsetY="26.27" source="weixin_login_png" name="btn_login_wx"/>
+</e:Skin>

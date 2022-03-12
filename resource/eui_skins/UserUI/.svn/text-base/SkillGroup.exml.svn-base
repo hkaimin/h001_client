@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="NoticeGroup" width="702" height="157" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group id="group_1" width="702" height="146" x="0" y="5" anchorOffsetY="0" anchorOffsetX="0" scaleX="1" scaleY="1" name="group_1">
+		<e:Image width="697" height="145" x="2" y="0" source="skill_item_bg_png" anchorOffsetY="0"/>
+		<e:Image width="107" height="107" x="16" y="9" source="skill_item_kuang_png"/>
+		<e:Image id="skill_icon" width="91" height="91" x="24" y="17" source="skill_jingu_png" anchorOffsetX="0" anchorOffsetY="0" name="skill_icon"/>
+		<e:Label id="skill_name" text="技能名称xx" x="135" y="5" size="24" anchorOffsetX="0" width="124" anchorOffsetY="0" height="28" textAlign="left" verticalAlign="middle" textColor="0x4761a5" name="skill_name"/>
+		<e:Label id="skill_lv" text="Lv.25/30" x="261" y="5" size="24" anchorOffsetX="0" width="113" anchorOffsetY="0" height="28" textAlign="left" verticalAlign="middle" textColor="0x6791e7" name="skill_lv"/>
+		<e:Label id="skill_desc" text="技能的简单爸爸爸爸爸爸爸爸爸爸" x="135" y="36.5" size="20" anchorOffsetX="0" width="418" anchorOffsetY="0" height="49" textAlign="left" verticalAlign="top" textColor="0x6f7da2" name="skill_desc"/>
+		<e:Label id="skill_desc2" text="技能的简单爸爸爸爸爸爸爸爸爸爸" x="135" y="88" size="20" anchorOffsetX="0" width="419" anchorOffsetY="0" height="49" textAlign="left" verticalAlign="top" textColor="0x6F7DA2" name="skill_desc2"/>
+		<e:Label id="skill_tip" text="敬请期待" x="572" y="43" anchorOffsetX="0" width="112" anchorOffsetY="0" height="54" textAlign="center" verticalAlign="middle" size="26" textColor="0x6e98b6" name="skill_tip"/>
+		<e:Image id="skill_pay" width="30" height="30" x="572" y="29" source="mini_coin" name="skill_pay"/>
+		<e:Label id="skill_cost" text="100000" x="602" y="32" anchorOffsetX="0" width="92" textAlign="left" verticalAlign="middle" size="24" textColor="0x7c4b3c" name="skill_cost"/>
+		<e:Image id="skill_btn" width="117" height="46" x="572" y="65.5" anchorOffsetX="0" anchorOffsetY="0" source="normal_btn_1_png" name="skill_btn"/>
+		<e:Label id="skill_learn" text="学习" x="630" y="89" anchorOffsetX="48" width="97" anchorOffsetY="20" height="37" textAlign="center" verticalAlign="middle" size="28" textColor="0xfffef9" stroke="3" strokeColor="0x3379ed" name="skill_learn"/>
+	</e:Group>
+</e:Skin>

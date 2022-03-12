@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="NoticeGroup" width="433" height="635" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="362" height="582" x="1" y="107.68" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png"/>
+	<e:Image width="362" height="582" x="0" y="103.68" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png" visible="false"/>
+	<e:Image id="lv_img" width="76" height="80" x="16" y="16" source="icon_level_s_png" name="lv_img"/>
+	<e:Image width="188" height="31" x="108.33" y="25" source="bar_name_png"/>
+	<e:Image width="88" height="90" x="270.32" y="12.37" source="info_tx_frame_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="82" height="82" x="273.95" y="16" source="tx1_1_png"/>
+	<e:Image id="horse_head" width="82" height="82" x="273.95" y="16" source="tx1_1_png" name="horse_head"/>
+	<e:Image id="star_1" width="35" height="36" x="93.04" y="62.36" source="icon_stars_png" name="star_1"/>
+	<e:Image id="star_2" width="35" height="36" x="128.04" y="62" source="icon_stars_png" name="star_2"/>
+	<e:Image id="star_3" width="35" height="36" x="163.04" y="62.36" source="icon_stars_png" name="star_3"/>
+	<e:Image id="star_4" width="35" height="36" x="198.04" y="62.36" source="icon_stars_png" name="star_4"/>
+	<e:Image id="star_5" width="35" height="36" x="233.04" y="62.36" source="icon_stars_png" name="star_5"/>
+	<e:Label id="horse_name" text="Ferrari" x="116" y="32" anchorOffsetX="0" width="146" textAlign="center" size="18" name="horse_name"/>
+	<e:Image width="362" height="63" x="1" y="431" source="bar_info_di_3_png"/>
+	<e:Image width="362" height="63" x="-1.46" y="431" source="Gene-factor_png"/>
+	<e:Image width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png" visible="false"/>
+	<e:Image id="horse_stat_lb" width="59" height="94" x="360" y="213" anchorOffsetX="0" anchorOffsetY="0" name="horse_stat_lb" source="icon_stats_n_png"/>
+	<e:Image width="59" height="94" x="360" y="312" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png" visible="false"/>
+	<e:Image id="horse_skill_lb" width="59" height="94" x="360" y="312" anchorOffsetX="0" anchorOffsetY="0" source="icon_skill_n_png" name="horse_skill_lb"/>
+	<e:Image width="59" height="94" x="360" y="412" anchorOffsetX="0" anchorOffsetY="0" source="rightbar_s_png"/>
+	<e:Image id="horse_pedigree_lb" width="59" height="94" x="360" y="412" anchorOffsetX="0" anchorOffsetY="0" name="horse_pedigree_lb" source="icon_pedigree_s_png"/>
+	<e:Image width="81" height="108" x="17.75" y="502.5" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png"/>
+	<e:Image width="53" height="53" x="32.04" y="514.5" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="53" height="53" x="32.04" y="514.5" anchorOffsetX="0" anchorOffsetY="0" source="horse01_head02_png"/>
+	<e:Image width="12" height="12" x="28.75" y="590.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="12" height="12" x="40.5" y="590.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="12" height="12" x="52.25" y="590.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="12" height="12" x="64.5" y="590.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="12" height="12" x="76.29" y="590.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Label text="System 05" x="25" y="572.5" anchorOffsetX="0" width="67" textAlign="center" textColor="0x070202" size="10" anchorOffsetY="0" height="19" verticalAlign="middle"/>
+	<e:Image width="30" height="40" x="17.75" y="502.5" source="icon_level_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image width="14" height="19" x="25.75" y="508.5" source="icon_level_s_png" anchorOffsetX="0" anchorOffsetY="0"/>
+	<e:Image id="question" width="22" height="22" x="294.82" y="518.37" source="sign_2_png" name="question"/>
+	<e:Label text="10th generation horse" x="129.25" y="516" anchorOffsetX="0" width="161" anchorOffsetY="0" height="28" textColor="0xad905d" size="16" textAlign="left" verticalAlign="middle"/>
+	<e:Scroller id="pe_scroller" width="327" height="291" x="17" y="124" anchorOffsetX="0" anchorOffsetY="0" name="pe_scroller">
+		<e:Group id="pe_group" anchorOffsetX="0" width="327" anchorOffsetY="0" height="291" name="pe_group">
+			<e:Image width="81" height="108" x="38.64" y="8.5" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png" scaleX="1" scaleY="1"/>
+			<e:Image width="53" height="53" x="52.93000000000001" y="20.5" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="53" height="53" x="52.93" y="20.5" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" source="horse01_head02_png"/>
+			<e:Image width="12" height="12" x="49.64" y="96.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="12" height="12" x="61.39" y="96.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="12" height="12" x="73.14" y="96.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="12" height="12" x="85.39" y="96.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="12" height="12" x="97.18" y="96.75" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Label text="System Father" x="45.89" y="78.5" anchorOffsetX="0" width="67" textAlign="center" textColor="0x070202" size="10" anchorOffsetY="0" height="19" verticalAlign="middle" scaleX="1" scaleY="1"/>
+			<e:Image width="30" height="40" x="38.64" y="8.5" source="icon_level_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="14" height="19" x="46.64" y="14.5" source="icon_level_s_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="81" height="108" x="212.64" y="10" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png" scaleX="1" scaleY="1"/>
+			<e:Image width="53" height="53" x="226.93" y="22" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="53" height="53" x="226.93" y="22" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" source="horse01_head02_png"/>
+			<e:Image width="12" height="12" x="223.64" y="98.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="12" height="12" x="235.39" y="98.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="12" height="12" x="247.14" y="98.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="12" height="12" x="259.39" y="98.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="12" height="12" x="271.18" y="98.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Label text="System mother" x="219.89" y="78" anchorOffsetX="0" width="69" textAlign="center" textColor="0x070202" size="10" anchorOffsetY="0" height="19" verticalAlign="middle" scaleX="1" scaleY="1"/>
+			<e:Image width="30" height="40" x="212.64" y="10" source="icon_level_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="14" height="19" x="220.64" y="16" source="icon_level_s_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="10" height="93" x="212.64" y="58.5" anchorOffsetX="0" anchorOffsetY="0" source="sign_point_2_png" rotation="90" scale9Grid="4,0,3,6" scaleX="1" scaleY="1"/>
+			<e:Image width="20" height="100" x="154" y="66" source="sign_point_1_png" scale9Grid="5,0,12,5" scaleX="1" scaleY="1"/>
+			<e:Image width="81" height="108" x="123.46" y="170" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_Gener_di_png" scaleX="1" scaleY="1"/>
+			<e:Image width="53" height="53" x="137.75" y="182" source="tx2_1_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="53" height="53" x="137.75" y="182" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1" source="horse01_head02_png"/>
+			<e:Image width="12" height="12" x="134.46" y="258.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="12" height="12" x="146.21" y="258.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="12" height="12" x="157.96" y="258.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="12" height="12" x="170.21" y="258.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="12" height="12" x="182" y="258.25" source="icon_stars_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Label text="Ferrari xxxx" x="130.71" y="240" anchorOffsetX="0" width="67" textAlign="center" textColor="0x070202" size="10" anchorOffsetY="0" height="19" verticalAlign="middle" scaleX="1" scaleY="1"/>
+			<e:Image width="30" height="40" x="123.46" y="170" source="icon_level_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+			<e:Image width="14" height="19" x="131.46" y="176" source="icon_level_s_png" anchorOffsetX="0" anchorOffsetY="0" scaleX="1" scaleY="1"/>
+		</e:Group>
+	</e:Scroller>
+	<e:Group width="58" height="54" x="136.14" y="549.75" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Image width="54" height="53" x="1" y="-2" source="info_gene_frame_png" anchorOffsetX="0" anchorOffsetY="0"/>
+		<e:Image width="33" height="33" x="12" y="3" anchorOffsetX="0" anchorOffsetY="0" source="pe_icon_grassland_png"/>
+		<e:Image width="24" height="18" x="36" y="0" rotation="0" anchorOffsetX="0" anchorOffsetY="0" source="pe_update_png"/>
+		<e:Label text="lv.1" x="21" y="38" size="12" textColor="0xf4e0a8"/>
+	</e:Group>
+	<e:Group width="58" height="54" x="202" y="549.75" anchorOffsetX="0" anchorOffsetY="0">
+		<e:Image width="54" height="53" x="1" y="-2" source="info_gene_frame_png" anchorOffsetX="0" anchorOffsetY="0"/>
+		<e:Image width="33" height="33" x="12" y="3" anchorOffsetX="0" anchorOffsetY="0" source="pe_icon_Mud_png"/>
+		<e:Image width="24" height="18" x="36" y="0" rotation="0" anchorOffsetX="0" anchorOffsetY="0" source="pe_update_png"/>
+		<e:Label text="lv.2" x="21" y="38" size="12" textColor="0xF4E0A8"/>
+	</e:Group>
+</e:Skin>

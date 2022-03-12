@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="fighting_platform" width="682.3" height="414.72" x="330.8" y="189.12" anchorOffsetX="0" anchorOffsetY="0" name="fighting_platform" source="main_setting_bg_png" scale9Grid="7,65,164,107"/>
+	<e:Button id="btn_close" label="" x="973.11" y="162.79" name="btn_close" anchorOffsetX="0" width="76.33" anchorOffsetY="0" height="75.33" scaleX="1" scaleY="1">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_close_blue_01_png" source.down="btn_close_blue_02_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image id="btn_close_ms" width="168" height="240" x="599.24" y="300.48" anchorOffsetX="0" anchorOffsetY="0" name="btn_close_ms" source="settting_close_music_png" scaleX="0.8" scaleY="0.8"/>
+	<e:Image id="btn_open_ms" width="168" height="240" x="389.08" y="300.48" anchorOffsetX="0" anchorOffsetY="0" name="btn_open_ms" source="settting_open_music_png" scaleX="0.8" scaleY="0.8"/>
+	<e:Label text="游戏设置" x="593.28" y="203.48" anchorOffsetX="0" width="148.25" anchorOffsetY="0" height="42.12" size="36" borderColor="0x000000" backgroundColor="0x000000" stroke="3" strokeColor="0xcae9ff" textColor="0x404e73"/>
+	<e:Label text="音乐    开" x="396.98" y="458.78" anchorOffsetX="0" width="148.25" anchorOffsetY="0" height="42.12" size="32" borderColor="0x000000" backgroundColor="0x000000" stroke="3" strokeColor="0xCAE9FF" textColor="0x5a71d1" textAlign="center" verticalAlign="middle" scaleX="0.8" scaleY="0.8"/>
+	<e:Label text="音乐    关" x="607.14" y="458.78" anchorOffsetX="0" width="148.25" anchorOffsetY="0" height="42.12" size="32" borderColor="0x000000" backgroundColor="0x000000" stroke="3" strokeColor="0xCAE9FF" textColor="0x5a71d1" textAlign="center" verticalAlign="middle" scaleX="0.8" scaleY="0.8"/>
+	<e:Image id="login_out" width="168" height="240" x="812.24" y="299" anchorOffsetX="0" anchorOffsetY="0" name="login_out" scaleX="0.8" scaleY="0.8" source="main_setting_logout_png"/>
+	<e:Label text="返回登录" x="820.14" y="454.3" anchorOffsetX="0" width="148.25" anchorOffsetY="0" height="42.12" size="32" borderColor="0x000000" backgroundColor="0x000000" stroke="3" strokeColor="0xCAE9FF" textColor="0x5A71D1" textAlign="center" verticalAlign="middle" scaleX="0.8" scaleY="0.8"/>
+	<e:Image id="img_left" width="40" height="40" x="483.48" y="376.48" anchorOffsetX="0" anchorOffsetY="0" source="sevent_got_png" name="img_left"/>
+	<e:Image id="img_right" width="40" height="40" x="705.74" y="375" anchorOffsetX="0" anchorOffsetY="0" source="sevent_got_png" name="img_right" visible="false"/>
+</e:Skin>

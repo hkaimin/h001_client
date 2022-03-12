@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="task_01_select_di" width="416" height="612" x="25" y="29" anchorOffsetX="0" anchorOffsetY="0" source="select4_s_png" name="task_01_select_di" visible="false"/>
+	<e:Image id="task_01_select" width="417" height="612" x="32" y="35" anchorOffsetX="0" anchorOffsetY="0" source="bar_list_RE_png" name="task_01_select"/>
+	<e:Image id="task_02_select_di" width="416" height="612" x="465.5" y="30" anchorOffsetX="0" anchorOffsetY="0" source="select4_s_png" name="task_02_select_di" visible="false"/>
+	<e:Image id="task_02_select" width="417" height="612" x="472.5" y="36" anchorOffsetX="0" anchorOffsetY="0" source="bar_list_CT_png" name="task_02_select"/>
+	<e:Image id="task_03_select_di" width="416" height="612" x="903" y="31" anchorOffsetX="0" anchorOffsetY="0" source="select4_s_png" name="task_03_select_di" visible="false"/>
+	<e:Image id="task_03_select" width="417" height="612" x="909" y="38" anchorOffsetX="0" anchorOffsetY="0" source="bar_list_P_png" name="task_03_select"/>
+</e:Skin>

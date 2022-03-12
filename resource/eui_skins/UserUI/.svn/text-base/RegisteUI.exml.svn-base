@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1136" height="640" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="1136" height="640" x="0" y="0" source="topmask_png" alpha="0.5"/>
+	<e:Image width="613" height="405" x="261.5" y="117.5" anchorOffsetX="0" anchorOffsetY="0" source="LoginTexture_json.Img_toubiao_png"/>
+	<e:Button id="btn_close" label="" x="840.34" y="83.83" name="btn_close" anchorOffsetX="0" width="68.33" anchorOffsetY="0" height="67.33">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="LoginTexture_json.AuthClose_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Label id="title_registe" text="注册" x="533.66" y="137.49" textColor="0xefba1c" size="35" name="title_registe"/>
+	<e:Label id="title_registe0" text="推广号:" x="362.33" y="211.82" size="30" name="title_registe" textColor="0xede8dc"/>
+	<e:Button id="btn_confirm_registe" label="" x="506.03" y="450.33" name="btn_confirm_registe">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="LoginTexture_json.Confirm_1_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image width="249.33" height="44" x="478.42" y="206.15" anchorOffsetX="0" anchorOffsetY="0" source="LoginTexture_json.inputtxt_png"/>
+	<e:Label id="title_registe1" text="手机号码：" x="329.33" y="259.82" size="30" name="title_registe" textColor="0xEDE8DC"/>
+	<e:Image width="249.33" height="44" x="478.42" y="254.15" anchorOffsetX="0" anchorOffsetY="0" source="LoginTexture_json.inputtxt_png"/>
+	<e:TextInput id="account_lb_txt" width="225.99" height="27.33" x="490.67" y="261.16" anchorOffsetX="0" anchorOffsetY="0" name="account_lb_txt"/>
+	<e:TextInput id="invite_lb_txt" width="225.99" height="27.33" x="490.67" y="212.82" anchorOffsetX="0" anchorOffsetY="0" name="invite_lb_txt"/>
+	<e:Label id="title_registe4" text="验证码:" x="363.08" y="356.82" size="30" name="title_registe" textColor="0xEDE8DC"/>
+	<e:Image width="123.33" height="44" x="480.17" y="351.15" anchorOffsetX="0" anchorOffsetY="0" source="LoginTexture_json.inputtxt_png"/>
+	<e:TextInput id="verify_lb_txt" width="98.99" height="27.33" x="491.84" y="356.82" anchorOffsetX="0" anchorOffsetY="0" name="verify_lb_txt"/>
+	<e:Label id="title_registe2" text="密码:" x="392.08" y="308.66" size="30" name="title_registe" textColor="0xEDE8DC"/>
+	<e:Image width="249.33" height="44" x="479.17" y="302.99" anchorOffsetX="0" anchorOffsetY="0" source="LoginTexture_json.inputtxt_png"/>
+	<e:TextInput id="password_lb_txt" width="225.99" height="27.33" x="491.84" y="310" anchorOffsetX="0" anchorOffsetY="0" displayAsPassword="true" name="password_lb_txt"/>
+	<e:Button id="btn_verify_registe" label="" x="613.67" y="351.15" anchorOffsetX="0" width="109" anchorOffsetY="0" height="42" name="btn_verify_registe">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="LoginTexture_json.Btn_Verification_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+</e:Skin>

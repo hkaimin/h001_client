@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="761" height="640" x="286.5" y="55" anchorOffsetX="0" anchorOffsetY="0" source="horse_help_bg_png"/>
+	<e:Label id="Title" text="Horse" x="542.13" y="119.48" anchorOffsetX="0" width="249.75" anchorOffsetY="0" height="58.79" textAlign="center" verticalAlign="middle" textColor="0x0c0202" bold="true" size="38"/>
+	<e:Image width="536.66" height="338.17" x="410.7" y="243.52" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_7_png"/>
+	<e:Label id="Middle_info_lb" text="Basic information of horses" x="422.42" y="184.35" anchorOffsetX="0" width="489.15" anchorOffsetY="0" height="31.52" size="22" textColor="0xc69e05" textAlign="center" verticalAlign="middle"/>
+	<e:Label id="Content" text="You can improve your attributes\n\nParticipate in the competition\n\nOr sell in the market" x="429" y="264" anchorOffsetX="0" width="496.73" anchorOffsetY="0" height="299.7" textColor="0x3d3b3b" size="24"/>
+</e:Skin>

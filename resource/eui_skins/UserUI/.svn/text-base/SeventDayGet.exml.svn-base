@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="1334" height="750" x="-1.5" y="1.5" anchorOffsetX="0" anchorOffsetY="0" source="mask_layer_png" visible="false"/>
+	<e:Image id="shop_banner0" width="1145.35" height="351.34" x="95.89" y="175.63" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_bg_png" scale9Grid="10,51,228,177"/>
+	<e:Image id="shop_banner4" width="154" height="237" x="112.59" y="263.29" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_item_got_png"/>
+	<e:Image id="item_icon_1" width="75" height="75" x="153.26" y="307.47" anchorOffsetX="0" anchorOffsetY="0" name="item_icon_1" source="barr_ball_png"/>
+	<e:Image id="shop_banner22" width="120.67" height="47.67" x="132.25" y="429.75" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_one_got_png"/>
+	<e:Image id="item_state_1" width="40" height="40" x="208.92" y="346.1" anchorOffsetX="0" anchorOffsetY="0" name="item_state_1" source="sevent_got_png"/>
+	<e:Image id="shop_banner" width="516" height="138" x="407.7" y="134.57" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_title_png"/>
+	<e:Image id="shop_banner1" width="152.67" height="237" x="594.24" y="264.63" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_item_got_png"/>
+	<e:Image id="shop_banner5" width="154" height="237" x="752.41" y="263.3" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_item_got_png"/>
+	<e:Image id="shop_banner6" width="154" height="237" x="912.37" y="261.93" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_item_got_png"/>
+	<e:Image id="shop_banner7" width="154" height="237" x="1071.71" y="261.97" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_item_get_png"/>
+	<e:Image id="shop_banner2" width="154" height="237" x="273.69" y="263.26" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_item_got_png"/>
+	<e:Image id="shop_banner3" width="154" height="237" x="433.02" y="263.29" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_item_got_png"/>
+	<e:Image id="shop_banner25" width="120.67" height="47.67" x="290.69" y="428.41" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_two_got_png"/>
+	<e:Button id="btn_close" label="" x="1223.26" y="183.6" name="btn_close" anchorOffsetX="33" width="66" anchorOffsetY="33" height="66">
+		<e:skinName>
+		<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_yellow_1_png" source.down="btn_yellow_2_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+		</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image id="item_icon_2" width="75" height="75" x="313.02" y="307.47" anchorOffsetX="0" anchorOffsetY="0" name="item_icon_2" source="barr_ball_png"/>
+	<e:Image id="item_state_2" width="40" height="40" x="367.35" y="342.08" anchorOffsetX="0" anchorOffsetY="0" name="item_state_2" source="sevent_get_png"/>
+	<e:Image id="item_icon_3" width="75" height="75" x="473.68" y="307.47" anchorOffsetX="0" anchorOffsetY="0" name="item_icon_3" source="barr_ball_png"/>
+	<e:Image id="item_state_3" width="40" height="40" x="528.01" y="340.76" anchorOffsetX="0" anchorOffsetY="0" name="item_state_3" source="sevent_get_png"/>
+	<e:Image id="item_icon_4" width="75" height="75" x="626.69" y="307.47" anchorOffsetX="0" anchorOffsetY="0" name="item_icon_4" source="barr_ball_png"/>
+	<e:Image id="item_state_4" width="40" height="40" x="681.02" y="340.75" anchorOffsetX="0" anchorOffsetY="0" name="item_state_4" source="sevent_get_png"/>
+	<e:Image id="item_icon_5" width="75" height="75" x="791.74" y="307.47" anchorOffsetX="0" anchorOffsetY="0" name="item_icon_5" source="barr_ball_png"/>
+	<e:Image id="item_state_5" width="40" height="40" x="846.07" y="339.43" anchorOffsetX="0" anchorOffsetY="0" name="item_state_5" source="sevent_get_png"/>
+	<e:Image id="item_icon_6" width="75" height="75" x="951.7" y="307.47" anchorOffsetX="0" anchorOffsetY="0" name="item_icon_6" source="barr_ball_png"/>
+	<e:Image id="item_state_6" width="40" height="40" x="1006.03" y="340.76" anchorOffsetX="0" anchorOffsetY="0" name="item_state_6" source="sevent_get_png"/>
+	<e:Image id="item_icon_7" width="75" height="75" x="1107.91" y="307.47" anchorOffsetX="0" anchorOffsetY="0" name="item_icon_7" source="barr_ball_png"/>
+	<e:Image id="item_state_7" width="40" height="40" x="1162.24" y="339.42" anchorOffsetX="0" anchorOffsetY="0" name="item_state_7" source="sevent_get_png"/>
+	<e:Label id="lb_name_1" text="初级" x="120.91" y="391.97" size="20" textColor="0xfefcfe" textAlign="center" verticalAlign="middle" name="lb_name_1" anchorOffsetX="0" width="137.33" anchorOffsetY="0" height="29.34"/>
+	<e:Label id="lb_name_2" text="初级" x="280.67" y="391.97" size="20" textColor="0xFEFCFE" textAlign="center" verticalAlign="middle" name="lb_name_2" anchorOffsetX="0" width="137.33" anchorOffsetY="0" height="29.34"/>
+	<e:Label id="lb_name_3" text="初级" x="442.01" y="391.97" size="20" textColor="0xFEFCFE" textAlign="center" verticalAlign="middle" name="lb_name_3" anchorOffsetX="0" width="137.33" anchorOffsetY="0" height="29.34"/>
+	<e:Label id="lb_name_4" text="初级" x="598.71" y="391.97" size="20" textColor="0xFEFCFE" textAlign="center" verticalAlign="middle" name="lb_name_4" anchorOffsetX="0" width="137.33" anchorOffsetY="0" height="29.34"/>
+	<e:Label id="lb_name_5" text="初级" x="756.74" y="391.97" size="20" textColor="0xFEFCFE" textAlign="center" verticalAlign="middle" name="lb_name_5" anchorOffsetX="0" width="137.33" anchorOffsetY="0" height="29.34"/>
+	<e:Label id="lb_name_6" text="初级" x="919.05" y="391.97" size="20" textColor="0xFEFCFE" textAlign="center" verticalAlign="middle" name="lb_name_6" anchorOffsetX="0" width="137.33" anchorOffsetY="0" height="29.34"/>
+	<e:Label id="lb_name_7" text="初级" x="1076.06" y="391.97" size="20" textColor="0xFEFCFE" textAlign="center" verticalAlign="middle" name="lb_name_7" anchorOffsetX="0" width="137.33" anchorOffsetY="0" height="29.34"/>
+	<e:Image id="shop_banner23" width="120.67" height="47.67" x="602.91" y="423.08" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_four_got_png"/>
+	<e:Image id="shop_banner26" width="120.67" height="47.67" x="765.41" y="425.77" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_five_got_png"/>
+	<e:Image id="shop_banner27" width="120.67" height="47.67" x="925.37" y="427.09" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_six_got_png"/>
+	<e:Image id="shop_banner28" width="120.67" height="47.67" x="1084.71" y="427.1" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_sevent_get_png"/>
+	<e:Image id="shop_banner24" width="120.67" height="47.67" x="447.35" y="425.76" anchorOffsetX="0" anchorOffsetY="0" name="shop_banner" source="sevent_three_got_png"/>
+	<e:Label id="item_lb_1" text="" x="113.13" y="280.51" anchorOffsetX="0" width="153.45" anchorOffsetY="0" height="211.21" name="item_lb_1"/>
+	<e:Label id="item_lb_2" text="" x="274.59" y="280.5" anchorOffsetX="0" width="150.79" anchorOffsetY="0" height="212.55" name="item_lb_2"/>
+	<e:Label id="item_lb_3" text="" x="434.93" y="279.29" anchorOffsetX="0" width="152.11" anchorOffsetY="0" height="212.54" name="item_lb_3"/>
+	<e:Label id="item_lb_4" text="" x="597.16" y="278.3" anchorOffsetX="0" width="148.12" anchorOffsetY="0" height="215.21" name="item_lb_4"/>
+	<e:Label id="item_lb_5" text="" x="752.41" y="278.43" anchorOffsetX="0" width="153.45" anchorOffsetY="0" height="211.21" name="item_lb_5"/>
+	<e:Label id="item_lb_6" text="" x="915.26" y="276.19" anchorOffsetX="0" width="148.12" anchorOffsetY="0" height="211.21" name="item_lb_6"/>
+	<e:Label id="item_lb_7" text="" x="1071.71" y="253.83" anchorOffsetX="0" width="152.12" anchorOffsetY="0" height="236.54" name="item_lb_7"/>
+	<e:Group id="video_g" width="332" height="104" x="664.85" y="602.19" anchorOffsetY="51.52" anchorOffsetX="165.15" name="video_g" touchChildren="false">
+		<e:Image width="280" height="100" x="26.23" y="0" anchorOffsetX="0" anchorOffsetY="0" source="btn_type1_1_png"/>
+		<e:Image width="75" height="75" x="51.02" y="11" anchorOffsetX="0" anchorOffsetY="0" source="mini_tv_png"/>
+		<e:Label id="btn_buy0" text="领  取" x="205.25" y="49" anchorOffsetX="78" width="156" anchorOffsetY="31" height="64" textAlign="center" verticalAlign="middle" size="50" strokeColor="0xF47B33" stroke="3" name="btn_buy" bold="true"/>
+	</e:Group>
+</e:Skin>

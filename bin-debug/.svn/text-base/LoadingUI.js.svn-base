@@ -1,0 +1,108 @@
+//////////////////////////////////////////////////////////////////////////////////////
+//
+//  Copyright (c) 2014-present, Egret Technology.
+//  All rights reserved.
+//  Redistribution and use in source and binary forms, with or without
+//  modification, are permitted provided that the following conditions are met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of the Egret nor the
+//       names of its contributors may be used to endorse or promote products
+//       derived from this software without specific prior written permission.
+//
+//  THIS SOFTWARE IS PROVIDED BY EGRET AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+//  OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+//  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+//  IN NO EVENT SHALL EGRET AND CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+//  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+//  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;LOSS OF USE, DATA,
+//  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+//  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+//  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+//  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//////////////////////////////////////////////////////////////////////////////////////
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = this && this.__extends || function __extends(t, e) { 
+ function r() { 
+ this.constructor = t;
+}
+for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i]);
+r.prototype = e.prototype, t.prototype = new r();
+};
+var LoadingUI = (function (_super) {
+    __extends(LoadingUI, _super);
+    function LoadingUI(iWidth, iHeight) {
+        var _this = _super.call(this) || this;
+        _this.iScreenWidth = iWidth;
+        _this.iScreenHeight = iHeight;
+        _this.createView();
+        return _this;
+    }
+    LoadingUI.prototype.createView = function () {
+        var topMask = new egret.Shape();
+        topMask.graphics.beginFill(0x000000, 1);
+        topMask.graphics.drawRect(0, 0, this.iScreenWidth, this.iScreenHeight);
+        topMask.graphics.endFill();
+        this.addChild(topMask);
+        // this.textField = new egret.TextField();
+        // this.addChild(this.textField);
+        // this.textField.y = this.iScreenHeight/2;
+        // this.textField.x = this.iScreenWidth * 0.27;
+        // this.textField.width = 480;
+        // this.textField.height = 100;
+        // this.textField.textAlign = "center";
+        // this.textField2 = new egret.TextField();
+        // this.addChild(this.textField2);
+        // this.textField2.y = this.iScreenHeight/2+60;
+        // this.textField2.x = this.iScreenWidth * 0.27;
+        // this.textField2.width = 480;
+        // this.textField2.height = 100;
+        // this.textField2.size = 20;
+        // this.textField2.lineSpacing = 8;
+        // this.textField2.textAlign = "center";
+        this.textField3 = new egret.TextField();
+        this.addChild(this.textField3);
+        this.textField3.y = this.iScreenHeight / 2 + 120;
+        this.textField3.x = this.iScreenWidth * 0.27;
+        this.textField3.width = 480;
+        this.textField3.height = 100;
+        this.textField3.size = 20;
+        this.textField3.textAlign = "center";
+        // let count = 0;
+        // let change = () => {
+        //     count++;
+        //     if (count==1){
+        //         this.textField3.text = ConstValue.P_BAR_LABEL3 + ".";
+        //     }else if(count==2){
+        //         this.textField3.text = ConstValue.P_BAR_LABEL3 + "..";
+        //     }else{
+        //         this.textField3.text = ConstValue.P_BAR_LABEL3 + "...";
+        //     }
+        //     if (count >= 3) {
+        //         count = 0;
+        //     }
+        //     let tw = egret.Tween.get(this.textField3);
+        //     tw.wait(200);
+        //     tw.call(change, this);
+        // };
+        // change();
+    };
+    LoadingUI.prototype.onProgress = function (current, total) {
+        var iPro = current / (total * 1.0) * 100;
+        iPro = Math.ceil(iPro);
+        // this.textField.text = `${ConstValue.P_BAR_LABEL}...${iPro}%`;
+        // this.textField2.text = ConstValue.P_BAR_LABEL2;
+        this.textField3.text = ConstValue.P_BAR_LABEL3 + "...(" + iPro + "%)";
+        // console.log("==================current:"+current+ " total:"+total);
+    };
+    return LoadingUI;
+}(egret.Sprite));
+__reflect(LoadingUI.prototype, "LoadingUI", ["RES.PromiseTaskReporter"]);
+//# sourceMappingURL=LoadingUI.js.map

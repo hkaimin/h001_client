@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginUI" width="1334" height="750" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="fighting_platform" width="1081.7" height="599.88" x="127.99" y="75.31" anchorOffsetX="0" anchorOffsetY="0" source="fighting_kuang_png" name="fighting_platform" scale9Grid="29,30,142,142"/>
+	<e:Image width="418" height="103.45" x="453.76" y="8.29" anchorOffsetX="0" anchorOffsetY="0" source="view_history_title_png"/>
+	<e:Label id="guanka_layer" text="第1层" x="592.01" y="30.43" anchorOffsetX="0" width="146" anchorOffsetY="0" height="66" textAlign="center" verticalAlign="middle" size="38" name="guanka_layer" textColor="0xfffef6" stroke="3" strokeColor="0x6371b2"/>
+	<e:Button id="btn_left" label="" x="51.81" y="323.25" name="btn_left" anchorOffsetX="0" width="48" anchorOffsetY="0" height="104">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="left_page_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="btn_right" label="" x="1239.22" y="321" name="btn_right" anchorOffsetX="0" width="48" anchorOffsetY="0" height="104">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="right_page_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Button id="noend_tip" label="" x="143.07" y="98.25" anchorOffsetX="32" width="64" anchorOffsetY="34.67" height="67" name="noend_tip">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="question_01_png" source.down="question_02_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Image id="lb_bg_kuang" width="829" height="44.45" x="231.33" y="684.7" source="barr_background_bg_png" anchorOffsetY="0" name="lb_bg_kuang"/>
+	<e:Image id="lb_bg_total" width="819" height="32.75" x="237.54" y="690.91" anchorOffsetY="0" anchorOffsetX="0" source="barr_value_bg_png" name="lb_bg_total"/>
+	<e:Label id="lb_star_total" text="获得100/100颗星" x="247.55" y="694.56" name="lb_star_total" size="26"/>
+	<e:Image width="95" height="77" x="1001.91" y="664.32" anchorOffsetX="0" anchorOffsetY="0" source="gift_01_png" visible="false"/>
+	<e:Button id="btn_close" label="" x="61.38" y="54.85" name="btn_close" anchorOffsetX="41.33" width="79.76" anchorOffsetY="41.33" height="82.91">
+		<e:skinName>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="btn_back_png"/>
+			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
+			</e:Skin>
+		</e:skinName>
+	</e:Button>
+	<e:Group id="fighting_parent" width="992.67" height="770" x="169.4" y="-12" anchorOffsetX="0" anchorOffsetY="0" name="fighting_parent"/>
+</e:Skin>
