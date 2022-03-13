@@ -175,7 +175,7 @@
 	<e:Group id="sell_group" width="231" height="71" x="931.29" y="665.66" anchorOffsetX="0" anchorOffsetY="0" name="sell_group" visible="false">
 		<e:Image width="98" height="18" x="8.5" y="5.67" anchorOffsetX="0" anchorOffsetY="0" source="Input-a-price_png"/>
 		<e:Image id="merge_fail_confirm0" width="76.67" height="30" x="2" y="30.67" name="merge_fail_confirm" source="bar_name_di2_png" anchorOffsetX="0" anchorOffsetY="0"/>
-		<e:Label id="sell_num_lb" text="11" x="8.21" y="34" anchorOffsetX="0" width="61.67" anchorOffsetY="0" height="23.33" textAlign="center" verticalAlign="middle" name="sell_num_lb" size="18"/>
+		<e:Label id="sell_num_lb" text="100" x="8.21" y="34" anchorOffsetX="0" width="61.67" anchorOffsetY="0" height="23.33" textAlign="center" verticalAlign="middle" name="sell_num_lb" size="18"/>
 		<e:Image width="111" height="56" x="115" y="16" anchorOffsetX="0" anchorOffsetY="0" source="btn_info3_png"/>
 		<e:Label id="sell_btn_lb" text="Sell" x="115" y="17" anchorOffsetY="0" height="52" size="22" anchorOffsetX="0" width="109" textAlign="center" verticalAlign="middle" name="sell_btn_lb"/>
 		<e:Image id="up_img" width="34" height="24" x="81.02" y="22.4" source="btn_point5_png" rotation="2.05" name="up_img"/>

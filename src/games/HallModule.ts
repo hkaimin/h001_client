@@ -615,6 +615,40 @@ class HallModule {
 		return null;
 	}
 
+	private updateHorseItemMiddle(obj){
+		if(this.horseSelectMiddlePanel != null){
+			this.horseSelectMiddlePanel.getChildByName("name").text = obj.name;
+			this.horseSelectMiddlePanel.getChildByName("horse_lv_img").source = "icon_level_"+obj.iType+"_png";
+			let sex = obj.iSex == 1 ? "icon_Male_png" : "icon_female_png";
+			this.horseSelectMiddlePanel.getChildByName("sex").source = sex;
+			for(let starNum = 1;starNum<=5 ;starNum++){
+				if(starNum > obj.star)this.horseSelectMiddlePanel.getChildByName("star_"+starNum).source = "icon_stars_0_png";
+			}
+			let energy_length = this.horseSelectMiddlePanel.getChildByName("energy_length") as eui.Image;
+			let strength_w = energy_length.width * (obj.strength*1.0/obj.MaxStrength);
+			this.horseSelectMiddlePanel.getChildByName("strength_value").width = strength_w;
+			this.horseSelectMiddlePanel.getChildByName("strength_text").text = obj.strength+"/"+obj.MaxStrength;
+
+			let energy_w = energy_length.width * (obj.energy*1.0/obj.energyMax);
+			this.horseSelectMiddlePanel.getChildByName("energy_value").width = energy_w;
+			this.horseSelectMiddlePanel.getChildByName("energy_text").text = obj.energy+"/"+obj.energyMax;
+
+			let speed_w = energy_length.width * (obj.speed*1.0/obj.MaxSpeed);
+			this.horseSelectMiddlePanel.getChildByName("speed_value").width = speed_w;
+			this.horseSelectMiddlePanel.getChildByName("speed_text").text = obj.speed+"/"+obj.MaxSpeed;
+
+			let dexterity_w = energy_length.width * (obj.dexterity*1.0/obj.MaxDexterity);
+			this.horseSelectMiddlePanel.getChildByName("dexterity_value").width = dexterity_w;
+			this.horseSelectMiddlePanel.getChildByName("dexterity_text").text = obj.dexterity+"/"+obj.MaxDexterity;
+
+			let burse_w = energy_length.width * (obj.burse*1.0/obj.MaxBurse);
+			this.horseSelectMiddlePanel.getChildByName("burst_value").width = burse_w;
+			this.horseSelectMiddlePanel.getChildByName("burst_text").text = obj.burse+"/"+obj.MaxBurse;
+			
+			this.horseSelectMiddlePanel.getChildByName("score").text = obj.score;
+		}
+	}
+
 	private createHorseItem(){
 		if(this.horseSelectPanel != null){
 			this.context.removeChild(this.maskBg2);
@@ -707,6 +741,9 @@ class HallModule {
 				this.horseItemS = obj.id;
 				this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").source = "icon_level_"+obj.iType+"_png";
 				this.btnPveAnim2D.source = "horse"+obj.res_key+"_body_png";
+
+				this.updateHorseItemMiddle(obj);
+
 				this.changeHorseRight(this.subSubCurPage);
 			}, this);
 			i ++;
@@ -1429,6 +1466,11 @@ class HallModule {
 			this.context.addChild(this.horseSelectLeftPanel);
 			CommonTools.fixFix(this.context,this.horseSelectLeftPanel,2,0,-40);
 
+			if(this.horseItemS > 0){
+				let obj = this.getPOwnHorseInfoById(this.horseItemS);
+				this.updateHorseItemMiddle(obj);
+			}
+
 			this.horseSelectLeftPanel.getChildByName("btn_back_img").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 				CommonAudioHandle.playEffect("playBomb_mp3",1);
 				this.changePage("rank_head_01");
@@ -1892,6 +1934,51 @@ class HallModule {
 			CommonAudioHandle.playEffect("playBomb_mp3",1);
 			this.createCargoSuccess();
 		}, this);
+
+		this.horseSelectRightPanel.getChildByName("s_1").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			CommonAudioHandle.playEffect("playBomb_mp3",1);
+			this.horseSelectRightPanel.getChildByName("s_1_bg").visible = true;
+			this.horseSelectRightPanel.getChildByName("s_2_bg").visible = false;
+			this.horseSelectRightPanel.getChildByName("s_3_bg").visible = false;
+			this.horseSelectRightPanel.getChildByName("s_4_bg").visible = false;
+			this.horseSelectRightPanel.getChildByName("success_rate").text = "10%";
+			this.horseSelectRightPanel.getChildByName("reward").text = "10 ~ 30";
+		}, this);
+
+		this.horseSelectRightPanel.getChildByName("s_2").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			CommonAudioHandle.playEffect("playBomb_mp3",1);
+			this.horseSelectRightPanel.getChildByName("s_1_bg").visible = false;
+			this.horseSelectRightPanel.getChildByName("s_2_bg").visible = true;
+			this.horseSelectRightPanel.getChildByName("s_3_bg").visible = false;
+			this.horseSelectRightPanel.getChildByName("s_4_bg").visible = false;
+			this.horseSelectRightPanel.getChildByName("success_rate").text = "20%";
+			this.horseSelectRightPanel.getChildByName("reward").text = "20 ~ 40";
+		}, this);
+
+		this.horseSelectRightPanel.getChildByName("s_3").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			CommonAudioHandle.playEffect("playBomb_mp3",1);
+			this.horseSelectRightPanel.getChildByName("s_1_bg").visible = false;
+			this.horseSelectRightPanel.getChildByName("s_2_bg").visible = false;
+			this.horseSelectRightPanel.getChildByName("s_3_bg").visible = true;
+			this.horseSelectRightPanel.getChildByName("s_4_bg").visible = false;
+			this.horseSelectRightPanel.getChildByName("success_rate").text = "40%";
+			this.horseSelectRightPanel.getChildByName("reward").text = "30 ~ 60";
+		}, this);
+
+		this.horseSelectRightPanel.getChildByName("s_4").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
+			CommonAudioHandle.playEffect("playBomb_mp3",1);
+			this.horseSelectRightPanel.getChildByName("s_1_bg").visible = false;
+			this.horseSelectRightPanel.getChildByName("s_2_bg").visible = false;
+			this.horseSelectRightPanel.getChildByName("s_3_bg").visible = false;
+			this.horseSelectRightPanel.getChildByName("s_4_bg").visible = true;
+			this.horseSelectRightPanel.getChildByName("success_rate").text = "80%";
+			this.horseSelectRightPanel.getChildByName("reward").text = "40 ~ 80";
+		}, this);
+
+		if(this.horseItemS > 0){
+			let obj = this.getPOwnHorseInfoById(this.horseItemS);
+			this.updateHorseItemMiddle(obj);
+		}
 	}
 
 	private task03UI(){
@@ -1928,6 +2015,11 @@ class HallModule {
 			CommonAudioHandle.playEffect("playBomb_mp3",1);
 			this.createCargoSuccess();
 		}, this);
+
+		if(this.horseItemS > 0){
+			let obj = this.getPOwnHorseInfoById(this.horseItemS);
+			this.updateHorseItemMiddle(obj);
+		}
 	}
 
 	private clearTask(){
@@ -2599,7 +2691,7 @@ class HallModule {
 				this.rankHead03.source = "icon_merge_s_png";
 				this.rankHead04.source = "icon_breeding_n_png";
 			}else if(this.curPage == 5){
-				if(this.subCurPage != 3 && ConstValue.cacheContract["nftLen"] > 0){
+				if(this.subCurPage != 3){
 					ContractSol.nft_tokensOfOwner(ContractSol.sender);
 				}
 				this.subCurPage = 3;
@@ -2766,13 +2858,13 @@ class HallModule {
 			case "up_img":
 				let up_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb") as eui.Label;
 				if(parseInt(up_text.text)>=9999)return;
-				up_text.text = parseInt(up_text.text) + 1 + ""
+				up_text.text = parseInt(up_text.text) + 10 + ""
 				break;
 
 			case "down_img":
 				let down_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb") as eui.Label;
-				if(parseInt(down_text.text)<=1)return;
-				down_text.text = parseInt(down_text.text) - 1 + ""
+				if(parseInt(down_text.text)<=10)return;
+				down_text.text = parseInt(down_text.text) - 10 + ""
 				break;
 
 			case "buynft_btn_lb":
@@ -2782,7 +2874,7 @@ class HallModule {
 					return
 				}
 				let buyMain = parseInt(this.panel.getChildByName("buynft_group").getChildByName("buy_nft_main").text)
-				ContractSol.maincoin_transfer(ContractSol.createAddress,buyMain,ContractSol.BUY_MARKET_NFT)
+				ContractSol.maincoin_transfer(ContractSol.createAddress,buyMain*ContractSol.EXCHANGE_RATE,ContractSol.BUY_MARKET_NFT)
 				break;
 			
 			case "btn_back_img":

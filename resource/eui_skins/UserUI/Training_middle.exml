@@ -5,34 +5,34 @@
 	<e:Image width="614.67" height="286.67" x="650.03" y="576.03" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_14_png" rotation="180"/>
 	<e:Image id="horse_lv_img" width="22.62" height="30.52" x="45.47" y="93.63" name="horse_lv_img" source="icon_level_d_png" anchorOffsetX="0" anchorOffsetY="0"/>
 	<e:Image width="322" height="93" x="34.36" y="82.93" anchorOffsetX="0" anchorOffsetY="0" source="bar_name_di_png"/>
-	<e:Label id="horse_name_lb" text="Ferrari" x="78.96" y="68.95" anchorOffsetX="0" width="238.24" anchorOffsetY="0" height="71" size="32" name="horse_name_lb" strokeColor="0xC63B3B" textAlign="center" verticalAlign="middle"/>
-	<e:Image id="stallion_flag_img" width="37" height="46" x="310.35" y="92.39" source="icon_Male_png" name="stallion_flag_img"/>
-	<e:Image width="34" height="34" x="101.08" y="129.43" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="34" height="34" x="135.08" y="129.43" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="34" height="34" x="169.08" y="129.43" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="34" height="34" x="203.08" y="129.43" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="34" height="34" x="237.08" y="129.43" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Label text="666" x="262" y="280.48" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" textColor="0xFCC00C" italic="true" fontFamily="Arial"/>
+	<e:Label id="name" text="Ferrari" x="78.96" y="68.95" anchorOffsetX="0" width="238.24" anchorOffsetY="0" height="71" size="32" name="name" strokeColor="0xC63B3B" textAlign="center" verticalAlign="middle"/>
+	<e:Image id="sex" width="37" height="46" x="310.35" y="92.39" source="icon_Male_png" name="sex"/>
+	<e:Image id="star_1" width="34" height="34" x="101.08" y="129.43" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0" name="star_1"/>
+	<e:Image id="star_2" width="34" height="34" x="135.08" y="129.43" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0" name="star_2"/>
+	<e:Image id="star_3" width="34" height="34" x="169.08" y="129.43" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0" name="star_3"/>
+	<e:Image id="star_4" width="34" height="34" x="203.08" y="129.43" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0" name="star_4"/>
+	<e:Image id="star_5" width="34" height="34" x="237.08" y="129.43" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0" name="star_5"/>
+	<e:Label id="score" text="666" x="262" y="280.48" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" textColor="0xFCC00C" italic="true" fontFamily="Arial" name="score"/>
 	<e:Image width="65" height="25" x="199.7" y="317.5" anchorOffsetX="0" anchorOffsetY="0" source="icon_energy_png"/>
-	<e:Label text="80/100" x="413.53" y="317.5" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
-	<e:Image width="150.66" height="10" x="276.75" y="325.48" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="276.75" y="325.48" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png"/>
+	<e:Label id="energy_text" text="80/100" x="413.53" y="317.5" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" name="energy_text"/>
+	<e:Image id="energy_length" width="150.66" height="10" x="276.75" y="325.48" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png" name="energy_length"/>
+	<e:Image id="energy_value" width="110" height="9" x="276.75" y="325.48" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png" name="energy_value"/>
 	<e:Image width="65" height="25" x="44.58" y="372.4" anchorOffsetX="0" anchorOffsetY="0" source="icon_strength_png"/>
-	<e:Label text="80/100" x="258.41" y="372.4" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Label id="strength_text" text="80/100" x="258.41" y="372.4" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" name="strength_text"/>
 	<e:Image width="150.66" height="10" x="121.63" y="380.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="121.63" y="380.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png"/>
+	<e:Image id="strength_value" width="110" height="9" x="121.63" y="380.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png" name="strength_value"/>
 	<e:Image width="65" height="25" x="45.03" y="418.38" anchorOffsetX="0" anchorOffsetY="0" source="icon_speed_png"/>
-	<e:Label text="80/100" x="258.86" y="418.38" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Label id="speed_text" text="80/100" x="258.86" y="418.38" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" name="speed_text"/>
 	<e:Image width="150.66" height="10" x="122.08" y="426.36" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="122.08" y="426.36" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png"/>
+	<e:Image id="speed_value" width="110" height="9" x="122.08" y="426.36" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png" name="speed_value"/>
 	<e:Image width="65" height="25" x="368.03" y="372.4" anchorOffsetX="0" anchorOffsetY="0" source="icon_Decterous_png"/>
-	<e:Label text="80/100" x="581.86" y="372.4" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Label id="dexterity_text" text="80/100" x="581.86" y="372.4" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" name="dexterity_text"/>
 	<e:Image width="150.66" height="10" x="445.08" y="380.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="445.08" y="380.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png"/>
+	<e:Image id="dexterity_value" width="110" height="9" x="445.08" y="380.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png" name="dexterity_value"/>
 	<e:Image width="65" height="25" x="367.15" y="418.4" anchorOffsetX="0" anchorOffsetY="0" source="icon_burst_png"/>
-	<e:Label text="80/100" x="580.98" y="418.4" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Label id="burst_text" text="80/100" x="580.98" y="418.4" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" name="burst_text"/>
 	<e:Image width="150.66" height="10" x="444.2" y="426.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="444.2" y="426.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png"/>
+	<e:Image id="burst_value" width="110" height="9" x="444.2" y="426.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png" name="burst_value"/>
 	<e:Image width="150.66" height="10" x="150.53" y="474.18" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png" scaleX="0.5" scaleY="0.5"/>
 	<e:Image width="110" height="11" x="150.53" y="473.18" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_2_png" scaleX="0.5" scaleY="0.5"/>
 	<e:Image width="60" height="48" x="107.78" y="461.18" anchorOffsetX="0" anchorOffsetY="0" source="icon_Grassland_png" scaleX="0.5" scaleY="0.5"/>
@@ -40,9 +40,9 @@
 	<e:Image width="150.66" height="10" x="323.7" y="474.18" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png" scaleX="0.5" scaleY="0.5"/>
 	<e:Image width="110" height="11" x="323.7" y="473.18" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_2_png" scaleX="0.5" scaleY="0.5"/>
 	<e:Image width="60" height="48" x="280.95" y="461.18" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.5" scaleY="0.5" source="icon_sand_png"/>
-	<e:Image width="42" height="32" x="412.3" y="466.18" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_a_png" scaleX="0.5" scaleY="0.5"/>
+	<e:Image width="42" height="32" x="412.3" y="466.18" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.5" scaleY="0.5" source="icon_level_d_png"/>
 	<e:Image width="150.66" height="10" x="495.08" y="474.18" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png" scaleX="0.5" scaleY="0.5"/>
 	<e:Image width="110" height="11" x="495.08" y="473.18" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_2_png" scaleX="0.5" scaleY="0.5"/>
 	<e:Image width="60" height="48" x="452.33" y="461.18" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.5" scaleY="0.5" source="icon_Mud_png"/>
-	<e:Image width="42" height="32" x="583.68" y="466.18" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_a_png" scaleX="0.5" scaleY="0.5"/> verticalAlign="middle" scaleX="0.6" scaleY="0.6" rotation="52.94"/>
+	<e:Image width="42" height="32" x="583.68" y="466.18" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.5" scaleY="0.5" source="icon_level_b_png"/> verticalAlign="middle" scaleX="0.6" scaleY="0.6" rotation="52.94"/>
 </e:Skin>
