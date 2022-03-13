@@ -39,9 +39,10 @@ class ConstValue {
 	static P_TR_SUCCESS = "Transaction executed!"
 	static P_TR_FAIL = "Transaction failed!"
 	static P_NOT_ENOUGH= "Not enough! "
-	static P_ON_SALE= "The horse was on sale! "
+	static P_ON_SALE= "This horse is on sale! "
 	static P_OWN_NFT= "This is your NFT! "
 	static P_GET_NFT= "Getting NFT! "
+	static P_ON_EXHIBITION= "This horse is joining exhibition ! "
 
 	//config公共配置
 	static P_IS_DEBUG:boolean = false;//false正式模式 true演示模式，不联网的

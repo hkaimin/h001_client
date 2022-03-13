@@ -157,7 +157,8 @@ var ContractSol = (function () {
                         if (iOpType == ContractSol.BUY_TICKET) {
                             ConstValue.P_HALL_OBJ.addCommonTips("Waiting NFT response...");
                             ContractSol.maincoin_balanceOf(ContractSol.sender);
-                            var sData = CommonTools.getDataJsonStr("createNft", 1, { iTickets: arg1 / 100 });
+                            var iTickets = arg1 / (ContractSol.EXCHANGE_RATE * ContractSol.EXCHANGE_RATE);
+                            var sData = CommonTools.getDataJsonStr("createNft", 1, { iTickets: iTickets });
                             ConstValue.P_NET_OBJ.sendData(sData);
                         }
                         else if (iOpType == ContractSol.BUY_MARKET_NFT) {
@@ -292,7 +293,7 @@ var ContractSol = (function () {
     ContractSol.NFTAddress = "0x14c75969e8aeb8ff68c4450ebc3090b48425f4bb";
     ContractSol.BUY_TICKET = 1;
     ContractSol.BUY_MARKET_NFT = 2;
-    ContractSol.EXCHANGE_RATE = 100;
+    ContractSol.EXCHANGE_RATE = 100.0;
     ContractSol.sender = "";
     ContractSol.createAddress = "0x210729036108b7dd19bba5141e181a47a619a46f";
     return ContractSol;
