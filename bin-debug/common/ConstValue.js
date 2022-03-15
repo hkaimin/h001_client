@@ -47,6 +47,9 @@ var ConstValue = (function () {
     ConstValue.P_OWN_NFT = "This is your NFT! ";
     ConstValue.P_GET_NFT = "Getting NFT! ";
     ConstValue.P_ON_EXHIBITION = "This horse is joining exhibition ! ";
+    ConstValue.P_SAME_HORSE = "Do not select the same horse! ";
+    ConstValue.P_NOTMATCH_HORSE = "Not match! ";
+    ConstValue.P_MERGEMAX_HORSE = "Full level! ";
     //config公共配置
     ConstValue.P_IS_DEBUG = false; //false正式模式 true演示模式，不联网的
     ConstValue.P_IS_INNER = true; //false线上模式 true内网模式 有些提示只在内网提示

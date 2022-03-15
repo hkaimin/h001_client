@@ -119,7 +119,7 @@ var ContractSol = (function () {
         // console.log(xx.length);
         // console.log(xx[1].c[0]);
     };
-    ContractSol.nft_approve = function (_index) {
+    ContractSol.nft_approve = function (_index, iOpType) {
         ContractSol.metaNFT_nft.approve(ContractSol.createAddress, _index, { from: ContractSol.sender }, function (error, token_result) {
             if (error) {
                 CommonTools.logError('--nft_approve-error--' + error);
@@ -127,7 +127,12 @@ var ContractSol = (function () {
             }
             else {
                 CommonTools.logWallet('--nft_approve-success');
-                ConstValue.P_HALL_OBJ.sellNft();
+                if (iOpType == ContractSol.SELL_NFT) {
+                    ConstValue.P_HALL_OBJ.sellNft();
+                }
+                else if (iOpType == ContractSol.MERGE_NFT) {
+                    ConstValue.P_HALL_OBJ.mergeNFTTransMain();
+                }
             }
         });
     };
@@ -165,6 +170,13 @@ var ContractSol = (function () {
                             ConstValue.P_HALL_OBJ.addCommonTips("Waiting Market response...");
                             ContractSol.maincoin_balanceOf(ContractSol.sender);
                             ConstValue.P_HALL_OBJ.pBuyNft();
+                        }
+                        else if (iOpType == ContractSol.MERGE_COST_MAIN_NFT) {
+                            ConstValue.P_HALL_OBJ.addCommonTips("Waiting Merge response...");
+                            ConstValue.P_HALL_OBJ.mergeNFTTransSub();
+                        }
+                        else if (iOpType == ContractSol.MERGE_COST_SUB_NFT) {
+                            ConstValue.P_HALL_OBJ.addCommonTips("Waiting Merge sub response...");
                         }
                     }
                 }
@@ -247,14 +259,24 @@ var ContractSol = (function () {
     /**
      * 子币transfer
      */
-    ContractSol.subcoin_transfer = function (_to, _value) {
-        ContractSol.metaNFT_subcoin.transfer(_to, _value, { from: ContractSol.sender, gas: 100000, gasPrice: ContractSol.hweb3.eth.gasPrice }, function (error, txnHash) {
+    ContractSol.subcoin_transfer = function (_to, _value, iOpr) {
+        // ContractSol.metaNFT_subcoin.transfer(_to, _value, {from: ContractSol.sender,gas:100000,gasPrice:ContractSol.hweb3.eth.gasPrice}, function(error, txnHash) {
+        // 	if(error){
+        // 		CommonTools.logError('--subcoin-transfer error--'+error)
+        // 		throw error;
+        // 	}else{
+        // 		CommonTools.logWallet('--subcoin-transfer txnHash--'+txnHash);
+        // 		ContractSol.DelayGetReceipt(txnHash,iOpr,_value)
+        // 	}
+        // });
+        ContractSol.metaNFT_subcoin.transfer(_to, _value, { from: ContractSol.sender }, function (error, txnHash) {
             if (error) {
                 CommonTools.logError('--subcoin-transfer error--' + error);
                 throw error;
             }
             else {
                 CommonTools.logWallet('--subcoin-transfer txnHash--' + txnHash);
+                ContractSol.DelayGetReceipt(txnHash, iOpr, _value);
             }
         });
     };
@@ -293,6 +315,10 @@ var ContractSol = (function () {
     ContractSol.NFTAddress = "0x14c75969e8aeb8ff68c4450ebc3090b48425f4bb";
     ContractSol.BUY_TICKET = 1;
     ContractSol.BUY_MARKET_NFT = 2;
+    ContractSol.MERGE_NFT = 3;
+    ContractSol.SELL_NFT = 4;
+    ContractSol.MERGE_COST_MAIN_NFT = 5;
+    ContractSol.MERGE_COST_SUB_NFT = 6;
     ContractSol.EXCHANGE_RATE = 100.0;
     ContractSol.sender = "";
     ContractSol.createAddress = "0x210729036108b7dd19bba5141e181a47a619a46f";

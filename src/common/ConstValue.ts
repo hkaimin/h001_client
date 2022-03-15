@@ -43,6 +43,9 @@ class ConstValue {
 	static P_OWN_NFT= "This is your NFT! "
 	static P_GET_NFT= "Getting NFT! "
 	static P_ON_EXHIBITION= "This horse is joining exhibition ! "
+	static P_SAME_HORSE= "Do not select the same horse! "
+	static P_NOTMATCH_HORSE= "Not match! "
+	static P_MERGEMAX_HORSE= "Full level! "
 
 	//config公共配置
 	static P_IS_DEBUG:boolean = false;//false正式模式 true演示模式，不联网的

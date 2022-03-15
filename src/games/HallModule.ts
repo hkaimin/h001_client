@@ -103,6 +103,7 @@ class HallModule {
 
 	private L_select_indx = -1;
 	private R_select_indx = -1;
+	private mergeConf;
 
 	public constructor(ct:Main) {
 		this.context = ct;
@@ -851,16 +852,23 @@ class HallModule {
 	}
 
 	private mergeSelect(){
-		// this.L_select_indx = -1;
-		// this.R_select_indx = -1;
-		// for(let hIndex in this.horseOwnData){
-		// 	let obj = this.horseOwnData[hIndex];
-		// 	if(obj.sellStatus == 1 || obj.exhibition == 1)continue;
-		// 	this.L_select_indx = parseInt(hIndex);
-		// 	break;
-		// }
 		this.L_select_indx = 0;
 		this.R_select_indx = ConstValue.cacheContract["nftLen"] - 1;
+	}
+
+	private updateMergeConf(dData){
+		this.mergeConf = dData;
+		this.horseSelectRightPanel.getChildByName("low_merge_low_per").text = dData.low_success/10+"%";
+		this.horseSelectRightPanel.getChildByName("low_merge_high_per").text = dData.low_fail/10+"%";
+		this.horseSelectRightPanel.getChildByName("low_merge_high_lost_per").text = dData.low_fail_lost/10+"%";
+		this.horseSelectRightPanel.getChildByName("high_merge_low_per").text = dData.high_success/10+"%";
+		this.horseSelectRightPanel.getChildByName("high_merge_high_per").text = dData.high_fail/10+"%";
+		this.horseSelectRightPanel.getChildByName("high_merge_high_lost_per").text = dData.high_fail_lost/10+"%";
+
+		this.horseSelectRightPanel.getChildByName("low_merge_main").text = dData.low_cost_main;
+		this.horseSelectRightPanel.getChildByName("low_merge_sub").text = dData.low_cost_sub;
+		this.horseSelectRightPanel.getChildByName("high_merge_main").text = dData.high_cost_main;
+		this.horseSelectRightPanel.getChildByName("high_merge_sub").text = dData.high_cost_sub;
 	}
 
 	private mergeUpdate(){
@@ -872,11 +880,16 @@ class HallModule {
 		this.horseSelectRightPanel.getChildByName("L_name").text = obj.name;
 		this.horseSelectRightPanel.getChildByName("L_head_bg").visible = true;
 		this.horseSelectRightPanel.getChildByName("L_lv_img").visible = true;
-		this.horseSelectRightPanel.getChildByName("L_lv_img").text = "icon_level_"+obj.iType+"_png";
+		this.horseSelectRightPanel.getChildByName("L_lv_img").source = "icon_level_"+obj.iType+"_png";
 		this.horseSelectRightPanel.getChildByName("L_star_own").visible = true;
 		this.horseSelectRightPanel.getChildByName("L_star_own").text = obj.star;
 		let sex = obj.iSex == 1 ? "icon_Male_png" : "icon_female_png";
 		this.horseSelectRightPanel.getChildByName("L_sex").source = sex;
+
+		this.horseSelectRightPanel.getChildByName("low_merge_low_star").text = obj.star + 1;
+		this.horseSelectRightPanel.getChildByName("low_merge_high_star").text = obj.star;
+		this.horseSelectRightPanel.getChildByName("high_merge_low_star").text = obj.star + 1;
+		this.horseSelectRightPanel.getChildByName("high_merge_high_star").text = obj.star;
 
 		(L_group.getChildByName("stamina_value") as eui.Label).visible = true;
 		(L_group.getChildByName("stamina_value") as eui.Label).text = obj.stamina;
@@ -903,6 +916,9 @@ class HallModule {
 		let burse_w = energy_length.width * (obj.burse*1.0/obj.MaxBurse);
 		(L_group.getChildByName("burst_value") as eui.Image).visible = true;
 		(L_group.getChildByName("burst_value") as eui.Image).width = burse_w;
+		
+		let sData = CommonTools.getDataJsonStr("getMergeInfo",1,{iStar:obj.star});
+		ConstValue.P_NET_OBJ.sendData(sData);
 
 		this.horseSelectRightPanel.getChildByName("right_mare_lb").text = "match "+(this.R_select_indx+1) +"/"+ConstValue.cacheContract["nftLen"];
 		L_group = this.horseSelectRightPanel.getChildByName("right_group_stat") as eui.Group;
@@ -912,7 +928,7 @@ class HallModule {
 		this.horseSelectRightPanel.getChildByName("R_name").text = obj.name;
 		this.horseSelectRightPanel.getChildByName("R_head_bg").visible = true;
 		this.horseSelectRightPanel.getChildByName("R_lv_img").visible = true;
-		this.horseSelectRightPanel.getChildByName("R_lv_img").text = "icon_level_"+obj.iType+"_png";
+		this.horseSelectRightPanel.getChildByName("R_lv_img").source = "icon_level_"+obj.iType+"_png";
 		this.horseSelectRightPanel.getChildByName("R_star_own").visible = true;
 		this.horseSelectRightPanel.getChildByName("R_star_own").text = obj.star;
 		sex = obj.iSex == 1 ? "icon_Male_png" : "icon_female_png";
@@ -944,6 +960,40 @@ class HallModule {
 		(L_group.getChildByName("R_burst_value") as eui.Image).width = burse_w;
 	}
 
+	private IsCanMerge(){
+		if(this.L_select_indx == this.R_select_indx){
+			this.addCommonTips(ConstValue.P_SAME_HORSE);
+			return false;
+		}
+		let L_obj = this.horseOwnData[this.L_select_indx.toString()];
+		let R_obj = this.horseOwnData[this.R_select_indx.toString()];
+		if(L_obj.star != R_obj.star || L_obj.iType != R_obj.iType){
+			this.addCommonTips(ConstValue.P_NOTMATCH_HORSE);
+			return false;
+		}
+		if(L_obj.sellStatus == 1 || R_obj.sellStatus == 1){
+			this.addCommonTips(ConstValue.P_ON_SALE);
+			return false;
+		}
+		if(L_obj.exhibition == 1 || R_obj.exhibition == 1){
+			this.addCommonTips(ConstValue.P_ON_EXHIBITION);
+			return false;
+		}
+		if(L_obj.star == 5){
+			this.addCommonTips(ConstValue.P_MERGEMAX_HORSE);
+			return false;
+		}
+		return true;
+	}
+
+	public mergeNFTTransMain(){
+		ContractSol.maincoin_transfer(ContractSol.createAddress,parseInt(this.mergeConf.low_cost_main)*ContractSol.EXCHANGE_RATE,ContractSol.MERGE_COST_MAIN_NFT);
+	}
+
+	public mergeNFTTransSub(){
+		ContractSol.subcoin_transfer(ContractSol.createAddress,parseInt(this.mergeConf.low_cost_sub)*ContractSol.EXCHANGE_RATE,ContractSol.MERGE_COST_SUB_NFT);
+	}
+
 	private createHorseMerge(){
 		if(this.horseSelectRightPanel != null){
 			this.context.removeChild(this.horseSelectRightPanel);
@@ -970,15 +1020,19 @@ class HallModule {
 
 		this.horseSelectRightPanel.getChildByName("merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 			CommonAudioHandle.playEffect("playBomb_mp3",1);
-			this.createMergeFail(1);
+			if(!this.IsCanMerge())return;
+			let R_obj = this.horseOwnData[this.R_select_indx.toString()];
+			ContractSol.nft_approve(R_obj.id,ContractSol.MERGE_NFT);
 		}, this);
 
 		this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 			CommonAudioHandle.playEffect("playBomb_mp3",1);
+			if(!this.IsCanMerge())return;
 			this.createMergeSuccess(1,0);
 		}, this);
 
 		this.mergeUpdate();
+
 	}
 
 	private closeMergeFail(){
@@ -2852,7 +2906,7 @@ class HallModule {
 					this.addCommonTips(ConstValue.P_ON_EXHIBITION)
 					return
 				}
-				ContractSol.nft_approve(this.horseIndexS)
+				ContractSol.nft_approve(this.horseIndexS,ContractSol.SELL_NFT);
 				break;
 
 			case "up_img":
@@ -4424,6 +4478,14 @@ class HallModule {
 				if(this.curPage==4 && this.subCurPage==1){
 					this.horseOwnData = jsonObj.d.lOwnNftData;
 					this.taskUpdate(1);
+				}
+			}
+		}else if (jsonObj.f == "getMergeInfo"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				if(this.curPage == 2 && this.subCurPage == 2){
+					this.updateMergeConf(jsonObj.d);
 				}
 			}
 		}else if (jsonObj.f == "AddSubCoin"){

@@ -6,5 +6,5 @@
 	<e:Label id="password_lb_title" text="密码：" x="420" y="687.5" anchorOffsetY="0" height="40" size="45" name="password_lb_title"/>
 	<e:Label id="btn_registe" text="注册" x="942" y="609" name="btn_registe" anchorOffsetY="0" height="36"/>
 	<e:Label id="btn_login" text="登录" x="942" y="687.5" name="btn_login"/>
-	<e:Image id="btn_login_wx" width="220" height="51" x="688.34" y="620.27" anchorOffsetX="110" anchorOffsetY="26.27" source="weixin_login_png" name="btn_login_wx"/>
+	<e:Image id="btn_login_wx" width="220" height="51" x="688.34" y="620.27" anchorOffsetX="110" anchorOffsetY="26.27" name="btn_login_wx" source="weixin_login2_png"/>
 </e:Skin>

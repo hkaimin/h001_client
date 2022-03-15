@@ -222,6 +222,7 @@ var WebSocketUtil = (function (_super) {
                 case "joinExhi":
                 case "gorestExhi":
                 case "claimExhi":
+                case "getMergeInfo":
                     if (obj_1.f == "SeventDayReward")
                         if (!HallModule.isSafeArea)
                             return;

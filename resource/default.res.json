@@ -17,7 +17,7 @@
 			"name": "diymap"
 		},
 		{
-			"keys": "weixin_login_png,nft_tokensOfOwner_json,maincoin_transfer_json,maincoin_balanceOf_json,maincoin_transferFrom_json,maincoin_increaseApproval_json,login_bg_jpg,nft_approve_json,nft_transferFrom_json",
+			"keys": "weixin_login2_png,nft_tokensOfOwner_json,maincoin_transfer_json,maincoin_balanceOf_json,maincoin_transferFrom_json,maincoin_increaseApproval_json,login_bg_jpg,nft_approve_json,nft_transferFrom_json",
 			"name": "pre_preload"
 		},
 		{
@@ -1355,9 +1355,9 @@
 			"subkeys": "skill_chicken_nn_png,skill_chicken_png,skill_dog_nn_png,skill_dog_png,skill_hudun_nn_png,skill_hudun_png,skill_item_bg_png,skill_item_kuang_png,skill_jingu_nn_png,skill_jingu_png,skill_shuaijian_nn_png,skill_shuaijian_png,skill_tip_01_png,skill_tip_02_png"
 		},
 		{
-			"url": "assets/UserSkin/ppt/btn/weixin_login.png",
+			"url": "assets/UserSkin/ppt/btn/weixin_login2.png",
 			"type": "image",
-			"name": "weixin_login_png"
+			"name": "weixin_login2_png"
 		},
 		{
 			"url": "assets/UserSkin/ppt/role/default_head.png",

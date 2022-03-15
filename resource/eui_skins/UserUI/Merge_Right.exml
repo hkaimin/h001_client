@@ -32,11 +32,12 @@
 	<e:Image width="125.96" height="124.45" x="492.02" y="272.65" source="tx_UNK_2_png" anchorOffsetX="0" anchorOffsetY="0"/>
 	<e:Image width="126.96" height="124.45" x="491.38" y="268.97" anchorOffsetX="0" anchorOffsetY="0" source="tx_UNK_3_png"/>
 	<e:Image width="70" height="129" x="408.88" y="475" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_10_png"/>
-	<e:Label id="low_merge_low_per" text="75%" x="418.38" y="475" anchorOffsetX="0" width="51" anchorOffsetY="0" height="21" size="16" textAlign="center" verticalAlign="middle" name="low_merge_low_per"/>
+	<e:Label id="low_merge_low_per" text="60%" x="418.38" y="475" anchorOffsetX="0" width="51" anchorOffsetY="0" height="21" size="16" textAlign="center" verticalAlign="middle" name="low_merge_low_per"/>
 	<e:Image width="60" height="60" x="412.96" y="509" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
 	<e:Label id="low_merge_low_star" text="2" x="400.54" y="511.67" anchorOffsetX="0" width="81.88" anchorOffsetY="0" height="55.55" size="32" name="low_merge_low_star" strokeColor="0xC63B3B" textAlign="center" verticalAlign="middle" stroke="2"/>
 	<e:Image width="70" height="129" x="482.82" y="475" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_10_png"/>
-	<e:Label id="low_merge_high_per" text="20%" x="495.9" y="475.01" anchorOffsetX="0" width="51" anchorOffsetY="0" height="21" size="16" textAlign="center" verticalAlign="middle" name="low_merge_high_per"/>
+	<e:Label id="low_merge_high_per" text="20%" x="481.9" y="475.01" anchorOffsetX="0" width="36" anchorOffsetY="0" height="21" size="16" textAlign="center" verticalAlign="middle" name="low_merge_high_per"/>
+	<e:Label id="low_merge_high_lost_per" text="20%" x="517.9" y="475.18" anchorOffsetX="0" width="36" anchorOffsetY="0" height="21" size="16" textAlign="center" verticalAlign="middle" name="low_merge_high_lost_per" textColor="0xa50d0d"/>
 	<e:Image width="60" height="60" x="486.9" y="508.12" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
 	<e:Label id="low_merge_high_star" text="1" x="474.48" y="510.79" anchorOffsetX="0" width="81.88" anchorOffsetY="0" height="55.55" size="32" name="low_merge_high_star" strokeColor="0xC63B3B" textAlign="center" verticalAlign="middle" stroke="2"/>
 	<e:Image width="70" height="129" x="566.32" y="475" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_10_png"/>
@@ -44,7 +45,8 @@
 	<e:Image width="60" height="60" x="570.4" y="506.41" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
 	<e:Label id="high_merge_low_star" text="2" x="557.98" y="509.08" anchorOffsetX="0" width="81.88" anchorOffsetY="0" height="55.55" size="32" name="high_merge_low_star" strokeColor="0xC63B3B" textAlign="center" verticalAlign="middle" stroke="2"/>
 	<e:Image width="70" height="129" x="640.26" y="475" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di_10_png"/>
-	<e:Label id="high_merge_high_per" text="10%" x="649.36" y="475.13" anchorOffsetX="0" width="51" anchorOffsetY="0" height="21" size="16" textAlign="center" verticalAlign="middle" name="high_merge_high_per"/>
+	<e:Label id="high_merge_high_per" text="10%" x="637.36" y="476.13" anchorOffsetX="0" width="37" anchorOffsetY="0" height="20" size="16" textAlign="center" verticalAlign="middle" name="high_merge_high_per"/>
+	<e:Label id="high_merge_high_lost_per" text="10%" x="672.36" y="476.13" anchorOffsetX="0" width="37" anchorOffsetY="0" height="20" size="16" textAlign="center" verticalAlign="middle" name="high_merge_high_lost_per" textColor="0xa50d0d"/>
 	<e:Image width="60" height="60" x="644.34" y="505.53" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
 	<e:Label id="high_merge_high_star" text="1" x="631.92" y="508.2" anchorOffsetX="0" width="81.88" anchorOffsetY="0" height="55.55" size="32" name="high_merge_high_star" strokeColor="0xC63B3B" textAlign="center" verticalAlign="middle" stroke="2"/>
 	<e:Image id="left_stallion_bg_img" width="206" height="33.67" x="92.98" y="702.31" source="bar_txopt_di_2_png" anchorOffsetX="0" anchorOffsetY="0" name="left_stallion_bg_img"/>
@@ -117,10 +119,10 @@
 		<e:Image width="44" height="41" x="204.73" y="79.36" source="icon_wisdom_png" scaleX="1" scaleY="1"/>
 		<e:Image width="44" height="41" x="294.01" y="79.36" source="icon_constitution_png" scaleX="1" scaleY="1"/>
 		<e:Image width="346" height="2" x="3.69" y="132.36" source="bar_Splitline_1_png" scaleX="1" scaleY="1"/>
-		<e:Label id="stamina_value" text="0" x="16.71" y="146.2" anchorOffsetX="0" width="59.03" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" scaleX="1" scaleY="1" name="stamina_value" visible="false"/>
-		<e:Label id="wisdom_value" text="0" x="195.31" y="146.2" anchorOffsetX="0" width="59.03" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" scaleX="1" scaleY="1" name="wisdom_value" visible="false"/>
-		<e:Label id="start_value" text="0" x="104.21" y="146.2" anchorOffsetX="0" width="59.03" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" textColor="0x18A4DB" scaleX="1" scaleY="1" name="start_value" visible="false"/>
-		<e:Label id="constitution_value" text="0" x="282.56" y="144.68" anchorOffsetX="0" width="59.03" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" textColor="0x18A4DB" scaleX="1" scaleY="1" name="constitution_value" visible="false"/>
+		<e:Label id="stamina_value" text="0" x="16.71" y="146.2" anchorOffsetX="0" width="59.03" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" scaleX="1" scaleY="1" name="stamina_value"/>
+		<e:Label id="wisdom_value" text="0" x="195.31" y="146.2" anchorOffsetX="0" width="59.03" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" scaleX="1" scaleY="1" name="wisdom_value"/>
+		<e:Label id="start_value" text="0" x="104.21" y="146.2" anchorOffsetX="0" width="59.03" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" textColor="0x18A4DB" scaleX="1" scaleY="1" name="start_value"/>
+		<e:Label id="constitution_value" text="0" x="282.56" y="144.68" anchorOffsetX="0" width="59.03" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" textColor="0x18A4DB" scaleX="1" scaleY="1" name="constitution_value"/>
 		<e:Image width="349" height="115" x="6.69" y="63.36" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di2_png" scaleX="1" scaleY="1"/>
 		<e:Image width="65" height="25" x="19.16" y="8" anchorOffsetX="0" anchorOffsetY="0" source="icon_strength_png" scaleX="0.6" scaleY="0.6"/>
 		<e:Image id="energy_length" width="150.66" height="10" x="72.21" y="13" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png" scaleX="0.6" scaleY="0.6" name="energy_length"/>

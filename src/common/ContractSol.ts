@@ -11,6 +11,11 @@ class ContractSol {
 
 	static BUY_TICKET = 1;
 	static BUY_MARKET_NFT = 2;
+	static MERGE_NFT = 3;
+	static SELL_NFT = 4;
+	static MERGE_COST_MAIN_NFT = 5;
+	static MERGE_COST_SUB_NFT = 6;
+
 	static EXCHANGE_RATE = 100.0;
 
 	//web3
@@ -154,14 +159,18 @@ class ContractSol {
 		// console.log(xx[1].c[0]);
 	}
 
-	static nft_approve(_index){
+	static nft_approve(_index,iOpType){
 		ContractSol.metaNFT_nft.approve(ContractSol.createAddress,_index,{from:ContractSol.sender},(error,token_result) => {
 			if(error){
 				CommonTools.logError('--nft_approve-error--'+error)
 				throw error;
 			}else{
 				CommonTools.logWallet('--nft_approve-success');
-				ConstValue.P_HALL_OBJ.sellNft();				
+				if(iOpType == ContractSol.SELL_NFT){
+					ConstValue.P_HALL_OBJ.sellNft();
+				}else if(iOpType == ContractSol.MERGE_NFT){
+					ConstValue.P_HALL_OBJ.mergeNFTTransMain();
+				}
 			}
 		});
 	}
@@ -198,6 +207,12 @@ class ContractSol {
 							ConstValue.P_HALL_OBJ.addCommonTips("Waiting Market response...");
 							ContractSol.maincoin_balanceOf(ContractSol.sender);
 							ConstValue.P_HALL_OBJ.pBuyNft();
+						}else if(iOpType == ContractSol.MERGE_COST_MAIN_NFT){
+							ConstValue.P_HALL_OBJ.addCommonTips("Waiting Merge response...");
+							ConstValue.P_HALL_OBJ.mergeNFTTransSub();
+						}else if(iOpType == ContractSol.MERGE_COST_SUB_NFT){
+							ConstValue.P_HALL_OBJ.addCommonTips("Waiting Merge sub response...");
+							
 						}
 					}
 				}
@@ -281,14 +296,25 @@ class ContractSol {
 	/**
 	 * 子币transfer
 	 */
-	static subcoin_transfer(_to,_value){
+	static subcoin_transfer(_to,_value,iOpr){
 
-		ContractSol.metaNFT_subcoin.transfer(_to, _value, {from: ContractSol.sender,gas:100000,gasPrice:ContractSol.hweb3.eth.gasPrice}, function(error, txnHash) {
+		// ContractSol.metaNFT_subcoin.transfer(_to, _value, {from: ContractSol.sender,gas:100000,gasPrice:ContractSol.hweb3.eth.gasPrice}, function(error, txnHash) {
+		// 	if(error){
+		// 		CommonTools.logError('--subcoin-transfer error--'+error)
+		// 		throw error;
+		// 	}else{
+		// 		CommonTools.logWallet('--subcoin-transfer txnHash--'+txnHash);
+		// 		ContractSol.DelayGetReceipt(txnHash,iOpr,_value)
+		// 	}
+		// });
+
+		ContractSol.metaNFT_subcoin.transfer(_to, _value, {from: ContractSol.sender}, function(error, txnHash) {
 			if(error){
 				CommonTools.logError('--subcoin-transfer error--'+error)
 				throw error;
 			}else{
 				CommonTools.logWallet('--subcoin-transfer txnHash--'+txnHash);
+				ContractSol.DelayGetReceipt(txnHash,iOpr,_value)
 			}
 		});
 
