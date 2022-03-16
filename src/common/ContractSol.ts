@@ -212,7 +212,7 @@ class ContractSol {
 							ConstValue.P_HALL_OBJ.mergeNFTTransSub();
 						}else if(iOpType == ContractSol.MERGE_COST_SUB_NFT){
 							ConstValue.P_HALL_OBJ.addCommonTips("Waiting Merge sub response...");
-							
+							ConstValue.P_HALL_OBJ.doMerge();
 						}
 					}
 				}

@@ -104,6 +104,8 @@ class HallModule {
 	private L_select_indx = -1;
 	private R_select_indx = -1;
 	private mergeConf;
+	private mergeType=0;
+	private mergeOutOfHorse = 0;
 
 	public constructor(ct:Main) {
 		this.context = ct;
@@ -983,6 +985,20 @@ class HallModule {
 			this.addCommonTips(ConstValue.P_MERGEMAX_HORSE);
 			return false;
 		}
+		if(this.mergeType == 1){
+			if(ConstValue.cacheUserInfo.coin/ContractSol.EXCHANGE_RATE < this.mergeConf.low_cost_main || 
+			   ConstValue.cacheUserInfo.diamond/ContractSol.EXCHANGE_RATE < this.mergeConf.low_cost_sub){
+				this.addCommonTips(ConstValue.P_NOT_ENOUGH);
+				return false;
+			}
+		}
+		if(this.mergeType == 2){
+			if(ConstValue.cacheUserInfo.coin/ContractSol.EXCHANGE_RATE < this.mergeConf.high_cost_main || 
+			   ConstValue.cacheUserInfo.diamond/ContractSol.EXCHANGE_RATE < this.mergeConf.high_cost_sub){
+				this.addCommonTips(ConstValue.P_NOT_ENOUGH);
+				return false;
+			}
+		}
 		return true;
 	}
 
@@ -992,6 +1008,12 @@ class HallModule {
 
 	public mergeNFTTransSub(){
 		ContractSol.subcoin_transfer(ContractSol.createAddress,parseInt(this.mergeConf.low_cost_sub)*ContractSol.EXCHANGE_RATE,ContractSol.MERGE_COST_SUB_NFT);
+	}
+
+	public doMerge(){
+		let R_obj = this.horseOwnData[this.R_select_indx.toString()];
+		let sData = CommonTools.getDataJsonStr("doMergeNft",1,{iStar:R_obj.star,iMergeType:this.mergeType,iNft:R_obj.id,sOwner:ContractSol.sender});
+		ConstValue.P_NET_OBJ.sendData(sData);
 	}
 
 	private createHorseMerge(){
@@ -1020,6 +1042,7 @@ class HallModule {
 
 		this.horseSelectRightPanel.getChildByName("merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 			CommonAudioHandle.playEffect("playBomb_mp3",1);
+			this.mergeType = 1;
 			if(!this.IsCanMerge())return;
 			let R_obj = this.horseOwnData[this.R_select_indx.toString()];
 			ContractSol.nft_approve(R_obj.id,ContractSol.MERGE_NFT);
@@ -1027,6 +1050,7 @@ class HallModule {
 
 		this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 			CommonAudioHandle.playEffect("playBomb_mp3",1);
+			this.mergeType = 2;
 			if(!this.IsCanMerge())return;
 			this.createMergeSuccess(1,0);
 		}, this);
@@ -1090,6 +1114,7 @@ class HallModule {
 		this.horseMergeResult.getChildByName("merge_fail_confirm").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 			CommonAudioHandle.playEffect("playBomb_mp3",1);
 			this.closeMergeFail();
+			ContractSol.nft_tokensOfOwner(ContractSol.sender);
 		}, this);
 
 		if(index == 2){
@@ -2612,8 +2637,16 @@ class HallModule {
 		this.changePage("rank_head_01");
 	}
 
-	private changePage(clickName){
+	private clearChangeData(){
 		this.horseIndexS = 0;
+		this.L_select_indx = -1;
+		this.R_select_indx = -1;
+		this.mergeConf = null;
+		this.mergeType=0;
+	}
+
+	private changePage(clickName){
+		this.clearChangeData();
 		if(clickName == "rank_head_01"){
 			if(this.curPage == 5){
 				this.subCurPage = 1;
@@ -4434,6 +4467,14 @@ class HallModule {
 				
 			}else{
 				let lOwnNftData = jsonObj.d.lOwnNftData;
+				let lNewNftData = [];
+				for(let i in lOwnNftData){
+					let obj = lOwnNftData[i.toString()];
+					if(obj.id != this.mergeOutOfHorse){
+						lNewNftData.push(obj);
+					}
+				}
+				lOwnNftData = lNewNftData;
 				let count = 0
 				for(let i in lOwnNftData){
 					count += 1;
@@ -4445,6 +4486,7 @@ class HallModule {
 					this.horseOwnData = null;
 				}
 				if(this.curPage == 5 && this.subCurPage == 3)this.changePage("rank_head_03");
+				if(this.curPage == 2 && this.subCurPage == 2)this.changePage("rank_head_03");
 			}
 		}else if (jsonObj.f == "getTotalExhi"){
 			if(jsonObj.m != "" || jsonObj.s != 1){
@@ -4486,6 +4528,18 @@ class HallModule {
 			}else{
 				if(this.curPage == 2 && this.subCurPage == 2){
 					this.updateMergeConf(jsonObj.d);
+				}
+			}
+		}else if (jsonObj.f == "doMergeNft"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				if(jsonObj.d.outofHorseId > 0){
+					this.mergeOutOfHorse = jsonObj.d.outofHorseId;
+				}
+				if(jsonObj.d.result == 2)this.createMergeFail(1);
+				if(jsonObj.d.result == 1){
+					this.createMergeSuccess(1,0);
 				}
 			}
 		}else if (jsonObj.f == "AddSubCoin"){

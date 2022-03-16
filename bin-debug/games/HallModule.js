@@ -79,6 +79,8 @@ var HallModule = (function () {
         this.horseItemS = 0;
         this.L_select_indx = -1;
         this.R_select_indx = -1;
+        this.mergeType = 0;
+        this.mergeOutOfHorse = 0;
         this.isdisplay = false;
         this.context = ct;
         HallModule.isNoEnd = false;
@@ -907,6 +909,20 @@ var HallModule = (function () {
             this.addCommonTips(ConstValue.P_MERGEMAX_HORSE);
             return false;
         }
+        if (this.mergeType == 1) {
+            if (ConstValue.cacheUserInfo.coin / ContractSol.EXCHANGE_RATE < this.mergeConf.low_cost_main ||
+                ConstValue.cacheUserInfo.diamond / ContractSol.EXCHANGE_RATE < this.mergeConf.low_cost_sub) {
+                this.addCommonTips(ConstValue.P_NOT_ENOUGH);
+                return false;
+            }
+        }
+        if (this.mergeType == 2) {
+            if (ConstValue.cacheUserInfo.coin / ContractSol.EXCHANGE_RATE < this.mergeConf.high_cost_main ||
+                ConstValue.cacheUserInfo.diamond / ContractSol.EXCHANGE_RATE < this.mergeConf.high_cost_sub) {
+                this.addCommonTips(ConstValue.P_NOT_ENOUGH);
+                return false;
+            }
+        }
         return true;
     };
     HallModule.prototype.mergeNFTTransMain = function () {
@@ -914,6 +930,11 @@ var HallModule = (function () {
     };
     HallModule.prototype.mergeNFTTransSub = function () {
         ContractSol.subcoin_transfer(ContractSol.createAddress, parseInt(this.mergeConf.low_cost_sub) * ContractSol.EXCHANGE_RATE, ContractSol.MERGE_COST_SUB_NFT);
+    };
+    HallModule.prototype.doMerge = function () {
+        var R_obj = this.horseOwnData[this.R_select_indx.toString()];
+        var sData = CommonTools.getDataJsonStr("doMergeNft", 1, { iStar: R_obj.star, iMergeType: this.mergeType, iNft: R_obj.id, sOwner: ContractSol.sender });
+        ConstValue.P_NET_OBJ.sendData(sData);
     };
     HallModule.prototype.createHorseMerge = function () {
         if (this.horseSelectRightPanel != null) {
@@ -937,6 +958,7 @@ var HallModule = (function () {
         this.initMergeClick();
         this.horseSelectRightPanel.getChildByName("merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.mergeType = 1;
             if (!this.IsCanMerge())
                 return;
             var R_obj = this.horseOwnData[this.R_select_indx.toString()];
@@ -944,6 +966,7 @@ var HallModule = (function () {
         }, this);
         this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.mergeType = 2;
             if (!this.IsCanMerge())
                 return;
             this.createMergeSuccess(1, 0);
@@ -997,6 +1020,7 @@ var HallModule = (function () {
         this.horseMergeResult.getChildByName("merge_fail_confirm").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.closeMergeFail();
+            ContractSol.nft_tokensOfOwner(ContractSol.sender);
         }, this);
         if (index == 2) {
             this.horseMergeResult.getChildByName("merge_success_title_img").source = "pic_breed_png";
@@ -2473,8 +2497,15 @@ var HallModule = (function () {
         this.curPage = 6;
         this.changePage("rank_head_01");
     };
-    HallModule.prototype.changePage = function (clickName) {
+    HallModule.prototype.clearChangeData = function () {
         this.horseIndexS = 0;
+        this.L_select_indx = -1;
+        this.R_select_indx = -1;
+        this.mergeConf = null;
+        this.mergeType = 0;
+    };
+    HallModule.prototype.changePage = function (clickName) {
+        this.clearChangeData();
         if (clickName == "rank_head_01") {
             if (this.curPage == 5) {
                 this.subCurPage = 1;
@@ -4151,7 +4182,7 @@ var HallModule = (function () {
      */
     HallModule.prototype.handlePacket = function (jsonObj) {
         return __awaiter(this, void 0, void 0, function () {
-            var lnftInfo, count, _loop_10, this_10, i, lMarketData, count, i, lOwnNftData, count, i, iCount, groupNoEnd, sData, userInfo, sData, imgHead, lbName, platform_1, lbLv, lbExp, lbCoin, lbZuan;
+            var lnftInfo, count, _loop_10, this_10, i, lMarketData, count, i, lOwnNftData, lNewNftData, i, obj, count, i, iCount, groupNoEnd, sData, userInfo, sData, imgHead, lbName, platform_1, lbLv, lbExp, lbCoin, lbZuan;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -4165,7 +4196,7 @@ var HallModule = (function () {
                             ConstValue.cacheUserInfo.name = jsonObj.d.name;
                             this.closeSub();
                         }
-                        return [3 /*break*/, 41];
+                        return [3 /*break*/, 42];
                     case 1:
                         if (!(jsonObj.f == "gmFunc")) return [3 /*break*/, 2];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4174,7 +4205,7 @@ var HallModule = (function () {
                         else {
                             CommonTools.addCommonTips(this.tipsPanel, "执行成功");
                         }
-                        return [3 /*break*/, 41];
+                        return [3 /*break*/, 42];
                     case 2:
                         if (!(jsonObj.f == "contract")) return [3 /*break*/, 3];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4182,7 +4213,7 @@ var HallModule = (function () {
                         else {
                             ContractSol.maincoin_increaseApproval(jsonObj.d.to, jsonObj.d.num);
                         }
-                        return [3 /*break*/, 41];
+                        return [3 /*break*/, 42];
                     case 3:
                         if (!(jsonObj.f == "createNft")) return [3 /*break*/, 4];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4206,7 +4237,7 @@ var HallModule = (function () {
                                 ContractSol.nft_tokensOfOwner(ContractSol.sender);
                             }, this);
                         }
-                        return [3 /*break*/, 41];
+                        return [3 /*break*/, 42];
                     case 4:
                         if (!(jsonObj.f == "getNftMarket" || jsonObj.f == "BuyNft")) return [3 /*break*/, 5];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4226,7 +4257,7 @@ var HallModule = (function () {
                             if (this.curPage == 5 && this.subCurPage == 2)
                                 this.changePage("rank_head_02");
                         }
-                        return [3 /*break*/, 41];
+                        return [3 /*break*/, 42];
                     case 5:
                         if (!(jsonObj.f == "PBuyNft")) return [3 /*break*/, 6];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4240,13 +4271,21 @@ var HallModule = (function () {
                                 this.addCommonTips(ConstValue.P_TR_FAIL);
                             }
                         }
-                        return [3 /*break*/, 41];
+                        return [3 /*break*/, 42];
                     case 6:
                         if (!(jsonObj.f == "getOwnNft")) return [3 /*break*/, 7];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
                             lOwnNftData = jsonObj.d.lOwnNftData;
+                            lNewNftData = [];
+                            for (i in lOwnNftData) {
+                                obj = lOwnNftData[i.toString()];
+                                if (obj.id != this.mergeOutOfHorse) {
+                                    lNewNftData.push(obj);
+                                }
+                            }
+                            lOwnNftData = lNewNftData;
                             count = 0;
                             for (i in lOwnNftData) {
                                 count += 1;
@@ -4260,8 +4299,10 @@ var HallModule = (function () {
                             }
                             if (this.curPage == 5 && this.subCurPage == 3)
                                 this.changePage("rank_head_03");
+                            if (this.curPage == 2 && this.subCurPage == 2)
+                                this.changePage("rank_head_03");
                         }
-                        return [3 /*break*/, 41];
+                        return [3 /*break*/, 42];
                     case 7:
                         if (!(jsonObj.f == "getTotalExhi")) return [3 /*break*/, 8];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4275,7 +4316,7 @@ var HallModule = (function () {
                                 this.timeGetTotalExhi(); //60秒回调一次
                             }
                         }
-                        return [3 /*break*/, 41];
+                        return [3 /*break*/, 42];
                     case 8:
                         if (!(jsonObj.f == "joinExhi" || jsonObj.f == "gorestExhi")) return [3 /*break*/, 9];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4286,7 +4327,7 @@ var HallModule = (function () {
                                 this.taskUpdate(1);
                             }
                         }
-                        return [3 /*break*/, 41];
+                        return [3 /*break*/, 42];
                     case 9:
                         if (!(jsonObj.f == "AddMainCoin" || jsonObj.f == "claimExhi")) return [3 /*break*/, 10];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4301,7 +4342,7 @@ var HallModule = (function () {
                                 this.taskUpdate(1);
                             }
                         }
-                        return [3 /*break*/, 41];
+                        return [3 /*break*/, 42];
                     case 10:
                         if (!(jsonObj.f == "getMergeInfo")) return [3 /*break*/, 11];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4311,9 +4352,24 @@ var HallModule = (function () {
                                 this.updateMergeConf(jsonObj.d);
                             }
                         }
-                        return [3 /*break*/, 41];
+                        return [3 /*break*/, 42];
                     case 11:
-                        if (!(jsonObj.f == "AddSubCoin")) return [3 /*break*/, 12];
+                        if (!(jsonObj.f == "doMergeNft")) return [3 /*break*/, 12];
+                        if (jsonObj.m != "" || jsonObj.s != 1) {
+                        }
+                        else {
+                            if (jsonObj.d.outofHorseId > 0) {
+                                this.mergeOutOfHorse = jsonObj.d.outofHorseId;
+                            }
+                            if (jsonObj.d.result == 2)
+                                this.createMergeFail(1);
+                            if (jsonObj.d.result == 1) {
+                                this.createMergeSuccess(1, 0);
+                            }
+                        }
+                        return [3 /*break*/, 42];
+                    case 12:
+                        if (!(jsonObj.f == "AddSubCoin")) return [3 /*break*/, 13];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4322,16 +4378,16 @@ var HallModule = (function () {
                                 ContractSol.subcoin_balanceOf(ContractSol.sender);
                             }, this);
                         }
-                        return [3 /*break*/, 41];
-                    case 12:
-                        if (!(jsonObj.f == "getPvpRankThree")) return [3 /*break*/, 13];
+                        return [3 /*break*/, 42];
+                    case 13:
+                        if (!(jsonObj.f == "getPvpRankThree")) return [3 /*break*/, 14];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
                         }
-                        return [3 /*break*/, 41];
-                    case 13:
-                        if (!(jsonObj.f == "getHelp" || jsonObj.f == "getGonggao")) return [3 /*break*/, 14];
+                        return [3 /*break*/, 42];
+                    case 14:
+                        if (!(jsonObj.f == "getHelp" || jsonObj.f == "getGonggao")) return [3 /*break*/, 15];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4339,9 +4395,9 @@ var HallModule = (function () {
                                 return [2 /*return*/];
                             CommonTools.addTipsPanel(this.context, jsonObj.d.name, jsonObj.d.content);
                         }
-                        return [3 /*break*/, 41];
-                    case 14:
-                        if (!(jsonObj.f == "Room1v1Dismiss")) return [3 /*break*/, 15];
+                        return [3 /*break*/, 42];
+                    case 15:
+                        if (!(jsonObj.f == "Room1v1Dismiss")) return [3 /*break*/, 16];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4350,9 +4406,9 @@ var HallModule = (function () {
                             if (this.showWxVsPanel != null)
                                 CommonTools.niceTip(this.showWxVsPanel, 2, this);
                         }
-                        return [3 /*break*/, 41];
-                    case 15:
-                        if (!(jsonObj.f == "WaitingInfo")) return [3 /*break*/, 16];
+                        return [3 /*break*/, 42];
+                    case 16:
+                        if (!(jsonObj.f == "WaitingInfo")) return [3 /*break*/, 17];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                             CommonTools.addCommonTips(this.tipsPanel, ConstValue.P_ENTER_ROOM_FAIL);
                         }
@@ -4374,19 +4430,19 @@ var HallModule = (function () {
                                 }
                             }
                         }
-                        return [3 /*break*/, 41];
-                    case 16:
-                        if (!(jsonObj.f == "syncMapData")) return [3 /*break*/, 21];
-                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 17];
-                        return [3 /*break*/, 20];
+                        return [3 /*break*/, 42];
                     case 17:
-                        if (!(ConstValue.cacheKeyGroup["fighting"] == null)) return [3 /*break*/, 19];
+                        if (!(jsonObj.f == "syncMapData")) return [3 /*break*/, 22];
+                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 18];
+                        return [3 /*break*/, 21];
+                    case 18:
+                        if (!(ConstValue.cacheKeyGroup["fighting"] == null)) return [3 /*break*/, 20];
                         this.context.dDataInfo = jsonObj.d;
                         return [4 /*yield*/, this.context.loadResource("fighting", 6)];
-                    case 18:
-                        _a.sent();
-                        return [3 /*break*/, 20];
                     case 19:
+                        _a.sent();
+                        return [3 /*break*/, 21];
+                    case 20:
                         if (ConstValue.P_FIGHT_OBJ == null) {
                             ConstValue.P_FIGHT_OBJ = new FightingModule(this.context);
                         }
@@ -4395,10 +4451,10 @@ var HallModule = (function () {
                             ConstValue.P_FIGHT_OBJ.releaseVsPanel();
                             ConstValue.P_FIGHT_OBJ.updateInfo(this.context.dDataInfo2);
                         }
-                        _a.label = 20;
-                    case 20: return [3 /*break*/, 41];
-                    case 21:
-                        if (!(jsonObj.f == "openDiyMapUI")) return [3 /*break*/, 22];
+                        _a.label = 21;
+                    case 21: return [3 /*break*/, 42];
+                    case 22:
+                        if (!(jsonObj.f == "openDiyMapUI")) return [3 /*break*/, 23];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4407,9 +4463,9 @@ var HallModule = (function () {
                                 // new MapMiniDIYModule(this.context,jsonObj.d);
                             }
                         }
-                        return [3 /*break*/, 41];
-                    case 22:
-                        if (!(jsonObj.f == "showAllClassList" || jsonObj.f == "reflashClassList")) return [3 /*break*/, 23];
+                        return [3 /*break*/, 42];
+                    case 23:
+                        if (!(jsonObj.f == "showAllClassList" || jsonObj.f == "reflashClassList")) return [3 /*break*/, 24];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4421,9 +4477,9 @@ var HallModule = (function () {
                                 this.updateRoleClass(this.roleSelectIdx);
                             }
                         }
-                        return [3 /*break*/, 41];
-                    case 23:
-                        if (!(jsonObj.f == "openShopUI")) return [3 /*break*/, 24];
+                        return [3 /*break*/, 42];
+                    case 24:
+                        if (!(jsonObj.f == "openShopUI")) return [3 /*break*/, 25];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4439,9 +4495,9 @@ var HallModule = (function () {
                                     this.clickShopItem(this.shopItemClickName);
                             }
                         }
-                        return [3 /*break*/, 41];
-                    case 24:
-                        if (!(jsonObj.f == "openBagUI")) return [3 /*break*/, 25];
+                        return [3 /*break*/, 42];
+                    case 25:
+                        if (!(jsonObj.f == "openBagUI")) return [3 /*break*/, 26];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4459,9 +4515,9 @@ var HallModule = (function () {
                                 this.clickShopItem(this.shopItemClickName);
                             }
                         }
-                        return [3 /*break*/, 41];
-                    case 25:
-                        if (!(jsonObj.f == "Buy")) return [3 /*break*/, 26];
+                        return [3 /*break*/, 42];
+                    case 26:
+                        if (!(jsonObj.f == "Buy")) return [3 /*break*/, 27];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4471,9 +4527,9 @@ var HallModule = (function () {
                                 this.updateCoin();
                             }
                         }
-                        return [3 /*break*/, 41];
-                    case 26:
-                        if (!(jsonObj.f == "getMyMaps")) return [3 /*break*/, 27];
+                        return [3 /*break*/, 42];
+                    case 27:
+                        if (!(jsonObj.f == "getMyMaps")) return [3 /*break*/, 28];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4488,9 +4544,9 @@ var HallModule = (function () {
                                 this.showNotice("resource/eui_skins/UserUI/MapViewUI.exml", "getMyMaps");
                             }, this);
                         }
-                        return [3 /*break*/, 41];
-                    case 27:
-                        if (!(jsonObj.f == "C2GOpenWujinUI")) return [3 /*break*/, 28];
+                        return [3 /*break*/, 42];
+                    case 28:
+                        if (!(jsonObj.f == "C2GOpenWujinUI")) return [3 /*break*/, 29];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4511,9 +4567,9 @@ var HallModule = (function () {
                                 }
                             }
                         }
-                        return [3 /*break*/, 41];
-                    case 28:
-                        if (!(jsonObj.f == "SeventDayReward")) return [3 /*break*/, 29];
+                        return [3 /*break*/, 42];
+                    case 29:
+                        if (!(jsonObj.f == "SeventDayReward")) return [3 /*break*/, 30];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4531,23 +4587,23 @@ var HallModule = (function () {
                                 this.handleSeventDay();
                             }
                         }
-                        return [3 /*break*/, 41];
-                    case 29:
-                        if (!(jsonObj.f == "G2C_getWXInfo")) return [3 /*break*/, 33];
-                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 30];
-                        return [3 /*break*/, 32];
+                        return [3 /*break*/, 42];
                     case 30:
+                        if (!(jsonObj.f == "G2C_getWXInfo")) return [3 /*break*/, 34];
+                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 31];
+                        return [3 /*break*/, 33];
+                    case 31:
                         if (ConstValue.p_LOGIN_MODEL != 2)
                             return [2 /*return*/]; //微信渠道才有
                         return [4 /*yield*/, platform.getUserInfo()];
-                    case 31:
+                    case 32:
                         userInfo = _a.sent();
                         sData = CommonTools.getDataJsonStr("saveWXInfo", 1, { head: userInfo.avatarUrl, name: userInfo.nickName, gender: userInfo.gender });
                         ConstValue.P_NET_OBJ.sendData(sData);
-                        _a.label = 32;
-                    case 32: return [3 /*break*/, 41];
-                    case 33:
-                        if (!(jsonObj.f == "saveWXInfo")) return [3 /*break*/, 34];
+                        _a.label = 33;
+                    case 33: return [3 /*break*/, 42];
+                    case 34:
+                        if (!(jsonObj.f == "saveWXInfo")) return [3 /*break*/, 35];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4560,9 +4616,9 @@ var HallModule = (function () {
                             lbName.text = jsonObj.d.name;
                             ConstValue.cacheUserInfo.name = jsonObj.d.name;
                         }
-                        return [3 /*break*/, 41];
-                    case 34:
-                        if (!(jsonObj.f == "showUpgradeReward")) return [3 /*break*/, 35];
+                        return [3 /*break*/, 42];
+                    case 35:
+                        if (!(jsonObj.f == "showUpgradeReward")) return [3 /*break*/, 36];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4574,9 +4630,9 @@ var HallModule = (function () {
                                 this.handleLvReward();
                             }
                         }
-                        return [3 /*break*/, 41];
-                    case 35:
-                        if (!(jsonObj.f == "GuildInfo")) return [3 /*break*/, 36];
+                        return [3 /*break*/, 42];
+                    case 36:
+                        if (!(jsonObj.f == "GuildInfo")) return [3 /*break*/, 37];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4592,21 +4648,21 @@ var HallModule = (function () {
                                 // if(jsonObj.d.id != 3)new GuideModule(this.context,jsonObj.d.id,this.panel,this.panelNotice);
                             }
                         }
-                        return [3 /*break*/, 41];
-                    case 36:
-                        if (!(jsonObj.f == "open1V1Room" || jsonObj.f == "open1V1RoomByMap")) return [3 /*break*/, 40];
-                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 37];
-                        return [3 /*break*/, 39];
+                        return [3 /*break*/, 42];
                     case 37:
+                        if (!(jsonObj.f == "open1V1Room" || jsonObj.f == "open1V1RoomByMap")) return [3 /*break*/, 41];
+                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 38];
+                        return [3 /*break*/, 40];
+                    case 38:
                         CommonTools.log("shareAppMessage-------1");
                         Main.roomkey = jsonObj.d.roomkey;
                         platform_1 = window.platform;
                         return [4 /*yield*/, platform_1.shareAppMessage(jsonObj.d.roomkey)];
-                    case 38:
+                    case 39:
                         _a.sent();
-                        _a.label = 39;
-                    case 39: return [3 /*break*/, 41];
-                    case 40:
+                        _a.label = 40;
+                    case 40: return [3 /*break*/, 42];
+                    case 41:
                         if (jsonObj.f == "showMatch1v1RoomUI") {
                             if (jsonObj.m != "" || jsonObj.s != 1) {
                             }
@@ -4692,8 +4748,8 @@ var HallModule = (function () {
                                 CommonTools.log("this.lRank-------------" + this.lRank);
                             }
                         }
-                        _a.label = 41;
-                    case 41: return [2 /*return*/];
+                        _a.label = 42;
+                    case 42: return [2 /*return*/];
                 }
             });
         });
