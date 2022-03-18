@@ -137,6 +137,17 @@ class HallModule {
 			this.btnPveAnim.y = this.btnPveAnimY;
 		}else{
 			this.btnPveAnim.x = this.btnPveAnimX;
+			this.btnPveAnim.y = this.btnPveAnimY - 180;
+		}
+	}
+
+	private setTHorseXY(){
+		if(this.btnPveAnim == null)return;
+		if(ConstValue.deviveNormalScale < 2){
+			this.btnPveAnim.x = this.btnPveAnimX;
+			this.btnPveAnim.y = this.btnPveAnimY;
+		}else{
+			this.btnPveAnim.x = this.btnPveAnimX;
 			this.btnPveAnim.y = this.btnPveAnimY + 10;
 		}
 	}
@@ -193,11 +204,11 @@ class HallModule {
 		this.btnPveAnim.play(-1);
 		this.btnPveAnim.name = "btn_noend_pve_anim";
 		this.panel.addChild(this.btnPveAnim);
-		this.setHorseXY();
+		this.setTHorseXY();
 		this.horseFunc  = function(e:egret.Event) {
             this.btnPveAnimX += 16;
 			this.btnPveAnimY = this.btnPveAnimInitY - 50;
-			this.setHorseXY();
+			this.setTHorseXY();
 			if(this.btnPveAnimX >= (this.context.getStageWidth() - 200)){
 				this.stopTraining();
 			}
@@ -1011,8 +1022,9 @@ class HallModule {
 	}
 
 	public doMerge(){
+		let L_obj = this.horseOwnData[this.L_select_indx.toString()];
 		let R_obj = this.horseOwnData[this.R_select_indx.toString()];
-		let sData = CommonTools.getDataJsonStr("doMergeNft",1,{iStar:R_obj.star,iMergeType:this.mergeType,iNft:R_obj.id,sOwner:ContractSol.sender});
+		let sData = CommonTools.getDataJsonStr("doMergeNft",1,{iStar:R_obj.star,iMergeType:this.mergeType,iNft:R_obj.id,sOwner:ContractSol.sender,iSelectNft:L_obj.id});
 		ConstValue.P_NET_OBJ.sendData(sData);
 	}
 
@@ -1120,6 +1132,13 @@ class HallModule {
 		if(index == 2){
 			this.horseMergeResult.getChildByName("merge_success_title_img").source = "pic_breed_png";
 		}
+
+		this.horseMergeResult.getChildByName("merge_lv_img").source = "icon_level_"+horseData.iType+"_png";
+		this.horseMergeResult.getChildByName("merge_fail_icon").source = "horse"+horseData.res_key+"_body_png";
+		for(let starNum = 1;starNum<=5 ;starNum++){
+			if(starNum > horseData.star)this.horseMergeResult.getChildByName("star"+starNum+"_img").source = "icon_stars_0_png";
+		}
+		this.horseMergeResult.getChildByName("horse_name_lb").text = horseData.name;
 	}
 
 	private createMergeSuccessT(horseData){
@@ -1458,7 +1477,7 @@ class HallModule {
 		this.horseSelectRightPanel.visible = false;
 		this.horseSelectPanel.visible = false;
 		this.btnPveAnimX = -200;
-		this.setHorseXY();
+		this.setTHorseXY();
 		this.drawTraining(index);
 	}
 
@@ -4539,7 +4558,7 @@ class HallModule {
 				}
 				if(jsonObj.d.result == 2)this.createMergeFail(1);
 				if(jsonObj.d.result == 1){
-					this.createMergeSuccess(1,0);
+					this.createMergeSuccess(1,jsonObj.d.showData);
 				}
 			}
 		}else if (jsonObj.f == "AddSubCoin"){

@@ -112,6 +112,18 @@ var HallModule = (function () {
         }
         else {
             this.btnPveAnim.x = this.btnPveAnimX;
+            this.btnPveAnim.y = this.btnPveAnimY - 180;
+        }
+    };
+    HallModule.prototype.setTHorseXY = function () {
+        if (this.btnPveAnim == null)
+            return;
+        if (ConstValue.deviveNormalScale < 2) {
+            this.btnPveAnim.x = this.btnPveAnimX;
+            this.btnPveAnim.y = this.btnPveAnimY;
+        }
+        else {
+            this.btnPveAnim.x = this.btnPveAnimX;
             this.btnPveAnim.y = this.btnPveAnimY + 10;
         }
     };
@@ -168,11 +180,11 @@ var HallModule = (function () {
         this.btnPveAnim.play(-1);
         this.btnPveAnim.name = "btn_noend_pve_anim";
         this.panel.addChild(this.btnPveAnim);
-        this.setHorseXY();
+        this.setTHorseXY();
         this.horseFunc = function (e) {
             this.btnPveAnimX += 16;
             this.btnPveAnimY = this.btnPveAnimInitY - 50;
-            this.setHorseXY();
+            this.setTHorseXY();
             if (this.btnPveAnimX >= (this.context.getStageWidth() - 200)) {
                 this.stopTraining();
             }
@@ -932,8 +944,9 @@ var HallModule = (function () {
         ContractSol.subcoin_transfer(ContractSol.createAddress, parseInt(this.mergeConf.low_cost_sub) * ContractSol.EXCHANGE_RATE, ContractSol.MERGE_COST_SUB_NFT);
     };
     HallModule.prototype.doMerge = function () {
+        var L_obj = this.horseOwnData[this.L_select_indx.toString()];
         var R_obj = this.horseOwnData[this.R_select_indx.toString()];
-        var sData = CommonTools.getDataJsonStr("doMergeNft", 1, { iStar: R_obj.star, iMergeType: this.mergeType, iNft: R_obj.id, sOwner: ContractSol.sender });
+        var sData = CommonTools.getDataJsonStr("doMergeNft", 1, { iStar: R_obj.star, iMergeType: this.mergeType, iNft: R_obj.id, sOwner: ContractSol.sender, iSelectNft: L_obj.id });
         ConstValue.P_NET_OBJ.sendData(sData);
     };
     HallModule.prototype.createHorseMerge = function () {
@@ -1025,6 +1038,13 @@ var HallModule = (function () {
         if (index == 2) {
             this.horseMergeResult.getChildByName("merge_success_title_img").source = "pic_breed_png";
         }
+        this.horseMergeResult.getChildByName("merge_lv_img").source = "icon_level_" + horseData.iType + "_png";
+        this.horseMergeResult.getChildByName("merge_fail_icon").source = "horse" + horseData.res_key + "_body_png";
+        for (var starNum = 1; starNum <= 5; starNum++) {
+            if (starNum > horseData.star)
+                this.horseMergeResult.getChildByName("star" + starNum + "_img").source = "icon_stars_0_png";
+        }
+        this.horseMergeResult.getChildByName("horse_name_lb").text = horseData.name;
     };
     HallModule.prototype.createMergeSuccessT = function (horseData) {
         CommonAudioHandle.playEffect("success_mp3", 1);
@@ -1352,7 +1372,7 @@ var HallModule = (function () {
         this.horseSelectRightPanel.visible = false;
         this.horseSelectPanel.visible = false;
         this.btnPveAnimX = -200;
-        this.setHorseXY();
+        this.setTHorseXY();
         this.drawTraining(index);
     };
     HallModule.prototype.createTrainingSuccess = function () {
@@ -4364,7 +4384,7 @@ var HallModule = (function () {
                             if (jsonObj.d.result == 2)
                                 this.createMergeFail(1);
                             if (jsonObj.d.result == 1) {
-                                this.createMergeSuccess(1, 0);
+                                this.createMergeSuccess(1, jsonObj.d.showData);
                             }
                         }
                         return [3 /*break*/, 42];
