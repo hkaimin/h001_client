@@ -28,11 +28,11 @@
 		</e:Skin>
 		</e:skinName>
 	</e:Button>
-	<e:Label id="main_coin_num_lb0" text="4" x="228.48" y="590" name="main_coin_num_lb" anchorOffsetX="0" width="74" textAlign="left" anchorOffsetY="0" height="23.33" size="26" textColor="0xF9F2F2" verticalAlign="middle" scaleX="0.6" scaleY="0.6"/>
+	<e:Label id="train_cost_sub" text="4" x="228.48" y="590" name="train_cost_sub" anchorOffsetX="0" width="74" textAlign="left" anchorOffsetY="0" height="23.33" size="26" textColor="0xF9F2F2" verticalAlign="middle" scaleX="0.6" scaleY="0.6"/>
 	<e:Label id="train_btn_img" text="" x="101.6" y="537" anchorOffsetX="0" width="242" anchorOffsetY="0" height="96" name="train_btn_img"/>
-	<e:Label text="Select a promotion" x="60.5" y="483" anchorOffsetX="0" width="306" anchorOffsetY="0" height="37" size="24" textAlign="center" verticalAlign="middle" bold="true"/>
-	<e:Image width="177" height="24" x="131.5" y="80.98" source="bar_exp_3_red_png"/>
-	<e:Image width="123.5" height="24" x="131.5" y="80.58" source="bar_exp_3_png" anchorOffsetX="0"/>
+	<e:Label text="Select a Training Site" x="60.5" y="483" anchorOffsetX="0" width="306" anchorOffsetY="0" height="37" size="24" textAlign="center" verticalAlign="middle" bold="true"/>
+	<e:Image id="energy_bg" width="177" height="24" x="131.5" y="80.98" source="bar_exp_3_red_png" name="energy_bg"/>
+	<e:Image id="energy_value" width="123.5" height="24" x="131.5" y="80.58" source="bar_exp_3_png" anchorOffsetX="0" name="energy_value"/>
 	<e:Label text="4" x="202" y="136.48" size="22"/>
 	<e:Image width="174" height="19" x="130.91" y="297.4" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.8" scaleY="0.8" source="bar_exp_4_di_png"/>
 	<e:Image width="65" height="25" x="41" y="197.38" anchorOffsetX="0" anchorOffsetY="0" source="icon_strength_png" scaleX="0.8" scaleY="0.8"/>
@@ -64,5 +64,6 @@
 	<e:Image id="b_4" width="50" height="19" x="232.48" y="297" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.8" scaleY="0.8" source="single_green_png" name="b_4"/>
 	<e:Image id="d_1" width="50" height="19" x="128.69" y="265.51" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.8" scaleY="0.8" source="single_green_png" name="d_1"/>
 	<e:Image id="b_1" width="50" height="19" x="129.1" y="297.2" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.8" scaleY="0.8" source="single_green_png" name="b_1"/>
-	<e:Image width="50" height="19" x="164.8" y="200.98" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.8" scaleY="0.8" source="single_green_png" visible="false"/> verticalAlign="middle" scaleX="0.6" scaleY="0.6" rotation="52.94"/>
+	<e:Image width="50" height="19" x="164.8" y="200.98" anchorOffsetX="0" anchorOffsetY="0" scaleX="0.8" scaleY="0.8" source="single_green_png" visible="false"/>
+	<e:Label id="energy_cost" text="-10" x="208" y="84" anchorOffsetY="0" height="22" size="18" textColor="0xf9fcfb" name="energy_cost"/> verticalAlign="middle" scaleX="0.6" scaleY="0.6" rotation="52.94"/>
 </e:Skin>

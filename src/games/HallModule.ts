@@ -106,6 +106,7 @@ class HallModule {
 	private mergeConf;
 	private mergeType=0;
 	private mergeOutOfHorse = 0;
+	private createNFTTempID = 0;
 
 	public constructor(ct:Main) {
 		this.context = ct;
@@ -884,10 +885,42 @@ class HallModule {
 		this.horseSelectRightPanel.getChildByName("high_merge_sub").text = dData.high_cost_sub;
 	}
 
+	private updateBreedConf(dData){
+		this.mergeConf = dData;
+		this.horseSelectRightPanel.getChildByName("low_merge_low_per").text = dData.low_success/10+"%";
+		this.horseSelectRightPanel.getChildByName("low_merge_high_per").visible = false;
+		this.horseSelectRightPanel.getChildByName("low_merge_high_lost_per").visible = false;
+		this.horseSelectRightPanel.getChildByName("low_merge_high2_per").text = dData.low_fail/10+"%";
+		this.horseSelectRightPanel.getChildByName("low_merge_high2_per").visible = true;
+
+		this.horseSelectRightPanel.getChildByName("high_merge_low_per").text = dData.high_success/10+"%";
+		this.horseSelectRightPanel.getChildByName("high_merge_high_per").visible = false;
+		this.horseSelectRightPanel.getChildByName("high_merge_high_lost_per").visible = false;
+		this.horseSelectRightPanel.getChildByName("high_merge_high2_per").text = dData.high_fail/10+"%";
+		this.horseSelectRightPanel.getChildByName("high_merge_high2_per").visible = true;
+
+		this.horseSelectRightPanel.getChildByName("low_merge_main").text = dData.low_cost_main;
+		this.horseSelectRightPanel.getChildByName("low_merge_sub").text = dData.low_cost_sub;
+		this.horseSelectRightPanel.getChildByName("high_merge_main").text = dData.high_cost_main;
+		this.horseSelectRightPanel.getChildByName("high_merge_sub").text = dData.high_cost_sub;
+
+		this.horseSelectRightPanel.getChildByName("low_merge_low_star").visible = false;
+		this.horseSelectRightPanel.getChildByName("low_merge_high_star").visible = false;
+		this.horseSelectRightPanel.getChildByName("high_merge_low_star").visible = false;
+		this.horseSelectRightPanel.getChildByName("high_merge_high_star").visible = false;
+
+		this.horseSelectRightPanel.getChildByName("star_bg_1").source = "tx_UNK_3_png";
+		this.horseSelectRightPanel.getChildByName("star_bg_2").source = "icon_heart2_png";
+		this.horseSelectRightPanel.getChildByName("star_bg_3").source = "tx_UNK_3_png";
+		this.horseSelectRightPanel.getChildByName("star_bg_4").source = "icon_heart2_png";
+	}
+
 	private mergeUpdate(){
 		this.horseSelectRightPanel.getChildByName("left_stallion_lb").text = "select "+(this.L_select_indx+1) +"/"+ConstValue.cacheContract["nftLen"];
 		let L_group = this.horseSelectRightPanel.getChildByName("left_group_stat") as eui.Group;
 		let obj = this.horseOwnData[this.L_select_indx.toString()];
+		let sType1 = obj.iType;
+		this.horseItemS = obj.id;
 		this.horseSelectRightPanel.getChildByName("L_body").visible = true;
 		this.horseSelectRightPanel.getChildByName("L_body").source = "horse"+obj.res_key+"_body_png";
 		this.horseSelectRightPanel.getChildByName("L_name").text = obj.name;
@@ -930,12 +963,16 @@ class HallModule {
 		(L_group.getChildByName("burst_value") as eui.Image).visible = true;
 		(L_group.getChildByName("burst_value") as eui.Image).width = burse_w;
 		
-		let sData = CommonTools.getDataJsonStr("getMergeInfo",1,{iStar:obj.star});
-		ConstValue.P_NET_OBJ.sendData(sData);
+		if(this.curPage == 2 && this.subCurPage == 2){
+			let sData = CommonTools.getDataJsonStr("getMergeInfo",1,{iStar:obj.star});
+			ConstValue.P_NET_OBJ.sendData(sData);
+		}
 
 		this.horseSelectRightPanel.getChildByName("right_mare_lb").text = "match "+(this.R_select_indx+1) +"/"+ConstValue.cacheContract["nftLen"];
 		L_group = this.horseSelectRightPanel.getChildByName("right_group_stat") as eui.Group;
 		obj = this.horseOwnData[this.R_select_indx.toString()];
+		let sType2 = obj.iType;
+
 		this.horseSelectRightPanel.getChildByName("R_body").visible = true;
 		this.horseSelectRightPanel.getChildByName("R_body").source = "horse"+obj.res_key+"_body_png";
 		this.horseSelectRightPanel.getChildByName("R_name").text = obj.name;
@@ -971,6 +1008,12 @@ class HallModule {
 		burse_w = energy_length.width * (obj.burse*1.0/obj.MaxBurse);
 		(L_group.getChildByName("R_burst_value") as eui.Image).visible = true;
 		(L_group.getChildByName("R_burst_value") as eui.Image).width = burse_w;
+
+		if(this.curPage == 2 && this.subCurPage == 3){
+			let sData = CommonTools.getDataJsonStr("getBreedInfo",1,{sType1:sType1,sType2:sType2});
+			ConstValue.P_NET_OBJ.sendData(sData);
+		}
+
 	}
 
 	private IsCanMerge(){
@@ -1013,18 +1056,72 @@ class HallModule {
 		return true;
 	}
 
+	private IsCanBreed(){
+		if(this.L_select_indx == this.R_select_indx){
+			this.addCommonTips(ConstValue.P_SAME_HORSE);
+			return false;
+		}
+		let L_obj = this.horseOwnData[this.L_select_indx.toString()];
+		let R_obj = this.horseOwnData[this.R_select_indx.toString()];
+		if(L_obj.iSex == R_obj.iSex){
+			this.addCommonTips(ConstValue.P_NOTMATCH_HORSE);
+			return false;
+		}
+		if(L_obj.breed >= L_obj.breedMax || R_obj.breed >= R_obj.breedMax){
+			this.addCommonTips(ConstValue.P_NO_BREED);
+			return false;
+		}
+		if(L_obj.sellStatus == 1 || R_obj.sellStatus == 1){
+			this.addCommonTips(ConstValue.P_ON_SALE);
+			return false;
+		}
+		if(L_obj.exhibition == 1 || R_obj.exhibition == 1){
+			this.addCommonTips(ConstValue.P_ON_EXHIBITION);
+			return false;
+		}
+		if(this.mergeType == 1){
+			if(ConstValue.cacheUserInfo.coin/ContractSol.EXCHANGE_RATE < this.mergeConf.low_cost_main || 
+			   ConstValue.cacheUserInfo.diamond/ContractSol.EXCHANGE_RATE < this.mergeConf.low_cost_sub){
+				this.addCommonTips(ConstValue.P_NOT_ENOUGH);
+				return false;
+			}
+		}
+		if(this.mergeType == 2){
+			if(ConstValue.cacheUserInfo.coin/ContractSol.EXCHANGE_RATE < this.mergeConf.high_cost_main || 
+			   ConstValue.cacheUserInfo.diamond/ContractSol.EXCHANGE_RATE < this.mergeConf.high_cost_sub){
+				this.addCommonTips(ConstValue.P_NOT_ENOUGH);
+				return false;
+			}
+		}
+		return true;
+	}
+
 	public mergeNFTTransMain(){
-		ContractSol.maincoin_transfer(ContractSol.createAddress,parseInt(this.mergeConf.low_cost_main)*ContractSol.EXCHANGE_RATE,ContractSol.MERGE_COST_MAIN_NFT);
+		let iCost = this.mergeType == 1 ? this.mergeConf.low_cost_main : this.mergeConf.high_cost_main;
+		ContractSol.maincoin_transfer(ContractSol.createAddress,parseInt(iCost)*ContractSol.EXCHANGE_RATE,ContractSol.MERGE_COST_MAIN_NFT);
 	}
 
 	public mergeNFTTransSub(){
-		ContractSol.subcoin_transfer(ContractSol.createAddress,parseInt(this.mergeConf.low_cost_sub)*ContractSol.EXCHANGE_RATE,ContractSol.MERGE_COST_SUB_NFT);
+		let iCost = this.mergeType == 1 ? this.mergeConf.low_cost_sub : this.mergeConf.high_cost_sub;
+		ContractSol.subcoin_transfer(ContractSol.createAddress,parseInt(iCost)*ContractSol.EXCHANGE_RATE,ContractSol.MERGE_COST_SUB_NFT);
+	}
+
+	public breedNFTTransSub(){
+		let iCost = this.mergeType == 1 ? this.mergeConf.low_cost_sub : this.mergeConf.high_cost_sub;
+		ContractSol.subcoin_transfer(ContractSol.createAddress,parseInt(iCost)*ContractSol.EXCHANGE_RATE,ContractSol.BREED_COST_SUB_NFT);
 	}
 
 	public doMerge(){
 		let L_obj = this.horseOwnData[this.L_select_indx.toString()];
 		let R_obj = this.horseOwnData[this.R_select_indx.toString()];
 		let sData = CommonTools.getDataJsonStr("doMergeNft",1,{iStar:R_obj.star,iMergeType:this.mergeType,iNft:R_obj.id,sOwner:ContractSol.sender,iSelectNft:L_obj.id});
+		ConstValue.P_NET_OBJ.sendData(sData);
+	}
+
+	public doBreed(){
+		let L_obj = this.horseOwnData[this.L_select_indx.toString()];
+		let R_obj = this.horseOwnData[this.R_select_indx.toString()];
+		let sData = CommonTools.getDataJsonStr("doBreedNft",1,{iMergeType:this.mergeType,iLeftNft:L_obj.id,sLeftType:L_obj.iType,iRightNft:R_obj.id,sRigthType:R_obj.iType});
 		ConstValue.P_NET_OBJ.sendData(sData);
 	}
 
@@ -1064,7 +1161,8 @@ class HallModule {
 			CommonAudioHandle.playEffect("playBomb_mp3",1);
 			this.mergeType = 2;
 			if(!this.IsCanMerge())return;
-			this.createMergeSuccess(1,0);
+			let R_obj = this.horseOwnData[this.R_select_indx.toString()];
+			ContractSol.nft_approve(R_obj.id,ContractSol.MERGE_NFT);
 		}, this);
 
 		this.mergeUpdate();
@@ -1100,6 +1198,7 @@ class HallModule {
 		this.horseMergeResult.getChildByName("merge_fail_confirm").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 			CommonAudioHandle.playEffect("playBomb_mp3",1);
 			this.closeMergeFail();
+			ContractSol.nft_tokensOfOwner(ContractSol.sender);
 		}, this);
 
 		if(index == 2){
@@ -1172,7 +1271,9 @@ class HallModule {
 		merge_lv_img.source = "icon_level_"+horseData.iType+"_png";
 		let merge_fail_icon = thorseMergeResult.getChildByName("merge_fail_icon") as eui.Image;
 		merge_fail_icon.source = "horse"+horseData.res_key+"_body_png"
-
+		for(let starNum = 1;starNum<=5 ;starNum++){
+			if(starNum > horseData.star)(thorseMergeResult.getChildByName("star"+starNum+"_img") as eui.Image).source = "icon_stars_0_png";
+		}
 	}
 
 	private createHorseBreeding(){
@@ -1206,12 +1307,16 @@ class HallModule {
 
 		this.horseSelectRightPanel.getChildByName("merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 			CommonAudioHandle.playEffect("playBomb_mp3",1);
-			this.createMergeFail(2);
+			this.mergeType = 1;
+			if(!this.IsCanBreed())return;
+			ContractSol.maincoin_transfer(ContractSol.createAddress,this.mergeConf.low_cost_main*ContractSol.EXCHANGE_RATE,ContractSol.BREED_COST_MAIN_NFT);	
 		}, this);
 
 		this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 			CommonAudioHandle.playEffect("playBomb_mp3",1);
-			this.createMergeSuccess(2,0);
+			this.mergeType = 2;
+			if(!this.IsCanBreed())return;
+			ContractSol.maincoin_transfer(ContractSol.createAddress,this.mergeConf.high_cost_main*ContractSol.EXCHANGE_RATE,ContractSol.BREED_COST_MAIN_NFT);
 		}, this);
 
 		this.mergeUpdate();
@@ -1469,7 +1574,7 @@ class HallModule {
 		this.drawHorse()
 	}
 
-	private startTraining(index){
+	public startTraining(index){
 		if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = false;
 		if(this.btnPveAnim3D != null)this.btnPveAnim3D.visible = false;
 		this.horseSelectLeftPanel.visible = false;
@@ -1481,7 +1586,7 @@ class HallModule {
 		this.drawTraining(index);
 	}
 
-	private createTrainingSuccess(){
+	private createTrainingSuccess(dData){
 		CommonAudioHandle.playEffect("success_mp3",1);
 		this.maskBg2 = new eui.Image("black_mask_png");
 		this.maskBg2.alpha = 0.9;
@@ -1496,9 +1601,41 @@ class HallModule {
 		this.context.addChild(this.horseMergeResult);
 		CommonTools.fixFix(this.context,this.horseMergeResult,2,0,-40);
 
+		this.horseMergeResult.getChildByName("score").text = dData.score;
+		this.horseMergeResult.getChildByName("score_add").text = dData.addSum;
+		this.horseMergeResult.getChildByName("strength_add").text = dData.iAddstrength;
+		this.horseMergeResult.getChildByName("speed_add").text = dData.iAddspeed;
+		this.horseMergeResult.getChildByName("dexterity_add").text = dData.iAdddexterity;
+		this.horseMergeResult.getChildByName("burst_add").text = dData.iAddburse;
+		let energy_length = this.horseMergeResult.getChildByName("energy_length") as eui.Image;
+
+		let strength_w = energy_length.width * (dData.strength*1.0/dData.MaxStrength);
+		this.horseMergeResult.getChildByName("strength_value").width = strength_w;
+		this.horseMergeResult.getChildByName("strength_text").text = dData.strength+"/"+dData.MaxStrength;
+
+		let speed_w = energy_length.width * (dData.speed*1.0/dData.MaxSpeed);
+		this.horseMergeResult.getChildByName("speed_value").width = speed_w;
+		this.horseMergeResult.getChildByName("speed_text").text = dData.speed+"/"+dData.MaxSpeed;
+
+		let dexterity_w = energy_length.width * (dData.dexterity*1.0/dData.MaxDexterity);
+		this.horseMergeResult.getChildByName("dexterity_value").width = dexterity_w;
+		this.horseMergeResult.getChildByName("dexterity_text").text = dData.dexterity+"/"+dData.MaxDexterity;
+
+		let burse_w = energy_length.width * (dData.burse*1.0/dData.MaxBurse);
+		this.horseMergeResult.getChildByName("burst_value").width = burse_w;
+		this.horseMergeResult.getChildByName("burst_text").text = dData.burse+"/"+dData.MaxBurse;
+
+		this.horseMergeResult.getChildByName("merge_lv_img").source = "icon_level_"+dData.iType+"_png";
+		this.horseMergeResult.getChildByName("merge_fail_icon").source = "horse"+dData.res_key+"_body_png";
+		for(let starNum = 1;starNum<=5 ;starNum++){
+			if(starNum > dData.star)this.horseMergeResult.getChildByName("star_"+starNum).source = "icon_stars_0_png";
+		}
+		this.horseMergeResult.getChildByName("name").text = dData.name;
+
 		this.horseMergeResult.getChildByName("merge_fail_confirm").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 			CommonAudioHandle.playEffect("playBomb_mp3",1);
 			this.closeMergeFail();
+			ContractSol.nft_tokensOfOwner(ContractSol.sender);
 		}, this);
 	}
 
@@ -1518,7 +1655,27 @@ class HallModule {
 			this.panel.removeChild(this.btnPveAnim);
 			this.btnPveAnim = null;
 		}
-		this.createTrainingSuccess();
+		let hObj = this.getOwnHorseInfoById(this.horseItemS);
+		let sData = CommonTools.getDataJsonStr("doTrainNft",1,{nftIndex:hObj.id,iType:this.mergeType});
+		ConstValue.P_NET_OBJ.sendData(sData);
+	}
+
+	private updateTrainConf(){
+		for(let i=1;i<=4;i++){
+			this.horseSelectRightPanel.getChildByName("s_"+i).visible = false;
+			this.horseSelectRightPanel.getChildByName("sp_"+i).visible = false;
+			this.horseSelectRightPanel.getChildByName("d_"+i).visible = false;
+			this.horseSelectRightPanel.getChildByName("b_"+i).visible = false;
+		}
+		for(let i=1;i<=4;i++){
+			if(this.mergeConf.addList[0] >= i)this.horseSelectRightPanel.getChildByName("s_"+i).visible = true;
+			if(this.mergeConf.addList[1] >= i)this.horseSelectRightPanel.getChildByName("sp_"+i).visible = true;
+			if(this.mergeConf.addList[2] >= i)this.horseSelectRightPanel.getChildByName("d_"+i).visible = true;
+			if(this.mergeConf.addList[3] >= i)this.horseSelectRightPanel.getChildByName("b_"+i).visible = true;
+		}
+		this.horseSelectRightPanel.getChildByName("energy_cost").text = -this.mergeConf.costEnergy;
+		this.horseSelectRightPanel.getChildByName("train_cost_sub").text = this.mergeConf.costSubCoin;
+		
 	}
 
 	private updateTraining(){
@@ -1564,10 +1721,12 @@ class HallModule {
 			this.context.addChild(this.horseSelectLeftPanel);
 			CommonTools.fixFix(this.context,this.horseSelectLeftPanel,2,0,-40);
 
-			if(this.horseItemS > 0){
-				let obj = this.getPOwnHorseInfoById(this.horseItemS);
-				this.updateHorseItemMiddle(obj);
-			}
+			let obj = this.getPOwnHorseInfoById(this.horseItemS);
+			this.updateHorseItemMiddle(obj);
+			let energy_length = this.horseSelectRightPanel.getChildByName("energy_bg") as eui.Image;
+			let strength_w = energy_length.width * (obj.strength*1.0/obj.MaxStrength);
+			let energy_w = energy_length.width * (obj.energy*1.0/obj.energyMax);
+			this.horseSelectRightPanel.getChildByName("energy_value").width = energy_w;
 
 			this.horseSelectLeftPanel.getChildByName("btn_back_img").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 				CommonAudioHandle.playEffect("playBomb_mp3",1);
@@ -1576,7 +1735,17 @@ class HallModule {
 
 			this.horseSelectRightPanel.getChildByName("train_btn_img").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 				CommonAudioHandle.playEffect("playBomb_mp3",1);
-				this.startTraining(4);
+				let iCost = parseInt(this.horseSelectRightPanel.getChildByName("train_cost_sub").text);
+				let energyCost = parseInt(this.horseSelectRightPanel.getChildByName("energy_cost").text);
+				if(ConstValue.cacheUserInfo.diamond < iCost*ContractSol.EXCHANGE_RATE){
+					this.addCommonTips(ConstValue.P_NOT_ENOUGH);
+					return false;
+				}
+				if(obj.energy < energyCost*-1){
+					this.addCommonTips(ConstValue.P_NOT_ENOUGH);
+					return false;
+				}
+				ContractSol.subcoin_transfer(ContractSol.createAddress,iCost*ContractSol.EXCHANGE_RATE,ContractSol.TRAIN_COST_SUB_NFT);
 			}, this);
 
 			this.horseSelectRightPanel.getChildByName("select_1").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
@@ -1600,105 +1769,24 @@ class HallModule {
 				this.horseSelectRightPanel.getChildByName("select_3_bg").visible = true;
 			}, this);
 
-			this.horseSelectRightPanel.getChildByName("s_2").visible = false;
-			this.horseSelectRightPanel.getChildByName("s_3").visible = false;
-			this.horseSelectRightPanel.getChildByName("s_4").visible = false;
-			this.horseSelectRightPanel.getChildByName("sp_1").visible = false;
-			this.horseSelectRightPanel.getChildByName("sp_2").visible = false;
-			this.horseSelectRightPanel.getChildByName("sp_3").visible = false;
-			this.horseSelectRightPanel.getChildByName("sp_4").visible = false;
-			this.horseSelectRightPanel.getChildByName("d_4").visible = false;
-			this.horseSelectRightPanel.getChildByName("b_1").visible = false;
-			this.horseSelectRightPanel.getChildByName("b_2").visible = false;
-			this.horseSelectRightPanel.getChildByName("b_3").visible = false;
-			this.horseSelectRightPanel.getChildByName("b_4").visible = false;
+			for(let i=1;i<=4;i++){
+				this.horseSelectRightPanel.getChildByName("s_"+i).visible = false;
+				this.horseSelectRightPanel.getChildByName("sp_"+i).visible = false;
+				this.horseSelectRightPanel.getChildByName("d_"+i).visible = false;
+				this.horseSelectRightPanel.getChildByName("b_"+i).visible = false;
+			}
+
+			let sData = CommonTools.getDataJsonStr("getTrainInfo",1,{iType:3});
+			ConstValue.P_NET_OBJ.sendData(sData);
+			this.mergeType = 3;
 
 			for(let tIndex = 1;tIndex <= 5;tIndex ++){
 				this.horseSelectLeftPanel.getChildByName("training_img_0"+tIndex).addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 					CommonAudioHandle.playEffect("playBomb_mp3",1);
-					this.horseSelectRightPanel.getChildByName("s_1").visible = true;
-					this.horseSelectRightPanel.getChildByName("s_2").visible = true;
-					this.horseSelectRightPanel.getChildByName("s_3").visible = true;
-					this.horseSelectRightPanel.getChildByName("s_4").visible = true;
-					this.horseSelectRightPanel.getChildByName("sp_1").visible = true;
-					this.horseSelectRightPanel.getChildByName("sp_2").visible = true;
-					this.horseSelectRightPanel.getChildByName("sp_3").visible = true;
-					this.horseSelectRightPanel.getChildByName("sp_4").visible = true;
-					this.horseSelectRightPanel.getChildByName("d_1").visible = true;
-					this.horseSelectRightPanel.getChildByName("d_2").visible = true;
-					this.horseSelectRightPanel.getChildByName("d_3").visible = true;
-					this.horseSelectRightPanel.getChildByName("d_4").visible = true;
-					this.horseSelectRightPanel.getChildByName("b_1").visible = true;
-					this.horseSelectRightPanel.getChildByName("b_2").visible = true;
-					this.horseSelectRightPanel.getChildByName("b_3").visible = true;
-					this.horseSelectRightPanel.getChildByName("b_4").visible = true;
 					this.showTrainingSelect(tIndex);
-					if(tIndex == 1){
-						this.horseSelectRightPanel.getChildByName("s_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("s_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("sp_1").visible = false;
-						this.horseSelectRightPanel.getChildByName("sp_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("sp_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("sp_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_1").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_4").visible = false;
-					}else if(tIndex == 2){
-						this.horseSelectRightPanel.getChildByName("s_1").visible = false;
-						this.horseSelectRightPanel.getChildByName("s_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("s_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("s_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("sp_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_1").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_4").visible = false;
-					}else if(tIndex == 3){
-						this.horseSelectRightPanel.getChildByName("s_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("s_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("s_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("sp_1").visible = false;
-						this.horseSelectRightPanel.getChildByName("sp_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("sp_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("sp_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_1").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_4").visible = false;
-					}else if(tIndex == 4){
-						this.horseSelectRightPanel.getChildByName("s_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("s_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("s_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("sp_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("sp_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_1").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_4").visible = false;
-					}else if(tIndex == 5){
-						this.horseSelectRightPanel.getChildByName("s_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("s_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("s_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("sp_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("sp_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("sp_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("d_4").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_2").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_3").visible = false;
-						this.horseSelectRightPanel.getChildByName("b_4").visible = false;
-					}
+					this.mergeType = tIndex;
+					let sData = CommonTools.getDataJsonStr("getTrainInfo",1,{iType:tIndex});
+					ConstValue.P_NET_OBJ.sendData(sData);
 				}, this);
 			}
 		}
@@ -2731,6 +2819,7 @@ class HallModule {
 					this.btnPveAnim2D.verticalCenter = 0;
 					this.context.addChild(this.btnPveAnim2D);
 
+					/*
 					this.btnPveAnim3D = new eui.Image("sign_1_png");
 					this.btnPveAnim3D.width = 30;
 					this.btnPveAnim3D.height = 30;
@@ -2745,7 +2834,7 @@ class HallModule {
 					
 					this.context.addChild(this.btnPveAnim3D);
 					this.context.getChildByName("btnPveAnim3D").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-
+					*/
 				}else{
 					this.btnPveAnim2D.source = "horse"+hObj.res_key+"_body_png";
 				}
@@ -4444,15 +4533,28 @@ class HallModule {
 				let count = 1
 				for(let i in lnftInfo){
 					let obj = lnftInfo[i]
+					if(this.createNFTTempID == 0){
+						this.createNFTTempID = obj.id;
+					}
 					FightingModule.Delay(count*500, function(){
 						this.createMergeSuccessT(obj);
 					}, this);
 					count += 1
 				}
-				ConstValue.cacheContract["nftLen"] = count;
-				FightingModule.Delay(50000, function(){
-					ContractSol.nft_tokensOfOwner(ContractSol.sender);
-				}, this);
+				// ConstValue.cacheContract["nftLen"] = count;
+				for(let i = 1;i<=5;i++){
+					FightingModule.Delay(10000*i, function(){
+						for(let hIndex in this.horseOwnData){
+							let obj = this.horseOwnData[hIndex];
+							if(obj.id == this.createNFTTempID){
+								this.createNFTTempID = 0;
+								break;
+							}
+						}
+						if(this.createNFTTempID == 0)return;
+						ContractSol.nft_tokensOfOwner(ContractSol.sender);
+					}, this);
+				}
 			}
 		}else if (jsonObj.f == "getNftMarket" || jsonObj.f == "BuyNft"){
 			if(jsonObj.m != "" || jsonObj.s != 1){
@@ -4505,7 +4607,22 @@ class HallModule {
 					this.horseOwnData = null;
 				}
 				if(this.curPage == 5 && this.subCurPage == 3)this.changePage("rank_head_03");
-				if(this.curPage == 2 && this.subCurPage == 2)this.changePage("rank_head_03");
+				if(this.curPage == 2 && this.subCurPage == 2){
+					if(this.createNFTTempID == 0){
+						this.changePage("rank_head_03");
+					}
+				}
+				if(this.curPage == 2 && this.subCurPage == 3)
+				{
+					if(this.createNFTTempID == 0){
+						this.changePage("rank_head_04");
+					}
+				}
+				if(this.curPage == 3)
+				{
+					this.changePage("rank_head_01");
+					this.changePage("rank_head_03");
+				}
 			}
 		}else if (jsonObj.f == "getTotalExhi"){
 			if(jsonObj.m != "" || jsonObj.s != 1){
@@ -4549,6 +4666,14 @@ class HallModule {
 					this.updateMergeConf(jsonObj.d);
 				}
 			}
+		}else if (jsonObj.f == "getBreedInfo"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				if(this.curPage == 2 && this.subCurPage == 3){
+					this.updateBreedConf(jsonObj.d);
+				}
+			}
 		}else if (jsonObj.f == "doMergeNft"){
 			if(jsonObj.m != "" || jsonObj.s != 1){
 				
@@ -4559,6 +4684,53 @@ class HallModule {
 				if(jsonObj.d.result == 2)this.createMergeFail(1);
 				if(jsonObj.d.result == 1){
 					this.createMergeSuccess(1,jsonObj.d.showData);
+				}
+			}
+		}else if (jsonObj.f == "getTrainInfo"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				this.mergeConf = jsonObj.d;
+				this.updateTrainConf();
+			}
+		}else if (jsonObj.f == "doTrainNft"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				this.createTrainingSuccess(jsonObj.d);
+			}
+		}else if (jsonObj.f == "doBreedNft"){
+			if(jsonObj.m != "" || jsonObj.s != 1){
+				
+			}else{
+				if(jsonObj.d.result == 2)this.createMergeFail(2);
+				if(jsonObj.d.result == 1){
+					let lnftInfo = jsonObj.d.nftInfo;
+					let count = 1
+					for(let i in lnftInfo){
+						let obj = lnftInfo[i]
+						if(this.createNFTTempID == 0){
+							this.createNFTTempID = obj.id;
+						}
+						FightingModule.Delay(count*500, function(){
+							this.createMergeSuccessT(obj);
+						}, this);
+						count += 1
+					}
+					// ConstValue.cacheContract["nftLen"] = count;
+					for(let i = 1;i<=5;i++){
+						FightingModule.Delay(10000*i, function(){
+							for(let hIndex in this.horseOwnData){
+								let obj = this.horseOwnData[hIndex];
+								if(obj.id == this.createNFTTempID){
+									this.createNFTTempID = 0;
+									break;
+								}
+							}
+							if(this.createNFTTempID == 0)return;
+							ContractSol.nft_tokensOfOwner(ContractSol.sender);
+						}, this);
+					}
 				}
 			}
 		}else if (jsonObj.f == "AddSubCoin"){

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="NoticeGroup" width="998.97" height="755" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Image id="merge_fail_icon0" width="395" height="364" x="3.5" y="164" name="merge_fail_icon" anchorOffsetX="0" source="pic_light_png" anchorOffsetY="0"/>
+	<e:Image width="395" height="364" x="3.5" y="164" anchorOffsetX="0" source="pic_light_png" anchorOffsetY="0"/>
 	<e:Image id="merge_fail_icon" width="379" height="287" x="398.5" y="217.5" name="merge_fail_icon" anchorOffsetX="0" source="stand_horse_png" skewY="-180"/>
 	<e:Image id="merge_fail_title_img" width="304" height="56" x="340.33" y="51.66" anchorOffsetX="0" anchorOffsetY="0" name="merge_fail_title_img" alpha="1" source="pic_complete_png"/>
 	<e:Image id="merge_lv_img" width="61" height="67" x="172.5" y="199" anchorOffsetX="0" anchorOffsetY="0" name="merge_lv_img" alpha="1" source="icon_level_s_png"/>
@@ -8,37 +8,37 @@
 	<e:Image width="147" height="58" x="413.9" y="658.76" anchorOffsetX="0" anchorOffsetY="0" source="btn_info1_png"/>
 	<e:Image id="merge_fail_confirm" width="123" height="28" x="424.9" y="671.76" source="icon_confirm_png" name="merge_fail_confirm"/>
 	<e:Image id="merge_fail_confirm0" width="229.67" height="40" x="89.66" y="559.34" name="merge_fail_confirm" source="bar_name_di2_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="38" height="40" x="97.17" y="504.5" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="38" height="40" x="141.67" y="504.5" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="38" height="40" x="183.17" y="504.5" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="38" height="40" x="226.17" y="504.5" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Image width="38" height="40" x="268.17" y="503.7" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0"/>
-	<e:Label text="Echo Rambo" x="82.5" y="556.68" anchorOffsetX="0" width="240.67" anchorOffsetY="0" height="43.33" textAlign="center" verticalAlign="middle"/>
-	<e:Label text="666" x="610.2" y="232.5" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" textColor="0xFCC00C" italic="true" fontFamily="Arial"/>
-	<e:Label text="+ 5" x="813.97" y="232.5" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" italic="true" fontFamily="Arial" textColor="0x2cf90c"/>
-	<e:Label text="+ 5" x="813.97" y="291.67" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" textColor="0x2CF90C" italic="true" fontFamily="Arial"/>
+	<e:Image id="star_1" width="38" height="40" x="97.17" y="504.5" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0" name="star_1"/>
+	<e:Image id="star_2" width="38" height="40" x="141.67" y="504.5" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0" name="star_2"/>
+	<e:Image id="star_3" width="38" height="40" x="183.17" y="504.5" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0" name="star_3"/>
+	<e:Image id="star_4" width="38" height="40" x="226.17" y="504.5" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0" name="star_4"/>
+	<e:Image id="star_5" width="38" height="40" x="268.17" y="503.7" source="icon_stars2_png" anchorOffsetX="0" anchorOffsetY="0" name="star_5"/>
+	<e:Label id="name" text="Echo Rambo" x="82.5" y="556.68" anchorOffsetX="0" width="240.67" anchorOffsetY="0" height="43.33" textAlign="center" verticalAlign="middle" name="name"/>
+	<e:Label id="score" text="666" x="610.2" y="232.5" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" textColor="0xFCC00C" italic="true" fontFamily="Arial" name="score"/>
+	<e:Label id="score_add" text="+ 0" x="813.97" y="232.5" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" italic="true" fontFamily="Arial" textColor="0x2cf90c" name="score_add"/>
+	<e:Label id="strength_add" text="+ 0" x="813.97" y="291.67" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" textColor="0x2CF90C" italic="true" fontFamily="Arial" name="strength_add"/>
 	<e:Image width="65" height="25" x="533.15" y="301.19" anchorOffsetX="0" anchorOffsetY="0" source="icon_strength_png"/>
-	<e:Label text="80/100" x="746.98" y="301.19" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
-	<e:Image width="150.66" height="10" x="610.2" y="309.17" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="610.2" y="309.17" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png"/>
+	<e:Label id="strength_text" text="80/100" x="746.98" y="301.19" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" name="strength_text"/>
+	<e:Image id="energy_length" width="150.66" height="10" x="610.2" y="309.17" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png" name="energy_length"/>
+	<e:Image id="strength_value" width="110" height="9" x="610.2" y="309.17" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png" name="strength_value"/>
 	<e:Image width="65" height="25" x="534.03" y="344.02" anchorOffsetX="0" anchorOffsetY="0" source="icon_speed_png"/>
-	<e:Label text="80/100" x="747.86" y="344.02" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Label id="speed_text" text="80/100" x="747.86" y="344.02" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" name="speed_text"/>
 	<e:Image width="150.66" height="10" x="611.08" y="352" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="611.08" y="352" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png"/>
+	<e:Image id="speed_value" width="110" height="9" x="611.08" y="352" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png" name="speed_value"/>
 	<e:Image width="65" height="25" x="534.03" y="387.4" anchorOffsetX="0" anchorOffsetY="0" source="icon_Decterous_png"/>
-	<e:Label text="80/100" x="747.86" y="387.4" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Label id="dexterity_text" text="80/100" x="747.86" y="387.4" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" name="dexterity_text"/>
 	<e:Image width="150.66" height="10" x="611.08" y="395.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="611.08" y="395.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png"/>
+	<e:Image id="dexterity_value" width="110" height="9" x="611.08" y="395.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png" name="dexterity_value"/>
 	<e:Image width="65" height="25" x="533.15" y="433.4" anchorOffsetX="0" anchorOffsetY="0" source="icon_burst_png"/>
-	<e:Label text="80/100" x="746.98" y="433.4" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle"/>
+	<e:Label id="burst_text" text="80/100" x="746.98" y="433.4" anchorOffsetX="0" width="106" anchorOffsetY="0" height="25" size="18" textAlign="center" verticalAlign="middle" name="burst_text"/>
 	<e:Image width="150.66" height="10" x="610.2" y="441.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png"/>
-	<e:Image width="110" height="9" x="610.2" y="441.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png"/>
+	<e:Image id="burst_value" width="110" height="9" x="610.2" y="441.38" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_png" name="burst_value"/>
 	<e:Image width="150.66" height="10" x="611.08" y="500" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_1_di_png" scaleX="0.8" scaleY="0.8"/>
 	<e:Image width="110" height="11" x="611.08" y="499" anchorOffsetX="0" anchorOffsetY="0" source="bar_exp_2_png" scaleX="0.8" scaleY="0.8"/>
 	<e:Image width="60" height="48" x="534.9" y="484" anchorOffsetX="0" anchorOffsetY="0" source="icon_Grassland_png" scaleX="0.8" scaleY="0.8"/>
 	<e:Image width="42" height="32" x="777.73" y="488.5" anchorOffsetX="0" anchorOffsetY="0" source="icon_level_a_png" scaleX="0.8" scaleY="0.8"/>
-	<e:Label text="+ 5" x="813.97" y="334.5" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" textColor="0x2CF90C" italic="true" fontFamily="Arial"/>
-	<e:Label text="+ 5" x="813.97" y="377.38" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" textColor="0x2CF90C" italic="true" fontFamily="Arial"/>
-	<e:Label text="+ 5" x="813.97" y="418.88" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" textColor="0x2CF90C" italic="true" fontFamily="Arial"/>
-	<e:Label text="+ 5" x="813.97" y="478.7" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" textColor="0x2CF90C" italic="true" fontFamily="Arial"/>
+	<e:Label id="speed_add" text="+ 0" x="813.97" y="334.5" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" textColor="0x2CF90C" italic="true" fontFamily="Arial" name="speed_add"/>
+	<e:Label id="dexterity_add" text="+ 0" x="813.97" y="377.38" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" textColor="0x2CF90C" italic="true" fontFamily="Arial" name="dexterity_add"/>
+	<e:Label id="burst_add" text="+ 0" x="813.97" y="418.88" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" textColor="0x2CF90C" italic="true" fontFamily="Arial" name="burst_add"/>
+	<e:Label text="+ 3" x="813.97" y="478.7" anchorOffsetX="0" width="185" anchorOffsetY="0" height="45" size="36" textAlign="center" verticalAlign="middle" textColor="0x2CF90C" italic="true" fontFamily="Arial"/>
 </e:Skin>

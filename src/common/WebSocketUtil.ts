@@ -197,6 +197,10 @@ class WebSocketUtil extends egret.DisplayObjectContainer {
                 case "claimExhi":
                 case "getMergeInfo":
                 case "doMergeNft":
+                case "getBreedInfo":
+                case "doBreedNft":
+                case "getTrainInfo":
+                case "doTrainNft":
                     if(obj.f == "SeventDayReward")if(!HallModule.isSafeArea)return;
                     if(ConstValue.P_HALL_OBJ != null){
                         ConstValue.P_HALL_OBJ.handlePacket(obj);

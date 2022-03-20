@@ -224,6 +224,10 @@ var WebSocketUtil = (function (_super) {
                 case "claimExhi":
                 case "getMergeInfo":
                 case "doMergeNft":
+                case "getBreedInfo":
+                case "doBreedNft":
+                case "getTrainInfo":
+                case "doTrainNft":
                     if (obj_1.f == "SeventDayReward")
                         if (!HallModule.isSafeArea)
                             return;

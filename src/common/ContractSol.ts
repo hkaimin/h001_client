@@ -9,12 +9,15 @@ class ContractSol {
 	static BEP20_Sub_Address = "0x6A3587d791946E2C567a279886ACc10Fa962a4cc";
 	static NFTAddress = "0x14c75969e8aeb8ff68c4450ebc3090b48425f4bb";
 
-	static BUY_TICKET = 1;
-	static BUY_MARKET_NFT = 2;
-	static MERGE_NFT = 3;
-	static SELL_NFT = 4;
-	static MERGE_COST_MAIN_NFT = 5;
-	static MERGE_COST_SUB_NFT = 6;
+	static BUY_TICKET = 1;//购买nft漫河
+	static BUY_MARKET_NFT = 2;//市场交易
+	static MERGE_NFT = 3;//合并nft
+	static SELL_NFT = 4;//卖nft
+	static MERGE_COST_MAIN_NFT = 5;//合并nft主币消耗
+	static MERGE_COST_SUB_NFT = 6;//合并nft子币消耗
+	static BREED_COST_MAIN_NFT = 7;//繁殖nft主币消耗
+	static BREED_COST_SUB_NFT = 8;//繁殖nft子币消耗
+	static TRAIN_COST_SUB_NFT = 9;//训练nft子币消耗
 
 	static EXCHANGE_RATE = 100.0;
 
@@ -209,10 +212,23 @@ class ContractSol {
 							ConstValue.P_HALL_OBJ.pBuyNft();
 						}else if(iOpType == ContractSol.MERGE_COST_MAIN_NFT){
 							ConstValue.P_HALL_OBJ.addCommonTips("Waiting Merge response...");
+							ContractSol.maincoin_balanceOf(ContractSol.sender);
 							ConstValue.P_HALL_OBJ.mergeNFTTransSub();
 						}else if(iOpType == ContractSol.MERGE_COST_SUB_NFT){
 							ConstValue.P_HALL_OBJ.addCommonTips("Waiting Merge sub response...");
+							ContractSol.subcoin_balanceOf(ContractSol.sender);
 							ConstValue.P_HALL_OBJ.doMerge();
+						}else if(iOpType == ContractSol.BREED_COST_MAIN_NFT){
+							ConstValue.P_HALL_OBJ.addCommonTips("Waiting Breed sub response...");
+							ContractSol.maincoin_balanceOf(ContractSol.sender);
+							ConstValue.P_HALL_OBJ.breedNFTTransSub();
+						}else if(iOpType == ContractSol.BREED_COST_SUB_NFT){
+							ConstValue.P_HALL_OBJ.addCommonTips("Waiting BREED response...");
+							ContractSol.subcoin_balanceOf(ContractSol.sender);
+							ConstValue.P_HALL_OBJ.doBreed();
+						}else if(iOpType == ContractSol.TRAIN_COST_SUB_NFT){
+							ContractSol.subcoin_balanceOf(ContractSol.sender);
+							ConstValue.P_HALL_OBJ.startTraining(4);
 						}
 					}
 				}
@@ -245,8 +261,6 @@ class ContractSol {
 				ContractSol.DelayGetReceipt(txnHash,iOpr,_value)
 			}
 		});
-
-		
 
 	}
 

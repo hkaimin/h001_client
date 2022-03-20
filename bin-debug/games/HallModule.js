@@ -81,6 +81,7 @@ var HallModule = (function () {
         this.R_select_indx = -1;
         this.mergeType = 0;
         this.mergeOutOfHorse = 0;
+        this.createNFTTempID = 0;
         this.isdisplay = false;
         this.context = ct;
         HallModule.isNoEnd = false;
@@ -823,10 +824,37 @@ var HallModule = (function () {
         this.horseSelectRightPanel.getChildByName("high_merge_main").text = dData.high_cost_main;
         this.horseSelectRightPanel.getChildByName("high_merge_sub").text = dData.high_cost_sub;
     };
+    HallModule.prototype.updateBreedConf = function (dData) {
+        this.mergeConf = dData;
+        this.horseSelectRightPanel.getChildByName("low_merge_low_per").text = dData.low_success / 10 + "%";
+        this.horseSelectRightPanel.getChildByName("low_merge_high_per").visible = false;
+        this.horseSelectRightPanel.getChildByName("low_merge_high_lost_per").visible = false;
+        this.horseSelectRightPanel.getChildByName("low_merge_high2_per").text = dData.low_fail / 10 + "%";
+        this.horseSelectRightPanel.getChildByName("low_merge_high2_per").visible = true;
+        this.horseSelectRightPanel.getChildByName("high_merge_low_per").text = dData.high_success / 10 + "%";
+        this.horseSelectRightPanel.getChildByName("high_merge_high_per").visible = false;
+        this.horseSelectRightPanel.getChildByName("high_merge_high_lost_per").visible = false;
+        this.horseSelectRightPanel.getChildByName("high_merge_high2_per").text = dData.high_fail / 10 + "%";
+        this.horseSelectRightPanel.getChildByName("high_merge_high2_per").visible = true;
+        this.horseSelectRightPanel.getChildByName("low_merge_main").text = dData.low_cost_main;
+        this.horseSelectRightPanel.getChildByName("low_merge_sub").text = dData.low_cost_sub;
+        this.horseSelectRightPanel.getChildByName("high_merge_main").text = dData.high_cost_main;
+        this.horseSelectRightPanel.getChildByName("high_merge_sub").text = dData.high_cost_sub;
+        this.horseSelectRightPanel.getChildByName("low_merge_low_star").visible = false;
+        this.horseSelectRightPanel.getChildByName("low_merge_high_star").visible = false;
+        this.horseSelectRightPanel.getChildByName("high_merge_low_star").visible = false;
+        this.horseSelectRightPanel.getChildByName("high_merge_high_star").visible = false;
+        this.horseSelectRightPanel.getChildByName("star_bg_1").source = "tx_UNK_3_png";
+        this.horseSelectRightPanel.getChildByName("star_bg_2").source = "icon_heart2_png";
+        this.horseSelectRightPanel.getChildByName("star_bg_3").source = "tx_UNK_3_png";
+        this.horseSelectRightPanel.getChildByName("star_bg_4").source = "icon_heart2_png";
+    };
     HallModule.prototype.mergeUpdate = function () {
         this.horseSelectRightPanel.getChildByName("left_stallion_lb").text = "select " + (this.L_select_indx + 1) + "/" + ConstValue.cacheContract["nftLen"];
         var L_group = this.horseSelectRightPanel.getChildByName("left_group_stat");
         var obj = this.horseOwnData[this.L_select_indx.toString()];
+        var sType1 = obj.iType;
+        this.horseItemS = obj.id;
         this.horseSelectRightPanel.getChildByName("L_body").visible = true;
         this.horseSelectRightPanel.getChildByName("L_body").source = "horse" + obj.res_key + "_body_png";
         this.horseSelectRightPanel.getChildByName("L_name").text = obj.name;
@@ -862,11 +890,14 @@ var HallModule = (function () {
         var burse_w = energy_length.width * (obj.burse * 1.0 / obj.MaxBurse);
         L_group.getChildByName("burst_value").visible = true;
         L_group.getChildByName("burst_value").width = burse_w;
-        var sData = CommonTools.getDataJsonStr("getMergeInfo", 1, { iStar: obj.star });
-        ConstValue.P_NET_OBJ.sendData(sData);
+        if (this.curPage == 2 && this.subCurPage == 2) {
+            var sData = CommonTools.getDataJsonStr("getMergeInfo", 1, { iStar: obj.star });
+            ConstValue.P_NET_OBJ.sendData(sData);
+        }
         this.horseSelectRightPanel.getChildByName("right_mare_lb").text = "match " + (this.R_select_indx + 1) + "/" + ConstValue.cacheContract["nftLen"];
         L_group = this.horseSelectRightPanel.getChildByName("right_group_stat");
         obj = this.horseOwnData[this.R_select_indx.toString()];
+        var sType2 = obj.iType;
         this.horseSelectRightPanel.getChildByName("R_body").visible = true;
         this.horseSelectRightPanel.getChildByName("R_body").source = "horse" + obj.res_key + "_body_png";
         this.horseSelectRightPanel.getChildByName("R_name").text = obj.name;
@@ -897,6 +928,10 @@ var HallModule = (function () {
         burse_w = energy_length.width * (obj.burse * 1.0 / obj.MaxBurse);
         L_group.getChildByName("R_burst_value").visible = true;
         L_group.getChildByName("R_burst_value").width = burse_w;
+        if (this.curPage == 2 && this.subCurPage == 3) {
+            var sData = CommonTools.getDataJsonStr("getBreedInfo", 1, { sType1: sType1, sType2: sType2 });
+            ConstValue.P_NET_OBJ.sendData(sData);
+        }
     };
     HallModule.prototype.IsCanMerge = function () {
         if (this.L_select_indx == this.R_select_indx) {
@@ -937,16 +972,67 @@ var HallModule = (function () {
         }
         return true;
     };
+    HallModule.prototype.IsCanBreed = function () {
+        if (this.L_select_indx == this.R_select_indx) {
+            this.addCommonTips(ConstValue.P_SAME_HORSE);
+            return false;
+        }
+        var L_obj = this.horseOwnData[this.L_select_indx.toString()];
+        var R_obj = this.horseOwnData[this.R_select_indx.toString()];
+        if (L_obj.iSex == R_obj.iSex) {
+            this.addCommonTips(ConstValue.P_NOTMATCH_HORSE);
+            return false;
+        }
+        if (L_obj.breed >= L_obj.breedMax || R_obj.breed >= R_obj.breedMax) {
+            this.addCommonTips(ConstValue.P_NO_BREED);
+            return false;
+        }
+        if (L_obj.sellStatus == 1 || R_obj.sellStatus == 1) {
+            this.addCommonTips(ConstValue.P_ON_SALE);
+            return false;
+        }
+        if (L_obj.exhibition == 1 || R_obj.exhibition == 1) {
+            this.addCommonTips(ConstValue.P_ON_EXHIBITION);
+            return false;
+        }
+        if (this.mergeType == 1) {
+            if (ConstValue.cacheUserInfo.coin / ContractSol.EXCHANGE_RATE < this.mergeConf.low_cost_main ||
+                ConstValue.cacheUserInfo.diamond / ContractSol.EXCHANGE_RATE < this.mergeConf.low_cost_sub) {
+                this.addCommonTips(ConstValue.P_NOT_ENOUGH);
+                return false;
+            }
+        }
+        if (this.mergeType == 2) {
+            if (ConstValue.cacheUserInfo.coin / ContractSol.EXCHANGE_RATE < this.mergeConf.high_cost_main ||
+                ConstValue.cacheUserInfo.diamond / ContractSol.EXCHANGE_RATE < this.mergeConf.high_cost_sub) {
+                this.addCommonTips(ConstValue.P_NOT_ENOUGH);
+                return false;
+            }
+        }
+        return true;
+    };
     HallModule.prototype.mergeNFTTransMain = function () {
-        ContractSol.maincoin_transfer(ContractSol.createAddress, parseInt(this.mergeConf.low_cost_main) * ContractSol.EXCHANGE_RATE, ContractSol.MERGE_COST_MAIN_NFT);
+        var iCost = this.mergeType == 1 ? this.mergeConf.low_cost_main : this.mergeConf.high_cost_main;
+        ContractSol.maincoin_transfer(ContractSol.createAddress, parseInt(iCost) * ContractSol.EXCHANGE_RATE, ContractSol.MERGE_COST_MAIN_NFT);
     };
     HallModule.prototype.mergeNFTTransSub = function () {
-        ContractSol.subcoin_transfer(ContractSol.createAddress, parseInt(this.mergeConf.low_cost_sub) * ContractSol.EXCHANGE_RATE, ContractSol.MERGE_COST_SUB_NFT);
+        var iCost = this.mergeType == 1 ? this.mergeConf.low_cost_sub : this.mergeConf.high_cost_sub;
+        ContractSol.subcoin_transfer(ContractSol.createAddress, parseInt(iCost) * ContractSol.EXCHANGE_RATE, ContractSol.MERGE_COST_SUB_NFT);
+    };
+    HallModule.prototype.breedNFTTransSub = function () {
+        var iCost = this.mergeType == 1 ? this.mergeConf.low_cost_sub : this.mergeConf.high_cost_sub;
+        ContractSol.subcoin_transfer(ContractSol.createAddress, parseInt(iCost) * ContractSol.EXCHANGE_RATE, ContractSol.BREED_COST_SUB_NFT);
     };
     HallModule.prototype.doMerge = function () {
         var L_obj = this.horseOwnData[this.L_select_indx.toString()];
         var R_obj = this.horseOwnData[this.R_select_indx.toString()];
         var sData = CommonTools.getDataJsonStr("doMergeNft", 1, { iStar: R_obj.star, iMergeType: this.mergeType, iNft: R_obj.id, sOwner: ContractSol.sender, iSelectNft: L_obj.id });
+        ConstValue.P_NET_OBJ.sendData(sData);
+    };
+    HallModule.prototype.doBreed = function () {
+        var L_obj = this.horseOwnData[this.L_select_indx.toString()];
+        var R_obj = this.horseOwnData[this.R_select_indx.toString()];
+        var sData = CommonTools.getDataJsonStr("doBreedNft", 1, { iMergeType: this.mergeType, iLeftNft: L_obj.id, sLeftType: L_obj.iType, iRightNft: R_obj.id, sRigthType: R_obj.iType });
         ConstValue.P_NET_OBJ.sendData(sData);
     };
     HallModule.prototype.createHorseMerge = function () {
@@ -982,7 +1068,8 @@ var HallModule = (function () {
             this.mergeType = 2;
             if (!this.IsCanMerge())
                 return;
-            this.createMergeSuccess(1, 0);
+            var R_obj = this.horseOwnData[this.R_select_indx.toString()];
+            ContractSol.nft_approve(R_obj.id, ContractSol.MERGE_NFT);
         }, this);
         this.mergeUpdate();
     };
@@ -1012,6 +1099,7 @@ var HallModule = (function () {
         this.horseMergeResult.getChildByName("merge_fail_confirm").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.closeMergeFail();
+            ContractSol.nft_tokensOfOwner(ContractSol.sender);
         }, this);
         if (index == 2) {
             this.horseMergeResult.getChildByName("merge_fail_icon").source = "icon_heart2_png";
@@ -1074,6 +1162,10 @@ var HallModule = (function () {
         merge_lv_img.source = "icon_level_" + horseData.iType + "_png";
         var merge_fail_icon = thorseMergeResult.getChildByName("merge_fail_icon");
         merge_fail_icon.source = "horse" + horseData.res_key + "_body_png";
+        for (var starNum = 1; starNum <= 5; starNum++) {
+            if (starNum > horseData.star)
+                thorseMergeResult.getChildByName("star" + starNum + "_img").source = "icon_stars_0_png";
+        }
     };
     HallModule.prototype.createHorseBreeding = function () {
         if (this.horseSelectRightPanel != null) {
@@ -1102,11 +1194,17 @@ var HallModule = (function () {
         this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").text = "Advanced\nBreeding";
         this.horseSelectRightPanel.getChildByName("merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
-            this.createMergeFail(2);
+            this.mergeType = 1;
+            if (!this.IsCanBreed())
+                return;
+            ContractSol.maincoin_transfer(ContractSol.createAddress, this.mergeConf.low_cost_main * ContractSol.EXCHANGE_RATE, ContractSol.BREED_COST_MAIN_NFT);
         }, this);
         this.horseSelectRightPanel.getChildByName("advanced_merge_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
-            this.createMergeSuccess(2, 0);
+            this.mergeType = 2;
+            if (!this.IsCanBreed())
+                return;
+            ContractSol.maincoin_transfer(ContractSol.createAddress, this.mergeConf.high_cost_main * ContractSol.EXCHANGE_RATE, ContractSol.BREED_COST_MAIN_NFT);
         }, this);
         this.mergeUpdate();
     };
@@ -1375,7 +1473,7 @@ var HallModule = (function () {
         this.setTHorseXY();
         this.drawTraining(index);
     };
-    HallModule.prototype.createTrainingSuccess = function () {
+    HallModule.prototype.createTrainingSuccess = function (dData) {
         CommonAudioHandle.playEffect("success_mp3", 1);
         this.maskBg2 = new eui.Image("black_mask_png");
         this.maskBg2.alpha = 0.9;
@@ -1388,9 +1486,36 @@ var HallModule = (function () {
         this.horseMergeResult.horizontalCenter = 0;
         this.context.addChild(this.horseMergeResult);
         CommonTools.fixFix(this.context, this.horseMergeResult, 2, 0, -40);
+        this.horseMergeResult.getChildByName("score").text = dData.score;
+        this.horseMergeResult.getChildByName("score_add").text = dData.addSum;
+        this.horseMergeResult.getChildByName("strength_add").text = dData.iAddstrength;
+        this.horseMergeResult.getChildByName("speed_add").text = dData.iAddspeed;
+        this.horseMergeResult.getChildByName("dexterity_add").text = dData.iAdddexterity;
+        this.horseMergeResult.getChildByName("burst_add").text = dData.iAddburse;
+        var energy_length = this.horseMergeResult.getChildByName("energy_length");
+        var strength_w = energy_length.width * (dData.strength * 1.0 / dData.MaxStrength);
+        this.horseMergeResult.getChildByName("strength_value").width = strength_w;
+        this.horseMergeResult.getChildByName("strength_text").text = dData.strength + "/" + dData.MaxStrength;
+        var speed_w = energy_length.width * (dData.speed * 1.0 / dData.MaxSpeed);
+        this.horseMergeResult.getChildByName("speed_value").width = speed_w;
+        this.horseMergeResult.getChildByName("speed_text").text = dData.speed + "/" + dData.MaxSpeed;
+        var dexterity_w = energy_length.width * (dData.dexterity * 1.0 / dData.MaxDexterity);
+        this.horseMergeResult.getChildByName("dexterity_value").width = dexterity_w;
+        this.horseMergeResult.getChildByName("dexterity_text").text = dData.dexterity + "/" + dData.MaxDexterity;
+        var burse_w = energy_length.width * (dData.burse * 1.0 / dData.MaxBurse);
+        this.horseMergeResult.getChildByName("burst_value").width = burse_w;
+        this.horseMergeResult.getChildByName("burst_text").text = dData.burse + "/" + dData.MaxBurse;
+        this.horseMergeResult.getChildByName("merge_lv_img").source = "icon_level_" + dData.iType + "_png";
+        this.horseMergeResult.getChildByName("merge_fail_icon").source = "horse" + dData.res_key + "_body_png";
+        for (var starNum = 1; starNum <= 5; starNum++) {
+            if (starNum > dData.star)
+                this.horseMergeResult.getChildByName("star_" + starNum).source = "icon_stars_0_png";
+        }
+        this.horseMergeResult.getChildByName("name").text = dData.name;
         this.horseMergeResult.getChildByName("merge_fail_confirm").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.closeMergeFail();
+            ContractSol.nft_tokensOfOwner(ContractSol.sender);
         }, this);
     };
     HallModule.prototype.stopTraining = function () {
@@ -1411,7 +1536,29 @@ var HallModule = (function () {
             this.panel.removeChild(this.btnPveAnim);
             this.btnPveAnim = null;
         }
-        this.createTrainingSuccess();
+        var hObj = this.getOwnHorseInfoById(this.horseItemS);
+        var sData = CommonTools.getDataJsonStr("doTrainNft", 1, { nftIndex: hObj.id, iType: this.mergeType });
+        ConstValue.P_NET_OBJ.sendData(sData);
+    };
+    HallModule.prototype.updateTrainConf = function () {
+        for (var i = 1; i <= 4; i++) {
+            this.horseSelectRightPanel.getChildByName("s_" + i).visible = false;
+            this.horseSelectRightPanel.getChildByName("sp_" + i).visible = false;
+            this.horseSelectRightPanel.getChildByName("d_" + i).visible = false;
+            this.horseSelectRightPanel.getChildByName("b_" + i).visible = false;
+        }
+        for (var i = 1; i <= 4; i++) {
+            if (this.mergeConf.addList[0] >= i)
+                this.horseSelectRightPanel.getChildByName("s_" + i).visible = true;
+            if (this.mergeConf.addList[1] >= i)
+                this.horseSelectRightPanel.getChildByName("sp_" + i).visible = true;
+            if (this.mergeConf.addList[2] >= i)
+                this.horseSelectRightPanel.getChildByName("d_" + i).visible = true;
+            if (this.mergeConf.addList[3] >= i)
+                this.horseSelectRightPanel.getChildByName("b_" + i).visible = true;
+        }
+        this.horseSelectRightPanel.getChildByName("energy_cost").text = -this.mergeConf.costEnergy;
+        this.horseSelectRightPanel.getChildByName("train_cost_sub").text = this.mergeConf.costSubCoin;
     };
     HallModule.prototype.updateTraining = function () {
         if (this.horseSelectRightPanel == null) {
@@ -1452,17 +1599,29 @@ var HallModule = (function () {
             this.horseSelectLeftPanel.y = downY3;
             this.context.addChild(this.horseSelectLeftPanel);
             CommonTools.fixFix(this.context, this.horseSelectLeftPanel, 2, 0, -40);
-            if (this.horseItemS > 0) {
-                var obj = this.getPOwnHorseInfoById(this.horseItemS);
-                this.updateHorseItemMiddle(obj);
-            }
+            var obj_1 = this.getPOwnHorseInfoById(this.horseItemS);
+            this.updateHorseItemMiddle(obj_1);
+            var energy_length = this.horseSelectRightPanel.getChildByName("energy_bg");
+            var strength_w = energy_length.width * (obj_1.strength * 1.0 / obj_1.MaxStrength);
+            var energy_w = energy_length.width * (obj_1.energy * 1.0 / obj_1.energyMax);
+            this.horseSelectRightPanel.getChildByName("energy_value").width = energy_w;
             this.horseSelectLeftPanel.getChildByName("btn_back_img").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
                 CommonAudioHandle.playEffect("playBomb_mp3", 1);
                 this.changePage("rank_head_01");
             }, this);
             this.horseSelectRightPanel.getChildByName("train_btn_img").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
                 CommonAudioHandle.playEffect("playBomb_mp3", 1);
-                this.startTraining(4);
+                var iCost = parseInt(this.horseSelectRightPanel.getChildByName("train_cost_sub").text);
+                var energyCost = parseInt(this.horseSelectRightPanel.getChildByName("energy_cost").text);
+                if (ConstValue.cacheUserInfo.diamond < iCost * ContractSol.EXCHANGE_RATE) {
+                    this.addCommonTips(ConstValue.P_NOT_ENOUGH);
+                    return false;
+                }
+                if (obj_1.energy < energyCost * -1) {
+                    this.addCommonTips(ConstValue.P_NOT_ENOUGH);
+                    return false;
+                }
+                ContractSol.subcoin_transfer(ContractSol.createAddress, iCost * ContractSol.EXCHANGE_RATE, ContractSol.TRAIN_COST_SUB_NFT);
             }, this);
             this.horseSelectRightPanel.getChildByName("select_1").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
                 CommonAudioHandle.playEffect("playBomb_mp3", 1);
@@ -1482,108 +1641,22 @@ var HallModule = (function () {
                 this.horseSelectRightPanel.getChildByName("select_2_bg").visible = false;
                 this.horseSelectRightPanel.getChildByName("select_3_bg").visible = true;
             }, this);
-            this.horseSelectRightPanel.getChildByName("s_2").visible = false;
-            this.horseSelectRightPanel.getChildByName("s_3").visible = false;
-            this.horseSelectRightPanel.getChildByName("s_4").visible = false;
-            this.horseSelectRightPanel.getChildByName("sp_1").visible = false;
-            this.horseSelectRightPanel.getChildByName("sp_2").visible = false;
-            this.horseSelectRightPanel.getChildByName("sp_3").visible = false;
-            this.horseSelectRightPanel.getChildByName("sp_4").visible = false;
-            this.horseSelectRightPanel.getChildByName("d_4").visible = false;
-            this.horseSelectRightPanel.getChildByName("b_1").visible = false;
-            this.horseSelectRightPanel.getChildByName("b_2").visible = false;
-            this.horseSelectRightPanel.getChildByName("b_3").visible = false;
-            this.horseSelectRightPanel.getChildByName("b_4").visible = false;
+            for (var i = 1; i <= 4; i++) {
+                this.horseSelectRightPanel.getChildByName("s_" + i).visible = false;
+                this.horseSelectRightPanel.getChildByName("sp_" + i).visible = false;
+                this.horseSelectRightPanel.getChildByName("d_" + i).visible = false;
+                this.horseSelectRightPanel.getChildByName("b_" + i).visible = false;
+            }
+            var sData = CommonTools.getDataJsonStr("getTrainInfo", 1, { iType: 3 });
+            ConstValue.P_NET_OBJ.sendData(sData);
+            this.mergeType = 3;
             var _loop_3 = function (tIndex) {
                 this_3.horseSelectLeftPanel.getChildByName("training_img_0" + tIndex).addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
                     CommonAudioHandle.playEffect("playBomb_mp3", 1);
-                    this.horseSelectRightPanel.getChildByName("s_1").visible = true;
-                    this.horseSelectRightPanel.getChildByName("s_2").visible = true;
-                    this.horseSelectRightPanel.getChildByName("s_3").visible = true;
-                    this.horseSelectRightPanel.getChildByName("s_4").visible = true;
-                    this.horseSelectRightPanel.getChildByName("sp_1").visible = true;
-                    this.horseSelectRightPanel.getChildByName("sp_2").visible = true;
-                    this.horseSelectRightPanel.getChildByName("sp_3").visible = true;
-                    this.horseSelectRightPanel.getChildByName("sp_4").visible = true;
-                    this.horseSelectRightPanel.getChildByName("d_1").visible = true;
-                    this.horseSelectRightPanel.getChildByName("d_2").visible = true;
-                    this.horseSelectRightPanel.getChildByName("d_3").visible = true;
-                    this.horseSelectRightPanel.getChildByName("d_4").visible = true;
-                    this.horseSelectRightPanel.getChildByName("b_1").visible = true;
-                    this.horseSelectRightPanel.getChildByName("b_2").visible = true;
-                    this.horseSelectRightPanel.getChildByName("b_3").visible = true;
-                    this.horseSelectRightPanel.getChildByName("b_4").visible = true;
                     this.showTrainingSelect(tIndex);
-                    if (tIndex == 1) {
-                        this.horseSelectRightPanel.getChildByName("s_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("s_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("sp_1").visible = false;
-                        this.horseSelectRightPanel.getChildByName("sp_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("sp_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("sp_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_1").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_4").visible = false;
-                    }
-                    else if (tIndex == 2) {
-                        this.horseSelectRightPanel.getChildByName("s_1").visible = false;
-                        this.horseSelectRightPanel.getChildByName("s_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("s_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("s_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("sp_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_1").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_4").visible = false;
-                    }
-                    else if (tIndex == 3) {
-                        this.horseSelectRightPanel.getChildByName("s_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("s_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("s_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("sp_1").visible = false;
-                        this.horseSelectRightPanel.getChildByName("sp_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("sp_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("sp_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_1").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_4").visible = false;
-                    }
-                    else if (tIndex == 4) {
-                        this.horseSelectRightPanel.getChildByName("s_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("s_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("s_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("sp_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("sp_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_1").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_4").visible = false;
-                    }
-                    else if (tIndex == 5) {
-                        this.horseSelectRightPanel.getChildByName("s_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("s_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("s_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("sp_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("sp_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("sp_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("d_4").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_2").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_3").visible = false;
-                        this.horseSelectRightPanel.getChildByName("b_4").visible = false;
-                    }
+                    this.mergeType = tIndex;
+                    var sData = CommonTools.getDataJsonStr("getTrainInfo", 1, { iType: tIndex });
+                    ConstValue.P_NET_OBJ.sendData(sData);
                 }, this_3);
             };
             var this_3 = this;
@@ -2589,20 +2662,22 @@ var HallModule = (function () {
                     this.btnPveAnim2D.horizontalCenter = 0;
                     this.btnPveAnim2D.verticalCenter = 0;
                     this.context.addChild(this.btnPveAnim2D);
+                    /*
                     this.btnPveAnim3D = new eui.Image("sign_1_png");
                     this.btnPveAnim3D.width = 30;
                     this.btnPveAnim3D.height = 30;
-                    this.btnPveAnim3D.name = "btnPveAnim3D";
-                    if (ConstValue.deviveNormalScale >= 2) {
-                        this.btnPveAnim3D.x = this.context.getStageWidth() * 0.56;
-                        this.btnPveAnim3D.y = this.context.getStageHeight() * 0.11;
+                    this.btnPveAnim3D.name = "btnPveAnim3D"
+                    if(ConstValue.deviveNormalScale >= 2){
+                        this.btnPveAnim3D.x = this.context.getStageWidth() * 0.56
+                        this.btnPveAnim3D.y = this.context.getStageHeight() * 0.11
+                    }else{
+                        this.btnPveAnim3D.x = this.context.getStageWidth() * 0.58
+                        this.btnPveAnim3D.y = this.context.getStageHeight() * 0.18
                     }
-                    else {
-                        this.btnPveAnim3D.x = this.context.getStageWidth() * 0.58;
-                        this.btnPveAnim3D.y = this.context.getStageHeight() * 0.18;
-                    }
+                    
                     this.context.addChild(this.btnPveAnim3D);
                     this.context.getChildByName("btnPveAnim3D").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+                    */
                 }
                 else {
                     this.btnPveAnim2D.source = "horse" + hObj.res_key + "_body_png";
@@ -4202,7 +4277,7 @@ var HallModule = (function () {
      */
     HallModule.prototype.handlePacket = function (jsonObj) {
         return __awaiter(this, void 0, void 0, function () {
-            var lnftInfo, count, _loop_10, this_10, i, lMarketData, count, i, lOwnNftData, lNewNftData, i, obj, count, i, iCount, groupNoEnd, sData, userInfo, sData, imgHead, lbName, platform_1, lbLv, lbExp, lbCoin, lbZuan;
+            var lnftInfo, count, _loop_10, this_10, i, i, lMarketData, count, i, lOwnNftData, lNewNftData, i, obj, count, i, lnftInfo, count, _loop_11, this_11, i, i, iCount, groupNoEnd, sData, userInfo, sData, imgHead, lbName, platform_1, lbLv, lbExp, lbCoin, lbZuan;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -4216,7 +4291,7 @@ var HallModule = (function () {
                             ConstValue.cacheUserInfo.name = jsonObj.d.name;
                             this.closeSub();
                         }
-                        return [3 /*break*/, 42];
+                        return [3 /*break*/, 46];
                     case 1:
                         if (!(jsonObj.f == "gmFunc")) return [3 /*break*/, 2];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4225,7 +4300,7 @@ var HallModule = (function () {
                         else {
                             CommonTools.addCommonTips(this.tipsPanel, "执行成功");
                         }
-                        return [3 /*break*/, 42];
+                        return [3 /*break*/, 46];
                     case 2:
                         if (!(jsonObj.f == "contract")) return [3 /*break*/, 3];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4233,7 +4308,7 @@ var HallModule = (function () {
                         else {
                             ContractSol.maincoin_increaseApproval(jsonObj.d.to, jsonObj.d.num);
                         }
-                        return [3 /*break*/, 42];
+                        return [3 /*break*/, 46];
                     case 3:
                         if (!(jsonObj.f == "createNft")) return [3 /*break*/, 4];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4243,6 +4318,9 @@ var HallModule = (function () {
                             count = 1;
                             _loop_10 = function (i) {
                                 var obj = lnftInfo[i];
+                                if (this_10.createNFTTempID == 0) {
+                                    this_10.createNFTTempID = obj.id;
+                                }
                                 FightingModule.Delay(count * 500, function () {
                                     this.createMergeSuccessT(obj);
                                 }, this_10);
@@ -4252,12 +4330,23 @@ var HallModule = (function () {
                             for (i in lnftInfo) {
                                 _loop_10(i);
                             }
-                            ConstValue.cacheContract["nftLen"] = count;
-                            FightingModule.Delay(50000, function () {
-                                ContractSol.nft_tokensOfOwner(ContractSol.sender);
-                            }, this);
+                            // ConstValue.cacheContract["nftLen"] = count;
+                            for (i = 1; i <= 5; i++) {
+                                FightingModule.Delay(10000 * i, function () {
+                                    for (var hIndex in this.horseOwnData) {
+                                        var obj = this.horseOwnData[hIndex];
+                                        if (obj.id == this.createNFTTempID) {
+                                            this.createNFTTempID = 0;
+                                            break;
+                                        }
+                                    }
+                                    if (this.createNFTTempID == 0)
+                                        return;
+                                    ContractSol.nft_tokensOfOwner(ContractSol.sender);
+                                }, this);
+                            }
                         }
-                        return [3 /*break*/, 42];
+                        return [3 /*break*/, 46];
                     case 4:
                         if (!(jsonObj.f == "getNftMarket" || jsonObj.f == "BuyNft")) return [3 /*break*/, 5];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4277,7 +4366,7 @@ var HallModule = (function () {
                             if (this.curPage == 5 && this.subCurPage == 2)
                                 this.changePage("rank_head_02");
                         }
-                        return [3 /*break*/, 42];
+                        return [3 /*break*/, 46];
                     case 5:
                         if (!(jsonObj.f == "PBuyNft")) return [3 /*break*/, 6];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4291,7 +4380,7 @@ var HallModule = (function () {
                                 this.addCommonTips(ConstValue.P_TR_FAIL);
                             }
                         }
-                        return [3 /*break*/, 42];
+                        return [3 /*break*/, 46];
                     case 6:
                         if (!(jsonObj.f == "getOwnNft")) return [3 /*break*/, 7];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4319,10 +4408,22 @@ var HallModule = (function () {
                             }
                             if (this.curPage == 5 && this.subCurPage == 3)
                                 this.changePage("rank_head_03");
-                            if (this.curPage == 2 && this.subCurPage == 2)
+                            if (this.curPage == 2 && this.subCurPage == 2) {
+                                if (this.createNFTTempID == 0) {
+                                    this.changePage("rank_head_03");
+                                }
+                            }
+                            if (this.curPage == 2 && this.subCurPage == 3) {
+                                if (this.createNFTTempID == 0) {
+                                    this.changePage("rank_head_04");
+                                }
+                            }
+                            if (this.curPage == 3) {
+                                this.changePage("rank_head_01");
                                 this.changePage("rank_head_03");
+                            }
                         }
-                        return [3 /*break*/, 42];
+                        return [3 /*break*/, 46];
                     case 7:
                         if (!(jsonObj.f == "getTotalExhi")) return [3 /*break*/, 8];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4336,7 +4437,7 @@ var HallModule = (function () {
                                 this.timeGetTotalExhi(); //60秒回调一次
                             }
                         }
-                        return [3 /*break*/, 42];
+                        return [3 /*break*/, 46];
                     case 8:
                         if (!(jsonObj.f == "joinExhi" || jsonObj.f == "gorestExhi")) return [3 /*break*/, 9];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4347,7 +4448,7 @@ var HallModule = (function () {
                                 this.taskUpdate(1);
                             }
                         }
-                        return [3 /*break*/, 42];
+                        return [3 /*break*/, 46];
                     case 9:
                         if (!(jsonObj.f == "AddMainCoin" || jsonObj.f == "claimExhi")) return [3 /*break*/, 10];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4362,7 +4463,7 @@ var HallModule = (function () {
                                 this.taskUpdate(1);
                             }
                         }
-                        return [3 /*break*/, 42];
+                        return [3 /*break*/, 46];
                     case 10:
                         if (!(jsonObj.f == "getMergeInfo")) return [3 /*break*/, 11];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4372,9 +4473,19 @@ var HallModule = (function () {
                                 this.updateMergeConf(jsonObj.d);
                             }
                         }
-                        return [3 /*break*/, 42];
+                        return [3 /*break*/, 46];
                     case 11:
-                        if (!(jsonObj.f == "doMergeNft")) return [3 /*break*/, 12];
+                        if (!(jsonObj.f == "getBreedInfo")) return [3 /*break*/, 12];
+                        if (jsonObj.m != "" || jsonObj.s != 1) {
+                        }
+                        else {
+                            if (this.curPage == 2 && this.subCurPage == 3) {
+                                this.updateBreedConf(jsonObj.d);
+                            }
+                        }
+                        return [3 /*break*/, 46];
+                    case 12:
+                        if (!(jsonObj.f == "doMergeNft")) return [3 /*break*/, 13];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4387,9 +4498,68 @@ var HallModule = (function () {
                                 this.createMergeSuccess(1, jsonObj.d.showData);
                             }
                         }
-                        return [3 /*break*/, 42];
-                    case 12:
-                        if (!(jsonObj.f == "AddSubCoin")) return [3 /*break*/, 13];
+                        return [3 /*break*/, 46];
+                    case 13:
+                        if (!(jsonObj.f == "getTrainInfo")) return [3 /*break*/, 14];
+                        if (jsonObj.m != "" || jsonObj.s != 1) {
+                        }
+                        else {
+                            this.mergeConf = jsonObj.d;
+                            this.updateTrainConf();
+                        }
+                        return [3 /*break*/, 46];
+                    case 14:
+                        if (!(jsonObj.f == "doTrainNft")) return [3 /*break*/, 15];
+                        if (jsonObj.m != "" || jsonObj.s != 1) {
+                        }
+                        else {
+                            this.createTrainingSuccess(jsonObj.d);
+                        }
+                        return [3 /*break*/, 46];
+                    case 15:
+                        if (!(jsonObj.f == "doBreedNft")) return [3 /*break*/, 16];
+                        if (jsonObj.m != "" || jsonObj.s != 1) {
+                        }
+                        else {
+                            if (jsonObj.d.result == 2)
+                                this.createMergeFail(2);
+                            if (jsonObj.d.result == 1) {
+                                lnftInfo = jsonObj.d.nftInfo;
+                                count = 1;
+                                _loop_11 = function (i) {
+                                    var obj = lnftInfo[i];
+                                    if (this_11.createNFTTempID == 0) {
+                                        this_11.createNFTTempID = obj.id;
+                                    }
+                                    FightingModule.Delay(count * 500, function () {
+                                        this.createMergeSuccessT(obj);
+                                    }, this_11);
+                                    count += 1;
+                                };
+                                this_11 = this;
+                                for (i in lnftInfo) {
+                                    _loop_11(i);
+                                }
+                                // ConstValue.cacheContract["nftLen"] = count;
+                                for (i = 1; i <= 5; i++) {
+                                    FightingModule.Delay(10000 * i, function () {
+                                        for (var hIndex in this.horseOwnData) {
+                                            var obj = this.horseOwnData[hIndex];
+                                            if (obj.id == this.createNFTTempID) {
+                                                this.createNFTTempID = 0;
+                                                break;
+                                            }
+                                        }
+                                        if (this.createNFTTempID == 0)
+                                            return;
+                                        ContractSol.nft_tokensOfOwner(ContractSol.sender);
+                                    }, this);
+                                }
+                            }
+                        }
+                        return [3 /*break*/, 46];
+                    case 16:
+                        if (!(jsonObj.f == "AddSubCoin")) return [3 /*break*/, 17];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4398,16 +4568,16 @@ var HallModule = (function () {
                                 ContractSol.subcoin_balanceOf(ContractSol.sender);
                             }, this);
                         }
-                        return [3 /*break*/, 42];
-                    case 13:
-                        if (!(jsonObj.f == "getPvpRankThree")) return [3 /*break*/, 14];
+                        return [3 /*break*/, 46];
+                    case 17:
+                        if (!(jsonObj.f == "getPvpRankThree")) return [3 /*break*/, 18];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
                         }
-                        return [3 /*break*/, 42];
-                    case 14:
-                        if (!(jsonObj.f == "getHelp" || jsonObj.f == "getGonggao")) return [3 /*break*/, 15];
+                        return [3 /*break*/, 46];
+                    case 18:
+                        if (!(jsonObj.f == "getHelp" || jsonObj.f == "getGonggao")) return [3 /*break*/, 19];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4415,9 +4585,9 @@ var HallModule = (function () {
                                 return [2 /*return*/];
                             CommonTools.addTipsPanel(this.context, jsonObj.d.name, jsonObj.d.content);
                         }
-                        return [3 /*break*/, 42];
-                    case 15:
-                        if (!(jsonObj.f == "Room1v1Dismiss")) return [3 /*break*/, 16];
+                        return [3 /*break*/, 46];
+                    case 19:
+                        if (!(jsonObj.f == "Room1v1Dismiss")) return [3 /*break*/, 20];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4426,9 +4596,9 @@ var HallModule = (function () {
                             if (this.showWxVsPanel != null)
                                 CommonTools.niceTip(this.showWxVsPanel, 2, this);
                         }
-                        return [3 /*break*/, 42];
-                    case 16:
-                        if (!(jsonObj.f == "WaitingInfo")) return [3 /*break*/, 17];
+                        return [3 /*break*/, 46];
+                    case 20:
+                        if (!(jsonObj.f == "WaitingInfo")) return [3 /*break*/, 21];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                             CommonTools.addCommonTips(this.tipsPanel, ConstValue.P_ENTER_ROOM_FAIL);
                         }
@@ -4450,19 +4620,19 @@ var HallModule = (function () {
                                 }
                             }
                         }
-                        return [3 /*break*/, 42];
-                    case 17:
-                        if (!(jsonObj.f == "syncMapData")) return [3 /*break*/, 22];
-                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 18];
-                        return [3 /*break*/, 21];
-                    case 18:
-                        if (!(ConstValue.cacheKeyGroup["fighting"] == null)) return [3 /*break*/, 20];
+                        return [3 /*break*/, 46];
+                    case 21:
+                        if (!(jsonObj.f == "syncMapData")) return [3 /*break*/, 26];
+                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 22];
+                        return [3 /*break*/, 25];
+                    case 22:
+                        if (!(ConstValue.cacheKeyGroup["fighting"] == null)) return [3 /*break*/, 24];
                         this.context.dDataInfo = jsonObj.d;
                         return [4 /*yield*/, this.context.loadResource("fighting", 6)];
-                    case 19:
+                    case 23:
                         _a.sent();
-                        return [3 /*break*/, 21];
-                    case 20:
+                        return [3 /*break*/, 25];
+                    case 24:
                         if (ConstValue.P_FIGHT_OBJ == null) {
                             ConstValue.P_FIGHT_OBJ = new FightingModule(this.context);
                         }
@@ -4471,10 +4641,10 @@ var HallModule = (function () {
                             ConstValue.P_FIGHT_OBJ.releaseVsPanel();
                             ConstValue.P_FIGHT_OBJ.updateInfo(this.context.dDataInfo2);
                         }
-                        _a.label = 21;
-                    case 21: return [3 /*break*/, 42];
-                    case 22:
-                        if (!(jsonObj.f == "openDiyMapUI")) return [3 /*break*/, 23];
+                        _a.label = 25;
+                    case 25: return [3 /*break*/, 46];
+                    case 26:
+                        if (!(jsonObj.f == "openDiyMapUI")) return [3 /*break*/, 27];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4483,9 +4653,9 @@ var HallModule = (function () {
                                 // new MapMiniDIYModule(this.context,jsonObj.d);
                             }
                         }
-                        return [3 /*break*/, 42];
-                    case 23:
-                        if (!(jsonObj.f == "showAllClassList" || jsonObj.f == "reflashClassList")) return [3 /*break*/, 24];
+                        return [3 /*break*/, 46];
+                    case 27:
+                        if (!(jsonObj.f == "showAllClassList" || jsonObj.f == "reflashClassList")) return [3 /*break*/, 28];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4497,9 +4667,9 @@ var HallModule = (function () {
                                 this.updateRoleClass(this.roleSelectIdx);
                             }
                         }
-                        return [3 /*break*/, 42];
-                    case 24:
-                        if (!(jsonObj.f == "openShopUI")) return [3 /*break*/, 25];
+                        return [3 /*break*/, 46];
+                    case 28:
+                        if (!(jsonObj.f == "openShopUI")) return [3 /*break*/, 29];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4515,9 +4685,9 @@ var HallModule = (function () {
                                     this.clickShopItem(this.shopItemClickName);
                             }
                         }
-                        return [3 /*break*/, 42];
-                    case 25:
-                        if (!(jsonObj.f == "openBagUI")) return [3 /*break*/, 26];
+                        return [3 /*break*/, 46];
+                    case 29:
+                        if (!(jsonObj.f == "openBagUI")) return [3 /*break*/, 30];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4535,9 +4705,9 @@ var HallModule = (function () {
                                 this.clickShopItem(this.shopItemClickName);
                             }
                         }
-                        return [3 /*break*/, 42];
-                    case 26:
-                        if (!(jsonObj.f == "Buy")) return [3 /*break*/, 27];
+                        return [3 /*break*/, 46];
+                    case 30:
+                        if (!(jsonObj.f == "Buy")) return [3 /*break*/, 31];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4547,9 +4717,9 @@ var HallModule = (function () {
                                 this.updateCoin();
                             }
                         }
-                        return [3 /*break*/, 42];
-                    case 27:
-                        if (!(jsonObj.f == "getMyMaps")) return [3 /*break*/, 28];
+                        return [3 /*break*/, 46];
+                    case 31:
+                        if (!(jsonObj.f == "getMyMaps")) return [3 /*break*/, 32];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4564,9 +4734,9 @@ var HallModule = (function () {
                                 this.showNotice("resource/eui_skins/UserUI/MapViewUI.exml", "getMyMaps");
                             }, this);
                         }
-                        return [3 /*break*/, 42];
-                    case 28:
-                        if (!(jsonObj.f == "C2GOpenWujinUI")) return [3 /*break*/, 29];
+                        return [3 /*break*/, 46];
+                    case 32:
+                        if (!(jsonObj.f == "C2GOpenWujinUI")) return [3 /*break*/, 33];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4587,9 +4757,9 @@ var HallModule = (function () {
                                 }
                             }
                         }
-                        return [3 /*break*/, 42];
-                    case 29:
-                        if (!(jsonObj.f == "SeventDayReward")) return [3 /*break*/, 30];
+                        return [3 /*break*/, 46];
+                    case 33:
+                        if (!(jsonObj.f == "SeventDayReward")) return [3 /*break*/, 34];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4607,23 +4777,23 @@ var HallModule = (function () {
                                 this.handleSeventDay();
                             }
                         }
-                        return [3 /*break*/, 42];
-                    case 30:
-                        if (!(jsonObj.f == "G2C_getWXInfo")) return [3 /*break*/, 34];
-                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 31];
-                        return [3 /*break*/, 33];
-                    case 31:
+                        return [3 /*break*/, 46];
+                    case 34:
+                        if (!(jsonObj.f == "G2C_getWXInfo")) return [3 /*break*/, 38];
+                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 35];
+                        return [3 /*break*/, 37];
+                    case 35:
                         if (ConstValue.p_LOGIN_MODEL != 2)
                             return [2 /*return*/]; //微信渠道才有
                         return [4 /*yield*/, platform.getUserInfo()];
-                    case 32:
+                    case 36:
                         userInfo = _a.sent();
                         sData = CommonTools.getDataJsonStr("saveWXInfo", 1, { head: userInfo.avatarUrl, name: userInfo.nickName, gender: userInfo.gender });
                         ConstValue.P_NET_OBJ.sendData(sData);
-                        _a.label = 33;
-                    case 33: return [3 /*break*/, 42];
-                    case 34:
-                        if (!(jsonObj.f == "saveWXInfo")) return [3 /*break*/, 35];
+                        _a.label = 37;
+                    case 37: return [3 /*break*/, 46];
+                    case 38:
+                        if (!(jsonObj.f == "saveWXInfo")) return [3 /*break*/, 39];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4636,9 +4806,9 @@ var HallModule = (function () {
                             lbName.text = jsonObj.d.name;
                             ConstValue.cacheUserInfo.name = jsonObj.d.name;
                         }
-                        return [3 /*break*/, 42];
-                    case 35:
-                        if (!(jsonObj.f == "showUpgradeReward")) return [3 /*break*/, 36];
+                        return [3 /*break*/, 46];
+                    case 39:
+                        if (!(jsonObj.f == "showUpgradeReward")) return [3 /*break*/, 40];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4650,9 +4820,9 @@ var HallModule = (function () {
                                 this.handleLvReward();
                             }
                         }
-                        return [3 /*break*/, 42];
-                    case 36:
-                        if (!(jsonObj.f == "GuildInfo")) return [3 /*break*/, 37];
+                        return [3 /*break*/, 46];
+                    case 40:
+                        if (!(jsonObj.f == "GuildInfo")) return [3 /*break*/, 41];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4668,21 +4838,21 @@ var HallModule = (function () {
                                 // if(jsonObj.d.id != 3)new GuideModule(this.context,jsonObj.d.id,this.panel,this.panelNotice);
                             }
                         }
-                        return [3 /*break*/, 42];
-                    case 37:
-                        if (!(jsonObj.f == "open1V1Room" || jsonObj.f == "open1V1RoomByMap")) return [3 /*break*/, 41];
-                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 38];
-                        return [3 /*break*/, 40];
-                    case 38:
+                        return [3 /*break*/, 46];
+                    case 41:
+                        if (!(jsonObj.f == "open1V1Room" || jsonObj.f == "open1V1RoomByMap")) return [3 /*break*/, 45];
+                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 42];
+                        return [3 /*break*/, 44];
+                    case 42:
                         CommonTools.log("shareAppMessage-------1");
                         Main.roomkey = jsonObj.d.roomkey;
                         platform_1 = window.platform;
                         return [4 /*yield*/, platform_1.shareAppMessage(jsonObj.d.roomkey)];
-                    case 39:
+                    case 43:
                         _a.sent();
-                        _a.label = 40;
-                    case 40: return [3 /*break*/, 42];
-                    case 41:
+                        _a.label = 44;
+                    case 44: return [3 /*break*/, 46];
+                    case 45:
                         if (jsonObj.f == "showMatch1v1RoomUI") {
                             if (jsonObj.m != "" || jsonObj.s != 1) {
                             }
@@ -4768,8 +4938,8 @@ var HallModule = (function () {
                                 CommonTools.log("this.lRank-------------" + this.lRank);
                             }
                         }
-                        _a.label = 42;
-                    case 42: return [2 /*return*/];
+                        _a.label = 46;
+                    case 46: return [2 /*return*/];
                 }
             });
         });
