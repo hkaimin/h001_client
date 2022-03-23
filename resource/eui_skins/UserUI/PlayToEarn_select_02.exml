@@ -5,10 +5,10 @@
 	<e:Image width="424" height="534.33" x="899.02" y="12" anchorOffsetX="0" anchorOffsetY="0" source="bar_info_di1_png"/>
 	<e:Button id="btn_shop0" label="" x="1292.12" y="410.06" anchorOffsetX="0" width="39" anchorOffsetY="0" height="41" name="btn_shop3" scaleX="0.6" scaleY="0.6">
 		<e:skinName>
-		<e:Skin states="up,down,disabled">
-			<e:Image width="100%" height="100%" source="icon_coin1_png"/>
+			<e:Skin states="up,down,disabled">
+			<e:Image width="100%" height="100%" source="icon_coin2_png"/>
 			<e:Label id="labelDisplay" horizontalCenter="0" verticalCenter="0"/>
-		</e:Skin>
+			</e:Skin>
 		</e:skinName>
 	</e:Button>
 	<e:Image width="91" height="178" x="912.51" y="103.05" source="bar_info_di21_png"/>
@@ -32,6 +32,6 @@
 	<e:Label text="Success Rate:" x="944.02" y="361" textColor="0xe0cfa1" size="24" anchorOffsetX="0" width="199" anchorOffsetY="0" height="28"/>
 	<e:Label text="Estimate Rewards:" x="944.02" y="409.66" textColor="0xE0CFA1" size="24" anchorOffsetX="0" width="212.33" anchorOffsetY="0" height="28"/>
 	<e:Label id="success_rate" text="10%" x="1197" y="364" size="22" name="success_rate"/>
-	<e:Label id="reward" text="10 ~ 30" x="1197" y="412.66" size="22" name="reward"/>
+	<e:Label id="reward" text="10 ~ 30" x="1152" y="412.66" size="22" name="reward" anchorOffsetX="0" width="134" verticalAlign="middle" textAlign="center"/>
 	<e:Label id="Process_btn_lb" text="" x="882" y="604" anchorOffsetX="0" width="437" anchorOffsetY="0" height="89" name="Process_btn_lb"/>
 </e:Skin>

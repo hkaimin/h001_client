@@ -18,6 +18,7 @@ class ContractSol {
 	static BREED_COST_MAIN_NFT = 7;//繁殖nft主币消耗
 	static BREED_COST_SUB_NFT = 8;//繁殖nft子币消耗
 	static TRAIN_COST_SUB_NFT = 9;//训练nft子币消耗
+	static PEDD_COST_MAIN_NFT = 10;//pedd nft主币消耗
 
 	static EXCHANGE_RATE = 100.0;
 
@@ -229,6 +230,9 @@ class ContractSol {
 						}else if(iOpType == ContractSol.TRAIN_COST_SUB_NFT){
 							ContractSol.subcoin_balanceOf(ContractSol.sender);
 							ConstValue.P_HALL_OBJ.startTraining(4);
+						}else if(iOpType == ContractSol.PEDD_COST_MAIN_NFT){
+							ContractSol.maincoin_balanceOf(ContractSol.sender);
+							ConstValue.P_HALL_OBJ.sendDoPedd();
 						}
 					}
 				}

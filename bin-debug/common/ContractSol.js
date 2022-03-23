@@ -195,6 +195,10 @@ var ContractSol = (function () {
                             ContractSol.subcoin_balanceOf(ContractSol.sender);
                             ConstValue.P_HALL_OBJ.startTraining(4);
                         }
+                        else if (iOpType == ContractSol.PEDD_COST_MAIN_NFT) {
+                            ContractSol.maincoin_balanceOf(ContractSol.sender);
+                            ConstValue.P_HALL_OBJ.sendDoPedd();
+                        }
                     }
                 }
             });
@@ -339,6 +343,7 @@ var ContractSol = (function () {
     ContractSol.BREED_COST_MAIN_NFT = 7; //繁殖nft主币消耗
     ContractSol.BREED_COST_SUB_NFT = 8; //繁殖nft子币消耗
     ContractSol.TRAIN_COST_SUB_NFT = 9; //训练nft子币消耗
+    ContractSol.PEDD_COST_MAIN_NFT = 10; //pedd nft主币消耗
     ContractSol.EXCHANGE_RATE = 100.0;
     ContractSol.sender = "";
     ContractSol.createAddress = "0x210729036108b7dd19bba5141e181a47a619a46f";

@@ -612,6 +612,21 @@ var HallModule = (function () {
             this.horseSelectMiddlePanel.getChildByName("burst_text").text = obj.burse + "/" + obj.MaxBurse;
             this.horseSelectMiddlePanel.getChildByName("score").text = obj.score;
         }
+        if (this.curPage == 4 && this.subCurPage == 2) {
+            var sData = CommonTools.getDataJsonStr("getCargoInfo", 1, { iType: this.mergeType, iStar: obj.star });
+            ConstValue.P_NET_OBJ.sendData(sData);
+        }
+        if (this.curPage == 4 && this.subCurPage == 3) {
+            var sData = CommonTools.getDataJsonStr("getPeddInfo", 1, { iStar: obj.star });
+            ConstValue.P_NET_OBJ.sendData(sData);
+        }
+        if (this.curPage == 3) {
+            var obj_1 = this.getPOwnHorseInfoById(this.horseItemS);
+            var energy_length = this.horseSelectRightPanel.getChildByName("energy_bg");
+            var strength_w = energy_length.width * (obj_1.strength * 1.0 / obj_1.MaxStrength);
+            var energy_w = energy_length.width * (obj_1.energy * 1.0 / obj_1.energyMax);
+            this.horseSelectRightPanel.getChildByName("energy_value").width = energy_w;
+        }
     };
     HallModule.prototype.createHorseItem = function () {
         if (this.horseSelectPanel != null) {
@@ -1599,11 +1614,11 @@ var HallModule = (function () {
             this.horseSelectLeftPanel.y = downY3;
             this.context.addChild(this.horseSelectLeftPanel);
             CommonTools.fixFix(this.context, this.horseSelectLeftPanel, 2, 0, -40);
-            var obj_1 = this.getPOwnHorseInfoById(this.horseItemS);
-            this.updateHorseItemMiddle(obj_1);
+            var obj_2 = this.getPOwnHorseInfoById(this.horseItemS);
+            this.updateHorseItemMiddle(obj_2);
             var energy_length = this.horseSelectRightPanel.getChildByName("energy_bg");
-            var strength_w = energy_length.width * (obj_1.strength * 1.0 / obj_1.MaxStrength);
-            var energy_w = energy_length.width * (obj_1.energy * 1.0 / obj_1.energyMax);
+            var strength_w = energy_length.width * (obj_2.strength * 1.0 / obj_2.MaxStrength);
+            var energy_w = energy_length.width * (obj_2.energy * 1.0 / obj_2.energyMax);
             this.horseSelectRightPanel.getChildByName("energy_value").width = energy_w;
             this.horseSelectLeftPanel.getChildByName("btn_back_img").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
                 CommonAudioHandle.playEffect("playBomb_mp3", 1);
@@ -1617,7 +1632,7 @@ var HallModule = (function () {
                     this.addCommonTips(ConstValue.P_NOT_ENOUGH);
                     return false;
                 }
-                if (obj_1.energy < energyCost * -1) {
+                if (obj_2.energy < energyCost * -1) {
                     this.addCommonTips(ConstValue.P_NOT_ENOUGH);
                     return false;
                 }
@@ -1688,8 +1703,13 @@ var HallModule = (function () {
         if (this.btnPveAnim3D != null)
             this.btnPveAnim3D.visible = false;
     };
-    HallModule.prototype.createCargoSuccess = function (index) {
-        CommonAudioHandle.playEffect("success_mp3", 1);
+    HallModule.prototype.createCargoSuccess = function (index, dData, isPedd) {
+        if (index == 1) {
+            CommonAudioHandle.playEffect("success_mp3", 1);
+        }
+        else {
+            CommonAudioHandle.playEffect("failure_mp3", 1);
+        }
         this.maskBg2 = new eui.Image("black_mask_png");
         this.maskBg2.alpha = 0.9;
         this.maskBg2.width = this.context.getStageWidth();
@@ -1699,11 +1719,25 @@ var HallModule = (function () {
         this.horseMergeResult.skinName = "resource/eui_skins/UserUI/Cargo_success.exml";
         this.horseMergeResult.title = "Title";
         this.horseMergeResult.horizontalCenter = 0;
+        this.horseMergeResult.verticalCenter = 0;
         this.context.addChild(this.horseMergeResult);
         CommonTools.fixFix(this.context, this.horseMergeResult, 2, 0, -40);
+        if (index == 2) {
+            this.horseMergeResult.getChildByName("title_img").source = "pic_lose_png";
+            this.horseMergeResult.getChildByName("add_coin").text = "+ 0";
+        }
+        else {
+            this.horseMergeResult.getChildByName("add_coin").text = "+ " + dData.iCacl;
+        }
+        if (isPedd == 1) {
+            this.horseMergeResult.getChildByName("coin_icon_t").source = "icon_coin1_png";
+        }
         this.horseMergeResult.getChildByName("merge_fail_confirm").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.closeMergeFail();
+            FightingModule.Delay(10000, function () {
+                ContractSol.subcoin_balanceOf(ContractSol.sender);
+            }, this);
         }, this);
     };
     HallModule.prototype.task01UI = function () {
@@ -1951,6 +1985,10 @@ var HallModule = (function () {
             }
         }, this);
     };
+    HallModule.prototype.updateTask02 = function (dData) {
+        this.horseSelectRightPanel.getChildByName("success_rate").text = dData.success / 10 + "%";
+        this.horseSelectRightPanel.getChildByName("reward").text = dData.min / 1000.0 + " ~ " + dData.max / 1000.0;
+    };
     HallModule.prototype.task02UI = function () {
         this.panel.getChildByName("up_item_group").visible = false;
         var leftX2 = 280;
@@ -1978,18 +2016,21 @@ var HallModule = (function () {
         this.horseSelectRightPanel.verticalCenter = 0;
         this.context.addChild(this.horseSelectRightPanel);
         CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, -40);
-        this.horseSelectRightPanel.getChildByName("Process_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
-            CommonAudioHandle.playEffect("playBomb_mp3", 1);
-            this.createCargoSuccess();
-        }, this);
+        var obj = null;
+        if (this.horseItemS > 0) {
+            obj = this.getPOwnHorseInfoById(this.horseItemS);
+            this.updateHorseItemMiddle(obj);
+        }
         this.horseSelectRightPanel.getChildByName("s_1").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.horseSelectRightPanel.getChildByName("s_1_bg").visible = true;
             this.horseSelectRightPanel.getChildByName("s_2_bg").visible = false;
             this.horseSelectRightPanel.getChildByName("s_3_bg").visible = false;
             this.horseSelectRightPanel.getChildByName("s_4_bg").visible = false;
-            this.horseSelectRightPanel.getChildByName("success_rate").text = "10%";
-            this.horseSelectRightPanel.getChildByName("reward").text = "10 ~ 30";
+            this.mergeType = 1;
+            var tobj = this.getPOwnHorseInfoById(this.horseItemS);
+            var sData = CommonTools.getDataJsonStr("getCargoInfo", 1, { iType: 1, iStar: tobj.star });
+            ConstValue.P_NET_OBJ.sendData(sData);
         }, this);
         this.horseSelectRightPanel.getChildByName("s_2").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
@@ -1997,8 +2038,10 @@ var HallModule = (function () {
             this.horseSelectRightPanel.getChildByName("s_2_bg").visible = true;
             this.horseSelectRightPanel.getChildByName("s_3_bg").visible = false;
             this.horseSelectRightPanel.getChildByName("s_4_bg").visible = false;
-            this.horseSelectRightPanel.getChildByName("success_rate").text = "20%";
-            this.horseSelectRightPanel.getChildByName("reward").text = "20 ~ 40";
+            this.mergeType = 2;
+            var tobj = this.getPOwnHorseInfoById(this.horseItemS);
+            var sData = CommonTools.getDataJsonStr("getCargoInfo", 1, { iType: 2, iStar: tobj.star });
+            ConstValue.P_NET_OBJ.sendData(sData);
         }, this);
         this.horseSelectRightPanel.getChildByName("s_3").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
@@ -2006,8 +2049,10 @@ var HallModule = (function () {
             this.horseSelectRightPanel.getChildByName("s_2_bg").visible = false;
             this.horseSelectRightPanel.getChildByName("s_3_bg").visible = true;
             this.horseSelectRightPanel.getChildByName("s_4_bg").visible = false;
-            this.horseSelectRightPanel.getChildByName("success_rate").text = "40%";
-            this.horseSelectRightPanel.getChildByName("reward").text = "30 ~ 60";
+            this.mergeType = 3;
+            var tobj = this.getPOwnHorseInfoById(this.horseItemS);
+            var sData = CommonTools.getDataJsonStr("getCargoInfo", 1, { iType: 3, iStar: tobj.star });
+            ConstValue.P_NET_OBJ.sendData(sData);
         }, this);
         this.horseSelectRightPanel.getChildByName("s_4").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
@@ -2015,13 +2060,33 @@ var HallModule = (function () {
             this.horseSelectRightPanel.getChildByName("s_2_bg").visible = false;
             this.horseSelectRightPanel.getChildByName("s_3_bg").visible = false;
             this.horseSelectRightPanel.getChildByName("s_4_bg").visible = true;
-            this.horseSelectRightPanel.getChildByName("success_rate").text = "80%";
-            this.horseSelectRightPanel.getChildByName("reward").text = "40 ~ 80";
+            this.mergeType = 4;
+            var tobj = this.getPOwnHorseInfoById(this.horseItemS);
+            var sData = CommonTools.getDataJsonStr("getCargoInfo", 1, { iType: 4, iStar: tobj.star });
+            ConstValue.P_NET_OBJ.sendData(sData);
         }, this);
-        if (this.horseItemS > 0) {
-            var obj = this.getPOwnHorseInfoById(this.horseItemS);
-            this.updateHorseItemMiddle(obj);
-        }
+        this.horseSelectRightPanel.getChildByName("Process_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            CommonTools.addCommonTips(this.tipsPanel, ConstValue.P_PUSHING_TR);
+            var tobj = this.getPOwnHorseInfoById(this.horseItemS);
+            var sData = CommonTools.getDataJsonStr("doCargoNft", 1, { iType: this.mergeType, nftIndex: tobj.id, iScore: tobj.score, iStar: tobj.star });
+            ConstValue.P_NET_OBJ.sendData(sData);
+        }, this);
+        this.mergeType = 1;
+        var sData = CommonTools.getDataJsonStr("getCargoInfo", 1, { iType: 1, iStar: obj.star });
+        ConstValue.P_NET_OBJ.sendData(sData);
+    };
+    HallModule.prototype.updateTask03 = function (dData) {
+        this.mergeConf = dData.cost;
+        this.horseSelectRightPanel.getChildByName("coin_1").text = dData.max1 / 1000.0;
+        this.horseSelectRightPanel.getChildByName("coin_2").text = dData.max2 / 1000.0;
+        this.horseSelectRightPanel.getChildByName("coin_3").text = dData.max3 / 1000.0;
+        this.horseSelectRightPanel.getChildByName("cost_coin").text = dData.cost / 100.0;
+    };
+    HallModule.prototype.sendDoPedd = function () {
+        var tobj = this.getPOwnHorseInfoById(this.horseItemS);
+        var sData = CommonTools.getDataJsonStr("doPeddNft", 1, { iType: this.mergeType, nftIndex: tobj.id, iScore: tobj.score, iStar: tobj.star });
+        ConstValue.P_NET_OBJ.sendData(sData);
     };
     HallModule.prototype.task03UI = function () {
         this.panel.getChildByName("up_item_group").visible = false;
@@ -2052,12 +2117,37 @@ var HallModule = (function () {
         CommonTools.fixFix(this.context, this.horseSelectRightPanel, 2, 0, -40);
         this.horseSelectRightPanel.getChildByName("Process_btn_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
-            this.createCargoSuccess();
+            ContractSol.maincoin_transfer(ContractSol.createAddress, this.mergeConf, ContractSol.PEDD_COST_MAIN_NFT);
         }, this);
+        this.horseSelectRightPanel.getChildByName("bg_1").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.horseSelectRightPanel.getChildByName("check_1").visible = true;
+            this.horseSelectRightPanel.getChildByName("check_2").visible = false;
+            this.horseSelectRightPanel.getChildByName("check_3").visible = false;
+            this.mergeType = 1;
+        }, this);
+        this.horseSelectRightPanel.getChildByName("bg_2").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.horseSelectRightPanel.getChildByName("check_1").visible = false;
+            this.horseSelectRightPanel.getChildByName("check_2").visible = true;
+            this.horseSelectRightPanel.getChildByName("check_3").visible = false;
+            this.mergeType = 2;
+        }, this);
+        this.horseSelectRightPanel.getChildByName("bg_3").addEventListener(egret.TouchEvent.TOUCH_TAP, function (e) {
+            CommonAudioHandle.playEffect("playBomb_mp3", 1);
+            this.horseSelectRightPanel.getChildByName("check_1").visible = false;
+            this.horseSelectRightPanel.getChildByName("check_2").visible = false;
+            this.horseSelectRightPanel.getChildByName("check_3").visible = true;
+            this.mergeType = 3;
+        }, this);
+        var obj = null;
         if (this.horseItemS > 0) {
-            var obj = this.getPOwnHorseInfoById(this.horseItemS);
+            obj = this.getPOwnHorseInfoById(this.horseItemS);
             this.updateHorseItemMiddle(obj);
         }
+        this.mergeType = 1;
+        var sData = CommonTools.getDataJsonStr("getPeddInfo", 1, { iStar: obj.star });
+        ConstValue.P_NET_OBJ.sendData(sData);
     };
     HallModule.prototype.clearTask = function () {
         if (this.btnBackImgTemp != null) {
@@ -4291,7 +4381,7 @@ var HallModule = (function () {
                             ConstValue.cacheUserInfo.name = jsonObj.d.name;
                             this.closeSub();
                         }
-                        return [3 /*break*/, 46];
+                        return [3 /*break*/, 51];
                     case 1:
                         if (!(jsonObj.f == "gmFunc")) return [3 /*break*/, 2];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4300,7 +4390,7 @@ var HallModule = (function () {
                         else {
                             CommonTools.addCommonTips(this.tipsPanel, "执行成功");
                         }
-                        return [3 /*break*/, 46];
+                        return [3 /*break*/, 51];
                     case 2:
                         if (!(jsonObj.f == "contract")) return [3 /*break*/, 3];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4308,7 +4398,7 @@ var HallModule = (function () {
                         else {
                             ContractSol.maincoin_increaseApproval(jsonObj.d.to, jsonObj.d.num);
                         }
-                        return [3 /*break*/, 46];
+                        return [3 /*break*/, 51];
                     case 3:
                         if (!(jsonObj.f == "createNft")) return [3 /*break*/, 4];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4346,7 +4436,7 @@ var HallModule = (function () {
                                 }, this);
                             }
                         }
-                        return [3 /*break*/, 46];
+                        return [3 /*break*/, 51];
                     case 4:
                         if (!(jsonObj.f == "getNftMarket" || jsonObj.f == "BuyNft")) return [3 /*break*/, 5];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4365,8 +4455,16 @@ var HallModule = (function () {
                             }
                             if (this.curPage == 5 && this.subCurPage == 2)
                                 this.changePage("rank_head_02");
+                            if (jsonObj.f == "BuyNft") {
+                                FightingModule.Delay(10000, function () {
+                                    ContractSol.nft_tokensOfOwner(ContractSol.sender);
+                                }, this);
+                                FightingModule.Delay(15000, function () {
+                                    ContractSol.nft_tokensOfOwner(ContractSol.sender);
+                                }, this);
+                            }
                         }
-                        return [3 /*break*/, 46];
+                        return [3 /*break*/, 51];
                     case 5:
                         if (!(jsonObj.f == "PBuyNft")) return [3 /*break*/, 6];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
@@ -4380,9 +4478,17 @@ var HallModule = (function () {
                                 this.addCommonTips(ConstValue.P_TR_FAIL);
                             }
                         }
-                        return [3 /*break*/, 46];
+                        return [3 /*break*/, 51];
                     case 6:
-                        if (!(jsonObj.f == "getOwnNft")) return [3 /*break*/, 7];
+                        if (!(jsonObj.f == "SellNft")) return [3 /*break*/, 7];
+                        if (jsonObj.m != "" || jsonObj.s != 1) {
+                        }
+                        else {
+                            ContractSol.nft_tokensOfOwner(ContractSol.sender);
+                        }
+                        return [3 /*break*/, 51];
+                    case 7:
+                        if (!(jsonObj.f == "getOwnNft")) return [3 /*break*/, 8];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4423,9 +4529,9 @@ var HallModule = (function () {
                                 this.changePage("rank_head_03");
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 7:
-                        if (!(jsonObj.f == "getTotalExhi")) return [3 /*break*/, 8];
+                        return [3 /*break*/, 51];
+                    case 8:
+                        if (!(jsonObj.f == "getTotalExhi")) return [3 /*break*/, 9];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4437,9 +4543,9 @@ var HallModule = (function () {
                                 this.timeGetTotalExhi(); //60秒回调一次
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 8:
-                        if (!(jsonObj.f == "joinExhi" || jsonObj.f == "gorestExhi")) return [3 /*break*/, 9];
+                        return [3 /*break*/, 51];
+                    case 9:
+                        if (!(jsonObj.f == "joinExhi" || jsonObj.f == "gorestExhi")) return [3 /*break*/, 10];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4448,9 +4554,9 @@ var HallModule = (function () {
                                 this.taskUpdate(1);
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 9:
-                        if (!(jsonObj.f == "AddMainCoin" || jsonObj.f == "claimExhi")) return [3 /*break*/, 10];
+                        return [3 /*break*/, 51];
+                    case 10:
+                        if (!(jsonObj.f == "AddMainCoin" || jsonObj.f == "claimExhi")) return [3 /*break*/, 11];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4463,9 +4569,9 @@ var HallModule = (function () {
                                 this.taskUpdate(1);
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 10:
-                        if (!(jsonObj.f == "getMergeInfo")) return [3 /*break*/, 11];
+                        return [3 /*break*/, 51];
+                    case 11:
+                        if (!(jsonObj.f == "getMergeInfo")) return [3 /*break*/, 12];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4473,9 +4579,9 @@ var HallModule = (function () {
                                 this.updateMergeConf(jsonObj.d);
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 11:
-                        if (!(jsonObj.f == "getBreedInfo")) return [3 /*break*/, 12];
+                        return [3 /*break*/, 51];
+                    case 12:
+                        if (!(jsonObj.f == "getBreedInfo")) return [3 /*break*/, 13];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4483,9 +4589,9 @@ var HallModule = (function () {
                                 this.updateBreedConf(jsonObj.d);
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 12:
-                        if (!(jsonObj.f == "doMergeNft")) return [3 /*break*/, 13];
+                        return [3 /*break*/, 51];
+                    case 13:
+                        if (!(jsonObj.f == "doMergeNft")) return [3 /*break*/, 14];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4498,26 +4604,68 @@ var HallModule = (function () {
                                 this.createMergeSuccess(1, jsonObj.d.showData);
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 13:
-                        if (!(jsonObj.f == "getTrainInfo")) return [3 /*break*/, 14];
+                        return [3 /*break*/, 51];
+                    case 14:
+                        if (!(jsonObj.f == "getTrainInfo")) return [3 /*break*/, 15];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
                             this.mergeConf = jsonObj.d;
                             this.updateTrainConf();
                         }
-                        return [3 /*break*/, 46];
-                    case 14:
-                        if (!(jsonObj.f == "doTrainNft")) return [3 /*break*/, 15];
+                        return [3 /*break*/, 51];
+                    case 15:
+                        if (!(jsonObj.f == "getCargoInfo")) return [3 /*break*/, 16];
+                        if (jsonObj.m != "" || jsonObj.s != 1) {
+                        }
+                        else {
+                            this.updateTask02(jsonObj.d);
+                        }
+                        return [3 /*break*/, 51];
+                    case 16:
+                        if (!(jsonObj.f == "getPeddInfo")) return [3 /*break*/, 17];
+                        if (jsonObj.m != "" || jsonObj.s != 1) {
+                        }
+                        else {
+                            this.updateTask03(jsonObj.d);
+                        }
+                        return [3 /*break*/, 51];
+                    case 17:
+                        if (!(jsonObj.f == "doCargoNft")) return [3 /*break*/, 18];
+                        if (jsonObj.m != "" || jsonObj.s != 1) {
+                        }
+                        else {
+                            if (jsonObj.d.result == 1) {
+                                this.createCargoSuccess(1, jsonObj.d, null);
+                            }
+                            else {
+                                this.createCargoSuccess(2, jsonObj.d, null);
+                            }
+                        }
+                        return [3 /*break*/, 51];
+                    case 18:
+                        if (!(jsonObj.f == "doPeddNft")) return [3 /*break*/, 19];
+                        if (jsonObj.m != "" || jsonObj.s != 1) {
+                        }
+                        else {
+                            if (jsonObj.d.result == 1) {
+                                this.createCargoSuccess(1, jsonObj.d, 1);
+                            }
+                            else {
+                                this.createCargoSuccess(2, jsonObj.d, 1);
+                            }
+                        }
+                        return [3 /*break*/, 51];
+                    case 19:
+                        if (!(jsonObj.f == "doTrainNft")) return [3 /*break*/, 20];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
                             this.createTrainingSuccess(jsonObj.d);
                         }
-                        return [3 /*break*/, 46];
-                    case 15:
-                        if (!(jsonObj.f == "doBreedNft")) return [3 /*break*/, 16];
+                        return [3 /*break*/, 51];
+                    case 20:
+                        if (!(jsonObj.f == "doBreedNft")) return [3 /*break*/, 21];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4557,9 +4705,9 @@ var HallModule = (function () {
                                 }
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 16:
-                        if (!(jsonObj.f == "AddSubCoin")) return [3 /*break*/, 17];
+                        return [3 /*break*/, 51];
+                    case 21:
+                        if (!(jsonObj.f == "AddSubCoin")) return [3 /*break*/, 22];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4568,16 +4716,16 @@ var HallModule = (function () {
                                 ContractSol.subcoin_balanceOf(ContractSol.sender);
                             }, this);
                         }
-                        return [3 /*break*/, 46];
-                    case 17:
-                        if (!(jsonObj.f == "getPvpRankThree")) return [3 /*break*/, 18];
+                        return [3 /*break*/, 51];
+                    case 22:
+                        if (!(jsonObj.f == "getPvpRankThree")) return [3 /*break*/, 23];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
                         }
-                        return [3 /*break*/, 46];
-                    case 18:
-                        if (!(jsonObj.f == "getHelp" || jsonObj.f == "getGonggao")) return [3 /*break*/, 19];
+                        return [3 /*break*/, 51];
+                    case 23:
+                        if (!(jsonObj.f == "getHelp" || jsonObj.f == "getGonggao")) return [3 /*break*/, 24];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4585,9 +4733,9 @@ var HallModule = (function () {
                                 return [2 /*return*/];
                             CommonTools.addTipsPanel(this.context, jsonObj.d.name, jsonObj.d.content);
                         }
-                        return [3 /*break*/, 46];
-                    case 19:
-                        if (!(jsonObj.f == "Room1v1Dismiss")) return [3 /*break*/, 20];
+                        return [3 /*break*/, 51];
+                    case 24:
+                        if (!(jsonObj.f == "Room1v1Dismiss")) return [3 /*break*/, 25];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4596,9 +4744,9 @@ var HallModule = (function () {
                             if (this.showWxVsPanel != null)
                                 CommonTools.niceTip(this.showWxVsPanel, 2, this);
                         }
-                        return [3 /*break*/, 46];
-                    case 20:
-                        if (!(jsonObj.f == "WaitingInfo")) return [3 /*break*/, 21];
+                        return [3 /*break*/, 51];
+                    case 25:
+                        if (!(jsonObj.f == "WaitingInfo")) return [3 /*break*/, 26];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                             CommonTools.addCommonTips(this.tipsPanel, ConstValue.P_ENTER_ROOM_FAIL);
                         }
@@ -4620,19 +4768,19 @@ var HallModule = (function () {
                                 }
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 21:
-                        if (!(jsonObj.f == "syncMapData")) return [3 /*break*/, 26];
-                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 22];
-                        return [3 /*break*/, 25];
-                    case 22:
-                        if (!(ConstValue.cacheKeyGroup["fighting"] == null)) return [3 /*break*/, 24];
+                        return [3 /*break*/, 51];
+                    case 26:
+                        if (!(jsonObj.f == "syncMapData")) return [3 /*break*/, 31];
+                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 27];
+                        return [3 /*break*/, 30];
+                    case 27:
+                        if (!(ConstValue.cacheKeyGroup["fighting"] == null)) return [3 /*break*/, 29];
                         this.context.dDataInfo = jsonObj.d;
                         return [4 /*yield*/, this.context.loadResource("fighting", 6)];
-                    case 23:
+                    case 28:
                         _a.sent();
-                        return [3 /*break*/, 25];
-                    case 24:
+                        return [3 /*break*/, 30];
+                    case 29:
                         if (ConstValue.P_FIGHT_OBJ == null) {
                             ConstValue.P_FIGHT_OBJ = new FightingModule(this.context);
                         }
@@ -4641,10 +4789,10 @@ var HallModule = (function () {
                             ConstValue.P_FIGHT_OBJ.releaseVsPanel();
                             ConstValue.P_FIGHT_OBJ.updateInfo(this.context.dDataInfo2);
                         }
-                        _a.label = 25;
-                    case 25: return [3 /*break*/, 46];
-                    case 26:
-                        if (!(jsonObj.f == "openDiyMapUI")) return [3 /*break*/, 27];
+                        _a.label = 30;
+                    case 30: return [3 /*break*/, 51];
+                    case 31:
+                        if (!(jsonObj.f == "openDiyMapUI")) return [3 /*break*/, 32];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4653,9 +4801,9 @@ var HallModule = (function () {
                                 // new MapMiniDIYModule(this.context,jsonObj.d);
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 27:
-                        if (!(jsonObj.f == "showAllClassList" || jsonObj.f == "reflashClassList")) return [3 /*break*/, 28];
+                        return [3 /*break*/, 51];
+                    case 32:
+                        if (!(jsonObj.f == "showAllClassList" || jsonObj.f == "reflashClassList")) return [3 /*break*/, 33];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4667,9 +4815,9 @@ var HallModule = (function () {
                                 this.updateRoleClass(this.roleSelectIdx);
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 28:
-                        if (!(jsonObj.f == "openShopUI")) return [3 /*break*/, 29];
+                        return [3 /*break*/, 51];
+                    case 33:
+                        if (!(jsonObj.f == "openShopUI")) return [3 /*break*/, 34];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4685,9 +4833,9 @@ var HallModule = (function () {
                                     this.clickShopItem(this.shopItemClickName);
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 29:
-                        if (!(jsonObj.f == "openBagUI")) return [3 /*break*/, 30];
+                        return [3 /*break*/, 51];
+                    case 34:
+                        if (!(jsonObj.f == "openBagUI")) return [3 /*break*/, 35];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4705,9 +4853,9 @@ var HallModule = (function () {
                                 this.clickShopItem(this.shopItemClickName);
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 30:
-                        if (!(jsonObj.f == "Buy")) return [3 /*break*/, 31];
+                        return [3 /*break*/, 51];
+                    case 35:
+                        if (!(jsonObj.f == "Buy")) return [3 /*break*/, 36];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4717,9 +4865,9 @@ var HallModule = (function () {
                                 this.updateCoin();
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 31:
-                        if (!(jsonObj.f == "getMyMaps")) return [3 /*break*/, 32];
+                        return [3 /*break*/, 51];
+                    case 36:
+                        if (!(jsonObj.f == "getMyMaps")) return [3 /*break*/, 37];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4734,9 +4882,9 @@ var HallModule = (function () {
                                 this.showNotice("resource/eui_skins/UserUI/MapViewUI.exml", "getMyMaps");
                             }, this);
                         }
-                        return [3 /*break*/, 46];
-                    case 32:
-                        if (!(jsonObj.f == "C2GOpenWujinUI")) return [3 /*break*/, 33];
+                        return [3 /*break*/, 51];
+                    case 37:
+                        if (!(jsonObj.f == "C2GOpenWujinUI")) return [3 /*break*/, 38];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4757,9 +4905,9 @@ var HallModule = (function () {
                                 }
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 33:
-                        if (!(jsonObj.f == "SeventDayReward")) return [3 /*break*/, 34];
+                        return [3 /*break*/, 51];
+                    case 38:
+                        if (!(jsonObj.f == "SeventDayReward")) return [3 /*break*/, 39];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4777,23 +4925,23 @@ var HallModule = (function () {
                                 this.handleSeventDay();
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 34:
-                        if (!(jsonObj.f == "G2C_getWXInfo")) return [3 /*break*/, 38];
-                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 35];
-                        return [3 /*break*/, 37];
-                    case 35:
+                        return [3 /*break*/, 51];
+                    case 39:
+                        if (!(jsonObj.f == "G2C_getWXInfo")) return [3 /*break*/, 43];
+                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 40];
+                        return [3 /*break*/, 42];
+                    case 40:
                         if (ConstValue.p_LOGIN_MODEL != 2)
                             return [2 /*return*/]; //微信渠道才有
                         return [4 /*yield*/, platform.getUserInfo()];
-                    case 36:
+                    case 41:
                         userInfo = _a.sent();
                         sData = CommonTools.getDataJsonStr("saveWXInfo", 1, { head: userInfo.avatarUrl, name: userInfo.nickName, gender: userInfo.gender });
                         ConstValue.P_NET_OBJ.sendData(sData);
-                        _a.label = 37;
-                    case 37: return [3 /*break*/, 46];
-                    case 38:
-                        if (!(jsonObj.f == "saveWXInfo")) return [3 /*break*/, 39];
+                        _a.label = 42;
+                    case 42: return [3 /*break*/, 51];
+                    case 43:
+                        if (!(jsonObj.f == "saveWXInfo")) return [3 /*break*/, 44];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4806,9 +4954,9 @@ var HallModule = (function () {
                             lbName.text = jsonObj.d.name;
                             ConstValue.cacheUserInfo.name = jsonObj.d.name;
                         }
-                        return [3 /*break*/, 46];
-                    case 39:
-                        if (!(jsonObj.f == "showUpgradeReward")) return [3 /*break*/, 40];
+                        return [3 /*break*/, 51];
+                    case 44:
+                        if (!(jsonObj.f == "showUpgradeReward")) return [3 /*break*/, 45];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4820,9 +4968,9 @@ var HallModule = (function () {
                                 this.handleLvReward();
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 40:
-                        if (!(jsonObj.f == "GuildInfo")) return [3 /*break*/, 41];
+                        return [3 /*break*/, 51];
+                    case 45:
+                        if (!(jsonObj.f == "GuildInfo")) return [3 /*break*/, 46];
                         if (jsonObj.m != "" || jsonObj.s != 1) {
                         }
                         else {
@@ -4838,21 +4986,21 @@ var HallModule = (function () {
                                 // if(jsonObj.d.id != 3)new GuideModule(this.context,jsonObj.d.id,this.panel,this.panelNotice);
                             }
                         }
-                        return [3 /*break*/, 46];
-                    case 41:
-                        if (!(jsonObj.f == "open1V1Room" || jsonObj.f == "open1V1RoomByMap")) return [3 /*break*/, 45];
-                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 42];
-                        return [3 /*break*/, 44];
-                    case 42:
+                        return [3 /*break*/, 51];
+                    case 46:
+                        if (!(jsonObj.f == "open1V1Room" || jsonObj.f == "open1V1RoomByMap")) return [3 /*break*/, 50];
+                        if (!(jsonObj.m != "" || jsonObj.s != 1)) return [3 /*break*/, 47];
+                        return [3 /*break*/, 49];
+                    case 47:
                         CommonTools.log("shareAppMessage-------1");
                         Main.roomkey = jsonObj.d.roomkey;
                         platform_1 = window.platform;
                         return [4 /*yield*/, platform_1.shareAppMessage(jsonObj.d.roomkey)];
-                    case 43:
+                    case 48:
                         _a.sent();
-                        _a.label = 44;
-                    case 44: return [3 /*break*/, 46];
-                    case 45:
+                        _a.label = 49;
+                    case 49: return [3 /*break*/, 51];
+                    case 50:
                         if (jsonObj.f == "showMatch1v1RoomUI") {
                             if (jsonObj.m != "" || jsonObj.s != 1) {
                             }
@@ -4938,8 +5086,8 @@ var HallModule = (function () {
                                 CommonTools.log("this.lRank-------------" + this.lRank);
                             }
                         }
-                        _a.label = 46;
-                    case 46: return [2 /*return*/];
+                        _a.label = 51;
+                    case 51: return [2 /*return*/];
                 }
             });
         });
