@@ -47,6 +47,7 @@ class ConstValue {
 	static P_NOTMATCH_HORSE= "Not match! "
 	static P_MERGEMAX_HORSE= "Full level! "
 	static P_NO_BREED= "Can not breed! "
+	static P_ERROR_NUM= "Input error num! "
 
 	//config公共配置
 	static P_IS_DEBUG:boolean = false;//false正式模式 true演示模式，不联网的

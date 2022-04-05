@@ -1736,6 +1736,7 @@ var HallModule = (function () {
             CommonAudioHandle.playEffect("playBomb_mp3", 1);
             this.closeMergeFail();
             FightingModule.Delay(10000, function () {
+                ContractSol.maincoin_balanceOf(ContractSol.sender);
                 ContractSol.subcoin_balanceOf(ContractSol.sender);
             }, this);
         }, this);
@@ -1772,8 +1773,10 @@ var HallModule = (function () {
         var _loop_4 = function (index) {
             var obj = this_4.horseOwnData[index];
             if (obj.sellStatus != 1) {
-                tL_score += obj.score;
-                tL_horse += 1;
+                if (obj.exhibition == null || obj.exhibition == 0) {
+                    tL_score += obj.score;
+                    tL_horse += 1;
+                }
             }
             var panelT = new eui.Panel();
             panelT.skinName = "resource/eui_skins/UserUI/horseItemGroup_ranch.exml";
@@ -1810,6 +1813,9 @@ var HallModule = (function () {
                 var tHorseMax = 0;
                 var tHorse = 0;
                 for (var index1 in this.horseOwnData) {
+                    var ttobj = this.horseOwnData[index1];
+                    if (ttobj.exhibition != null && ttobj.exhibition == 1)
+                        continue;
                     tHorseMax += 1;
                 }
                 for (var index2 in this.horseOwnData) {
@@ -1822,7 +1828,12 @@ var HallModule = (function () {
                 L_select_cnt.text = tHorse + "/" + tHorseMax;
                 L_select_score.text = tScore.toString();
             }, this_4);
-            i++;
+            if (obj.exhibition != null && obj.exhibition == 1) {
+                panelT.visible = false;
+            }
+            else {
+                i++;
+            }
         };
         var this_4 = this;
         for (var index in this.horseOwnData) {
@@ -2915,7 +2926,12 @@ var HallModule = (function () {
     };
     HallModule.prototype.sellNft = function () {
         var money_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb");
-        var sDataSell = CommonTools.getDataJsonStr("SellNft", 1, { nftIndex: this.horseIndexS, money: parseInt(money_text.text) });
+        var eCheck = isNaN(Number(money_text.text));
+        if (eCheck) {
+            this.addCommonTips(ConstValue.P_ERROR_NUM);
+            return;
+        }
+        var sDataSell = CommonTools.getDataJsonStr("SellNft", 1, { nftIndex: this.horseIndexS, money: Number(money_text.text) });
         ConstValue.P_NET_OBJ.sendData(sDataSell);
     };
     HallModule.prototype.pBuyNft = function () {
@@ -2924,7 +2940,7 @@ var HallModule = (function () {
     };
     HallModule.prototype.onClick = function (e) {
         return __awaiter(this, void 0, void 0, function () {
-            var name, _a, sellobj, up_text, down_text, checkOwn, buyMain, sDataNoendHelp, sDataSkillHelp, sDataReady, sDataReady, sData_1, sData_gobarr, sData, sDataGG, sData_rank_3, sData_rank_1, sData_rank_2, sData_2, hObj, sData_role_detail, sData_noend, sData_3, sData_shop, sData_bag, sData_RoleList, sData_Reward, sData_skill, sDataBuy, sDataBuy, sDataUse, account_lb_txt, sData_4;
+            var name, _a, sellobj, money_text, eCheckSell, up_text, eCheck, numSend, down_text, eCheck2, numSend2, checkOwn, buyMain, sDataNoendHelp, sDataSkillHelp, sDataReady, sDataReady, sData_1, sData_gobarr, sData, sDataGG, sData_rank_3, sData_rank_1, sData_rank_2, sData_2, hObj, sData_role_detail, sData_noend, sData_3, sData_shop, sData_bag, sData_RoleList, sData_Reward, sData_skill, sDataBuy, sDataBuy, sDataUse, account_lb_txt, sData_4;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -3020,19 +3036,41 @@ var HallModule = (function () {
                             this.addCommonTips(ConstValue.P_ON_EXHIBITION);
                             return [2 /*return*/];
                         }
+                        money_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb");
+                        eCheckSell = isNaN(Number(money_text.text));
+                        if (eCheckSell) {
+                            this.addCommonTips(ConstValue.P_ERROR_NUM);
+                            return [2 /*return*/];
+                        }
                         ContractSol.nft_approve(this.horseIndexS, ContractSol.SELL_NFT);
                         return [3 /*break*/, 46];
                     case 4:
                         up_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb");
-                        if (parseInt(up_text.text) >= 9999)
-                            return [2 /*return*/];
-                        up_text.text = parseInt(up_text.text) + 10 + "";
+                        eCheck = isNaN(Number(up_text.text));
+                        if (eCheck) {
+                            this.addCommonTips(ConstValue.P_ERROR_NUM);
+                            return [3 /*break*/, 46];
+                        }
+                        numSend = Number(up_text.text);
+                        if (numSend >= 9999999) {
+                            this.addCommonTips(ConstValue.P_ERROR_NUM);
+                            return [3 /*break*/, 46];
+                        }
+                        up_text.text = numSend + 10 + "";
                         return [3 /*break*/, 46];
                     case 5:
                         down_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb");
-                        if (parseInt(down_text.text) <= 10)
-                            return [2 /*return*/];
-                        down_text.text = parseInt(down_text.text) - 10 + "";
+                        eCheck2 = isNaN(Number(down_text.text));
+                        if (eCheck2) {
+                            this.addCommonTips(ConstValue.P_ERROR_NUM);
+                            return [3 /*break*/, 46];
+                        }
+                        numSend2 = Number(down_text.text);
+                        if (numSend2 <= 10) {
+                            this.addCommonTips(ConstValue.P_ERROR_NUM);
+                            return [3 /*break*/, 46];
+                        }
+                        down_text.text = numSend2 - 10 + "";
                         return [3 /*break*/, 46];
                     case 6:
                         checkOwn = this.getPOwnHorseInfoById(this.horseIndexS);

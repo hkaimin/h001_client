@@ -1908,8 +1908,10 @@ class HallModule {
 		for(let index in this.horseOwnData){
 			let obj = this.horseOwnData[index];
 			if(obj.sellStatus != 1){
-				tL_score += obj.score;
-				tL_horse += 1;
+				if(obj.exhibition == null || obj.exhibition == 0){
+					tL_score += obj.score;
+					tL_horse += 1;
+				}
 			}
 			let panelT = new eui.Panel();
 			panelT.skinName = "resource/eui_skins/UserUI/horseItemGroup_ranch.exml";
@@ -1924,7 +1926,6 @@ class HallModule {
 			panelT.x = 20+(column - 1)*120;
 			panelT.y = 10+145*(Math.floor(row - 1));
 			group.addChild(panelT);
-
 			let group_1 = panelT.getChildByName("group_1") as eui.Group;
 
 			(group_1.getChildByName("horse_body") as eui.Image).source = "horse"+obj.res_key+"_body_png";
@@ -1947,6 +1948,8 @@ class HallModule {
 				let tHorseMax = 0;
 				let tHorse = 0;
 				for(let index1 in this.horseOwnData){
+					let ttobj = this.horseOwnData[index1];
+					if(ttobj.exhibition != null && ttobj.exhibition == 1)continue;
 					tHorseMax+=1;
 				}
 				for(let index2 in this.horseOwnData){
@@ -1960,7 +1963,11 @@ class HallModule {
 				L_select_score.text = tScore.toString();
 			}, this);
 
-			i ++;
+			if(obj.exhibition != null && obj.exhibition == 1){//如果是exhi中就不显示
+				panelT.visible = false;
+			}else{
+				i ++;
+			}
 		}
 		i -= 1;
 		L_select_cnt.text = "0/"+i;
@@ -3086,8 +3093,13 @@ class HallModule {
 	}
 
 	public sellNft(){
-		let money_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb") as eui.Label;
-		let sDataSell = CommonTools.getDataJsonStr("SellNft",1,{nftIndex:this.horseIndexS,money:parseInt(money_text.text)});
+		let money_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb") as eui.TextInput;
+		let eCheck = isNaN(Number(money_text.text));
+		if(eCheck){
+			this.addCommonTips(ConstValue.P_ERROR_NUM);
+			return;
+		}
+		let sDataSell = CommonTools.getDataJsonStr("SellNft",1,{nftIndex:this.horseIndexS,money:Number(money_text.text)});
 		ConstValue.P_NET_OBJ.sendData(sDataSell);
 	}
 
@@ -3144,19 +3156,43 @@ class HallModule {
 					this.addCommonTips(ConstValue.P_ON_EXHIBITION)
 					return
 				}
+				let money_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb") as eui.TextInput;
+				let eCheckSell = isNaN(Number(money_text.text));
+				if(eCheckSell){
+					this.addCommonTips(ConstValue.P_ERROR_NUM);
+					return;
+				}
 				ContractSol.nft_approve(this.horseIndexS,ContractSol.SELL_NFT);
 				break;
 
 			case "up_img":
-				let up_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb") as eui.Label;
-				if(parseInt(up_text.text)>=9999)return;
-				up_text.text = parseInt(up_text.text) + 10 + ""
+				let up_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb") as eui.TextInput;
+				let eCheck = isNaN(Number(up_text.text));
+				if(eCheck){
+					this.addCommonTips(ConstValue.P_ERROR_NUM);
+					break;
+				}
+				let numSend = Number(up_text.text);
+				if(numSend>=9999999){
+					this.addCommonTips(ConstValue.P_ERROR_NUM);
+					break;
+				}
+				up_text.text = numSend + 10 + ""
 				break;
 
 			case "down_img":
-				let down_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb") as eui.Label;
-				if(parseInt(down_text.text)<=10)return;
-				down_text.text = parseInt(down_text.text) - 10 + ""
+				let down_text = this.panel.getChildByName("sell_group").getChildByName("sell_num_lb") as eui.TextInput;
+				let eCheck2 = isNaN(Number(down_text.text));
+				if(eCheck2){
+					this.addCommonTips(ConstValue.P_ERROR_NUM);
+					break;
+				}
+				let numSend2 = Number(down_text.text);
+				if(numSend2<=10){
+					this.addCommonTips(ConstValue.P_ERROR_NUM);
+					break;
+				}
+				down_text.text = numSend2 - 10 + ""
 				break;
 
 			case "buynft_btn_lb":
