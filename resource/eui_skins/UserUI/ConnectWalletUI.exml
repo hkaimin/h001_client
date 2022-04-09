@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="NoticeGroup" width="400" height="242" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image width="353" height="113" x="22" y="73.5" anchorOffsetX="0" anchorOffsetY="0" source="wallet_bg_png" scale9Grid="10,11,104,109"/>
+	<e:Image width="80" height="80" x="39" y="91" source="metawallet_icon_png"/>
+	<e:Label text="MetaMask" x="142" y="120" textColor="0x020000" bold="true"/>
+	<e:Label id="MetaMask_lb" text="" x="26" y="77" anchorOffsetX="0" width="348" anchorOffsetY="0" height="108" name="MetaMask_lb"/>
+</e:Skin>

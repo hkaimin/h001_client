@@ -62,16 +62,16 @@ var LoginModule = (function () {
                     this.panel.getChildByName("password_lb_title").visible = false;
                     this.panel.getChildByName("btn_registe").visible = false;
                     this.panel.getChildByName("btn_login").visible = false;
-                    this.panel.getChildByName("btn_login_wx").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-                    CommonButtonHandle.beginTouch(this.panel.getChildByName("btn_login_wx"), this);
-                    CommonTools.fixFix(this.context, this.panel.getChildByName("btn_login_wx"), 2, -15, -20);
+                    this.panel.getChildByName("lb_connect_wallet").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+                    CommonButtonHandle.beginTouch(this.panel.getChildByName("lb_connect_wallet"), this);
+                    CommonTools.fixFix(this.context, this.panel.getChildByName("lb_connect_wallet"), 2, 30, 30);
                 }
                 else {
                     this.panel.getChildByName("btn_login").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
                     this.panel.getChildByName("btn_registe").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
                     this.panel.getChildByName("account_lb_txt").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
                     this.panel.getChildByName("password_lb_txt").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
-                    this.panel.getChildByName("btn_login_wx").visible = false;
+                    this.panel.getChildByName("lb_connect_wallet").visible = false;
                     CommonTools.fixFix(this.context, this.panel.getChildByName("btn_login"), 2, -60, 10);
                     CommonTools.fixFix(this.context, this.panel.getChildByName("btn_registe"), 2, -60, 10);
                     CommonTools.fixFix(this.context, this.panel.getChildByName("account_lb_txt"), 2, 0, 20);
@@ -88,6 +88,29 @@ var LoginModule = (function () {
     };
     LoginModule.prototype.addCommonTips = function (tips) {
         CommonTools.addCommonTips(this.panel, tips);
+    };
+    LoginModule.prototype.showWallet = function () {
+        this.maskBg2 = new eui.Image("mask_layer_png");
+        this.maskBg2.width = this.context.getStageWidth();
+        this.maskBg2.height = this.context.getStageHeight();
+        this.context.addChild(this.maskBg2);
+        this.panelNotice = new eui.Panel();
+        this.panelNotice.skinName = "resource/eui_skins/UserUI/ConnectWalletUI.exml";
+        this.panelNotice.title = "Title2";
+        this.panelNotice.horizontalCenter = 0;
+        this.panelNotice.verticalCenter = 0;
+        this.panelNotice.getChildByName("MetaMask_lb").addEventListener(egret.TouchEvent.TOUCH_TAP, this.onClick, this);
+        this.context.addChild(this.panelNotice);
+    };
+    LoginModule.prototype.clearWallet = function () {
+        if (this.maskBg2 != null) {
+            this.context.removeChild(this.maskBg2);
+            this.maskBg2 = null;
+        }
+        if (this.panelNotice != null) {
+            this.context.removeChild(this.panelNotice);
+            this.panelNotice = null;
+        }
     };
     LoginModule.prototype.onClick = function (e) {
         return __awaiter(this, void 0, void 0, function () {
@@ -118,8 +141,9 @@ var LoginModule = (function () {
                     case "btn_login":
                         this.btnClickLogin();
                         break;
-                    case "btn_login_wx":
+                    case "MetaMask_lb":
                         if (ConstValue.p_USE_WALLET == 1) {
+                            this.clearWallet();
                             this.btnClickWalletLogin();
                         }
                         else {
@@ -129,6 +153,9 @@ var LoginModule = (function () {
                             ConstValue.oneTips = {};
                             this.btnClickWxLogin();
                         }
+                        break;
+                    case "lb_connect_wallet":
+                        this.showWallet();
                         break;
                     case "btn_nologinman":
                         break;

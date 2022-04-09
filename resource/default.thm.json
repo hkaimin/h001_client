@@ -30,6 +30,7 @@
 		"resource/eui_skins/UserUI/BagUI.exml",
 		"resource/eui_skins/UserUI/Cargo_success.exml",
 		"resource/eui_skins/UserUI/CommonTips.exml",
+		"resource/eui_skins/UserUI/ConnectWalletUI.exml",
 		"resource/eui_skins/UserUI/EditUI.exml",
 		"resource/eui_skins/UserUI/FightGuanKaResultUI.exml",
 		"resource/eui_skins/UserUI/FightInfoGroup.exml",
