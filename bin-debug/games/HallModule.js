@@ -1225,6 +1225,7 @@ var HallModule = (function () {
     };
     HallModule.prototype.horseSelectUI = function () {
         if (this.subCurPage == 1) {
+            this.btnPveAnim2D.x = this.context.getStageWidth() * 0.2;
             this.maskNew.source = "horse_home_page2_jpg";
             this.createHorseItem();
             if (this.btnPveAnim2D != null)
@@ -1579,7 +1580,7 @@ var HallModule = (function () {
         if (this.horseSelectRightPanel == null) {
             var leftX = 900;
             var downY = 100;
-            var leftX2 = 420;
+            var leftX2 = 350;
             var downY2 = 180;
             var leftX3 = 0;
             var downY3 = 0;
@@ -2199,6 +2200,8 @@ var HallModule = (function () {
                 this.btnPveAnim3D.visible = true;
             this.createHorseItem();
             this.task02UI();
+            if (this.btnPveAnim2D != null)
+                this.btnPveAnim2D.x = this.context.getStageWidth() * 0.2;
         }
         if (index == 3) {
             if (this.btnPveAnim2D != null)
@@ -2207,6 +2210,8 @@ var HallModule = (function () {
                 this.btnPveAnim3D.visible = true;
             this.createHorseItem();
             this.task03UI();
+            if (this.btnPveAnim2D != null)
+                this.btnPveAnim2D.x = this.context.getStageWidth() * 0.2;
         }
         this.btnBackImgTemp = new eui.Image();
         this.btnBackImgTemp.name = "btnTempBack";
@@ -2277,6 +2282,8 @@ var HallModule = (function () {
             this.horseSelectUI();
         }
         else if (this.curPage == 3) {
+            if (this.btnPveAnim2D != null)
+                this.btnPveAnim2D.x = this.context.getStageWidth() * 0.2;
             this.panel.getChildByName("horse_name_group").visible = false;
             this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = false;
             this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = false;
@@ -2697,6 +2704,8 @@ var HallModule = (function () {
         this.R_select_indx = -1;
         this.mergeConf = null;
         this.mergeType = 0;
+        if (this.btnPveAnim2D != null)
+            this.btnPveAnim2D.x = this.context.getStageWidth() * 0.3;
     };
     HallModule.prototype.changePage = function (clickName) {
         this.clearChangeData();
@@ -2760,9 +2769,10 @@ var HallModule = (function () {
                     this.btnPveAnim2D = new eui.Image("horse" + hObj.res_key + "_body_png");
                     this.btnPveAnim2D.width = 500;
                     this.btnPveAnim2D.height = 500;
-                    this.btnPveAnim2D.horizontalCenter = 0;
+                    // this.btnPveAnim2D.horizontalCenter = 0;
                     this.btnPveAnim2D.verticalCenter = 0;
                     this.context.addChild(this.btnPveAnim2D);
+                    this.btnPveAnim2D.x = this.context.getStageWidth() * 0.3;
                     /*
                     this.btnPveAnim3D = new eui.Image("sign_1_png");
                     this.btnPveAnim3D.width = 30;

@@ -1339,6 +1339,7 @@ class HallModule {
 
 	private horseSelectUI(){
 		if(this.subCurPage == 1){
+			this.btnPveAnim2D.x = this.context.getStageWidth() * 0.2;
 			this.maskNew.source = "horse_home_page2_jpg";
 			this.createHorseItem();
 			if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = true;
@@ -1697,7 +1698,7 @@ class HallModule {
 		if(this.horseSelectRightPanel == null){
 			let leftX = 900;
 			let downY = 100;
-			let leftX2 = 420;
+			let leftX2 = 350;
 			let downY2 = 180;
 			let leftX3 = 0;
 			let downY3 = 0;
@@ -2351,12 +2352,14 @@ class HallModule {
 			if(this.btnPveAnim3D != null)this.btnPveAnim3D.visible = true;
 			this.createHorseItem();
 			this.task02UI();
+			if(this.btnPveAnim2D!=null)this.btnPveAnim2D.x = this.context.getStageWidth() * 0.2;
 		}
 		if(index==3){
 			if(this.btnPveAnim2D != null)this.btnPveAnim2D.visible = true;
 			if(this.btnPveAnim3D != null)this.btnPveAnim3D.visible = true;
 			this.createHorseItem();
 			this.task03UI();
+			if(this.btnPveAnim2D!=null)this.btnPveAnim2D.x = this.context.getStageWidth() * 0.2;
 		}
 		this.btnBackImgTemp = new eui.Image();
 		this.btnBackImgTemp.name = "btnTempBack";
@@ -2430,6 +2433,7 @@ class HallModule {
 		}else if(this.curPage == 2){
 			this.horseSelectUI();
 		}else if(this.curPage == 3){
+			if(this.btnPveAnim2D!=null)this.btnPveAnim2D.x = this.context.getStageWidth() * 0.2;
 			this.panel.getChildByName("horse_name_group").visible = false;
 			this.panel.getChildByName("up_item_group").getChildByName("horse_lv_img").visible = false;
 			this.panel.getChildByName("up_item_group").getChildByName("horse_lv_bg_mg").visible = false;
@@ -2854,6 +2858,7 @@ class HallModule {
 		this.R_select_indx = -1;
 		this.mergeConf = null;
 		this.mergeType=0;
+		if(this.btnPveAnim2D!=null)this.btnPveAnim2D.x = this.context.getStageWidth() * 0.3;
 	}
 
 	private changePage(clickName){
@@ -2919,10 +2924,10 @@ class HallModule {
 					this.btnPveAnim2D = new eui.Image("horse"+hObj.res_key+"_body_png");
 					this.btnPveAnim2D.width = 500;
 					this.btnPveAnim2D.height = 500;
-					this.btnPveAnim2D.horizontalCenter = 0;
+					// this.btnPveAnim2D.horizontalCenter = 0;
 					this.btnPveAnim2D.verticalCenter = 0;
 					this.context.addChild(this.btnPveAnim2D);
-
+					this.btnPveAnim2D.x = this.context.getStageWidth() * 0.3;
 					/*
 					this.btnPveAnim3D = new eui.Image("sign_1_png");
 					this.btnPveAnim3D.width = 30;
