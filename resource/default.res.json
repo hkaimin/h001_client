@@ -5,11 +5,11 @@
 			"name": "preload"
 		},
 		{
-			"keys": "red_png,mini_res_json,fighting_vs_png,rank_merge_json,shop_bg_png,shopAndBag_json,shop_bg_1_png,shop_bg_2_png,shop_bg_3_png,btn_type1_1_png,btn_type2_2_png,bag_bg_1_png,bag_bg_2_png,normal_btn_1_png,normal_btn_2_png,checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,egret_icon_png,description_json,topmask_png,sBJButton_mp3,bg_ppt_1_png,friend_pvp_png,match_pvp_png,noround_pve_png,loading01_png,loading02_png,boom_mp3,btnPress_mp3,die_mp3,eatProp_mp3,failure_mp3,mainmenu_mp3,playBomb_mp3,success_mp3,new_ui_merge_json,barr_ball_png,direct_png,direct_02_png,barr_background_bg_png,barr_title_bg_png,barr_value_bg_png,barr_nopass_start_png,barr_pass_start_png,question_01_png,question_02_png,item_merge_json,sevent_day_get_json,role_info_bg_png,role_select_bg_png,role_select_down_png,role_select_ground_png,role_select_item_bg_png,role_select_p1_png,role_select_p2_png,role_select_pick_png,role_select_right_bg_png,role_select_pay_01_png,role_select_pay_02_png,btn_diy_map_png,btn_random_map_png,vs_bg_1v1_png,vs_head_1v1_png,vs_mask_1v1_png,vs_randon_1v1_png,vs_kuang_1v1_png,btn_invalid_01_png,btn_invalid_02_png,role_select_p3_png,p1_special_json,p1_special_png,p2_special_json,p2_special_png,p3_special_json,p3_special_png,role_select_bg2_png,role_select_bg3_png,res_json,guide_01_png,guide_02_png,guide_03_png,guide_04_png,guide_mask_png,guide_point_png,LvRewardGet_json,main_setting_bg_png,settting_close_music_png,settting_open_music_png,view_history_bg_png,view_history_title_png,blue_star_png,barr_lock_png,left_page_png,right_page_png,btn_close_blue_01_png,btn_close_blue_02_png,role_select_p4_png,p4_special_json,p4_special_png,notify_bg_png,mini_tv_png,hall_cloud_png,guild_map_01_png,guild_map_02_png,guild_map_03_png,guild_map_04_png,guild_map_05_png,guild_map_06_png,pvp_anim_btn_json,pvp_anim_btn_png,wx_pvp_btn_json,wx_pvp_btn_png,skill_json,default_head_png,guide_showtip_png,guide_point_down_png,item_merge_2_json,role_select_bg4_png,main_setting_logout_png,red_tv_png,gonggao_01_png,gonggao_02_png,new_ui_01_jpg,leftbar_di_png,horse_page1_home_json,horse_home_page2_jpg,horse_page2_home_json,horse_merge_page2_jpg,horse_page2_merge_json,right_horse_png,left_horse_png,get_horse_png,horse_page2_result_json,black_mask_png,horse_page3_training_json,stand_horse_png,horse_sfx_after_eat_wav,horse_step_on_grass_3_wav,horse_playToEarn_page4_jpg,bar_list_CT_png,bar_list_P_png,bar_list_RE_png,select4_s_png,horse_page4_task_json,bar_info_di_24_png,pic_info_di_png,select5_s_png,select8_s_png,horse_market_page5_jpg,market_ticket_png,horse_page5_market_json,horse01_body_png,horse02_body_png,horse03_body_png,horse04_body_png,horse05_body_png,horse06_body_png,horse07_body_png,horse08_body_png,horse09_body_png,horse10_body_png,horse01_head01_png,horse01_head02_png,horse02_head01_png,horse02_head02_png,horse03_head01_png,horse03_head02_png,horse04_head01_png,horse04_head02_png,horse05_head01_png,horse05_head02_png,horse06_head01_png,horse06_head02_png,horse07_head01_png,horse07_head02_png,horse08_head01_png,horse08_head02_png,horse09_head01_png,horse09_head02_png,horse10_head01_png,horse10_head02_png,play_horse_png,horse_help_bg_png,pe_icon_grassland_png,pe_icon_Mud_png,pe_update_png,horse01_run01_json,horse01_run01_png",
+			"keys": "red_png,mini_res_json,rank_merge_json,shop_bg_png,shopAndBag_json,shop_bg_1_png,shop_bg_2_png,shop_bg_3_png,btn_type1_1_png,btn_type2_2_png,bag_bg_1_png,bag_bg_2_png,normal_btn_1_png,normal_btn_2_png,checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,egret_icon_png,description_json,topmask_png,sBJButton_mp3,bg_ppt_1_png,friend_pvp_png,match_pvp_png,noround_pve_png,loading01_png,loading02_png,boom_mp3,btnPress_mp3,die_mp3,eatProp_mp3,failure_mp3,mainmenu_mp3,playBomb_mp3,success_mp3,new_ui_merge_json,barr_ball_png,direct_png,direct_02_png,barr_background_bg_png,barr_title_bg_png,barr_value_bg_png,barr_nopass_start_png,barr_pass_start_png,question_01_png,question_02_png,item_merge_json,sevent_day_get_json,role_info_bg_png,btn_diy_map_png,btn_random_map_png,vs_bg_1v1_png,vs_head_1v1_png,vs_mask_1v1_png,vs_randon_1v1_png,vs_kuang_1v1_png,btn_invalid_01_png,btn_invalid_02_png,res_json,LvRewardGet_json,main_setting_bg_png,settting_close_music_png,settting_open_music_png,view_history_bg_png,view_history_title_png,blue_star_png,barr_lock_png,left_page_png,right_page_png,btn_close_blue_01_png,btn_close_blue_02_png,notify_bg_png,mini_tv_png,hall_cloud_png,pvp_anim_btn_json,pvp_anim_btn_png,wx_pvp_btn_json,wx_pvp_btn_png,skill_json,default_head_png,item_merge_2_json,main_setting_logout_png,red_tv_png,gonggao_01_png,gonggao_02_png,new_ui_01_jpg,leftbar_di_png,horse_page1_home_json,horse_home_page2_jpg,horse_page2_home_json,horse_merge_page2_jpg,horse_page2_merge_json,right_horse_png,left_horse_png,get_horse_png,horse_page2_result_json,black_mask_png,horse_page3_training_json,stand_horse_png,horse_sfx_after_eat_wav,horse_step_on_grass_3_wav,horse_playToEarn_page4_jpg,bar_list_CT_png,bar_list_P_png,bar_list_RE_png,select4_s_png,horse_page4_task_json,bar_info_di_24_png,pic_info_di_png,select5_s_png,select8_s_png,horse_market_page5_jpg,market_ticket_png,horse_page5_market_json,horse01_body_png,horse02_body_png,horse03_body_png,horse04_body_png,horse05_body_png,horse06_body_png,horse07_body_png,horse08_body_png,horse09_body_png,horse10_body_png,horse01_head01_png,horse01_head02_png,horse02_head01_png,horse02_head02_png,horse03_head01_png,horse03_head02_png,horse04_head01_png,horse04_head02_png,horse05_head01_png,horse05_head02_png,horse06_head01_png,horse06_head02_png,horse07_head01_png,horse07_head02_png,horse08_head01_png,horse08_head02_png,horse09_head01_png,horse09_head02_png,horse10_head01_png,horse10_head02_png,play_horse_png,horse_help_bg_png,pe_icon_grassland_png,pe_icon_Mud_png,pe_update_png,horse01_run01_json,horse01_run01_png,horse02_run01_json,horse02_run01_png,horse03_run01_json,horse03_run01_png,horse04_run01_json,horse04_run01_png,horse05_run01_json,horse05_run01_png,horse06_run01_json,horse06_run01_png,horse07_run01_json,horse07_run01_png,horse08_run01_json,horse08_run01_png,horse09_run01_json,horse09_run01_png,horse10_run01_json,horse10_run01_png",
 			"name": "preloadHall"
 		},
 		{
-			"keys": "map_res_icon_json,fighting_kuang_png,btn_chao_01_png,btn_chao_02_png,p1_01_json,p1_01_png,p1_02_json,p1_02_png,p1_03_json,p1_03_png,p2_01_json,p2_01_png,p2_02_json,p2_02_png,p2_03_json,p2_03_png,paopao_json,paopao_png,baozha_last_anim_json,baozha_last_anim_png,baozha_zhong_anim_json,baozha_zhong_anim_png,baozha_jie_png,boom_01_png,boom_02_png,controler_bg_png,controler_hit_png,p1_04_json,p1_04_png,p2_04_json,p2_04_png,SpeedNet_json,SpeedNet_png,fighting_result_png,backhall_01_png,backhall_02_png,replay_01_png,replay_02_png,share_01_png,share_02_png,win_png,fail_png,digital_1_json,digital_2_json,rank_png,normal_bg_1_png,match_art_lb_png,name_bg_png,quit_pass_01_png,quit_pass_02_png,map_res2_icon_json,p1_static_02_json,p1_static_02_png,p1_static_03_json,p1_static_03_png,p1_static_04_json,p1_static_04_png,p2_static_02_json,p2_static_02_png,p2_static_03_json,p2_static_03_png,p2_static_04_json,p2_static_04_png,p3_static_02_json,p3_static_02_png,p3_static_03_json,p3_static_03_png,p3_static_04_json,p3_static_04_png,p3_01_json,p3_01_png,p3_02_json,p3_02_png,p3_03_json,p3_03_png,p3_04_json,p3_04_png,p1_static_json,p1_static_png,p2_static_json,p2_static_png,p3_static_json,p3_static_png,next_barr_01_png,next_barr_02_png,p4_01_json,p4_01_png,p4_02_json,p4_02_png,p4_03_json,p4_03_png,p4_04_json,p4_04_png,p4_static_json,p4_static_png,p4_static_02_json,p4_static_02_png,p4_static_03_json,p4_static_03_png,p4_static_04_json,p4_static_04_png,take_chicken_json,take_chicken_png,take_dog_json,take_dog_png,paopao_watermelon_json,paopao_watermelon_png,paopao_doughnut_json,paopao_doughnut_png,paopao_ice_json,paopao_ice_png,paopao_mars_json,paopao_mars_png,paopao_volleyball_json,paopao_volleyball_png,match_exit_01_png,match_exit_02_png,match_success_png,map_res3_icon_json,pai1_01_json,pai1_01_png,pai1_02_json,pai1_02_png,pai1_03_json,pai1_03_png,pai1_04_json,pai1_04_png,pai2_01_json,pai2_01_png,pai2_02_json,pai2_02_png,pai2_03_json,pai2_03_png,pai2_04_json,pai2_04_png,pai3_01_json,pai3_01_png,pai3_02_json,pai3_02_png,pai3_03_json,pai3_03_png,pai3_04_json,pai3_04_png,pai4_01_json,pai4_01_png,pai4_02_json,pai4_02_png,pai4_03_json,pai4_03_png,pai4_04_json,pai4_04_png",
+			"keys": "fighting_kuang_png,btn_chao_01_png,btn_chao_02_png,boom_01_png,boom_02_png,controler_bg_png,controler_hit_png,SpeedNet_json,SpeedNet_png,fighting_result_png,backhall_01_png,backhall_02_png,replay_01_png,replay_02_png,share_01_png,share_02_png,win_png,fail_png,digital_1_json,digital_2_json,rank_png,normal_bg_1_png,match_art_lb_png,name_bg_png,quit_pass_01_png,quit_pass_02_png,next_barr_01_png,next_barr_02_png,take_chicken_json,take_chicken_png,take_dog_json,take_dog_png,match_exit_01_png,match_exit_02_png,match_success_png",
 			"name": "fighting"
 		},
 		{
@@ -223,12 +223,6 @@
 			"name": "noround_pve_png"
 		},
 		{
-			"url": "assets/UserSkin/ppt/icon/map_res_icon.json",
-			"type": "sheet",
-			"name": "map_res_icon_json",
-			"subkeys": "res_10_png,res_11_png,res_12_png,res_13_png,res_14_png,res_15_png,res_16_png,res_17_png,res_18_png,res_19_png,res_1_png,res_20_png,res_21_png,res_22_png,res_23_png,res_24_png,res_25_png,res_26_png,res_27_png,res_28_png,res_29_png,res_2_png,res_30_png,res_3_png,res_4_png,res_5_png,res_6_png,res_7_png,res_8_png,res_9_png"
-		},
-		{
 			"url": "assets/UserSkin/ppt/bg/fighting_kuang.png",
 			"type": "image",
 			"name": "fighting_kuang_png"
@@ -260,101 +254,6 @@
 			"name": "btn_chao_02_png"
 		},
 		{
-			"url": "assets/UserSkin/ppt/role/p1_01.json",
-			"type": "json",
-			"name": "p1_01_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p1_01.png",
-			"type": "image",
-			"name": "p1_01_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p1_02.json",
-			"type": "json",
-			"name": "p1_02_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p1_02.png",
-			"type": "image",
-			"name": "p1_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p1_03.json",
-			"type": "json",
-			"name": "p1_03_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p1_03.png",
-			"type": "image",
-			"name": "p1_03_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_01.json",
-			"type": "json",
-			"name": "p2_01_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_01.png",
-			"type": "image",
-			"name": "p2_01_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_02.json",
-			"type": "json",
-			"name": "p2_02_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_02.png",
-			"type": "image",
-			"name": "p2_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_03.json",
-			"type": "json",
-			"name": "p2_03_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_03.png",
-			"type": "image",
-			"name": "p2_03_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/paopao.json",
-			"type": "json",
-			"name": "paopao_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/paopao.png",
-			"type": "image",
-			"name": "paopao_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/baozha_last_anim.json",
-			"type": "json",
-			"name": "baozha_last_anim_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/baozha_last_anim.png",
-			"type": "image",
-			"name": "baozha_last_anim_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/baozha_zhong_anim.json",
-			"type": "json",
-			"name": "baozha_zhong_anim_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/baozha_zhong_anim.png",
-			"type": "image",
-			"name": "baozha_zhong_anim_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/baozha_jie.png",
-			"type": "image",
-			"name": "baozha_jie_png"
-		},
-		{
 			"url": "assets/UserSkin/ppt/btn/boom_01.png",
 			"type": "image",
 			"name": "boom_01_png"
@@ -373,31 +272,6 @@
 			"url": "assets/UserSkin/ppt/btn/controler_hit.png",
 			"type": "image",
 			"name": "controler_hit_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p1_04.json",
-			"type": "json",
-			"name": "p1_04_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p1_04.png",
-			"type": "image",
-			"name": "p1_04_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_04.json",
-			"type": "json",
-			"name": "p2_04_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_04.png",
-			"type": "image",
-			"name": "p2_04_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/bg/fighting_vs.png",
-			"type": "image",
-			"name": "fighting_vs_png"
 		},
 		{
 			"url": "assets/UserSkin/ppt/role/SpeedNet.json",
@@ -742,66 +616,6 @@
 			"name": "role_info_bg_png"
 		},
 		{
-			"url": "assets/UserSkin/ppt/role/p1_static.json",
-			"type": "json",
-			"name": "p1_static_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p1_static.png",
-			"type": "image",
-			"name": "p1_static_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_bg.png",
-			"type": "image",
-			"name": "role_select_bg_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_down.png",
-			"type": "image",
-			"name": "role_select_down_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_ground.png",
-			"type": "image",
-			"name": "role_select_ground_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_item_bg.png",
-			"type": "image",
-			"name": "role_select_item_bg_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_p1.png",
-			"type": "image",
-			"name": "role_select_p1_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_p2.png",
-			"type": "image",
-			"name": "role_select_p2_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_pick.png",
-			"type": "image",
-			"name": "role_select_pick_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_right_bg.png",
-			"type": "image",
-			"name": "role_select_right_bg_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_pay_01.png",
-			"type": "image",
-			"name": "role_select_pay_01_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_pay_02.png",
-			"type": "image",
-			"name": "role_select_pay_02_png"
-		},
-		{
 			"url": "assets/UserSkin/ppt/btn/btn_diy_map.png",
 			"type": "image",
 			"name": "btn_diy_map_png"
@@ -837,12 +651,6 @@
 			"name": "vs_kuang_1v1_png"
 		},
 		{
-			"url": "assets/UserSkin/ppt/icon/map_res2_icon.json",
-			"type": "sheet",
-			"name": "map_res2_icon_json",
-			"subkeys": "res_31_png,res_32_png,res_33_png,res_34_png,res_35_png,res_36_png,res_37_png,res_38_png,res_39_png,res_40_png,res_41_png,res_42_png,res_43_png,res_44_png,res_45_png,res_46_png,res_47_png,res_48_png,res_49_png,res_50_png,res_51_png,res_52_png,res_53_png,res_54_png,res_55_png,res_56_png,res_57_png,res_58_png,res_59_png,res_60_png,res_61_png,res_62_png,res_63_png,res_64_png,res_65_png,res_66_png,res_67_png,res_68_png,res_69_png"
-		},
-		{
 			"url": "assets/UserSkin/ppt/btn/btn_invalid_01.png",
 			"type": "image",
 			"name": "btn_invalid_01_png"
@@ -853,234 +661,9 @@
 			"name": "btn_invalid_02_png"
 		},
 		{
-			"url": "assets/UserSkin/ppt/role/p2_static.json",
-			"type": "json",
-			"name": "p2_static_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_static.png",
-			"type": "image",
-			"name": "p2_static_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p1_static_02.json",
-			"type": "json",
-			"name": "p1_static_02_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p1_static_02.png",
-			"type": "image",
-			"name": "p1_static_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p1_static_03.json",
-			"type": "json",
-			"name": "p1_static_03_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p1_static_03.png",
-			"type": "image",
-			"name": "p1_static_03_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p1_static_04.json",
-			"type": "json",
-			"name": "p1_static_04_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p1_static_04.png",
-			"type": "image",
-			"name": "p1_static_04_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_static_02.json",
-			"type": "json",
-			"name": "p2_static_02_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_static_02.png",
-			"type": "image",
-			"name": "p2_static_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_static_03.json",
-			"type": "json",
-			"name": "p2_static_03_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_static_03.png",
-			"type": "image",
-			"name": "p2_static_03_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_static_04.json",
-			"type": "json",
-			"name": "p2_static_04_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p2_static_04.png",
-			"type": "image",
-			"name": "p2_static_04_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_static.json",
-			"type": "json",
-			"name": "p3_static_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_static.png",
-			"type": "image",
-			"name": "p3_static_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_static_02.json",
-			"type": "json",
-			"name": "p3_static_02_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_static_02.png",
-			"type": "image",
-			"name": "p3_static_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_static_03.json",
-			"type": "json",
-			"name": "p3_static_03_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_static_03.png",
-			"type": "image",
-			"name": "p3_static_03_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_static_04.json",
-			"type": "json",
-			"name": "p3_static_04_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_static_04.png",
-			"type": "image",
-			"name": "p3_static_04_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_01.json",
-			"type": "json",
-			"name": "p3_01_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_01.png",
-			"type": "image",
-			"name": "p3_01_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_02.json",
-			"type": "json",
-			"name": "p3_02_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_02.png",
-			"type": "image",
-			"name": "p3_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_03.json",
-			"type": "json",
-			"name": "p3_03_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_03.png",
-			"type": "image",
-			"name": "p3_03_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_04.json",
-			"type": "json",
-			"name": "p3_04_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p3_04.png",
-			"type": "image",
-			"name": "p3_04_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_p3.png",
-			"type": "image",
-			"name": "role_select_p3_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/p1_special.json",
-			"type": "json",
-			"name": "p1_special_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/p1_special.png",
-			"type": "image",
-			"name": "p1_special_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/p2_special.json",
-			"type": "json",
-			"name": "p2_special_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/p2_special.png",
-			"type": "image",
-			"name": "p2_special_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/p3_special.json",
-			"type": "json",
-			"name": "p3_special_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/p3_special.png",
-			"type": "image",
-			"name": "p3_special_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_bg2.png",
-			"type": "image",
-			"name": "role_select_bg2_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_bg3.png",
-			"type": "image",
-			"name": "role_select_bg3_png"
-		},
-		{
 			"url": "assets/UserSkin/res.json",
 			"type": "json",
 			"name": "res_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/guide/guide_01.png",
-			"type": "image",
-			"name": "guide_01_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/guide/guide_02.png",
-			"type": "image",
-			"name": "guide_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/guide/guide_03.png",
-			"type": "image",
-			"name": "guide_03_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/guide/guide_04.png",
-			"type": "image",
-			"name": "guide_04_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/guide/guide_mask.png",
-			"type": "image",
-			"name": "guide_mask_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/guide/guide_point.png",
-			"type": "image",
-			"name": "guide_point_png"
 		},
 		{
 			"url": "assets/UserSkin/ppt/icon/LvRewardGet.json",
@@ -1164,101 +747,6 @@
 			"name": "next_barr_02_png"
 		},
 		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_p4.png",
-			"type": "image",
-			"name": "role_select_p4_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_01.json",
-			"type": "json",
-			"name": "p4_01_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_01.png",
-			"type": "image",
-			"name": "p4_01_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_02.json",
-			"type": "json",
-			"name": "p4_02_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_02.png",
-			"type": "image",
-			"name": "p4_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_03.json",
-			"type": "json",
-			"name": "p4_03_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_03.png",
-			"type": "image",
-			"name": "p4_03_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_04.json",
-			"type": "json",
-			"name": "p4_04_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_04.png",
-			"type": "image",
-			"name": "p4_04_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_static.json",
-			"type": "json",
-			"name": "p4_static_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_static.png",
-			"type": "image",
-			"name": "p4_static_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_static_02.json",
-			"type": "json",
-			"name": "p4_static_02_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_static_02.png",
-			"type": "image",
-			"name": "p4_static_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_static_03.json",
-			"type": "json",
-			"name": "p4_static_03_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_static_03.png",
-			"type": "image",
-			"name": "p4_static_03_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_static_04.json",
-			"type": "json",
-			"name": "p4_static_04_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/p4_static_04.png",
-			"type": "image",
-			"name": "p4_static_04_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/p4_special.json",
-			"type": "json",
-			"name": "p4_special_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/p4_special.png",
-			"type": "image",
-			"name": "p4_special_png"
-		},
-		{
 			"url": "assets/UserSkin/ppt/icon/mini_rank_like.png",
 			"type": "image",
 			"name": "mini_rank_like_png"
@@ -1277,36 +765,6 @@
 			"url": "assets/UserSkin/ppt/bg/hall_cloud.png",
 			"type": "image",
 			"name": "hall_cloud_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/guide/guild_map_01.png",
-			"type": "image",
-			"name": "guild_map_01_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/guide/guild_map_02.png",
-			"type": "image",
-			"name": "guild_map_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/guide/guild_map_03.png",
-			"type": "image",
-			"name": "guild_map_03_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/guide/guild_map_04.png",
-			"type": "image",
-			"name": "guild_map_04_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/guide/guild_map_05.png",
-			"type": "image",
-			"name": "guild_map_05_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/guide/guild_map_06.png",
-			"type": "image",
-			"name": "guild_map_06_png"
 		},
 		{
 			"url": "assets/UserSkin/ppt/btn/pvp_anim_btn.json",
@@ -1360,75 +818,10 @@
 			"name": "default_head_png"
 		},
 		{
-			"url": "assets/UserSkin/ppt/guide/guide_showtip.png",
-			"type": "image",
-			"name": "guide_showtip_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/guide/guide_point_down.png",
-			"type": "image",
-			"name": "guide_point_down_png"
-		},
-		{
 			"url": "assets/UserSkin/ppt/icon/item_merge_2.json",
 			"type": "sheet",
 			"name": "item_merge_2_json",
 			"subkeys": "shape_doughnut_png,shape_ice_png,shape_mars_png,shape_normal_png,shape_volleyball_png,shape_watermelon_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/select/role_select_bg4.png",
-			"type": "image",
-			"name": "role_select_bg4_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/paopao_watermelon.json",
-			"type": "json",
-			"name": "paopao_watermelon_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/paopao_watermelon.png",
-			"type": "image",
-			"name": "paopao_watermelon_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/paopao_doughnut.json",
-			"type": "json",
-			"name": "paopao_doughnut_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/paopao_doughnut.png",
-			"type": "image",
-			"name": "paopao_doughnut_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/paopao_ice.json",
-			"type": "json",
-			"name": "paopao_ice_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/paopao_ice.png",
-			"type": "image",
-			"name": "paopao_ice_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/paopao_mars.json",
-			"type": "json",
-			"name": "paopao_mars_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/paopao_mars.png",
-			"type": "image",
-			"name": "paopao_mars_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/paopao_volleyball.json",
-			"type": "json",
-			"name": "paopao_volleyball_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/paopao_volleyball.png",
-			"type": "image",
-			"name": "paopao_volleyball_png"
 		},
 		{
 			"url": "assets/UserSkin/ppt/btn/match_exit_01.png",
@@ -1451,12 +844,6 @@
 			"name": "main_setting_logout_png"
 		},
 		{
-			"url": "assets/UserSkin/ppt/icon/map_res3_icon.json",
-			"type": "sheet",
-			"name": "map_res3_icon_json",
-			"subkeys": "res_70_png,res_71_png,res_72_png,res_73_png,res_74_png,res_75_png,res_76_png,res_77_png,res_78_png,res_79_png,res_80_png,res_81_png,res_82_png,res_83_png,res_84_png,res_85_png,res_86_png,res_87_png"
-		},
-		{
 			"url": "assets/UserSkin/ppt/btn/red_tv.png",
 			"type": "image",
 			"name": "red_tv_png"
@@ -1470,166 +857,6 @@
 			"url": "assets/UserSkin/ppt/btn/gonggao_02.png",
 			"type": "image",
 			"name": "gonggao_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai1_01.json",
-			"type": "json",
-			"name": "pai1_01_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai1_01.png",
-			"type": "image",
-			"name": "pai1_01_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai1_02.json",
-			"type": "json",
-			"name": "pai1_02_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai1_02.png",
-			"type": "image",
-			"name": "pai1_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai1_03.json",
-			"type": "json",
-			"name": "pai1_03_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai1_03.png",
-			"type": "image",
-			"name": "pai1_03_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai1_04.json",
-			"type": "json",
-			"name": "pai1_04_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai1_04.png",
-			"type": "image",
-			"name": "pai1_04_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai2_01.json",
-			"type": "json",
-			"name": "pai2_01_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai2_01.png",
-			"type": "image",
-			"name": "pai2_01_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai2_02.json",
-			"type": "json",
-			"name": "pai2_02_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai2_02.png",
-			"type": "image",
-			"name": "pai2_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai2_03.json",
-			"type": "json",
-			"name": "pai2_03_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai2_03.png",
-			"type": "image",
-			"name": "pai2_03_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai2_04.json",
-			"type": "json",
-			"name": "pai2_04_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai2_04.png",
-			"type": "image",
-			"name": "pai2_04_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai3_01.json",
-			"type": "json",
-			"name": "pai3_01_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai3_01.png",
-			"type": "image",
-			"name": "pai3_01_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai3_02.json",
-			"type": "json",
-			"name": "pai3_02_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai3_02.png",
-			"type": "image",
-			"name": "pai3_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai3_03.json",
-			"type": "json",
-			"name": "pai3_03_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai3_03.png",
-			"type": "image",
-			"name": "pai3_03_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai3_04.json",
-			"type": "json",
-			"name": "pai3_04_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai3_04.png",
-			"type": "image",
-			"name": "pai3_04_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai4_01.json",
-			"type": "json",
-			"name": "pai4_01_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai4_01.png",
-			"type": "image",
-			"name": "pai4_01_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai4_02.json",
-			"type": "json",
-			"name": "pai4_02_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai4_02.png",
-			"type": "image",
-			"name": "pai4_02_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai4_03.json",
-			"type": "json",
-			"name": "pai4_03_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai4_03.png",
-			"type": "image",
-			"name": "pai4_03_png"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai4_04.json",
-			"type": "json",
-			"name": "pai4_04_json"
-		},
-		{
-			"url": "assets/UserSkin/ppt/role/ai/pai4_04.png",
-			"type": "image",
-			"name": "pai4_04_png"
 		},
 		{
 			"url": "abi/nft_tokensOfOwner.json",
@@ -3707,6 +2934,96 @@
 			"url": "assets/UserSkin/ppt/horse/wallet_bg.png",
 			"type": "image",
 			"name": "wallet_bg_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse02/horse02_run01.json",
+			"type": "json",
+			"name": "horse02_run01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse02/horse02_run01.png",
+			"type": "image",
+			"name": "horse02_run01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse03/horse03_run01.json",
+			"type": "json",
+			"name": "horse03_run01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse03/horse03_run01.png",
+			"type": "image",
+			"name": "horse03_run01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/horse04_run01.json",
+			"type": "json",
+			"name": "horse04_run01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse04/horse04_run01.png",
+			"type": "image",
+			"name": "horse04_run01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/horse05_run01.json",
+			"type": "json",
+			"name": "horse05_run01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse05/horse05_run01.png",
+			"type": "image",
+			"name": "horse05_run01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/horse06_run01.json",
+			"type": "json",
+			"name": "horse06_run01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse06/horse06_run01.png",
+			"type": "image",
+			"name": "horse06_run01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/horse07_run01.json",
+			"type": "json",
+			"name": "horse07_run01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse07/horse07_run01.png",
+			"type": "image",
+			"name": "horse07_run01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/horse08_run01.json",
+			"type": "json",
+			"name": "horse08_run01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse08/horse08_run01.png",
+			"type": "image",
+			"name": "horse08_run01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/horse09_run01.json",
+			"type": "json",
+			"name": "horse09_run01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse09/horse09_run01.png",
+			"type": "image",
+			"name": "horse09_run01_png"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/horse10_run01.json",
+			"type": "json",
+			"name": "horse10_run01_json"
+		},
+		{
+			"url": "assets/UserSkin/ppt/horse/horse10/horse10_run01.png",
+			"type": "image",
+			"name": "horse10_run01_png"
 		}
 	]
 }

@@ -200,7 +200,8 @@ class HallModule {
 			this.btnPveAnim = null;
 		}
 		if(index  == 4){
-			this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("horse01_run01_json"), RES.getRes("horse01_run01_png"), "0");
+			let hObj = this.getOwnHorseInfoById(this.horseItemS);
+			this.btnPveAnim = CommonTools.getAnimDraw(RES.getRes("horse"+hObj.res_key+"_run01_json"), RES.getRes("horse"+hObj.res_key+"_run01_png"), "0");
 		}
 		this.btnPveAnim.play(-1);
 		this.btnPveAnim.name = "btn_noend_pve_anim";
@@ -1598,6 +1599,10 @@ class HallModule {
 		this.horseSelectRightPanel.visible = false;
 		this.horseSelectPanel.visible = false;
 		this.btnPveAnimX = -200;
+		if(this.maskBg2 != null){
+			this.context.removeChild(this.maskBg2);
+			this.maskBg2 = null;
+		}
 		this.setTHorseXY();
 		this.drawTraining(index);
 	}
@@ -1751,14 +1756,23 @@ class HallModule {
 
 			this.horseSelectRightPanel.getChildByName("train_btn_img").addEventListener(egret.TouchEvent.TOUCH_TAP,  function(e:egret.TouchEvent){
 				CommonAudioHandle.playEffect("playBomb_mp3",1);
+				let objT = this.getPOwnHorseInfoById(this.horseItemS);
 				let iCost = parseInt(this.horseSelectRightPanel.getChildByName("train_cost_sub").text);
 				let energyCost = parseInt(this.horseSelectRightPanel.getChildByName("energy_cost").text);
 				if(ConstValue.cacheUserInfo.diamond < iCost*ContractSol.EXCHANGE_RATE){
 					this.addCommonTips(ConstValue.P_NOT_ENOUGH);
 					return false;
 				}
-				if(obj.energy < energyCost*-1){
+				if(objT.energy < energyCost*-1){
 					this.addCommonTips(ConstValue.P_NOT_ENOUGH);
+					return false;
+				}
+				if(objT.sellStatus == 1){
+					this.addCommonTips(ConstValue.P_ON_SALE)
+					return false;
+				}
+				if(objT.exhibition == 1){
+					this.addCommonTips(ConstValue.P_ON_EXHIBITION)
 					return false;
 				}
 				ContractSol.subcoin_transfer(ContractSol.createAddress,iCost*ContractSol.EXCHANGE_RATE,ContractSol.TRAIN_COST_SUB_NFT);
